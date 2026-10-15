@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.75in,vmargin=0.75in]{geometry}
+\usepackage{booktabs,makecell,adjustbox}
+\usepackage[T1]{fontenc}
+\begin{document}
+\pagestyle{empty}
+\section*{SimpleGrid plan recognition by grid size}
+\newsavebox{\tbl}
+\begin{lrbox}{\tbl}\small
+\begin{tabular}{lrrr}
+\toprule
+Grid size & 3$\times$3 & 4$\times$4 & 5$\times$5 \\
+\midrule
+Goals & 2 & 3 & 4 \\
+Observations & 1--2 & 1--3 & 1--4 \\
+Mean CNF variables & 141 & 400 & 812 \\
+Mean CNF clauses & 820 & 2,611 & 5,624 \\
+\midrule
+\multicolumn{4}{l}{\textit{max-term}} \\
+\quad Mean time (s) & 11.9 & 16.0 & 35.0 \\
+\quad Among top & 16/16 & 36/36 & 64/64 \\
+\quad Is top & 0/16 & 0/36 & 0/64 \\
+\midrule
+\multicolumn{4}{l}{\textit{sharpsat-td}} \\
+\quad Mean time (s) & 15.8 & 20.0 & 35.1 \\
+\quad Among top & 9/16 & 20/36 & 24/64 \\
+\quad Is top & 7/16 & 8/36 & 14/64 \\
+\midrule
+\multicolumn{4}{l}{\textit{mc-sat}} \\
+\quad Mean time (s) & 14.4 & 32.9 & 210.1 \\
+\quad Among top & 8/16 & 15/36 & 16/64 \\
+\quad Is top & 8/16 & 15/36 & 16/64 \\
+\bottomrule
+\end{tabular}
+\end{lrbox}
+\typeout{TABLEWIDTH \the\wd\tbl\space TEXTWIDTH \the\textwidth}
+\noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}
+\par\bigskip\noindent
+\begin{minipage}{\textwidth}\small Fully connected grids with 1 truck and multiple possible goal destinations. ``Among top'': the runs in which the true goal has the highest posterior, tied or alone. ``Is top'': the runs in which the true goal alone has the highest posterior.\end{minipage}
+\end{document}

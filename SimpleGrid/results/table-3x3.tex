@@ -1,20 +1,24 @@
 \documentclass[10pt]{article}
-\usepackage[landscape,margin=0.7in]{geometry}
-\usepackage{booktabs,makecell}
+\usepackage[letterpaper,hmargin=0.75in,vmargin=0.75in]{geometry}
+\usepackage{booktabs,makecell,adjustbox}
 \usepackage[T1]{fontenc}
 \begin{document}
 \pagestyle{empty}
-\section*{SimpleGrid 3$\times$3: 2 possible goals per problem (4 problems, pinned evidence)}
-\begin{tabular}{lrrrrrrrrrrr}
+\section*{SimpleGrid 3$\times$3, all evidence lengths}
+\noindent\emph{2 possible goals per problem; 4 problems; pinned evidence}\par\medskip
+\newsavebox{\tbl}
+\begin{lrbox}{\tbl}\small\begin{tabular}{lrrrrrrrr}
 \toprule
-\makecell[lb]{Method} & \makecell[rb]{Possible\\goals} & \makecell[rb]{Runs} & \makecell[rb]{CNF\\variables} & \makecell[rb]{CNF\\clauses} & \makecell[rb]{Runs over\\1 min} & \makecell[rb]{Failed\\at 15 min} & \makecell[rb]{Mean\\time (s)} & \makecell[rb]{Max\\time (s)} & \makecell[rb]{True goal\\among top\\scorers} & \makecell[rb]{True goal\\is the sole\\top scorer} & \makecell[rb]{Mean\\P(true\\goal)} \\
+\makecell[lb]{Method} & \makecell[rb]{Runs} & \makecell[rb]{CNF\\variables} & \makecell[rb]{CNF\\clauses} & \makecell[rb]{Mean\\time (s)} & \makecell[rb]{Max\\time (s)} & \makecell[rb]{True goal\\among top\\scorers} & \makecell[rb]{True goal\\is the sole\\top scorer} & \makecell[rb]{Mean\\P(true\\goal)} \\
 \midrule
-max-term & 2 & 16 & 141 & 819--820 & 0 & 0 & 11.9 & 13.2 & 16/16 & 0/16 & 0.500 \\
-sharpsat-td & 2 & 16 & 141 & 819--820 & 0 & 0 & 15.8 & 17.2 & 9/16 & 7/16 & 0.500 \\
-mc-sat & 2 & 16 & 141 & 819--820 & 0 & 0 & 14.4 & 15.7 & 8/16 & 8/16 & 0.511 \\
-addmc & 2 & 16 & 141 & 819--820 & 0 & 0 & 9.2 & 9.7 & 9/16 & 7/16 & 0.500 \\
+max-term & 16 & 141 & 819--820 & 11.9 & 13.2 & 16/16 & 0/16 & 0.500 \\
+sharpsat-td & 16 & 141 & 819--820 & 15.8 & 17.2 & 9/16 & 7/16 & 0.500 \\
+mc-sat & 16 & 141 & 819--820 & 14.4 & 15.7 & 8/16 & 8/16 & 0.511 \\
+addmc & 16 & 141 & 819--820 & 9.2 & 9.7 & 9/16 & 7/16 & 0.500 \\
 \bottomrule
-\end{tabular}
+\end{tabular}\end{lrbox}
+\typeout{TABLEWIDTH \the\wd\tbl\space TEXTWIDTH \the\textwidth}
+\noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}
 \par\bigskip\noindent
-\begin{minipage}{0.95\linewidth}\small Each run is one problem, one pinned evidence file (the first N drives of a plan) and one recognize.sh \texttt{-{}-counter} method. CNF size is the instantiated problem plus evidence that every method starts from (max-term adds its own soft clauses); it depends on the problem and evidence, not the method. Times are wall-clock, 8 runs in parallel (ADDMC: 2), each first limited to 1 minute and rerun with 15 minutes if it timed out; a 15-minute rerun is counted in ``Runs over 1 min'' and its time is that of the rerun. ``Top scorers'' are the hypotheses sharing the highest posterior, so a tie counts as among them but not as sole.\end{minipage}
+\begin{minipage}{\textwidth}\small Each run is one problem, one pinned evidence file (the first N drives of a plan) and one recognize.sh \texttt{-{}-counter} method. CNF size is the instantiated problem plus evidence that every method starts from (max-term adds its own soft clauses); it depends on the problem and evidence, not the method. Times are wall-clock, 8 runs in parallel (ADDMC: 2), each first limited to 1 minute and rerun with 15 minutes if it timed out (its time is then that of the rerun); every run finished. ``Top scorers'' are the hypotheses sharing the highest posterior, so a tie counts as among them but not as sole.\end{minipage}
 \end{document}
