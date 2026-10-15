@@ -1,0 +1,19 @@
+\documentclass[10pt]{article}
+\usepackage[landscape,margin=0.7in]{geometry}
+\usepackage{booktabs,makecell}
+\usepackage[T1]{fontenc}
+\begin{document}
+\pagestyle{empty}
+\section*{SimpleGrid 5$\times$5: 4 possible goals per problem (4 problems, pinned evidence)}
+\begin{tabular}{lrrrrrrrrrrr}
+\toprule
+\makecell[lb]{Method} & \makecell[rb]{Possible\\goals} & \makecell[rb]{Runs} & \makecell[rb]{CNF\\variables} & \makecell[rb]{CNF\\clauses} & \makecell[rb]{Runs over\\1 min} & \makecell[rb]{Failed\\at 15 min} & \makecell[rb]{Mean\\time (s)} & \makecell[rb]{Max\\time (s)} & \makecell[rb]{True goal\\among top\\scorers} & \makecell[rb]{True goal\\is the sole\\top scorer} & \makecell[rb]{Mean\\P(true\\goal)} \\
+\midrule
+max-term & 4 & 64 & 760--865 & 5,249--5,998 & 6 & 0 & 35.0 & 118.9 & 64/64 & 0/64 & 0.258 \\
+sharpsat-td & 4 & 64 & 760--865 & 5,249--5,998 & 12 & 0 & 35.1 & 103.5 & 24/64 & 14/64 & 0.271 \\
+mc-sat & 4 & 64 & 760--865 & 5,249--5,998 & 64 & 0 & 210.1 & 333.6 & 16/64 & 16/64 & 0.252 \\
+\bottomrule
+\end{tabular}
+\par\bigskip\noindent
+\begin{minipage}{0.95\linewidth}\small Each run is one problem, one pinned evidence file (the first N drives of a plan) and one recognize.sh \texttt{-{}-counter} method. CNF size is the instantiated problem plus evidence that every method starts from (max-term adds its own soft clauses); it depends on the problem and evidence, not the method. Times are wall-clock, 8 runs in parallel (ADDMC: 2), each first limited to 1 minute and rerun with 15 minutes if it timed out; a 15-minute rerun is counted in ``Runs over 1 min'' and its time is that of the rerun. ``Top scorers'' are the hypotheses sharing the highest posterior, so a tie counts as among them but not as sole.\end{minipage}
+\end{document}
