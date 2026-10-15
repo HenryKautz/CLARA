@@ -135,35 +135,49 @@ def compile_pdf(name):
 # --- the summary: one row per grid size, a column group per method -----------
 
 SUMMARY_METHODS = ["max-term", "sharpsat-td", "mc-sat"]
-SUMMARY_TITLE = "SimpleGrid plan recognition by grid size"
+SUMMARY_TITLE = "SimpleGrid plan recognition by grid size and observations"
 SUMMARY_CAPTION = ("Fully connected grids with 1 truck and multiple possible goal "
                    "destinations. \"Among top\": the runs in which the true goal has the "
                    "highest posterior, tied or alone. \"Is top\": the runs in which the "
                    "true goal alone has the highest posterior.")
 # per method: (key, header)
 SUB = [("time", ["Mean", "time (s)"]), ("among", ["Among", "top"]), ("istop", ["Is", "top"])]
-LEAD = [("size", ["Grid", "size"]), ("goals", ["Goals"]), ("obs", ["Obser-", "vations"]),
-        ("vars", ["Mean CNF", "variables"]), ("clauses", ["Mean CNF", "clauses"])]
+LEAD = [("size", ["Grid", "size"]), ("goals", ["Goals"]),
+        ("mindist", ["Min", "goal", "distance"]), ("obs", ["Obser-", "vations"]),
+        ("vars", ["Mean", "CNF", "variables"]), ("clauses", ["Mean", "CNF", "clauses"])]
+
+
+def min_goal_distance(problem):
+    """The --mindist a problem was generated with, from its recorded ppgen settings."""
+    m = re.search(r"^;;   --mindist (\d+)$", open(os.path.join(HERE, problem)).read(), re.M)
+    if not m:
+        raise SystemExit(f"{problem} records no --mindist")
+    return int(m.group(1))
 
 
 def summary_rows(final, sizes):
+    """One row per grid size and number of observed actions."""
     rows = []
     for size, goals, _methods in SIZES:
-        evs = sorted({ev for (ev, _m) in final if f"grid{size}-" in ev})
-        nobs = sorted({final[(ev, SUMMARY_METHODS[0])]["n_obs"] for ev in evs})
-        row = {"size": size.replace("x", "×"), "goals": str(goals),
-               "obs": f"{nobs[0]}–{nobs[-1]}" if len(nobs) > 1 else str(nobs[0]),
-               "vars": f"{sum(sizes[e][0] for e in evs) / len(evs):,.0f}",
-               "clauses": f"{sum(sizes[e][1] for e in evs) / len(evs):,.0f}"}
-        for m in SUMMARY_METHODS:
-            rs = [final[(ev, m)] for ev in evs]
-            if any(r["status"] != "ok" for r in rs):
-                raise SystemExit(f"{size} {m}: not every run finished")
-            n = len(rs)
-            row[m, "time"] = f"{sum(r['wall_s'] for r in rs) / n:.1f}"
-            row[m, "among"] = f"{sum(r['correct'] for r in rs)}/{n}"
-            row[m, "istop"] = f"{sum(1 for r in rs if r['correct'] and len(r['argmax']) == 1)}/{n}"
-        rows.append(row)
+        evs_all = sorted({ev for (ev, _m) in final if f"grid{size}-" in ev})
+        for nobs in sorted({final[(ev, SUMMARY_METHODS[0])]["n_obs"] for ev in evs_all}):
+            evs = [ev for ev in evs_all if final[(ev, SUMMARY_METHODS[0])]["n_obs"] == nobs]
+            dists = {min_goal_distance(final[(ev, SUMMARY_METHODS[0])]["problem"]) for ev in evs}
+            if len(dists) != 1:
+                raise SystemExit(f"{size}: problems differ in --mindist: {sorted(dists)}")
+            row = {"size": size.replace("x", "×"), "goals": str(goals),
+                   "mindist": str(dists.pop()), "obs": str(nobs),
+                   "vars": f"{sum(sizes[e][0] for e in evs) / len(evs):,.0f}",
+                   "clauses": f"{sum(sizes[e][1] for e in evs) / len(evs):,.0f}"}
+            for m in SUMMARY_METHODS:
+                rs = [final[(ev, m)] for ev in evs]
+                if any(r["status"] != "ok" for r in rs):
+                    raise SystemExit(f"{size} {m}: not every run finished")
+                n = len(rs)
+                row[m, "time"] = f"{sum(r['wall_s'] for r in rs) / n:.1f}"
+                row[m, "among"] = f"{sum(r['correct'] for r in rs)}/{n}"
+                row[m, "istop"] = f"{sum(1 for r in rs if r['correct'] and len(r['argmax']) == 1)}/{n}"
+            rows.append(row)
     return rows
 
 
@@ -225,15 +239,18 @@ def summary_tables(final, sizes):
     write_all("summary-by-grid", "\n".join(md), tex)
 
     # 2. transposed: one column per grid size, one row per quantity
-    labels = ([(k, " ".join(h).replace("- ", "")) for k, h in LEAD[1:]]
+    labels = ([(k, " ".join(h).replace("- ", "")) for k, h in LEAD[1:] if k != "obs"]
               + [((m, k), f"{m}: {' '.join(h)}") for m in SUMMARY_METHODS for k, h in SUB])
     md = [f"## {SUMMARY_TITLE}", "",
           "| Grid size | " + " | ".join(r["size"] for r in rows) + " |",
           "|:--|" + "|".join(["--:"] * len(rows)) + "|",
+          "| Observations | " + " | ".join(r["obs"] for r in rows) + " |",
           *(f"| {lab} | " + " | ".join(r[k] for r in rows) + " |" for k, lab in labels),
           "", textwrap.fill(SUMMARY_CAPTION, 80), ""]
     body = []
     for k, h in LEAD[1:]:
+        if k == "obs":
+            continue
         body.append(tex_escape(" ".join(h).replace("- ", "")) + " & "
                     + " & ".join(dash(r[k]) for r in rows) + r" \\")
     for m in SUMMARY_METHODS:
@@ -244,6 +261,7 @@ def summary_tables(final, sizes):
                         + " & ".join(dash(r[m, k]) for r in rows) + r" \\")
     tex = latex_page([r"\begin{tabular}{l%s}" % ("r" * len(rows)), r"\toprule",
                       "Grid size & " + " & ".join(tex_escape(r["size"]) for r in rows) + r" \\",
+                      "Observations & " + " & ".join(r["obs"] for r in rows) + r" \\",
                       r"\midrule", *body, r"\bottomrule", r"\end{tabular}"],
                      SUMMARY_CAPTION)
     write_all("summary-by-grid-transposed", "\n".join(md), tex)
