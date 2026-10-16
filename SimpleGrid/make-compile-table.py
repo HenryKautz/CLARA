@@ -7,6 +7,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 NAME = "compile-d4"
 PDF_WIDTH_IN = 7
+# Largest grid reported: from 8x8 on d4 crashes or returns wrong circuits, so
+# those runs stay in the jsonl but are left out of the table.
+MAX_SIZE = 7
 TITLE = "SimpleGrid problems compiled to d-DNNF with d4 (projected, no evidence)"
 
 # (key, header lines, alignment)
@@ -20,7 +23,8 @@ COLS = [("instance", ["Instance"], "l"),
         ("proj", ["Projected", "variables"], "r"),
         ("nodes", ["Circuit", "nodes"], "r"),
         ("edges", ["Circuit", "edges"], "r"),
-        ("models", ["Models", "(checked)"], "r"),
+        ("models", ["Model count", "(verified)"], "r"),
+        ("query", ["Query with", "2 obs. (s)"], "r"),
         ("tries", ["Tries"], "r")]
 
 
@@ -28,7 +32,11 @@ def gb(mb):
     return f"{mb / 1024:.1f} GB" if mb >= 1024 else f"{mb:g} MB"
 
 
-def row(r, tries):
+def qtime(s):
+    return f"{s:.3f}" if s < 1 else f"{s:.2f}"
+
+
+def row(r, tries, q):
     ok = r["status"] == "ok"
     limit = f"{r['limit_s'] / 60:g} min"
     fail = {"timeout": f"timeout ({limit})", "memout": "out of memory",
@@ -49,11 +57,36 @@ def row(r, tries):
            "models": (num("circuit_count") if ok else
                       f"{r['circuit_count']:,} ≠ {r['model_count']:,}" if r["status"] == "wrong"
                       else "–"),
+           "query": qtime(q["query_s"]) if q and q["status"] == "ok" else "–",
            "tries": str(tries)}
     return out
 
 
-def caption(recs):
+def query_note(queries):
+    """Caption text for the query-with-evidence column (results/query-evidence.jsonl)."""
+    if not queries:
+        return ""
+    qs = list(queries.values())
+    reps = sorted({q["repeats"] for q in qs})
+    loads = [q["load_s"] for q in qs if "load_s" in q]
+    return (" Query with 2 obs. is the time to recompute every marginal of the saved "
+            "circuit conditioned on two observations — the first two drives of a "
+            "shortest plan to the problem's alphabetically first destination, pinned "
+            "to steps 1 and 2 (evidence/PROBLEM-DESTINATION-obs2.txt) — as "
+            "marginals.sh --circuit --evidence-file does: the observations are unit "
+            "literals over kept atoms, so the circuit is clamped and re-evaluated, "
+            "not recompiled. It is timed inside SBCL, the median of "
+            f"{' or '.join(map(str, reps))} repetitions, and excludes starting SBCL "
+            "and loading FiFO (about 1.2 s) and reading the circuit file "
+            f"({min(loads):.3f}–{max(loads):.2f} s). Each answer was checked: both "
+            "observed drives have probability 1, and the final-slice goal marginals "
+            "sum to 1. Most of the query time is FiFO's backward pass, which for an "
+            "AND node with k children recomputes the k-1 sibling products for each "
+            "child (k² multiplications; the largest smoothed AND node of 7×7-4 has "
+            "1,007 children), not the circuit size itself.")
+
+
+def caption(recs, tries, queries):
     sizes = []
     for r in recs:
         if r["size"] not in sizes:
@@ -90,23 +123,29 @@ def caption(recs):
             f"{at_once}, each limited to "
             f"{limit:g} minutes. SBCL ran with {heaps} and a 1 GB control stack, "
             "d4 with a 64 MB stack (the defaults, 1 GB, 2 MB and 8 MB, are too small "
-            "from 7×7 or 9×9 on).")
+            "for the larger circuits).")
     if any(r.get("fifo_lisp", "installed") != "installed" for r in recs):
         text += (" The circuits were imported by FiFO with its d4 importer rewritten to "
                  "use bit-vector scopes and iterative traversal (branch "
                  "ddnnf-import-bitvector-scopes); the released importer runs out of "
                  "memory on circuits of about a million nodes.")
-    text += (" Every circuit kept was checked: its model count (all literals set to 1 "
-             "in the smoothed circuit) equals the number of truck walks the theory "
-             "allows, counted independently by dynamic programming over the grid "
+    text += (" Model count (verified) is the number of models of the compiled circuit "
+             "(all literals set to 1 in the smoothed circuit), that is, the number of "
+             "truck walks the theory allows. Every circuit kept was checked against an "
+             "independent count of those walks by dynamic programming over the grid "
              "(H-1 steps, each a drive to a neighbouring cell or a wait, from p1-1 to a "
-             "goal cell), a count that agrees with sharpSAT on every problem up to "
-             "7×7 (sharpSAT did not finish an 8×8 problem in hours). The check is needed: from 8×8 on, d4 sometimes "
-             "crashes (bus error or segmentation fault) and sometimes returns a wrong "
-             "circuit without any error, and repeated runs on the same CNF give "
-             "different circuits, so each problem was compiled until a run passed. "
-             "Tries counts the runs of d4 on a problem, failed ones included, and the "
-             "times are those of the run that passed.")
+             "goal cell), which also agrees with sharpSAT on every problem shown; the "
+             "two counts were equal for every circuit in the table.")
+    if any(r.get("status") == "ok" for r in recs) and max(
+            int(r["size"].split("x")[0]) for r in recs) == MAX_SIZE:
+        text += (f" Grids larger than {MAX_SIZE}×{MAX_SIZE} are omitted: from 8×8 on, "
+                 "d4 often crashes (bus error or segmentation fault) or returns a wrong "
+                 "circuit without any error, and repeated runs on the same CNF give "
+                 "different circuits.")
+    if any(t > 1 for t in tries.values()):
+        text += (" Tries counts the runs of d4 on a problem, failed ones included, and "
+                 "the times are those of the run that passed.")
+    text += query_note(queries)
     for r in recs:
         if r.get("node_limit"):
             text += (f" For {r['instance']}, FiFO's circuit-size cap (*ddnnf-node-limit*, "
@@ -148,18 +187,18 @@ def tex_escape(s):
             .replace("–", "--").replace("—", "---"))
 
 
-def markdown(rows, note):
-    head = "| " + " | ".join(" ".join(h).replace("- ", "") for _, h, _ in COLS) + " |"
-    align = "|" + "|".join(":--" if a == "l" else "--:" for _, _, a in COLS) + "|"
-    body = ["| " + " | ".join(r[k] for k, _, _ in COLS) + " |" for r in rows]
-    return "\n".join([f"## {TITLE}", "", head, align, *body, "", textwrap.fill(note, 80), ""])
+def markdown(cols, title, rows, note):
+    head = "| " + " | ".join(" ".join(h).replace("- ", "") for _, h, _ in cols) + " |"
+    align = "|" + "|".join(":--" if a == "l" else "--:" for _, _, a in cols) + "|"
+    body = ["| " + " | ".join(r[k] for k, _, _ in cols) + " |" for r in rows]
+    return "\n".join([f"## {title}", "", head, align, *body, "", textwrap.fill(note, 80), ""])
 
 
-def latex(rows, note):
-    spec = "".join(a for _, _, a in COLS)
+def latex(cols, title, rows, note):
+    spec = "".join(a for _, _, a in cols)
     head = " & ".join(r"\makecell[%sb]{%s}" % (a, r"\\".join(map(tex_escape, h)))
-                      for _, h, a in COLS)
-    body = "\n".join(" & ".join(tex_escape(r[k]) for k, _, _ in COLS) + r" \\" for r in rows)
+                      for _, h, a in cols)
+    body = "\n".join(" & ".join(tex_escape(r[k]) for k, _, _ in cols) + r" \\" for r in rows)
     note_tex = re.sub(r'"([^"]*)"', r"``\1''", tex_escape(note))
     # command-line options: keep "--" from becoming an en dash
     note_tex = re.sub(r"(?<!-)--([a-z][a-z-]*)", r"\\texttt{-{}-\1}", note_tex)
@@ -171,7 +210,7 @@ def latex(rows, note):
         r"\usepackage[T1]{fontenc}",
         r"\begin{document}",
         r"\pagestyle{empty}",
-        r"\section*{%s}" % tex_escape(TITLE),
+        r"\section*{%s}" % tex_escape(title),
         r"\newsavebox{\tbl}",
         r"\begin{lrbox}{\tbl}\small\setlength{\tabcolsep}{4pt}\begin{tabular}{%s}" % spec,
         r"\toprule", head + r" \\", r"\midrule", body, r"\bottomrule",
@@ -190,7 +229,7 @@ def main():
             r = json.loads(line)
             recs[r["instance"]] = r          # the latest record of each problem
             history.append(r)
-    recs = sorted(recs.values(),
+    recs = sorted((r for r in recs.values() if int(r["size"].split("x")[0]) <= MAX_SIZE),
                   key=lambda r: (int(r["size"].split("x")[0]), int(r["instance"].split("-")[1])))
     lisp = lambda r: r.get("fifo_lisp", "installed")
     # d4 runs with the latest record's importer; a later check of a saved
@@ -199,12 +238,73 @@ def main():
                                 if h["instance"] == r["instance"] and lisp(h) == lisp(r)
                                 and "checked_later" not in h)
              for r in recs}
-    rows = [row(r, tries[r["instance"]]) for r in recs]
-    note = caption(recs)
-    base = os.path.join(RES, NAME)
-    open(base + ".md", "w").write(markdown(rows, note))
-    open(base + ".tex", "w").write(latex(rows, note))
-    subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", NAME + ".tex"],
+    queries = {}
+    qfile = os.path.join(RES, "query-evidence.jsonl")
+    if os.path.exists(qfile):
+        for line in open(qfile):
+            if line.strip():
+                q = json.loads(line)
+                queries[q["instance"]] = q   # the latest query run of each problem
+    queries = {k: v for k, v in queries.items() if any(r["instance"] == k for r in recs)}
+    rows = [row(r, tries[r["instance"]], queries.get(r["instance"])) for r in recs]
+    note = caption(recs, tries, queries)
+    cols = COLS
+    if all(t == 1 for t in tries.values()):
+        cols = [c for c in cols if c[0] != "tries"]
+    if not queries:
+        cols = [c for c in cols if c[0] != "query"]
+    write(NAME, cols, TITLE, rows, note)
+    srows = summary_rows(recs, queries)
+    write(NAME + "-summary", [c for c in SUMMARY_COLS if c[0] != "query" or queries],
+          TITLE + ": means by grid size", srows, summary_note(recs) + " " + note)
+
+
+SUMMARY_COLS = [("size", ["Grid"], "l"),
+                ("n", ["Prob-", "lems"], "r"),
+                ("horizon", ["Hori-", "zon"], "r"),
+                ("d4_t", ["d4", "time (s)"], "r"),
+                ("total_t", ["Total", "time (s)"], "r"),
+                ("vars", ["CNF", "variables"], "r"),
+                ("clauses", ["CNF", "clauses"], "r"),
+                ("proj", ["Projected", "variables"], "r"),
+                ("nodes", ["Circuit", "nodes"], "r"),
+                ("edges", ["Circuit", "edges"], "r"),
+                ("models", ["Model", "count"], "r"),
+                ("query", ["Query with", "2 obs. (s)"], "r")]
+
+
+def summary_rows(recs, queries):
+    """One row per grid size: the mean of each column over its compiled problems."""
+    out = []
+    for size in dict.fromkeys(r["size"] for r in recs):
+        ok = [r for r in recs if r["size"] == size and r["status"] == "ok"]
+        if not ok:
+            continue
+        mean = lambda xs: sum(xs) / len(xs)
+        m = lambda k: mean([r[k] for r in ok])
+        num = lambda k: f"{round(m(k)):,}"
+        qs = [queries[r["instance"]]["query_s"] for r in ok
+              if queries.get(r["instance"], {}).get("status") == "ok"]
+        out.append({"size": size.replace("x", "×"), "n": str(len(ok)),
+                    "horizon": f"{round(m('horizon'), 2):g}",
+                    "d4_t": f"{m('d4_s'):.2f}", "total_t": f"{m('wall_s'):.1f}",
+                    "vars": num("cnf_vars"), "clauses": num("cnf_clauses"),
+                    "proj": num("projected_vars"), "nodes": num("nodes"), "edges": num("edges"),
+                    "models": num("circuit_count"),
+                    "query": qtime(mean(qs)) if len(qs) == len(ok) else "–"})
+    return out
+
+
+def summary_note(recs):
+    return ("Each row is the arithmetic mean over that grid size's problems (Problems "
+            "gives how many), rounded; the per-problem values are in compile-d4.md.")
+
+
+def write(name, cols, title, rows, note):
+    base = os.path.join(RES, name)
+    open(base + ".md", "w").write(markdown(cols, title, rows, note))
+    open(base + ".tex", "w").write(latex(cols, title, rows, note))
+    subprocess.run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", name + ".tex"],
                    cwd=RES, check=True, stdout=subprocess.DEVNULL)
     m = re.search(r"TABLEWIDTH ([\d.]+)pt TEXTWIDTH ([\d.]+)pt", open(base + ".log").read())
     tw, xw = float(m.group(1)), float(m.group(2))
