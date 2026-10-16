@@ -7,8 +7,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 NAME = "compile-d4"
 PDF_WIDTH_IN = 7
-# Largest grid reported: from 8x8 on d4 crashes or returns wrong circuits, so
-# those runs stay in the jsonl but are left out of the table.
+# Largest grid re-timed with the current FiFO (linear evaluator).  Larger grids
+# keep their earlier runs: from 8x8 on d4 crashes or returns wrong circuits, so
+# they were not redone; their sizes, counts and d4 times stand, but their total
+# times (which include the unconditioned marginals, then quadratic) are shown as
+# dashes, and no queries were timed on them.
 MAX_SIZE = 7
 TITLE = "SimpleGrid problems compiled to d-DNNF with d4 (projected, no evidence)"
 
@@ -36,6 +39,11 @@ def qtime(s):
     return f"{s:.3f}" if s < 1 else f"{s:.2f}"
 
 
+def stale(r):
+    """A run older than the current FiFO: its total time is not comparable."""
+    return int(r["size"].split("x")[0]) > MAX_SIZE
+
+
 def row(r, tries, q):
     ok = r["status"] == "ok"
     limit = f"{r['limit_s'] / 60:g} min"
@@ -45,11 +53,14 @@ def row(r, tries, q):
     d4_done = "nodes" in r      # d4 finished, even if a later step did not
     out = {"instance": r["instance"], "horizon": str(r["horizon"]),
            "circuit": os.path.basename(r["circuit"]) if ok else "none",
-           "d4_t": f"{r['d4_s']:.2f}" if d4_done else fail,
-           "total_t": f"{r['wall_s']:.1f}" if ok else (fail if d4_done else "–"),
+           "d4_t": f"{r['d4_s']:.2f}" if d4_done else
+                   (f"crashed at {r['d4_s']:.2f}" if r["status"] == "error" and "d4_s" in r
+                    else fail),
+           "total_t": ("–" if stale(r) else f"{r['wall_s']:.1f}") if ok
+                      else (fail if d4_done else "–"),
            "vars": num("cnf_vars"), "clauses": num("cnf_clauses"), "proj": num("projected_vars"),
            "nodes": num("nodes") if d4_done else
-                    (f"d4 crashed after {r['d4_s']:g} s" if r["status"] == "error" and "d4_s" in r
+                    ("–" if r["status"] == "error"
                      else f"unfinished; d4 at {gb(r['d4_peak_mb'])}"),
            "edges": num("edges") if d4_done else "–",
            # ok rows: the circuit's count, which equals the independent count;
@@ -87,12 +98,37 @@ def query_note(queries):
             "here have up to 1,007 children).")
 
 
-def caption(recs, tries, queries):
+def larger_note(recs, runs):
+    """Caption text for the grids past MAX_SIZE (not re-timed)."""
+    big = [r for r in recs if stale(r)]
+    if not big:
+        return ""
+    sizes = list(dict.fromkeys(r["size"] for r in big))
+    okd = [r for r in big if r["status"] == "ok"]
+    text = (f" Grids past {MAX_SIZE}×{MAX_SIZE} were not re-run with the current FiFO: "
+            "from 8×8 on, d4 often crashes (bus error or segmentation fault) or returns "
+            "a wrong circuit without any error, and repeated runs on the same CNF give "
+            "different circuits.")
+    if okd:
+        per = "; ".join(f"{r['instance']}: correct on {runs[r['instance']].count('ok')} "
+                        f"of {len(runs[r['instance']])}" for r in okd)
+        text += (f" Their rows give the run whose circuit passed the model-count check "
+                 f"({per} runs); its d4 time is that run's alone, not counting failed "
+                 "runs. Their total time is not shown: it was measured with the earlier, "
+                 "quadratic evaluator (and partly two compilations at a time); and no "
+                 "queries were timed on them.")
+    return text
+
+
+def caption(recs, tries, queries, runs, mean_rows=False):
     sizes = []
     for r in recs:
         if r["size"] not in sizes:
             sizes.append(r["size"])
     done = [s for s in sizes if any(r["size"] == s and r["status"] == "ok" for r in recs)]
+    if mean_rows:
+        # a table of means shows only the problems that compiled: describe those
+        recs = [r for r in recs if r["status"] == "ok"]
     limit = recs[0]["limit_s"] / 60
     big = [r for r in recs if r.get("sbcl_heap_mb", 8192) != 8192]
     heaps = "an 8 GB heap" + (
@@ -103,10 +139,16 @@ def caption(recs, tries, queries):
     if len(jobs) == 1:
         at_once = f"{jobs[0]} compilation{'s' if jobs[0] != 1 else ''} at a time"
     else:
-        later = ", ".join(r["instance"] for r in recs if one(r)) if 1 in jobs else ""
-        at_once = (f"{' or '.join(map(str, jobs))} compilations at a time"
-                   + (f" ({later} one at a time: two 8 GB SBCL imports at once swap on "
-                      "this 16 GB machine)" if later else ""))
+        # name the smaller group: the problems run one at a time, or the others
+        ones = [r["instance"] for r in recs if one(r)]
+        rest = [r for r in recs if not one(r)]
+        if 1 in jobs and len(ones) <= len(rest):
+            at_once = (f"{' or '.join(map(str, jobs))} compilations at a time "
+                       f"({', '.join(ones)} one at a time: two 8 GB SBCL imports at once "
+                       "swap on this 16 GB machine)")
+        else:
+            at_once = ("1 compilation at a time, except " + ", ".join(
+                f"{r['instance']} ({r.get('jobs', 4)} at a time)" for r in rest))
     text = ("Each problem's evidence-free recognition theory — the problem at its "
             "recognition horizon, with the goal literals as the hypotheses, as "
             "recognize.sh builds it — compiled by marginals.sh --solver d4 --project. "
@@ -126,26 +168,21 @@ def caption(recs, tries, queries):
             "d4 with a 64 MB stack (the defaults, 1 GB, 2 MB and 8 MB, are too small "
             "for the larger circuits).")
     if any(r.get("fifo_lisp", "installed") != "installed" for r in recs):
-        text += (" The circuits were imported by FiFO with its d4 importer rewritten to "
-                 "use bit-vector scopes and iterative traversal (branch "
-                 "ddnnf-import-bitvector-scopes); the released importer runs out of "
-                 "memory on circuits of about a million nodes.")
+        text += (" The circuits were imported by FiFO's d4 importer as rewritten to use "
+                 "bit-vector scopes and iterative traversal (FiFO fd0d0b9); the earlier "
+                 "importer ran out of memory on circuits of about a million nodes.")
     text += (" Model count (verified) is the number of models of the compiled circuit "
              "(all literals set to 1 in the smoothed circuit), that is, the number of "
              "truck walks the theory allows. Every circuit kept was checked against an "
              "independent count of those walks by dynamic programming over the grid "
              "(H-1 steps, each a drive to a neighbouring cell or a wait, from p1-1 to a "
-             "goal cell), which also agrees with sharpSAT on every problem shown; the "
-             "two counts were equal for every circuit in the table.")
-    if any(r.get("status") == "ok" for r in recs) and max(
-            int(r["size"].split("x")[0]) for r in recs) == MAX_SIZE:
-        text += (f" Grids larger than {MAX_SIZE}×{MAX_SIZE} are omitted: from 8×8 on, "
-                 "d4 often crashes (bus error or segmentation fault) or returns a wrong "
-                 "circuit without any error, and repeated runs on the same CNF give "
-                 "different circuits.")
-    if any(t > 1 for t in tries.values()):
-        text += (" Tries counts the runs of d4 on a problem, failed ones included, and "
-                 "the times are those of the run that passed.")
+             "goal cell), which agrees with sharpSAT on every problem up to 7×7 "
+             "(sharpSAT did not finish an 8×8 problem in 2.5 hours); the two counts were "
+             "equal for every circuit in the table.")
+    text += larger_note(recs, runs)
+    if any(t > 1 for t in tries.values()) and not mean_rows:
+        text += (" Tries counts the runs of d4 on a problem, failed ones included — a "
+                 "run whose saved circuit a later check found wrong counts as failed.")
     text += query_note(queries)
     for r in recs:
         if r.get("node_limit"):
@@ -166,7 +203,8 @@ def caption(recs, tries, queries):
         text += (" \"wrong circuit\": no run passed the check; the counts shown are "
                  "the last circuit's and the true one.")
     if any(r["status"] == "error" for r in recs):
-        text += " \"error\": no run finished — d4 crashed every time."
+        text += (" \"crashed at\": no run finished — d4 crashed every time; the time is "
+                 "when it crashed in the last run.")
         if any(r["status"] == "error" and "nodes" in r for r in recs):
             text += " Where d4 had finished but a later step failed, its circuit size is given."
     if any(r["status"] in ("timeout", "memout") and "nodes" not in r for r in recs):
@@ -219,31 +257,44 @@ def latex(cols, title, rows, note):
         r"\typeout{TABLEWIDTH \the\wd\tbl\space TEXTWIDTH \the\textwidth}",
         r"\noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}",
         r"\par\bigskip\noindent",
-        r"\begin{minipage}{\textwidth}\small " + note_tex + r"\end{minipage}",
+        # a plain paragraph, not a minipage: a long caption may need to break
+        # across pages, and a minipage that does not fit moves whole to the next
+        r"{\small " + note_tex + r"\par}",
         r"\end{document}", ""])
 
 
 def main():
-    recs, history = {}, []
-    for line in open(os.path.join(RES, NAME + ".jsonl")):
-        if line.strip():
-            r = json.loads(line)
-            recs[r["instance"]] = r          # the latest record of each problem
-            history.append(r)
-    recs = sorted((r for r in recs.values() if int(r["size"].split("x")[0]) <= MAX_SIZE),
+    lines = [json.loads(l) for l in open(os.path.join(RES, NAME + ".jsonl")) if l.strip()]
+    # A "checked_later" record is a later check of a saved circuit, not a run:
+    # its verdict (and counts) replace those of the run it checked, matched by
+    # start time -- e.g. a run recorded "ok" whose circuit was later found wrong.
+    checks = {(h["instance"], h["started"]): h for h in lines if "checked_later" in h}
+    history = []
+    for h in lines:
+        if "checked_later" in h:
+            continue
+        c = checks.get((h["instance"], h["started"]))
+        if c:
+            h = dict(h, status=c["status"],
+                     **{k: c[k] for k in ("circuit_count", "model_count") if k in c})
+        history.append(h)
+    recs = {}
+    for h in history:
+        recs[h["instance"]] = h              # the latest run of each problem
+    recs = sorted(recs.values(),
                   key=lambda r: (int(r["size"].split("x")[0]), int(r["instance"].split("-")[1])))
     lisp = lambda r: r.get("fifo_lisp", "installed")
-    # d4 runs with the latest record's importer; a later check of a saved
-    # circuit is not a run
+    # runs: every run of a problem with the reported run's FiFO, in order
+    runs = {r["instance"]: [h["status"] for h in history
+                            if h["instance"] == r["instance"] and lisp(h) == lisp(r)]
+            for r in recs}
     # Tries: the runs that led to the reported one -- it and the failed runs
     # just before it, back to the previous run that passed (an earlier passing
     # run, e.g. one redone to re-time it, starts a new count).
     def count_tries(r):
-        runs = [h for h in history if h["instance"] == r["instance"]
-                and lisp(h) == lisp(r) and "checked_later" not in h]
         n = 0
-        for h in reversed(runs):
-            if n and h["status"] == "ok":
+        for s in reversed(runs[r["instance"]]):
+            if n and s == "ok":
                 break
             n += 1
         return n
@@ -257,16 +308,18 @@ def main():
                 queries[q["instance"]] = q   # the latest query run of each problem
     queries = {k: v for k, v in queries.items() if any(r["instance"] == k for r in recs)}
     rows = [row(r, tries[r["instance"]], queries.get(r["instance"])) for r in recs]
-    note = caption(recs, tries, queries)
+    note = caption(recs, tries, queries, runs)
     cols = COLS
     if all(t == 1 for t in tries.values()):
         cols = [c for c in cols if c[0] != "tries"]
     if not queries:
         cols = [c for c in cols if c[0] != "query"]
     write(NAME, cols, TITLE, rows, note)
-    srows = summary_rows(recs, queries)
+    srows = (summary_rows([r for r in recs if not stale(r)], queries)
+             + summary_rows([r for r in recs if stale(r)], {}, old=True))
+    snote = caption(recs, tries, queries, runs, mean_rows=True)
     write(NAME + "-summary", [c for c in SUMMARY_COLS if c[0] != "query" or queries],
-          TITLE + ": means by grid size", srows, summary_note(recs) + " " + note)
+          TITLE + ": means by grid size", srows, summary_note(recs) + " " + snote)
 
 
 SUMMARY_COLS = [("size", ["Grid"], "l"),
@@ -283,8 +336,9 @@ SUMMARY_COLS = [("size", ["Grid"], "l"),
                 ("query", ["Query with", "2 obs. (s)"], "r")]
 
 
-def summary_rows(recs, queries):
-    """One row per grid size: the mean of each column over its compiled problems."""
+def summary_rows(recs, queries, old=False):
+    """One row per grid size: the mean of each column over its compiled problems.
+    OLD: total time and query time are not comparable, so shown as dashes."""
     out = []
     for size in dict.fromkeys(r["size"] for r in recs):
         ok = [r for r in recs if r["size"] == size and r["status"] == "ok"]
@@ -297,7 +351,8 @@ def summary_rows(recs, queries):
               if queries.get(r["instance"], {}).get("status") == "ok"]
         out.append({"size": size.replace("x", "×"), "n": str(len(ok)),
                     "horizon": f"{round(m('horizon'), 2):g}",
-                    "d4_t": f"{m('d4_s'):.2f}", "total_t": f"{m('wall_s'):.1f}",
+                    "d4_t": f"{m('d4_s'):.2f}",
+                    "total_t": "–" if old else f"{m('wall_s'):.1f}",
                     "vars": num("cnf_vars"), "clauses": num("cnf_clauses"),
                     "proj": num("projected_vars"), "nodes": num("nodes"), "edges": num("edges"),
                     "models": num("circuit_count"),
