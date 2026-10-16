@@ -2,11 +2,11 @@
 
 | Grid | Problems | Horizon | d4 time (s) | Total time (s) | CNF variables | CNF clauses | Projected variables | Circuit nodes | Circuit edges | Model count | Query with 2 obs. (s) |
 |:--|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
-| 3×3 | 4 | 5 | 0.04 | 1.9 | 141 | 818 | 98 | 44 | 84 | 18 | 0.001 |
-| 4×4 | 4 | 7 | 0.04 | 1.9 | 400 | 2,609 | 291 | 228 | 451 | 140 | 0.006 |
-| 5×5 | 4 | 8.5 | 0.09 | 2.0 | 812 | 5,621 | 604 | 1,108 | 2,210 | 1,017 | 0.075 |
-| 6×6 | 4 | 10.75 | 1.37 | 7.1 | 1,557 | 11,191 | 1,175 | 21,140 | 42,296 | 24,171 | 1.31 |
-| 7×7 | 4 | 12 | 6.52 | 29.6 | 2,436 | 17,936 | 1,854 | 82,748 | 165,584 | 88,126 | 5.68 |
+| 3×3 | 4 | 5 | 0.04 | 2.0 | 141 | 818 | 98 | 44 | 84 | 18 | 0.001 |
+| 4×4 | 4 | 7 | 0.04 | 1.9 | 400 | 2,609 | 291 | 228 | 451 | 140 | 0.003 |
+| 5×5 | 4 | 8.5 | 0.09 | 2.0 | 812 | 5,621 | 604 | 1,108 | 2,210 | 1,017 | 0.006 |
+| 6×6 | 4 | 10.75 | 1.36 | 4.0 | 1,557 | 11,191 | 1,175 | 21,140 | 42,296 | 24,171 | 0.017 |
+| 7×7 | 4 | 12 | 6.78 | 11.7 | 2,436 | 17,936 | 1,854 | 82,748 | 165,584 | 88,126 | 0.036 |
 
 Each row is the arithmetic mean over that grid size's problems (Problems gives
 how many), rounded; the per-problem values are in compile-d4.md. Each problem's
@@ -21,8 +21,8 @@ are those of the ground theory d4 is given; projected variables are the ones it
 keeps. d4 time is the d4 run alone; total time is the whole marginals.sh run
 (reading the theory, the projection check, d4, importing and saving the circuit,
 and the marginals of the unconditioned circuit). Circuit nodes and edges are
-those of d4's decision-DNNF, before FiFO smooths it. Times are wall-clock, 2
-compilations at a time, each limited to 30 minutes. SBCL ran with an 8 GB heap
+those of d4's decision-DNNF, before FiFO smooths it. Times are wall-clock, 1
+compilation at a time, each limited to 30 minutes. SBCL ran with an 8 GB heap
 and a 1 GB control stack, d4 with a 64 MB stack (the defaults, 1 GB, 2 MB and 8
 MB, are too small for the larger circuits). The circuits were imported by FiFO
 with its d4 importer rewritten to use bit-vector scopes and iterative traversal
@@ -43,9 +43,10 @@ pinned to steps 1 and 2 (evidence/PROBLEM-DESTINATION-obs2.txt) — as
 marginals.sh --circuit --evidence-file does: the observations are unit literals
 over kept atoms, so the circuit is clamped and re-evaluated, not recompiled. It
 is timed inside SBCL, the median of 5 repetitions, and excludes starting SBCL
-and loading FiFO (about 1.2 s) and reading the circuit file (0.001–0.48 s). Each
+and loading FiFO (about 1.2 s) and reading the circuit file (0.001–0.45 s). Each
 answer was checked: both observed drives have probability 1, and the final-slice
-goal marginals sum to 1. Most of the query time is FiFO's backward pass, which
-for an AND node with k children recomputes the k-1 sibling products for each
-child (k² multiplications; the largest smoothed AND node of 7×7-4 has 1,007
-children), not the circuit size itself.
+goal marginals sum to 1. FiFO evaluates the circuit in two linear passes; its
+backward pass through an AND node of k children uses prefix and suffix products
+(an earlier version recomputed each child's k-1 sibling products, k²
+multiplications, and took up to 7 s on 7×7 — smoothed AND nodes here have up to
+1,007 children).

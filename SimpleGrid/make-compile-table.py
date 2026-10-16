@@ -80,10 +80,11 @@ def query_note(queries):
             "and loading FiFO (about 1.2 s) and reading the circuit file "
             f"({min(loads):.3f}–{max(loads):.2f} s). Each answer was checked: both "
             "observed drives have probability 1, and the final-slice goal marginals "
-            "sum to 1. Most of the query time is FiFO's backward pass, which for an "
-            "AND node with k children recomputes the k-1 sibling products for each "
-            "child (k² multiplications; the largest smoothed AND node of 7×7-4 has "
-            "1,007 children), not the circuit size itself.")
+            "sum to 1. FiFO evaluates the circuit in two linear passes; its backward "
+            "pass through an AND node of k children uses prefix and suffix products "
+            "(an earlier version recomputed each child's k-1 sibling products, "
+            "k² multiplications, and took up to 7 s on 7×7 — smoothed AND nodes "
+            "here have up to 1,007 children).")
 
 
 def caption(recs, tries, queries):
@@ -234,10 +235,19 @@ def main():
     lisp = lambda r: r.get("fifo_lisp", "installed")
     # d4 runs with the latest record's importer; a later check of a saved
     # circuit is not a run
-    tries = {r["instance"]: sum(1 for h in history
-                                if h["instance"] == r["instance"] and lisp(h) == lisp(r)
-                                and "checked_later" not in h)
-             for r in recs}
+    # Tries: the runs that led to the reported one -- it and the failed runs
+    # just before it, back to the previous run that passed (an earlier passing
+    # run, e.g. one redone to re-time it, starts a new count).
+    def count_tries(r):
+        runs = [h for h in history if h["instance"] == r["instance"]
+                and lisp(h) == lisp(r) and "checked_later" not in h]
+        n = 0
+        for h in reversed(runs):
+            if n and h["status"] == "ok":
+                break
+            n += 1
+        return n
+    tries = {r["instance"]: count_tries(r) for r in recs}
     queries = {}
     qfile = os.path.join(RES, "query-evidence.jsonl")
     if os.path.exists(qfile):
