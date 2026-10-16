@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,hmargin=0.75in,vmargin=0.75in]{geometry}
+\usepackage{booktabs,makecell,adjustbox}
+\usepackage[T1]{fontenc}
+\begin{document}
+\pagestyle{empty}
+\section*{SimpleGrid 6$\times$6, 4 observed actions}
+\noindent\emph{5 possible goals per problem; 4 problems; pinned evidence}\par\medskip
+\newsavebox{\tbl}
+\begin{lrbox}{\tbl}\small\begin{tabular}{lrrrrrrrr}
+\toprule
+\makecell[lb]{Method} & \makecell[rb]{Runs} & \makecell[rb]{CNF\\variables} & \makecell[rb]{CNF\\clauses} & \makecell[rb]{Mean\\time (s)} & \makecell[rb]{Max\\time (s)} & \makecell[rb]{True goal\\among top\\scorers} & \makecell[rb]{True goal\\is the sole\\top scorer} & \makecell[rb]{Mean\\P(true\\goal)} \\
+\midrule
+max-term & 20 & 1,440--1,596 & 10,337--11,481 & 29.7 & 35.3 & 20/20 & 0/20 & 0.204 \\
+sharpsat-td & 20 & 1,440--1,596 & 10,337--11,481 & 37.9 & 44.2 & 6/20 & 4/20 & 0.216 \\
+mc-sat & 20 & 1,440--1,596 & 10,337--11,481 & 349.6 & 406.2 & 5/20 & 5/20 & 0.246 \\
+\bottomrule
+\end{tabular}\end{lrbox}
+\typeout{TABLEWIDTH \the\wd\tbl\space TEXTWIDTH \the\textwidth}
+\noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}
+\par\bigskip\noindent
+\begin{minipage}{\textwidth}\small Each run is one problem, one pinned evidence file (the first N drives of a plan) and one recognize.sh \texttt{-{}-counter} method. CNF size is the instantiated problem plus evidence that every method starts from (max-term adds its own soft clauses); it depends on the problem and evidence, not the method. Times are wall-clock, 8 runs in parallel, each limited to 15 minutes; every run finished. ``Top scorers'' are the hypotheses sharing the highest posterior, so a tie counts as among them but not as sole.\end{minipage}
+\end{document}

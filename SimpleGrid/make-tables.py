@@ -12,7 +12,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 SIZES = [("3x3", 2, ["max-term", "sharpsat-td", "mc-sat", "addmc"]),
          ("4x4", 3, ["max-term", "sharpsat-td", "mc-sat"]),
-         ("5x5", 4, ["max-term", "sharpsat-td", "mc-sat"])]
+         ("5x5", 4, ["max-term", "sharpsat-td", "mc-sat"]),
+         ("6x6", 5, ["max-term", "sharpsat-td", "mc-sat"])]
 
 # (key, header lines, alignment)
 COLS = [("method", ["Method"], "l"),
@@ -62,32 +63,43 @@ def title(size, goals, n_problems, nobs=None):
             f"{goals} possible goals per problem; {n_problems} problems; pinned evidence")
 
 
-NOTES = ("Each run is one problem, one pinned evidence file (the first N drives of a "
+def notes(unfinished, addmc, two_pass):
+    """The per-table notes: how the runs were timed, and whether every one finished."""
+    done = ("every run finished" if not unfinished else
+            f"{unfinished} run{' did' if unfinished == 1 else 's did'} not finish within "
+            "15 minutes; each counts as a miss in the top-scorer columns and is left out "
+            "of the times and mean P(true goal)")
+    limit = ("each first limited to 1 minute and rerun with 15 minutes if it timed out "
+             "(its time is then that of the rerun)" if two_pass else
+             "each limited to 15 minutes")
+    return NOTES_TEXT.format(parallel="8 runs in parallel" + (" (ADDMC: 2)" if addmc else ""),
+                             limit=limit, done=done)
+
+
+NOTES_TEXT = ("Each run is one problem, one pinned evidence file (the first N drives of a "
          "plan) and one recognize.sh --counter method. CNF size is the instantiated "
          "problem plus evidence that every method starts from (max-term adds its own "
          "soft clauses); it depends on the problem and evidence, not the method. Times "
-         "are wall-clock, 8 runs in parallel (ADDMC: 2), each first limited to 1 minute "
-         "and rerun with 15 minutes if it timed out (its time is then that of the "
-         "rerun); every run finished. \"Top scorers\" are the "
+         "are wall-clock, {parallel}, {limit}; {done}. \"Top scorers\" are the "
          "hypotheses sharing the highest posterior, so a tie counts as among them but "
          "not as sole.")
 
 PDF_WIDTH_IN = 7     # the PDF's text width: title, table and notes all fit in it
 
 
-def markdown(heading, rows):
+def markdown(heading, rows, note):
     head = "| " + " | ".join("<br>".join(h) for _, h, _ in COLS) + " |"
     align = "|" + "|".join(":--" if a == "l" else "--:" for _, _, a in COLS) + "|"
     body = ["| " + " | ".join(r[k] for k, _, _ in COLS) + " |" for r in rows]
     return "\n".join([f"## {heading[0]}", "", f"*{heading[1]}*", "", head, align, *body,
-                      "", textwrap.fill(NOTES, 80), ""])
+                      "", textwrap.fill(note, 80), ""])
 
 
 def tex_escape(s):
     return s.replace("&", r"\&").replace("%", r"\%").replace("_", r"\_").replace("×", r"$\times$")
 
 
-def latex(heading, rows):
+def latex(heading, rows, note):
     spec = "".join(a for _, _, a in COLS)
     head = " & ".join(r"\makecell[%s]{%s}" % ("lb" if a == "l" else "rb", r"\\".join(map(tex_escape, h)))
                       for _, h, a in COLS)
@@ -114,7 +126,7 @@ def latex(heading, rows):
         r"\noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}",
         r"\par\bigskip\noindent",
         r"\begin{minipage}{\textwidth}\small "
-        + re.sub(r'"([^"]*)"', r"``\1''", tex_escape(NOTES)).replace("--counter", r"\texttt{-{}-counter}")
+        + re.sub(r'"([^"]*)"', r"``\1''", tex_escape(note)).replace("--counter", r"\texttt{-{}-counter}")
         + r"\end{minipage}",
         r"\end{document}", ""])
 
@@ -171,12 +183,13 @@ def summary_rows(final, sizes):
                    "clauses": f"{sum(sizes[e][1] for e in evs) / len(evs):,.0f}"}
             for m in SUMMARY_METHODS:
                 rs = [final[(ev, m)] for ev in evs]
-                if any(r["status"] != "ok" for r in rs):
-                    raise SystemExit(f"{size} {m}: not every run finished")
+                ok = [r for r in rs if r["status"] == "ok"]
                 n = len(rs)
-                row[m, "time"] = f"{sum(r['wall_s'] for r in rs) / n:.1f}"
-                row[m, "among"] = f"{sum(r['correct'] for r in rs)}/{n}"
-                row[m, "istop"] = f"{sum(1 for r in rs if r['correct'] and len(r['argmax']) == 1)}/{n}"
+                row["unfinished", m] = n - len(ok)
+                row["n"] = n
+                row[m, "time"] = f"{sum(r['wall_s'] for r in ok) / len(ok):.1f}" if ok else "–"
+                row[m, "among"] = f"{sum(r['correct'] for r in ok)}/{n}"
+                row[m, "istop"] = f"{sum(1 for r in ok if r['correct'] and len(r['argmax']) == 1)}/{n}"
             rows.append(row)
     return rows
 
@@ -207,9 +220,28 @@ def cell(lines, align="r"):
     return r"\makecell[%sb]{%s}" % (align, r"\\".join(map(tex_escape, lines)))
 
 
+def summary_caption(rows):
+    """The fixed text, the number of examples per grid size, and -- only if
+    there are any -- the runs that did not finish within 15 minutes."""
+    per_size = collections.OrderedDict()
+    for r in rows:
+        per_size[r["size"]] = per_size.get(r["size"], 0) + r["n"]
+    text = SUMMARY_CAPTION + " Examples (evidence files, each run with every method): " + \
+        ", ".join(f"{s} {n}" for s, n in per_size.items()) + "."
+    misses = [(r["size"], r["obs"], m, r["unfinished", m]) for r in rows
+              for m in SUMMARY_METHODS if r["unfinished", m]]
+    if misses:
+        text += (" Not solved within 15 minutes (counted as misses, left out of the "
+                 "mean times): " + "; ".join(
+                     f"{s}, {o} observation{'' if o == '1' else 's'}, {m}: {k} run{'' if k == 1 else 's'}"
+                     for s, o, m, k in misses) + ".")
+    return text
+
+
 def summary_tables(final, sizes):
     rows = summary_rows(final, sizes)
     dash = lambda s: tex_escape(s).replace("–", "--")
+    caption = summary_caption(rows)
 
     # 1. one row per grid size; a three-column group per method
     md_head = ([" ".join(h).replace("- ", "") for _, h in LEAD]
@@ -220,7 +252,7 @@ def summary_tables(final, sizes):
           *("| " + " | ".join([r[k] for k, _ in LEAD]
                               + [r[m, k] for m in SUMMARY_METHODS for k, _ in SUB]) + " |"
             for r in rows),
-          "", textwrap.fill(SUMMARY_CAPTION, 80), ""]
+          "", textwrap.fill(caption, 80), ""]
     ncol = len(LEAD) + 3 * len(SUMMARY_METHODS)
     group = " & ".join([""] * len(LEAD)) + " & " + " & ".join(
         r"\multicolumn{3}{c}{%s}" % m for m in SUMMARY_METHODS) + r" \\"
@@ -235,36 +267,8 @@ def summary_tables(final, sizes):
     tex = latex_page([r"\setlength{\tabcolsep}{3pt}",
                       r"\begin{tabular}{%s}" % ("r" * ncol), r"\toprule", group, rules,
                       head, r"\midrule", *body, r"\bottomrule", r"\end{tabular}"],
-                     SUMMARY_CAPTION)
+                     caption)
     write_all("summary-by-grid", "\n".join(md), tex)
-
-    # 2. transposed: one column per grid size, one row per quantity
-    labels = ([(k, " ".join(h).replace("- ", "")) for k, h in LEAD[1:] if k != "obs"]
-              + [((m, k), f"{m}: {' '.join(h)}") for m in SUMMARY_METHODS for k, h in SUB])
-    md = [f"## {SUMMARY_TITLE}", "",
-          "| Grid size | " + " | ".join(r["size"] for r in rows) + " |",
-          "|:--|" + "|".join(["--:"] * len(rows)) + "|",
-          "| Observations | " + " | ".join(r["obs"] for r in rows) + " |",
-          *(f"| {lab} | " + " | ".join(r[k] for r in rows) + " |" for k, lab in labels),
-          "", textwrap.fill(SUMMARY_CAPTION, 80), ""]
-    body = []
-    for k, h in LEAD[1:]:
-        if k == "obs":
-            continue
-        body.append(tex_escape(" ".join(h).replace("- ", "")) + " & "
-                    + " & ".join(dash(r[k]) for r in rows) + r" \\")
-    for m in SUMMARY_METHODS:
-        body.append(r"\midrule")
-        body.append(r"\multicolumn{%d}{l}{\textit{%s}} \\" % (len(rows) + 1, m))
-        for k, h in SUB:
-            body.append(r"\quad " + tex_escape(" ".join(h)) + " & "
-                        + " & ".join(dash(r[m, k]) for r in rows) + r" \\")
-    tex = latex_page([r"\begin{tabular}{l%s}" % ("r" * len(rows)), r"\toprule",
-                      "Grid size & " + " & ".join(tex_escape(r["size"]) for r in rows) + r" \\",
-                      "Observations & " + " & ".join(r["obs"] for r in rows) + r" \\",
-                      r"\midrule", *body, r"\bottomrule", r"\end{tabular}"],
-                     SUMMARY_CAPTION)
-    write_all("summary-by-grid-transposed", "\n".join(md), tex)
 
 
 def write_all(name, md, tex):
@@ -287,19 +291,20 @@ def main():
         sizes[ev] = (int(v), int(c))
     for size, goals, methods in SIZES:
         runs = [r for (ev, m), r in final.items() if f"grid{size}-" in ev and m in methods]
-        # The notes say every run finished; refuse to print that if it is not so.
-        bad = [r for r in runs if r["status"] != "ok"]
-        if bad:
-            raise SystemExit(f"{len(bad)} {size} runs did not finish; fix NOTES first")
         nprob = len({r["problem"] for r in runs})
+        two_pass = any(r["limit_s"] < 900 for r in recs
+                       if f"grid{size}-" in r["evidence"] and r["method"] in methods)
         # The whole size, then one table per number of observed actions.
         for nobs in [None] + sorted({r["n_obs"] for r in runs}):
             rows = rows_for(size, goals, methods, final, sizes, nobs)
             heading = title(size, goals, nprob, nobs)
             name = f"table-{size}" + ("" if nobs is None else f"-obs{nobs}")
             base = os.path.join(RES, name)
-            open(base + ".md", "w").write(markdown(heading, rows))
-            open(base + ".tex", "w").write(latex(heading, rows))
+            unfinished = sum(1 for r in runs if r["status"] != "ok"
+                             and (nobs is None or r["n_obs"] == nobs))
+            note = notes(unfinished, "addmc" in methods, two_pass)
+            open(base + ".md", "w").write(markdown(heading, rows, note))
+            open(base + ".tex", "w").write(latex(heading, rows, note))
             compile_pdf(name)
     summary_tables(final, sizes)
 
