@@ -1,0 +1,22 @@
+#!/bin/bash
+# sbcl shim that compile-d4.py puts first on PATH: runs the real SBCL (SBCL_REAL)
+# with a larger heap (SBCL_HEAP_MB, default 8192) and control stack
+# (SBCL_STACK_MB, default 1000).  SBCL's defaults (1 GB heap, 2 MB stack) are too
+# small to import a d4 circuit of ~100k nodes or more: FiFO's importer walks the
+# circuit recursively, and SBCL dies in garbage collection or exhausts its stack.
+# Both are reserved, not allocated, so large values cost nothing until used.
+#
+# SBCL_NODE_LIMIT, if set, raises FiFO's *ddnnf-node-limit* (2,000,000), which
+# also caps the circuit imported from d4 although marginals.sh refuses
+# --node-limit with --solver d4: marginals.sh passes the placeholder form
+# (progn) where --node-limit's setf would go, and that one argument is replaced.
+args=()
+for a in "$@"; do
+  if [[ -n "${SBCL_NODE_LIMIT:-}" && "$a" == "(progn)" ]]; then
+    args+=("(setf *ddnnf-node-limit* $SBCL_NODE_LIMIT)")
+  else
+    args+=("$a")
+  fi
+done
+exec "${SBCL_REAL:?SBCL_REAL not set}" --dynamic-space-size "${SBCL_HEAP_MB:-8192}" \
+     --control-stack-size "${SBCL_STACK_MB:-1000}MB" ${args[@]+"${args[@]}"}

@@ -1,1 +1,6 @@
 .DS_Store
+__pycache__/
+# Circuits over GitHub's 100 MB limit are committed as split parts (see SimpleGrid/circuits/README.md)
+SimpleGrid/circuits/grid8x8-2.dnnf
+SimpleGrid/circuits/grid8x8-3.dnnf
+SimpleGrid/circuits/grid8x8-4.dnnf
