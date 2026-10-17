@@ -21,10 +21,7 @@ truck is at each place at each time, takes each drive, and ends at each goal.
 | grid6x6-1 | 6×6 | 11 | 5 | 1,596 | 11,477 |
 | grid7x7-1 | 7×7 | 12 | 6 | 2,436 | 17,936 |
 | grid8x8-1 | 8×8 | 14 | 7 | 3,808 | 28,561 |
-| grid9x9-3 | 9×9 | 16 | 9 | 5,616 | 42,712 |
-
-grid8x8-1 and grid9x9-3 are added once their evidence files exist (they are
-being generated with the 8×8–9×9 experiments).
+| grid9x9-3 | 9×9 | 16 | 8 | 5,616 | 42,712 |
 
 ## Files, for each problem P
 
@@ -78,10 +75,12 @@ every model count we compiled equals the number of walks), so `exact-marginals.p
 runs a forward/backward dynamic program over the walks, with the drive weight
 read from the `.wcnf` itself and the evidence restricting the pinned steps.
 
-**How they were checked.** For 3×3 to 7×7 the weighted counts Z0 and Z2 agree
+**How they were checked.** For 3×3 to 8×8 the weighted counts Z0 and Z2 agree
 with those of FiFO's d4-compiled circuits for the same problem and evidence; the
 marginals of the drive and final-goal variables agree with the circuits' (to the
-6 decimals FiFO prints); and for 3×3 and 4×4 every variable's marginal agrees
+6 decimals FiFO prints).  grid9x9-3 has a compiled circuit too, but the check
+against it is still to be done (loading it needs memory that a running
+experiment is using).  For 3×3 and 4×4 every variable's marginal agrees
 with FiFO + SharpSAT-TD's exact marginals to 3e−15.  For 5×5 and 6×6 the goal
 atoms also agree with the SimpleGrid sweep's SharpSAT-TD recognition runs on the
 same evidence (to the 4 decimals recorded).  For 5×5 and up, the marginals of

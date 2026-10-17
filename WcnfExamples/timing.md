@@ -12,6 +12,8 @@ folder's examples (2026-10-17).
 | 5×5 | Specialized (walk DP) | exact, **all marginals**, without and with evidence | 3 | 0.030 | 0.029 | 0.030 | 0.030 |
 | 6×6 | Specialized (walk DP) | exact, **all marginals**, without and with evidence | 3 | 0.035 | 0.035 | 0.035 | 0.036 |
 | 7×7 | Specialized (walk DP) | exact, **all marginals**, without and with evidence | 3 | 0.042 | 0.042 | 0.042 | 0.043 |
+| 8×8 | Specialized (walk DP) | exact, **all marginals**, without and with evidence | 3 | 0.048 | 0.050 | 0.048 | 0.055 |
+| 9×9 | Specialized (walk DP) | exact, **all marginals**, without and with evidence | 3 | 0.088 | 0.088 | 0.088 | 0.101 |
 | 3×3 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 16 | 16.2 | 15.8 | 16.2 | 17.2 |
 | 4×4 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 36 | 19.7 | 20.0 | 20.2 | 20.8 |
 | 5×5 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 64 | 26.8 | 35.1 | 28.8 | 103.5 |
@@ -41,7 +43,9 @@ folder's examples (2026-10-17).
 - The **specialized method** is `exact-marginals.py`: a forward/backward dynamic
   program over the truck's walks, specific to this domain, that gives every
   variable's exact marginal with and without the evidence in one run.  Its
-  times are 3 runs per example (awake time, one at a time): the whole script,
+  times are 3 runs per example (awake time, one at a time; 9×9 while 8
+  recognition runs of the SimpleGrid sweep were using the other cores, so a
+  little slow): the whole script,
   including starting Python (about 20 ms) and reading the map and weighted CNF,
   but not grounding the theory, which FiFO had already done.  So it is not
   comparable run for run with the recognize.sh times, which include planning and
