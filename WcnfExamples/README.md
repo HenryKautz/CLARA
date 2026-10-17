@@ -1,0 +1,98 @@
+# Weighted CNF examples: SimpleGrid plan recognition
+
+Weighted model counting problems from the SimpleGrid plan-recognition experiments
+(`../SimpleGrid`), one per grid size, each with the exact marginal of every
+variable — for testing weighted samplers and counters.
+
+## The problems
+
+A truck starts at the corner cell p1-1 of an N×N grid of places and moves for
+H−1 steps (H = the problem's horizon); at each step it drives to a neighbouring
+cell or waits.  It must end, at slice H, on one of the problem's possible goal
+cells.  Each drive costs 1, so a plan with d drives has weight w^d, w = e^−1.
+The marginals are the plan-recognition quantities: the probability that the
+truck is at each place at each time, takes each drive, and ends at each goal.
+
+| Problem | Grid | Horizon H | Goals | Variables | Clauses |
+|---|---|---|---|---|---|
+| grid3x3-1 | 3×3 | 5 | 2 | 141 | 818 |
+| grid4x4-1 | 4×4 | 7 | 3 | 400 | 2,609 |
+| grid5x5-1 | 5×5 | 9 | 4 | 865 | 5,994 |
+| grid6x6-1 | 6×6 | 11 | 5 | 1,596 | 11,477 |
+| grid7x7-1 | 7×7 | 12 | 6 | 2,436 | 17,936 |
+| grid8x8-1 | 8×8 | 14 | 7 | 3,808 | 28,561 |
+| grid9x9-3 | 9×9 | 16 | 9 | 5,616 | 42,712 |
+
+grid8x8-1 and grid9x9-3 are added once their evidence files exist (they are
+being generated with the 8×8–9×9 experiments).
+
+## Files, for each problem P
+
+| File | What |
+|---|---|
+| `P-2020.wcnf` | the weighted CNF, MCC 2020 format (ADDMC's) |
+| `P-2024.wcnf` | the same, MCC 2024 format (Model Counting Competition 2021 on; SharpSAT-TD's) |
+| `P-ev2-2020.wcnf`, `P-ev2-2024.wcnf` | the same plus 2 pieces of evidence, as 2 unit clauses |
+| `P.evidence` | that evidence: the first two drives of a shortest plan to one goal, pinned to steps 1 and 2 |
+| `P.map` | variable number → atom, e.g. `89 (OCCURS (DRIVE TRUCK1 P1-1 P2-1) 1)` |
+| `P.solution` | the exact marginal of every variable, without and with the evidence |
+
+The variable numbering is the same in all four `.wcnf` files of a problem.  The
+atoms are `(HOLDS (AT TRUCK1 Pr-c) t)` — the truck is at row r, column c at
+slice t (1..H) — and `(OCCURS (DRIVE TRUCK1 Pa Pb) t)` — it drives from a to b
+between slices t and t+1 (1..H−1).
+
+### The two formats
+
+They are not interchangeable:
+
+- **MCC 2020** (`p wcnf V C`): one `w <literal> <weight>` line per charged
+  literal — here each drive variable, `w v 0.36787944117144233` — and every
+  literal not listed has weight 1.
+- **MCC 2024** (`p cnf V C`): weights are comment lines
+  `c p weight <literal> <weight> 0`, so the file is also a plain DIMACS CNF.  A
+  reader that ignores comments therefore counts it UNWEIGHTED.  Both polarities
+  of every variable are listed (1 for a drive's false literal and for every
+  position literal), because readers of this format infer a missing polarity
+  differently (SharpSAT-TD takes 1 − w).
+
+In both, a model's weight is the product of its literals' weights, so the
+weighted count Z is the sum over plans of e^−(number of drives).
+
+## The solution files
+
+```
+c Z0 ...   (log Z0 ...)      the weighted count without evidence
+c Z2 ...   (log Z2 ...)      with the 2 pieces of evidence
+c var P0 P2 atom
+1 0 0 (HOLDS (AT TRUCK1 P3-3) 1)
+...
+```
+
+P0 is the marginal P(variable = true) in `P-2020.wcnf` / `P-2024.wcnf`, P2 in the
+`-ev2` files.  Values are given to 15 significant digits.
+
+**How they were computed.** The theory's models correspond one to one with the
+truck's walks (the drives determine every other variable; FiFO checks this, and
+every model count we compiled equals the number of walks), so `exact-marginals.py`
+runs a forward/backward dynamic program over the walks, with the drive weight
+read from the `.wcnf` itself and the evidence restricting the pinned steps.
+
+**How they were checked.** For 3×3 to 7×7 the weighted counts Z0 and Z2 agree
+with those of FiFO's d4-compiled circuits for the same problem and evidence; the
+marginals of the drive and final-goal variables agree with the circuits' (to the
+6 decimals FiFO prints); and for 3×3 and 4×4 every variable's marginal agrees
+with FiFO + SharpSAT-TD's exact marginals to 3e−15.  For 5×5 and 6×6 the goal
+atoms also agree with the SimpleGrid sweep's SharpSAT-TD recognition runs on the
+same evidence (to the 4 decimals recorded).  For 5×5 and up, the marginals of
+the position atoms before the final slice have been checked by no general
+method; they are determined by the drives, whose marginals were checked.
+
+`timing.md` summarizes the run times of the specialized method, SharpSAT-TD and
+MC-SAT on these problems so far, and what each computed.
+
+## Regenerating
+
+`make-examples.sh [PROBLEM...]` rebuilds the files from the SimpleGrid theories
+(`../SimpleGrid/circuits/P.scnf`) with FiFO's own weighted-CNF writer
+(`make-wcnf.lisp`) and `exact-marginals.py`.  It needs FiFO and SBCL.
