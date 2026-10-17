@@ -18,10 +18,12 @@ folder's examples (2026-10-17).
 | 4×4 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 36 | 19.7 | 20.0 | 20.2 | 20.8 |
 | 5×5 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 64 | 26.8 | 35.1 | 28.8 | 103.5 |
 | 6×6 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 100 | 37.3 | 37.6 | 37.5 | 44.2 |
+| 7×7 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 107 of 144 † | 191.0 | 105.7 | 64.2 | 328.9 |
 | 3×3 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 16 | 14.1 | 14.4 | 14.6 | 15.7 |
 | 4×4 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 36 | 32.8 | 32.9 | 32.9 | 34.0 |
 | 5×5 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 64 | 178.6 | 210.1 | 181.9 | 333.6 |
 | 6×6 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 100 | 360.3 | 349.2 | 356.5 | 406.2 |
+| 7×7 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 142 of 144 † | 759.4 | 737.3 | 732.0 | 784.9 |
 
 ## What the times measure
 
@@ -35,11 +37,21 @@ folder's examples (2026-10-17).
   variable's marginal at once, but recognize.sh keeps only the goal atoms'.
 - For SharpSAT-TD and MC-SAT, **Runs** is every evidence file of that grid size
   (4 problems × each possible goal × each number of observations, 1 to N−1); the
-  mean, median and maximum are over all of them, and every run finished.  "This folder's example" is the
-  run on the same problem and the same 2-observation evidence as the files here.
+  mean, median and maximum are over the runs that finished — all of them up
+  to 6×6.  "This folder's example" is the run on the same problem and the same
+  2-observation evidence as the files here.
 - The runs went 8 at a time, wall-clock time, each limited to 1 minute (3×3,
-  4×4; 5×5 SharpSAT-TD) or 15 minutes (6×6; 5×5 MC-SAT, and the 12 5×5
-  SharpSAT-TD runs that exceeded a minute, rerun).
+  4×4; 5×5 SharpSAT-TD), 15 minutes (6×6; 5×5 MC-SAT, and the 12 5×5
+  SharpSAT-TD runs that exceeded a minute, rerun) or 20 minutes (7×7; awake
+  time, so sleep is not counted).
+- † **7×7 runs that did not finish.**  SharpSAT-TD: 36 runs stopped because a
+  single exact count exceeded FiFO's per-solver-call timeout
+  (`*solver-timeout*`, 600 s by default, which recognize.sh does not change),
+  well inside the 20-minute run limit; 1 run failed when the tree-decomposition
+  helper (FlowCutter) ignored its stop signal under load and was killed.  So the
+  SharpSAT-TD statistics are over the 107 runs that finished and understate
+  the true mean: they leave out the hardest quarter.  MC-SAT: 2 runs (both
+  with 5 observations) ended with no estimate for any goal.
 - The **specialized method** is `exact-marginals.py`: a forward/backward dynamic
   program over the truck's walks, specific to this domain, that gives every
   variable's exact marginal with and without the evidence in one run.  Its
@@ -50,8 +62,7 @@ folder's examples (2026-10-17).
   but not grounding the theory, which FiFO had already done.  So it is not
   comparable run for run with the recognize.sh times, which include planning and
   grounding; its point is that the exact answer itself is cheap here.
-- No 7×7 runs of SharpSAT-TD or MC-SAT exist yet (they are part of the sweep
-  now running).
+- No 8×8 or 9×9 timings of SharpSAT-TD or MC-SAT are given here yet.
 
 ## Approximate marginal files
 
