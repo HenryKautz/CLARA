@@ -18,7 +18,7 @@ folder's examples (2026-10-17).
 | 4×4 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 36 | 19.7 | 20.0 | 20.2 | 20.8 |
 | 5×5 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 64 | 26.8 | 35.1 | 28.8 | 103.5 |
 | 6×6 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 100 | 37.3 | 37.6 | 37.5 | 44.2 |
-| 7×7 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 107 of 144 † | 191.0 | 105.7 | 64.2 | 328.9 |
+| 7×7 | SharpSAT-TD | exact, **goal atoms at the final slice only** | 108 of 144 † | 191.0 | 105.2 | 64.2 | 328.9 |
 | 3×3 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 16 | 14.1 | 14.4 | 14.6 | 15.7 |
 | 4×4 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 36 | 32.8 | 32.9 | 32.9 | 34.0 |
 | 5×5 | MC-SAT (WalkSAT) | approximate, **all marginals** sampled; only the goal atoms kept | 64 | 178.6 | 210.1 | 181.9 | 333.6 |
@@ -44,14 +44,17 @@ folder's examples (2026-10-17).
   4×4; 5×5 SharpSAT-TD), 15 minutes (6×6; 5×5 MC-SAT, and the 12 5×5
   SharpSAT-TD runs that exceeded a minute, rerun) or 20 minutes (7×7; awake
   time, so sleep is not counted).
-- † **7×7 runs that did not finish.**  SharpSAT-TD: 36 runs stopped because a
+- † **7×7 runs that did not finish.**  SharpSAT-TD: the 36 unfinished runs are
+  every run on one problem, grid7x7-4.  In the sweep they stopped because a
   single exact count exceeded FiFO's per-solver-call timeout
-  (`*solver-timeout*`, 600 s by default, which recognize.sh does not change),
-  well inside the 20-minute run limit; 1 run failed when the tree-decomposition
-  helper (FlowCutter) ignored its stop signal under load and was killed.  So the
-  SharpSAT-TD statistics are over the 107 runs that finished and understate
-  the true mean: they leave out the hardest quarter.  MC-SAT: 2 runs (both
-  with 5 observations) ended with no estimate for any goal.
+  (`*solver-timeout*`, 600 s by default, which recognize.sh could not then
+  change); rerun with that timeout raised to 20 minutes (recognize.sh
+  `--timeout`), all 36 reached the 20-minute run limit instead.  One more run
+  had failed when the tree-decomposition helper (FlowCutter) ignored its stop
+  signal under load and was killed; rerun, it finished in 50.5 s.  So the
+  SharpSAT-TD statistics are over the 108 runs that finished, on the other
+  three problems, and understate the true mean.  MC-SAT: 2 runs (both with 5
+  observations) ended with no estimate for any goal.
 - The **specialized method** is `exact-marginals.py`: a forward/backward dynamic
   program over the truck's walks, specific to this domain, that gives every
   variable's exact marginal with and without the evidence in one run.  Its
@@ -62,7 +65,11 @@ folder's examples (2026-10-17).
   but not grounding the theory, which FiFO had already done.  So it is not
   comparable run for run with the recognize.sh times, which include planning and
   grounding; its point is that the exact answer itself is cheap here.
-- No 8×8 or 9×9 timings of SharpSAT-TD or MC-SAT are given here yet.
+- **8×8: none finished.**  The sweep was stopped partway through 8×8, all on
+  problem grid8x8-1: none of 34 SharpSAT-TD runs finished (25 hit the 600 s
+  per-count timeout; 9 of them, rerun with it raised to 20 minutes, then hit
+  the 20-minute run limit), and none of 32 MC-SAT runs finished within 20
+  minutes.  9×9 was not run.
 
 ## Approximate marginal files
 

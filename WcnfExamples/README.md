@@ -78,9 +78,10 @@ read from the `.wcnf` itself and the evidence restricting the pinned steps.
 **How they were checked.** For 3×3 to 8×8 the weighted counts Z0 and Z2 agree
 with those of FiFO's d4-compiled circuits for the same problem and evidence; the
 marginals of the drive and final-goal variables agree with the circuits' (to the
-6 decimals FiFO prints).  grid9x9-3 has a compiled circuit too, but the check
-against it is still to be done (loading it needs memory that a running
-experiment is using).  For 3×3 and 4×4 every variable's marginal agrees
+6 decimals FiFO prints).  For grid9x9-3 the circuit was queried directly, at
+full precision: Z0 and Z2 agree to a relative 8e−16, and the marginals of all
+4,328 atoms the circuit keeps (the 4,320 drives and the 8 final-slice goal
+atoms) to 3e−14, without and with the evidence.  For 3×3 and 4×4 every variable's marginal agrees
 with FiFO + SharpSAT-TD's exact marginals to 3e−15.  For 5×5 and 6×6 the goal
 atoms also agree with the SimpleGrid sweep's SharpSAT-TD recognition runs on the
 same evidence (to the 4 decimals recorded).  For 5×5 and up, the marginals of
