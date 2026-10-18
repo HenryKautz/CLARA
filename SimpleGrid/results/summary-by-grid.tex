@@ -28,11 +28,24 @@
 6$\times$6 & 5 & 7 & 3 & 1,557 & 11,194 & 28.8 & 20/20 & 0/20 & 37.1 & 4/20 & 4/20 & 349.9 & 3/20 & 3/20 \\
 6$\times$6 & 5 & 7 & 4 & 1,557 & 11,195 & 29.7 & 20/20 & 0/20 & 37.9 & 6/20 & 4/20 & 349.6 & 5/20 & 5/20 \\
 6$\times$6 & 5 & 7 & 5 & 1,557 & 11,196 & 29.6 & 20/20 & 0/20 & 37.7 & 4/20 & 4/20 & 346.2 & 2/20 & 2/20 \\
+7$\times$7 & 6 & 8 & 1 & 2,436 & 17,937 & 40.5 & 24/24 & 0/24 & 149.4 & 3/24 & 3/24 & 738.8 & 4/24 & 4/24 \\
+7$\times$7 & 6 & 8 & 2 & 2,436 & 17,938 & 40.3 & 24/24 & 0/24 & 100.8 & 5/24 & 5/24 & 739.4 & 3/24 & 3/24 \\
+7$\times$7 & 6 & 8 & 3 & 2,436 & 17,939 & 40.2 & 24/24 & 0/24 & 95.9 & 5/24 & 5/24 & 738.5 & 4/24 & 4/24 \\
+7$\times$7 & 6 & 8 & 4 & 2,436 & 17,940 & 39.8 & 24/24 & 0/24 & 95.6 & 7/24 & 7/24 & 737.3 & 6/24 & 6/24 \\
+7$\times$7 & 6 & 8 & 5 & 2,436 & 17,941 & 39.8 & 24/24 & 0/24 & 94.7 & 7/24 & 7/24 & 734.3 & 8/24 & 8/24 \\
+7$\times$7 & 6 & 8 & 6 & 2,436 & 17,942 & 39.6 & 24/24 & 0/24 & 94.6 & 4/24 & 4/24 & 735.1 & 3/24 & 3/24 \\
+8$\times$8 & 7 & 9 & 1 & 4,024 & 30,206 & 61.3 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/5 (5 run) & 0/5 (5 run) \\
+8$\times$8 & 7 & 9 & 2 & 4,024 & 30,207 & 61.3 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/5 (5 run) & 0/5 (5 run) \\
+8$\times$8 & 7 & 9 & 3 & 4,024 & 30,208 & 61.2 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/5 (5 run) & 0/5 (5 run) \\
+8$\times$8 & 7 & 9 & 4 & 4,024 & 30,209 & 61.1 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/5 (5 run) & 0/5 (5 run) \\
+8$\times$8 & 7 & 9 & 5 & 4,024 & 30,210 & 61.6 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/4 (4 run) & 0/4 (4 run) \\
+8$\times$8 & 7 & 9 & 6 & 4,024 & 30,211 & 61.1 & 28/28 & 0/28 & -- & 0/5 (5 run) & 0/5 (5 run) & -- & 0/4 (4 run) & 0/4 (4 run) \\
+8$\times$8 & 7 & 9 & 7 & 4,024 & 30,212 & 61.0 & 28/28 & 0/28 & -- & 0/4 (4 run) & 0/4 (4 run) & -- & 0/4 (4 run) & 0/4 (4 run) \\
 \bottomrule
 \end{tabular}
 \end{lrbox}
 \typeout{TABLEWIDTH \the\wd\tbl\space TEXTWIDTH \the\textwidth}
 \noindent\adjustbox{max width=\textwidth}{\usebox{\tbl}}
 \par\bigskip\noindent
-\begin{minipage}{\textwidth}\small Fully connected grids with 1 truck and multiple possible goal destinations. ``Among top'': the runs in which the true goal has the highest posterior, tied or alone. ``Is top'': the runs in which the true goal alone has the highest posterior. Examples (evidence files, each run with every method): 3$\times$3 16, 4$\times$4 36, 5$\times$5 64, 6$\times$6 100.\end{minipage}
+\begin{minipage}{\textwidth}\small Fully connected grids with 1 truck and multiple possible goal destinations. ``Among top'': the runs in which the true goal has the highest posterior, tied or alone. ``Is top'': the runs in which the true goal alone has the highest posterior. Examples (evidence files): 3$\times$3 16, 4$\times$4 36, 5$\times$5 64, 6$\times$6 100, 7$\times$7 144, 8$\times$8 196. Time limit per run: 1 minute (3$\times$3, 4$\times$4); 15 minutes (5$\times$5, 6$\times$6); 20 minutes (7$\times$7, 8$\times$8). Runs that did not finish (counted as misses, left out of the mean times; the per-size tables say why): 7$\times$7 sharpsat-td 36, mc-sat 2; 8$\times$8 sharpsat-td 34, mc-sat 32. Not run (the method was stopped at that size; its table says how many of the runs made finished): 8$\times$8 sharpsat-td: 162; 8$\times$8 mc-sat: 164.\end{minipage}
 \end{document}

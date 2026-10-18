@@ -13,7 +13,14 @@ RES = os.path.join(HERE, "results")
 SIZES = [("3x3", 2, ["max-term", "sharpsat-td", "mc-sat", "addmc"]),
          ("4x4", 3, ["max-term", "sharpsat-td", "mc-sat"]),
          ("5x5", 4, ["max-term", "sharpsat-td", "mc-sat"]),
-         ("6x6", 5, ["max-term", "sharpsat-td", "mc-sat"])]
+         ("6x6", 5, ["max-term", "sharpsat-td", "mc-sat"]),
+         ("7x7", 6, ["max-term", "sharpsat-td", "mc-sat"]),
+         ("8x8", 7, ["max-term", "sharpsat-td", "mc-sat"])]
+
+
+def minutes(seconds):
+    m = seconds / 60
+    return f"{m:g} minute{'' if m == 1 else 's'}"
 
 # (key, header lines, alignment)
 COLS = [("method", ["Method"], "l"),
@@ -34,16 +41,21 @@ def span(xs):
 
 def rows_for(size, goals, methods, final, sizes, nobs=None):
     """One row per method, over the runs of SIZE -- only those with NOBS observed
-    actions when NOBS is given."""
+    actions when NOBS is given.  Runs is the runs made; a method stopped early
+    (8x8 sharpsat-td and mc-sat) shows "made of all"."""
     rows = []
+    evs = {ev for (ev, meth), r in final.items() if f"grid{size}-" in ev
+           and (nobs is None or r["n_obs"] == nobs)}
     for m in methods:
-        rs = [r for (ev, meth), r in final.items() if meth == m and f"grid{size}-" in ev
-              and (nobs is None or r["n_obs"] == nobs)]
+        rs = [r for (ev, meth), r in final.items() if meth == m and ev in evs]
         ok = [r for r in rs if r["status"] == "ok"]
         cnf = [sizes[r["evidence"]] for r in rs]
         n = len(rs)
+        if n == 0:
+            rows.append(dict({k: "–" for k, _, _ in COLS}, method=m, runs=f"0 of {len(evs)}"))
+            continue
         rows.append({
-            "method": m, "runs": str(n),
+            "method": m, "runs": str(n) if n == len(evs) else f"{n} of {len(evs)}",
             "vars": span([v for v, _ in cnf]), "clauses": span([c for _, c in cnf]),
             "mean_t": f"{sum(r['wall_s'] for r in ok) / len(ok):.1f}" if ok else "–",
             "max_t": f"{max(r['wall_s'] for r in ok):.1f}" if ok else "–",
@@ -63,17 +75,24 @@ def title(size, goals, n_problems, nobs=None):
             f"{goals} possible goals per problem; {n_problems} problems; pinned evidence")
 
 
-def notes(unfinished, addmc, two_pass):
-    """The per-table notes: how the runs were timed, and whether every one finished."""
+def notes(unfinished, addmc, limits, not_run="", capped=0):
+    """The per-table notes: how the runs were timed, and whether every one finished.
+    LIMITS: the time limits (s) the size's runs were made at, ascending.  CAPPED:
+    how many unfinished runs stopped for another reason than the run limit (the
+    caller explains them), so "within <limit>" would be wrong for those."""
     done = ("every run finished" if not unfinished else
-            f"{unfinished} run{' did' if unfinished == 1 else 's did'} not finish within "
-            "15 minutes; each counts as a miss in the top-scorer columns and is left out "
-            "of the times and mean P(true goal)")
-    limit = ("each first limited to 1 minute and rerun with 15 minutes if it timed out "
-             "(its time is then that of the rerun)" if two_pass else
-             "each limited to 15 minutes")
+            f"{unfinished} run{' did' if unfinished == 1 else 's did'} not finish"
+            + ("" if capped else f" within {minutes(limits[-1])}")
+            + "; each counts as a miss in the top-scorer columns and is "
+            "left out of the times and mean P(true goal)")
+    limit = (f"each first limited to {minutes(limits[0])} and rerun with "
+             f"{minutes(limits[-1])} if it timed out (its time is then that of the rerun)"
+             if len(limits) > 1 else f"each limited to {minutes(limits[0])}")
+    if limits[-1] >= 1200:
+        # the 2026-10-17 sweep timed runs by the awake clock
+        limit += " of awake time (sleep not counted)"
     return NOTES_TEXT.format(parallel="8 runs in parallel" + (" (ADDMC: 2)" if addmc else ""),
-                             limit=limit, done=done)
+                             limit=limit, done=done) + not_run
 
 
 NOTES_TEXT = ("Each run is one problem, one pinned evidence file (the first N drives of a "
@@ -181,15 +200,23 @@ def summary_rows(final, sizes):
                    "mindist": str(dists.pop()), "obs": str(nobs),
                    "vars": f"{sum(sizes[e][0] for e in evs) / len(evs):,.0f}",
                    "clauses": f"{sum(sizes[e][1] for e in evs) / len(evs):,.0f}"}
+            row["n"] = len(evs)
+            row["limit"] = max(final[(ev, m)]["limit_s"] for ev in evs
+                               for m in SUMMARY_METHODS if (ev, m) in final)
             for m in SUMMARY_METHODS:
-                rs = [final[(ev, m)] for ev in evs]
+                # a method stopped early has no record for the rest: not run
+                rs = [final[(ev, m)] for ev in evs if (ev, m) in final]
                 ok = [r for r in rs if r["status"] == "ok"]
                 n = len(rs)
                 row["unfinished", m] = n - len(ok)
-                row["n"] = n
+                row["notrun", m] = len(evs) - n
+                if n == 0:
+                    row[m, "time"] = row[m, "among"] = row[m, "istop"] = "not run"
+                    continue
+                of = "" if n == len(evs) else f" ({n} run)"
                 row[m, "time"] = f"{sum(r['wall_s'] for r in ok) / len(ok):.1f}" if ok else "–"
-                row[m, "among"] = f"{sum(r['correct'] for r in ok)}/{n}"
-                row[m, "istop"] = f"{sum(1 for r in ok if r['correct'] and len(r['argmax']) == 1)}/{n}"
+                row[m, "among"] = f"{sum(r['correct'] for r in ok)}/{n}{of}"
+                row[m, "istop"] = f"{sum(1 for r in ok if r['correct'] and len(r['argmax']) == 1)}/{n}{of}"
             rows.append(row)
     return rows
 
@@ -221,20 +248,42 @@ def cell(lines, align="r"):
 
 
 def summary_caption(rows):
-    """The fixed text, the number of examples per grid size, and -- only if
-    there are any -- the runs that did not finish within 15 minutes."""
+    """The fixed text, the number of examples per grid size, the time limits,
+    and -- only if there are any -- the runs that did not finish, and those not
+    run at all."""
     per_size = collections.OrderedDict()
+    limit = collections.OrderedDict()
     for r in rows:
         per_size[r["size"]] = per_size.get(r["size"], 0) + r["n"]
-    text = SUMMARY_CAPTION + " Examples (evidence files, each run with every method): " + \
+        limit[r["size"]] = max(limit.get(r["size"], 0), r["limit"])
+    text = SUMMARY_CAPTION + " Examples (evidence files): " + \
         ", ".join(f"{s} {n}" for s, n in per_size.items()) + "."
-    misses = [(r["size"], r["obs"], m, r["unfinished", m]) for r in rows
-              for m in SUMMARY_METHODS if r["unfinished", m]]
+    groups = collections.OrderedDict()
+    for s, lim in limit.items():
+        groups.setdefault(lim, []).append(s)
+    text += " Time limit per run: " + "; ".join(
+        f"{minutes(lim)} ({', '.join(ss)})" for lim, ss in groups.items()) + "."
+    # totals per size and method; the per-size tables break them down further
+    misses = collections.OrderedDict()
+    for r in rows:
+        for m in SUMMARY_METHODS:
+            if r["unfinished", m]:
+                misses.setdefault(r["size"], collections.OrderedDict())
+                misses[r["size"]][m] = misses[r["size"]].get(m, 0) + r["unfinished", m]
     if misses:
-        text += (" Not solved within 15 minutes (counted as misses, left out of the "
-                 "mean times): " + "; ".join(
-                     f"{s}, {o} observation{'' if o == '1' else 's'}, {m}: {k} run{'' if k == 1 else 's'}"
-                     for s, o, m, k in misses) + ".")
+        text += (" Runs that did not finish (counted as misses, left out of the "
+                 "mean times; the per-size tables say why): " + "; ".join(
+                     f"{s} " + ", ".join(f"{m} {k}" for m, k in ms.items())
+                     for s, ms in misses.items()) + ".")
+    skipped = collections.OrderedDict()
+    for r in rows:
+        for m in SUMMARY_METHODS:
+            if r["notrun", m]:
+                skipped[r["size"], m] = skipped.get((r["size"], m), 0) + r["notrun", m]
+    if skipped:
+        text += (" Not run (the method was stopped at that size; its table says how many "
+                 "of the runs made finished): "
+                 + "; ".join(f"{s} {m}: {k}" for (s, m), k in skipped.items()) + ".")
     return text
 
 
@@ -283,7 +332,9 @@ def main():
     final = {}
     for r in recs:
         k = (r["evidence"], r["method"])
-        if k not in final or r["limit_s"] > final[k]["limit_s"]:
+        # >=: a later record at the same limit is a rerun (run-recognize.py
+        # --rerun-solver-timeouts), and supersedes the earlier one
+        if k not in final or r["limit_s"] >= final[k]["limit_s"]:
             final[k] = r
     sizes = {}
     for line in open(os.path.join(RES, "cnf-sizes.txt")):
@@ -291,18 +342,43 @@ def main():
         sizes[ev] = (int(v), int(c))
     for size, goals, methods in SIZES:
         runs = [r for (ev, m), r in final.items() if f"grid{size}-" in ev and m in methods]
+        if not runs:
+            continue
         nprob = len({r["problem"] for r in runs})
-        two_pass = any(r["limit_s"] < 900 for r in recs
-                       if f"grid{size}-" in r["evidence"] and r["method"] in methods)
+        limits = sorted({r["limit_s"] for r in recs
+                         if f"grid{size}-" in r["evidence"] and r["method"] in methods})
+        evs_all = {ev for (ev, m) in final if f"grid{size}-" in ev}
+        stopped = [m for m in methods
+                   if 0 < sum(1 for ev in evs_all if (ev, m) in final) < len(evs_all)]
+        def made(m):
+            return [final[(ev, m)] for ev in evs_all if (ev, m) in final]
+        not_run = (" " + "; ".join(
+            f"{m} was stopped after {len(made(m))} runs, of which "
+            f"{sum(1 for r in made(m) if r['status'] == 'ok')} finished, and not run on "
+            "the rest" for m in stopped) + "." if stopped else "")
         # The whole size, then one table per number of observed actions.
         for nobs in [None] + sorted({r["n_obs"] for r in runs}):
             rows = rows_for(size, goals, methods, final, sizes, nobs)
             heading = title(size, goals, nprob, nobs)
             name = f"table-{size}" + ("" if nobs is None else f"-obs{nobs}")
             base = os.path.join(RES, name)
-            unfinished = sum(1 for r in runs if r["status"] != "ok"
-                             and (nobs is None or r["n_obs"] == nobs))
-            note = notes(unfinished, "addmc" in methods, two_pass)
+            these = [r for r in runs if nobs is None or r["n_obs"] == nobs]
+            unfinished = sum(1 for r in these if r["status"] != "ok")
+            # runs cut off by FiFO's per-solver-call limit (600 s by default) before
+            # run-recognize.py passed --timeout; their run limit was not reached
+            capped = sum(1 for r in these if r["status"] == "error"
+                         and "solver_timeout_s" not in r
+                         and any("(*solver-timeout*)" in t for t in r.get("log_tail", [])))
+            cap_note = (f" {capped} of the unfinished runs were stopped by FiFO's 600 s "
+                        "limit on a single solver call (one exact count), not by the run's "
+                        "own limit." if capped else "")
+            # runs that ended early with an error of their own (e.g. MC-SAT's
+            # "every posterior is zero"), neither timed out nor capped
+            failed = sum(1 for r in these if r["status"] not in ("ok", "timeout")) - capped
+            fail_note = (f" {failed} of the unfinished runs ended early with an error "
+                         "instead (no posterior)." if failed else "")
+            note = notes(unfinished, "addmc" in methods, limits,
+                         not_run + cap_note + fail_note, capped + failed)
             open(base + ".md", "w").write(markdown(heading, rows, note))
             open(base + ".tex", "w").write(latex(heading, rows, note))
             compile_pdf(name)

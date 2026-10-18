@@ -3,7 +3,10 @@
 # in place of the real d4 (named by D4_REAL).  It runs d4 unchanged and records,
 # in D4_LOG_DIR:
 #   d4-input.cnf   the DIMACS d4 is given (with FiFO's 'c p show' projection line)
-#   d4-start, d4-end   Unix times (end only if d4 exits), d4-exit its exit code
+#   d4-start, d4-end   awake-time clock readings, CLOCK_UPTIME_RAW (end only if d4
+#                  exits), d4-exit its exit code.  That clock stops while the Mac
+#                  sleeps, so a suspend does not inflate d4's time; it is the clock
+#                  of Python's time.monotonic() on macOS, which compile-d4.py uses.
 #   d4.nnf         a copy of d4's circuit dump (FiFO deletes its own after import)
 # and appends the options in D4_EXTRA, if any, to d4's command line.
 set -u
@@ -17,7 +20,7 @@ for ((i = 1; i <= $#; i++)); do
   esac
 done
 [[ -n "$in" ]] && cp "$in" "$log/d4-input.cnf"
-now() { perl -MTime::HiRes=time -e 'printf "%.3f\n", time'; }
+now() { python3 -c 'import time; print("%.3f" % time.clock_gettime(time.CLOCK_UPTIME_RAW))'; }
 # d4's search recurses deeply on large theories, and the default 8 MB stack
 # overflows (a bus error on macOS); take the hard limit (64 MB on macOS).
 ulimit -s hard

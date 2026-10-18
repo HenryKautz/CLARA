@@ -62,7 +62,7 @@ def run(problem, repeats):
     horizon = int(re.search(r"fifo-projection-horizon: (\d+)",
                             open(os.path.join(HERE, "circuits", problem + ".scnf")).read(2000))[1])
     t = time.time()
-    p = subprocess.run([SBCL, "--dynamic-space-size", "8192", "--control-stack-size", "1000MB",
+    p = subprocess.run([SBCL, "--dynamic-space-size", "12288", "--control-stack-size", "1000MB",
                         "--noinform", "--non-interactive",
                         "--eval", f'(load "{FIFO_LISP}/FiFO.lisp")',
                         "--eval", f'(load "{FIFO_LISP}/ddnnf.lisp")',
@@ -103,7 +103,8 @@ def main():
     names = a.names or sorted(
         (os.path.basename(f)[:-5] for f in glob.glob(os.path.join(HERE, "circuits", "*.dnnf"))),
         key=lambda n: (int(n[4:].split("x")[0]), int(n.split("-")[1])))
-    names = [n for n in names if int(n[4:].split("x")[0]) <= a.max_size]
+    names = [n for n in names if int(n[4:].split("x")[0]) <= a.max_size
+             and os.path.exists(os.path.join(HERE, "circuits", n + ".dnnf"))]
     for n in names:
         rec = run(n, a.repeats)
         with open(OUT, "a") as f:

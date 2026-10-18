@@ -4,3 +4,7 @@ __pycache__/
 SimpleGrid/circuits/grid8x8-2.dnnf
 SimpleGrid/circuits/grid8x8-3.dnnf
 SimpleGrid/circuits/grid8x8-4.dnnf
+SimpleGrid/circuits/grid9x9-1.dnnf
+SimpleGrid/circuits/grid9x9-2.dnnf
+SimpleGrid/circuits/grid9x9-3.dnnf
+SimpleGrid/circuits/grid9x9-4.dnnf

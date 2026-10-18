@@ -1,0 +1,878 @@
+=== 2026-10-17 10:19:21 stage 1: compile 8x8-10x10
+8x8: 4 of 4 to compile
+  grid8x8-1: theory at horizon 14
+  grid8x8-2: theory at horizon 15
+  grid8x8-3: theory at horizon 15
+  grid8x8-4: theory at horizon 15
+  grid8x8-1: ok 59.5s (d4 43.67s, peak 521 MB)
+  grid8x8-2: ok 205.4s (d4 148.1s, peak 920 MB)
+  grid8x8-3: ok 140.2s (d4 103.2s, peak 1360 MB)
+  grid8x8-4: ok 164.8s (d4 121.58s, peak 1758 MB)
+9x9: 4 of 4 to compile
+  grid9x9-1: theory at horizon 16
+  grid9x9-2: theory at horizon 16
+  grid9x9-3: theory at horizon 16
+  grid9x9-4: theory at horizon 16
+  grid9x9-1: error 643.0s (d4 502.66s, peak 1506 MB)
+=== 2026-10-17 10:52:29 stage 1: compile 8x8-10x10
+8x8: 0 of 4 to compile
+9x9: 3 of 4 to compile
+  grid9x9-2: theory at horizon 16
+  grid9x9-3: theory at horizon 16
+  grid9x9-4: theory at horizon 16
+  grid9x9-2: error 689.0s (d4 569.5s, peak 1938 MB)
+  grid9x9-3: ok 401.3s (d4 305.29s, peak 4297 MB)
+  grid9x9-4: ok 437.8s (d4 318.1s, peak 2516 MB)
+10x10: 4 of 4 to compile
+  grid10x10-1: theory at horizon 18
+  grid10x10-2: theory at horizon 18
+  grid10x10-3: theory at horizon 17
+  grid10x10-4: theory at horizon 18
+  grid10x10-1: timeout 1205.1s (d4 1198.99s, peak 2376 MB)
+  grid10x10-2: timeout 1204.8s (d4 1199.28s, peak 2250 MB)
+  grid10x10-3: timeout 1204.0s (d4 1199.3s, peak 4692 MB)
+  grid10x10-4: timeout 1203.9s (d4 1197.97s, peak 4562 MB)
+no 10x10 problem compiled within the limit; stopping
+done
+=== 2026-10-17 12:51:55 stage 2: goals and evidence for 8x8-10x10
+Wrote grid8x8-1.pddl
+done grid8x8-1-p8-7
+done grid8x8-1-p8-4
+done grid8x8-1-p5-6
+done grid8x8-1-p7-7
+done grid8x8-1-p8-6
+done grid8x8-1-p8-3
+done grid8x8-1-p7-4
+Wrote grid8x8-2.pddl
+done grid8x8-2-p7-6
+done grid8x8-2-p3-8
+done grid8x8-2-p7-8
+done grid8x8-2-p6-5
+done grid8x8-2-p8-7
+done grid8x8-2-p8-8
+done grid8x8-2-p5-6
+Wrote grid8x8-3.pddl
+done grid8x8-3-p8-8
+done grid8x8-3-p7-7
+done grid8x8-3-p8-4
+done grid8x8-3-p4-7
+done grid8x8-3-p4-8
+done grid8x8-3-p7-8
+done grid8x8-3-p7-6
+Wrote grid8x8-4.pddl
+done grid8x8-4-p8-7
+done grid8x8-4-p8-6
+done grid8x8-4-p5-6
+done grid8x8-4-p3-8
+done grid8x8-4-p6-5
+done grid8x8-4-p8-8
+done grid8x8-4-p8-3
+=== 2026-10-17 13:00:21   8x8: goals and evidence copied
+Wrote grid9x9-1.pddl
+done grid9x9-1-p9-8
+done grid9x9-1-p9-5
+done grid9x9-1-p6-7
+done grid9x9-1-p8-8
+done grid9x9-1-p9-7
+done grid9x9-1-p9-4
+done grid9x9-1-p8-5
+done grid9x9-1-p6-8
+done grid9x9-1-p5-9
+Wrote grid9x9-2.pddl
+done grid9x9-2-p8-7
+done grid9x9-2-p4-9
+done grid9x9-2-p8-9
+done grid9x9-2-p7-6
+done grid9x9-2-p9-8
+done grid9x9-2-p9-9
+done grid9x9-2-p6-7
+done grid9x9-2-p8-5
+done grid9x9-2-p7-9
+Wrote grid9x9-3.pddl
+done grid9x9-3-p9-9
+done grid9x9-3-p8-8
+done grid9x9-3-p9-5
+done grid9x9-3-p5-8
+done grid9x9-3-p5-9
+done grid9x9-3-p8-9
+done grid9x9-3-p8-7
+done grid9x9-3-p9-8
+done grid9x9-3-p6-8
+Wrote grid9x9-4.pddl
+done grid9x9-4-p9-9
+done grid9x9-4-p9-8
+done grid9x9-4-p4-9
+done grid9x9-4-p6-7
+done grid9x9-4-p7-6
+done grid9x9-4-p8-6
+done grid9x9-4-p9-4
+done grid9x9-4-p5-9
+done grid9x9-4-p6-8
+=== 2026-10-17 13:14:48   9x9: regenerated problems differ from the committed ones; evidence NOT copied (/tmp/sg-gen.su6XeD)
+Wrote grid10x10-1.pddl
+Terminated: 15             bash "$gen/make-instances.sh" "$@"
+=== 2026-10-17 13:15:18   10x10: make-instances.sh failed; no evidence for this size
+=== 2026-10-17 13:15:18 stage 3: two-observation queries on the new circuits
+grid8x8-1: ok  load 1.60s  query 0.123s  goals sum 1.0
+grid8x8-2: ok  load 5.86s  query 0.349s  goals sum 1.0
+grid8x8-3: ok  load 4.14s  query 0.198s  goals sum 1.0
+grid8x8-4: ok  load 5.06s  query 0.307s  goals sum 1.0
+grid9x9-3: no evidence file
+grid9x9-4: no evidence file
+=== 2026-10-17 13:15:48 stage 4: recognition suite, 7x7-10x10
+=== 2026-10-17 13:15:48   7x7
+432 runs to do (limit 1200s, 8 jobs, reserve 2 GB)
+[1] ok         40.4s  max-term    grid7x7-1-p4-7-obs1.txt
+[2] ok         40.4s  max-term    grid7x7-1-p4-7-obs2.txt
+[3] ok         41.4s  max-term    grid7x7-1-p4-7-obs3.txt
+[4] ok         42.3s  max-term    grid7x7-1-p4-7-obs4.txt
+[5] ok        176.8s  sharpsat-td grid7x7-1-p4-7-obs3.txt
+[6] ok        191.0s  sharpsat-td grid7x7-1-p4-7-obs2.txt
+[7] ok         42.3s  max-term    grid7x7-1-p4-7-obs5.txt
+[8] ok        180.8s  sharpsat-td grid7x7-1-p4-7-obs4.txt
+[9] ok         41.8s  max-term    grid7x7-1-p4-7-obs6.txt
+[10] ok        318.5s  sharpsat-td grid7x7-1-p4-7-obs1.txt
+[11] ok        176.8s  sharpsat-td grid7x7-1-p4-7-obs5.txt
+[12] ok         40.7s  max-term    grid7x7-1-p5-5-obs1.txt
+[13] ok        177.2s  sharpsat-td grid7x7-1-p4-7-obs6.txt
+[14] ok        320.1s  sharpsat-td grid7x7-1-p5-5-obs1.txt
+[15] ok        757.4s  mc-sat      grid7x7-1-p4-7-obs1.txt
+[16] ok        759.4s  mc-sat      grid7x7-1-p4-7-obs2.txt
+[17] ok         40.8s  max-term    grid7x7-1-p5-5-obs2.txt
+[18] ok        763.9s  mc-sat      grid7x7-1-p4-7-obs3.txt
+[19] ok         41.3s  max-term    grid7x7-1-p5-5-obs3.txt
+[20] ok        765.3s  mc-sat      grid7x7-1-p4-7-obs4.txt
+[21] ok         40.8s  max-term    grid7x7-1-p5-5-obs4.txt
+[22] ok        189.9s  sharpsat-td grid7x7-1-p5-5-obs2.txt
+[23] ok        757.4s  mc-sat      grid7x7-1-p4-7-obs5.txt
+[24] ok        181.4s  sharpsat-td grid7x7-1-p5-5-obs3.txt
+[25] ok         43.4s  max-term    grid7x7-1-p5-5-obs5.txt
+[26] ok        183.0s  sharpsat-td grid7x7-1-p5-5-obs4.txt
+[27] ok        768.0s  mc-sat      grid7x7-1-p4-7-obs6.txt
+[28] ok         40.3s  max-term    grid7x7-1-p5-5-obs6.txt
+[29] ok        181.9s  sharpsat-td grid7x7-1-p5-5-obs5.txt
+[30] ok         45.8s  max-term    grid7x7-1-p6-4-obs1.txt
+[31] ok        770.7s  mc-sat      grid7x7-1-p5-5-obs1.txt
+[32] ok        182.9s  sharpsat-td grid7x7-1-p5-5-obs6.txt
+[33] ok         47.9s  max-term    grid7x7-1-p6-4-obs2.txt
+[34] ok        188.7s  sharpsat-td grid7x7-1-p6-4-obs2.txt
+[35] ok        780.5s  mc-sat      grid7x7-1-p5-5-obs2.txt
+[36] ok        328.9s  sharpsat-td grid7x7-1-p6-4-obs1.txt
+[37] ok         40.3s  max-term    grid7x7-1-p6-4-obs3.txt
+[38] ok        778.5s  mc-sat      grid7x7-1-p5-5-obs3.txt
+[39] ok         40.8s  max-term    grid7x7-1-p6-4-obs4.txt
+[40] ok        176.2s  sharpsat-td grid7x7-1-p6-4-obs3.txt
+[41] ok        773.4s  mc-sat      grid7x7-1-p5-5-obs4.txt
+[42] ok         40.8s  max-term    grid7x7-1-p6-4-obs5.txt
+[43] ok        767.7s  mc-sat      grid7x7-1-p5-5-obs5.txt
+[44] ok        176.8s  sharpsat-td grid7x7-1-p6-4-obs4.txt
+[45] ok         40.8s  max-term    grid7x7-1-p6-4-obs6.txt
+[46] ok        766.7s  mc-sat      grid7x7-1-p5-5-obs6.txt
+[47] ok        175.8s  sharpsat-td grid7x7-1-p6-4-obs5.txt
+[48] ok        764.1s  mc-sat      grid7x7-1-p6-4-obs1.txt
+[49] ok         40.8s  max-term    grid7x7-1-p6-5-obs1.txt
+[50] ok        176.0s  sharpsat-td grid7x7-1-p6-4-obs6.txt
+[51] ok         40.7s  max-term    grid7x7-1-p6-5-obs2.txt
+[52] ok        181.7s  sharpsat-td grid7x7-1-p6-5-obs2.txt
+[53] ok        760.2s  mc-sat      grid7x7-1-p6-4-obs2.txt
+[54] ok        317.4s  sharpsat-td grid7x7-1-p6-5-obs1.txt
+[55] ok         43.4s  max-term    grid7x7-1-p6-5-obs3.txt
+[56] ok        758.2s  mc-sat      grid7x7-1-p6-4-obs3.txt
+[57] ok         40.8s  max-term    grid7x7-1-p6-5-obs4.txt
+[58] ok        170.4s  sharpsat-td grid7x7-1-p6-5-obs3.txt
+[59] ok        750.3s  mc-sat      grid7x7-1-p6-4-obs4.txt
+[60] ok         38.8s  max-term    grid7x7-1-p6-5-obs5.txt
+[61] ok        749.8s  mc-sat      grid7x7-1-p6-4-obs5.txt
+[62] ok        170.9s  sharpsat-td grid7x7-1-p6-5-obs4.txt
+[63] ok         38.8s  max-term    grid7x7-1-p6-5-obs6.txt
+[64] ok        745.9s  mc-sat      grid7x7-1-p6-4-obs6.txt
+[65] ok        167.9s  sharpsat-td grid7x7-1-p6-5-obs5.txt
+[66] ok         39.8s  max-term    grid7x7-1-p7-3-obs1.txt
+[67] ok        746.7s  mc-sat      grid7x7-1-p6-5-obs1.txt
+[68] ok        164.8s  sharpsat-td grid7x7-1-p6-5-obs6.txt
+[69] ok         38.8s  max-term    grid7x7-1-p7-3-obs2.txt
+[70] ok        176.9s  sharpsat-td grid7x7-1-p7-3-obs2.txt
+[71] ok        738.5s  mc-sat      grid7x7-1-p6-5-obs2.txt
+[72] ok        304.5s  sharpsat-td grid7x7-1-p7-3-obs1.txt
+[73] ok         40.4s  max-term    grid7x7-1-p7-3-obs3.txt
+[74] ok        733.4s  mc-sat      grid7x7-1-p6-5-obs3.txt
+[75] ok         42.9s  max-term    grid7x7-1-p7-3-obs4.txt
+[76] ok        167.3s  sharpsat-td grid7x7-1-p7-3-obs3.txt
+[77] ok        732.4s  mc-sat      grid7x7-1-p6-5-obs4.txt
+[78] ok         38.8s  max-term    grid7x7-1-p7-3-obs5.txt
+[79] ok        163.2s  sharpsat-td grid7x7-1-p7-3-obs4.txt
+[80] ok        730.4s  mc-sat      grid7x7-1-p6-5-obs5.txt
+[81] ok         37.8s  max-term    grid7x7-1-p7-3-obs6.txt
+[82] ok        721.7s  mc-sat      grid7x7-1-p6-5-obs6.txt
+[83] ok        163.7s  sharpsat-td grid7x7-1-p7-3-obs5.txt
+[84] ok         39.8s  max-term    grid7x7-1-p7-6-obs1.txt
+[85] ok        725.7s  mc-sat      grid7x7-1-p7-3-obs1.txt
+[86] ok        162.7s  sharpsat-td grid7x7-1-p7-3-obs6.txt
+[87] ok         38.8s  max-term    grid7x7-1-p7-6-obs2.txt
+[88] ok        175.6s  sharpsat-td grid7x7-1-p7-6-obs2.txt
+[89] ok        724.8s  mc-sat      grid7x7-1-p7-3-obs2.txt
+[90] ok         39.8s  max-term    grid7x7-1-p7-6-obs3.txt
+[91] ok        296.5s  sharpsat-td grid7x7-1-p7-6-obs1.txt
+[92] ok        720.7s  mc-sat      grid7x7-1-p7-3-obs3.txt
+[93] ok         39.8s  max-term    grid7x7-1-p7-6-obs4.txt
+[94] ok        164.1s  sharpsat-td grid7x7-1-p7-6-obs3.txt
+[95] ok        717.5s  mc-sat      grid7x7-1-p7-3-obs4.txt
+[96] ok         36.8s  max-term    grid7x7-1-p7-6-obs5.txt
+[97] ok        164.2s  sharpsat-td grid7x7-1-p7-6-obs4.txt
+[98] ok        717.5s  mc-sat      grid7x7-1-p7-3-obs5.txt
+[99] ok         36.8s  max-term    grid7x7-1-p7-6-obs6.txt
+[100] ok        713.9s  mc-sat      grid7x7-1-p7-3-obs6.txt
+[101] ok        163.6s  sharpsat-td grid7x7-1-p7-6-obs5.txt
+[102] ok         38.8s  max-term    grid7x7-2-p3-7-obs1.txt
+[103] ok        162.1s  sharpsat-td grid7x7-1-p7-6-obs6.txt
+[104] ok        716.5s  mc-sat      grid7x7-1-p7-6-obs1.txt
+[105] ok         61.0s  sharpsat-td grid7x7-2-p3-7-obs1.txt
+[106] ok         39.3s  max-term    grid7x7-2-p3-7-obs2.txt
+[107] ok         60.5s  sharpsat-td grid7x7-2-p3-7-obs2.txt
+[108] ok         38.8s  max-term    grid7x7-2-p3-7-obs3.txt
+[109] ok         61.8s  sharpsat-td grid7x7-2-p3-7-obs3.txt
+[110] ok        717.9s  mc-sat      grid7x7-1-p7-6-obs2.txt
+[111] ok         38.7s  max-term    grid7x7-2-p3-7-obs4.txt
+[112] ok        715.2s  mc-sat      grid7x7-1-p7-6-obs3.txt
+[113] ok         59.2s  sharpsat-td grid7x7-2-p3-7-obs4.txt
+[114] ok         39.6s  max-term    grid7x7-2-p3-7-obs5.txt
+[115] ok         61.7s  sharpsat-td grid7x7-2-p3-7-obs5.txt
+[116] ok        717.3s  mc-sat      grid7x7-1-p7-6-obs4.txt
+[117] ok         38.6s  max-term    grid7x7-2-p3-7-obs6.txt
+[118] error     717.6s  mc-sat      grid7x7-1-p7-6-obs5.txt
+[119] ok         59.3s  sharpsat-td grid7x7-2-p3-7-obs6.txt
+[120] ok         38.6s  max-term    grid7x7-2-p5-5-obs1.txt
+[121] ok        717.3s  mc-sat      grid7x7-1-p7-6-obs6.txt
+[122] ok         63.2s  sharpsat-td grid7x7-2-p5-5-obs1.txt
+[123] ok         40.6s  max-term    grid7x7-2-p5-5-obs2.txt
+[124] ok        724.0s  mc-sat      grid7x7-2-p3-7-obs1.txt
+[125] ok         63.2s  sharpsat-td grid7x7-2-p5-5-obs2.txt
+[126] ok        726.4s  mc-sat      grid7x7-2-p3-7-obs2.txt
+[127] ok         41.2s  max-term    grid7x7-2-p5-5-obs3.txt
+[128] ok         62.2s  sharpsat-td grid7x7-2-p5-5-obs3.txt
+[129] ok         39.6s  max-term    grid7x7-2-p5-5-obs4.txt
+[130] ok         61.7s  sharpsat-td grid7x7-2-p5-5-obs4.txt
+[131] ok        733.1s  mc-sat      grid7x7-2-p3-7-obs3.txt
+[132] ok         40.7s  max-term    grid7x7-2-p5-5-obs5.txt
+[133] ok        730.5s  mc-sat      grid7x7-2-p3-7-obs4.txt
+[134] ok         60.2s  sharpsat-td grid7x7-2-p5-5-obs5.txt
+[135] ok         37.6s  max-term    grid7x7-2-p5-5-obs6.txt
+[136] ok         58.7s  sharpsat-td grid7x7-2-p5-5-obs6.txt
+[137] ok        730.0s  mc-sat      grid7x7-2-p3-7-obs5.txt
+[138] ok         38.6s  max-term    grid7x7-2-p5-6-obs1.txt
+[139] ok        725.5s  mc-sat      grid7x7-2-p3-7-obs6.txt
+[140] ok         61.3s  sharpsat-td grid7x7-2-p5-6-obs1.txt
+[141] ok         39.7s  max-term    grid7x7-2-p5-6-obs2.txt
+[142] ok        730.6s  mc-sat      grid7x7-2-p5-5-obs1.txt
+[143] ok         58.4s  sharpsat-td grid7x7-2-p5-6-obs2.txt
+[144] ok         37.8s  max-term    grid7x7-2-p5-6-obs3.txt
+[145] ok        726.9s  mc-sat      grid7x7-2-p5-5-obs2.txt
+[146] ok         62.3s  sharpsat-td grid7x7-2-p5-6-obs3.txt
+[147] ok         39.6s  max-term    grid7x7-2-p5-6-obs4.txt
+[148] ok        722.9s  mc-sat      grid7x7-2-p5-5-obs3.txt
+[149] ok         63.3s  sharpsat-td grid7x7-2-p5-6-obs4.txt
+[150] ok         42.7s  max-term    grid7x7-2-p5-6-obs5.txt
+[151] ok        729.0s  mc-sat      grid7x7-2-p5-5-obs4.txt
+[152] ok         62.2s  sharpsat-td grid7x7-2-p5-6-obs5.txt
+[153] ok         49.7s  max-term    grid7x7-2-p5-6-obs6.txt
+[154] ok        737.0s  mc-sat      grid7x7-2-p5-5-obs5.txt
+[155] ok         66.3s  sharpsat-td grid7x7-2-p5-6-obs6.txt
+[156] ok         42.7s  max-term    grid7x7-2-p5-7-obs1.txt
+[157] ok        742.1s  mc-sat      grid7x7-2-p5-5-obs6.txt
+[158] ok         66.3s  sharpsat-td grid7x7-2-p5-7-obs1.txt
+[159] ok         43.7s  max-term    grid7x7-2-p5-7-obs2.txt
+[160] ok        760.1s  mc-sat      grid7x7-2-p5-6-obs1.txt
+[161] ok         64.3s  sharpsat-td grid7x7-2-p5-7-obs2.txt
+[162] ok         43.7s  max-term    grid7x7-2-p5-7-obs3.txt
+[163] ok        766.0s  mc-sat      grid7x7-2-p5-6-obs2.txt
+[164] ok         65.3s  sharpsat-td grid7x7-2-p5-7-obs3.txt
+[165] ok         41.7s  max-term    grid7x7-2-p5-7-obs4.txt
+[166] ok         63.8s  sharpsat-td grid7x7-2-p5-7-obs4.txt
+[167] ok        774.3s  mc-sat      grid7x7-2-p5-6-obs3.txt
+[168] ok         40.7s  max-term    grid7x7-2-p5-7-obs5.txt
+[169] ok        772.8s  mc-sat      grid7x7-2-p5-6-obs4.txt
+[170] ok         64.2s  sharpsat-td grid7x7-2-p5-7-obs5.txt
+[171] ok         38.7s  max-term    grid7x7-2-p5-7-obs6.txt
+[172] ok         59.7s  sharpsat-td grid7x7-2-p5-7-obs6.txt
+[173] ok        776.3s  mc-sat      grid7x7-2-p5-6-obs5.txt
+[174] ok         38.6s  max-term    grid7x7-2-p6-7-obs1.txt
+[175] ok        756.7s  mc-sat      grid7x7-2-p5-6-obs6.txt
+[176] ok         63.2s  sharpsat-td grid7x7-2-p6-7-obs1.txt
+[177] ok         39.6s  max-term    grid7x7-2-p6-7-obs2.txt
+[178] ok        754.6s  mc-sat      grid7x7-2-p5-7-obs1.txt
+[179] ok         64.2s  sharpsat-td grid7x7-2-p6-7-obs2.txt
+[180] ok         43.7s  max-term    grid7x7-2-p6-7-obs3.txt
+[181] ok        759.6s  mc-sat      grid7x7-2-p5-7-obs2.txt
+[182] ok         65.2s  sharpsat-td grid7x7-2-p6-7-obs3.txt
+[183] ok         42.7s  max-term    grid7x7-2-p6-7-obs4.txt
+[184] ok        746.5s  mc-sat      grid7x7-2-p5-7-obs3.txt
+[185] ok         63.2s  sharpsat-td grid7x7-2-p6-7-obs4.txt
+[186] ok         40.6s  max-term    grid7x7-2-p6-7-obs5.txt
+[187] ok         58.7s  sharpsat-td grid7x7-2-p6-7-obs5.txt
+[188] ok        744.0s  mc-sat      grid7x7-2-p5-7-obs4.txt
+[189] ok         39.6s  max-term    grid7x7-2-p6-7-obs6.txt
+[190] ok        741.5s  mc-sat      grid7x7-2-p5-7-obs5.txt
+[191] ok         70.3s  sharpsat-td grid7x7-2-p6-7-obs6.txt
+[192] ok         46.7s  max-term    grid7x7-2-p7-5-obs1.txt
+[193] ok        752.5s  mc-sat      grid7x7-2-p5-7-obs6.txt
+[194] ok         65.3s  sharpsat-td grid7x7-2-p7-5-obs1.txt
+[195] ok         42.7s  max-term    grid7x7-2-p7-5-obs2.txt
+[196] ok        757.6s  mc-sat      grid7x7-2-p6-7-obs1.txt
+[197] ok         68.3s  sharpsat-td grid7x7-2-p7-5-obs2.txt
+[198] ok         47.7s  max-term    grid7x7-2-p7-5-obs3.txt
+[199] ok        777.7s  mc-sat      grid7x7-2-p6-7-obs2.txt
+[200] ok         65.3s  sharpsat-td grid7x7-2-p7-5-obs3.txt
+[201] ok         41.7s  max-term    grid7x7-2-p7-5-obs4.txt
+[202] ok         69.8s  sharpsat-td grid7x7-2-p7-5-obs4.txt
+[203] ok        777.3s  mc-sat      grid7x7-2-p6-7-obs3.txt
+[204] ok         43.7s  max-term    grid7x7-2-p7-5-obs5.txt
+[205] ok         66.8s  sharpsat-td grid7x7-2-p7-5-obs5.txt
+[206] ok        782.4s  mc-sat      grid7x7-2-p6-7-obs4.txt
+[207] ok         41.7s  max-term    grid7x7-2-p7-5-obs6.txt
+[208] ok        780.9s  mc-sat      grid7x7-2-p6-7-obs5.txt
+[209] ok         61.3s  sharpsat-td grid7x7-2-p7-5-obs6.txt
+[210] ok         40.7s  max-term    grid7x7-3-p4-6-obs1.txt
+[211] ok        784.9s  mc-sat      grid7x7-2-p6-7-obs6.txt
+[212] ok         69.3s  sharpsat-td grid7x7-3-p4-6-obs1.txt
+[213] ok         39.7s  max-term    grid7x7-3-p4-6-obs2.txt
+[214] ok         51.7s  sharpsat-td grid7x7-3-p4-6-obs2.txt
+[215] ok        773.4s  mc-sat      grid7x7-2-p7-5-obs1.txt
+[216] ok         39.6s  max-term    grid7x7-3-p4-6-obs3.txt
+[217] ok        773.9s  mc-sat      grid7x7-2-p7-5-obs2.txt
+[218] ok         55.3s  sharpsat-td grid7x7-3-p4-6-obs3.txt
+[219] ok         42.6s  max-term    grid7x7-3-p4-6-obs4.txt
+[220] ok         51.7s  sharpsat-td grid7x7-3-p4-6-obs4.txt
+[221] ok        777.4s  mc-sat      grid7x7-2-p7-5-obs3.txt
+[222] ok         42.7s  max-term    grid7x7-3-p4-6-obs5.txt
+[223] ok         54.8s  sharpsat-td grid7x7-3-p4-6-obs5.txt
+[224] ok        768.4s  mc-sat      grid7x7-2-p7-5-obs4.txt
+[225] ok         40.6s  max-term    grid7x7-3-p4-6-obs6.txt
+[226] ok         48.7s  sharpsat-td grid7x7-3-p4-6-obs6.txt
+[227] ok        760.3s  mc-sat      grid7x7-2-p7-5-obs5.txt
+[228] ok         39.6s  max-term    grid7x7-3-p4-7-obs1.txt
+[229] ok        754.7s  mc-sat      grid7x7-2-p7-5-obs6.txt
+[230] ok         68.2s  sharpsat-td grid7x7-3-p4-7-obs1.txt
+[231] ok         39.6s  max-term    grid7x7-3-p4-7-obs2.txt
+[232] ok        753.7s  mc-sat      grid7x7-3-p4-6-obs1.txt
+[233] ok         59.4s  sharpsat-td grid7x7-3-p4-7-obs2.txt
+[234] ok         37.8s  max-term    grid7x7-3-p4-7-obs3.txt
+[235] ok         49.9s  sharpsat-td grid7x7-3-p4-7-obs3.txt
+[236] ok        751.7s  mc-sat      grid7x7-3-p4-6-obs2.txt
+[237] ok         37.8s  max-term    grid7x7-3-p4-7-obs4.txt
+[238] ok         48.9s  sharpsat-td grid7x7-3-p4-7-obs4.txt
+[239] ok        748.9s  mc-sat      grid7x7-3-p4-6-obs3.txt
+[240] ok         39.8s  max-term    grid7x7-3-p4-7-obs5.txt
+[241] ok        736.7s  mc-sat      grid7x7-3-p4-6-obs4.txt
+[242] ok         50.4s  sharpsat-td grid7x7-3-p4-7-obs5.txt
+[243] ok         39.8s  max-term    grid7x7-3-p4-7-obs6.txt
+[244] ok         48.8s  sharpsat-td grid7x7-3-p4-7-obs6.txt
+[245] ok        727.7s  mc-sat      grid7x7-3-p4-6-obs5.txt
+[246] ok         49.8s  max-term    grid7x7-3-p5-6-obs1.txt
+[247] ok        747.4s  mc-sat      grid7x7-3-p4-6-obs6.txt
+[248] ok         73.3s  sharpsat-td grid7x7-3-p5-6-obs1.txt
+[249] ok         41.7s  max-term    grid7x7-3-p5-6-obs2.txt
+[250] ok         52.7s  sharpsat-td grid7x7-3-p5-6-obs2.txt
+[251] ok        750.0s  mc-sat      grid7x7-3-p4-7-obs1.txt
+[252] ok         41.6s  max-term    grid7x7-3-p5-6-obs3.txt
+[253] ok        751.4s  mc-sat      grid7x7-3-p4-7-obs2.txt
+[254] error      61.2s  sharpsat-td grid7x7-3-p5-6-obs3.txt
+[255] ok         39.6s  max-term    grid7x7-3-p5-6-obs4.txt
+[256] ok         51.7s  sharpsat-td grid7x7-3-p5-6-obs4.txt
+[257] ok        756.5s  mc-sat      grid7x7-3-p4-7-obs3.txt
+[258] ok         39.6s  max-term    grid7x7-3-p5-6-obs5.txt
+[259] ok         51.7s  sharpsat-td grid7x7-3-p5-6-obs5.txt
+[260] ok        763.2s  mc-sat      grid7x7-3-p4-7-obs4.txt
+[261] ok         40.7s  max-term    grid7x7-3-p5-6-obs6.txt
+[262] ok         51.7s  sharpsat-td grid7x7-3-p5-6-obs6.txt
+[263] error     763.9s  mc-sat      grid7x7-3-p4-7-obs5.txt
+[264] ok         41.7s  max-term    grid7x7-3-p6-4-obs1.txt
+[265] ok        777.2s  mc-sat      grid7x7-3-p4-7-obs6.txt
+[266] ok         71.3s  sharpsat-td grid7x7-3-p6-4-obs1.txt
+[267] ok         40.7s  max-term    grid7x7-3-p6-4-obs2.txt
+[268] ok         57.7s  sharpsat-td grid7x7-3-p6-4-obs2.txt
+[269] ok        764.2s  mc-sat      grid7x7-3-p5-6-obs1.txt
+[270] ok         38.6s  max-term    grid7x7-3-p6-4-obs3.txt
+[271] ok         51.7s  sharpsat-td grid7x7-3-p6-4-obs3.txt
+[272] ok        759.2s  mc-sat      grid7x7-3-p5-6-obs2.txt
+[273] ok         39.6s  max-term    grid7x7-3-p6-4-obs4.txt
+[274] ok         50.7s  sharpsat-td grid7x7-3-p6-4-obs4.txt
+[275] ok        760.2s  mc-sat      grid7x7-3-p5-6-obs3.txt
+[276] ok         40.7s  max-term    grid7x7-3-p6-4-obs5.txt
+[277] ok         48.7s  sharpsat-td grid7x7-3-p6-4-obs5.txt
+[278] ok        756.2s  mc-sat      grid7x7-3-p5-6-obs4.txt
+[279] ok         39.6s  max-term    grid7x7-3-p6-4-obs6.txt
+[280] ok         50.7s  sharpsat-td grid7x7-3-p6-4-obs6.txt
+[281] ok        754.1s  mc-sat      grid7x7-3-p5-6-obs5.txt
+[282] ok         40.7s  max-term    grid7x7-3-p6-5-obs1.txt
+[283] ok        746.7s  mc-sat      grid7x7-3-p5-6-obs6.txt
+[284] ok         72.3s  sharpsat-td grid7x7-3-p6-5-obs1.txt
+[285] ok         37.6s  max-term    grid7x7-3-p6-5-obs2.txt
+[286] ok         51.7s  sharpsat-td grid7x7-3-p6-5-obs2.txt
+[287] ok        749.1s  mc-sat      grid7x7-3-p6-4-obs1.txt
+[288] ok         40.7s  max-term    grid7x7-3-p6-5-obs3.txt
+[289] ok         50.7s  sharpsat-td grid7x7-3-p6-5-obs3.txt
+[290] ok        748.2s  mc-sat      grid7x7-3-p6-4-obs2.txt
+[291] ok         38.7s  max-term    grid7x7-3-p6-5-obs4.txt
+[292] ok         47.6s  sharpsat-td grid7x7-3-p6-5-obs4.txt
+[293] ok        739.1s  mc-sat      grid7x7-3-p6-4-obs3.txt
+[294] ok         38.6s  max-term    grid7x7-3-p6-5-obs5.txt
+[295] ok         47.7s  sharpsat-td grid7x7-3-p6-5-obs5.txt
+[296] ok        737.1s  mc-sat      grid7x7-3-p6-4-obs4.txt
+[297] ok         39.7s  max-term    grid7x7-3-p6-5-obs6.txt
+[298] ok        726.6s  mc-sat      grid7x7-3-p6-4-obs5.txt
+[299] ok         51.4s  sharpsat-td grid7x7-3-p6-5-obs6.txt
+[300] ok         40.8s  max-term    grid7x7-3-p7-6-obs1.txt
+[301] ok         69.0s  sharpsat-td grid7x7-3-p7-6-obs1.txt
+[302] ok        732.8s  mc-sat      grid7x7-3-p6-4-obs6.txt
+[303] ok         40.8s  max-term    grid7x7-3-p7-6-obs2.txt
+[304] ok        731.6s  mc-sat      grid7x7-3-p6-5-obs1.txt
+[305] ok         57.9s  sharpsat-td grid7x7-3-p7-6-obs2.txt
+[306] ok         40.8s  max-term    grid7x7-3-p7-6-obs3.txt
+[307] ok         49.9s  sharpsat-td grid7x7-3-p7-6-obs3.txt
+[308] ok        735.5s  mc-sat      grid7x7-3-p6-5-obs2.txt
+[309] ok         38.8s  max-term    grid7x7-3-p7-6-obs4.txt
+[310] ok        730.2s  mc-sat      grid7x7-3-p6-5-obs3.txt
+[311] ok         50.4s  sharpsat-td grid7x7-3-p7-6-obs4.txt
+[312] ok         38.8s  max-term    grid7x7-3-p7-6-obs5.txt
+[313] ok         47.8s  sharpsat-td grid7x7-3-p7-6-obs5.txt
+[314] ok        723.0s  mc-sat      grid7x7-3-p6-5-obs4.txt
+[315] ok         37.8s  max-term    grid7x7-3-p7-6-obs6.txt
+[316] ok         49.8s  sharpsat-td grid7x7-3-p7-6-obs6.txt
+[317] ok        723.3s  mc-sat      grid7x7-3-p6-5-obs5.txt
+[318] ok         38.8s  max-term    grid7x7-4-p3-7-obs1.txt
+[319] ok        724.0s  mc-sat      grid7x7-3-p6-5-obs6.txt
+[320] ok        725.8s  mc-sat      grid7x7-3-p7-6-obs1.txt
+[321] ok         39.8s  max-term    grid7x7-4-p3-7-obs2.txt
+[322] ok        719.1s  mc-sat      grid7x7-3-p7-6-obs2.txt
+[323] ok        724.0s  mc-sat      grid7x7-3-p7-6-obs3.txt
+[324] ok         37.7s  max-term    grid7x7-4-p3-7-obs3.txt
+[325] ok        719.4s  mc-sat      grid7x7-3-p7-6-obs4.txt
+[326] ok        716.3s  mc-sat      grid7x7-3-p7-6-obs5.txt
+[327] ok         37.7s  max-term    grid7x7-4-p3-7-obs4.txt
+[328] ok        718.8s  mc-sat      grid7x7-3-p7-6-obs6.txt
+[329] ok        721.8s  mc-sat      grid7x7-4-p3-7-obs1.txt
+[330] ok         36.7s  max-term    grid7x7-4-p3-7-obs5.txt
+[331] error     679.4s  sharpsat-td grid7x7-4-p3-7-obs2.txt
+[332] error     946.2s  sharpsat-td grid7x7-4-p3-7-obs1.txt
+[333] ok        717.2s  mc-sat      grid7x7-4-p3-7-obs2.txt
+[334] ok         37.2s  max-term    grid7x7-4-p3-7-obs6.txt
+[335] error     642.7s  sharpsat-td grid7x7-4-p3-7-obs3.txt
+[336] ok         39.8s  max-term    grid7x7-4-p5-5-obs1.txt
+[337] ok        714.7s  mc-sat      grid7x7-4-p3-7-obs3.txt
+[338] error     642.7s  sharpsat-td grid7x7-4-p3-7-obs4.txt
+[339] ok         39.8s  max-term    grid7x7-4-p5-5-obs2.txt
+[340] ok        719.8s  mc-sat      grid7x7-4-p3-7-obs4.txt
+[341] error     640.7s  sharpsat-td grid7x7-4-p3-7-obs5.txt
+[342] ok         37.8s  max-term    grid7x7-4-p5-5-obs3.txt
+[343] ok        716.7s  mc-sat      grid7x7-4-p3-7-obs5.txt
+[344] error     639.8s  sharpsat-td grid7x7-4-p3-7-obs6.txt
+[345] ok         35.8s  max-term    grid7x7-4-p5-5-obs4.txt
+[346] ok        714.9s  mc-sat      grid7x7-4-p3-7-obs6.txt
+[347] ok        710.7s  mc-sat      grid7x7-4-p5-5-obs1.txt
+[348] ok         36.7s  max-term    grid7x7-4-p5-5-obs5.txt
+[349] error     677.5s  sharpsat-td grid7x7-4-p5-5-obs2.txt
+[350] error     946.3s  sharpsat-td grid7x7-4-p5-5-obs1.txt
+[351] ok         38.8s  max-term    grid7x7-4-p5-5-obs6.txt
+[352] ok        709.9s  mc-sat      grid7x7-4-p5-5-obs2.txt
+[353] error     642.0s  sharpsat-td grid7x7-4-p5-5-obs3.txt
+[354] ok         35.7s  max-term    grid7x7-4-p5-6-obs1.txt
+[355] error     640.3s  sharpsat-td grid7x7-4-p5-5-obs4.txt
+[356] ok        708.4s  mc-sat      grid7x7-4-p5-5-obs3.txt
+[357] ok         37.8s  max-term    grid7x7-4-p5-6-obs2.txt
+[358] ok        708.8s  mc-sat      grid7x7-4-p5-5-obs4.txt
+[359] error     640.8s  sharpsat-td grid7x7-4-p5-5-obs5.txt
+[360] ok         36.7s  max-term    grid7x7-4-p5-6-obs3.txt
+[361] ok        703.7s  mc-sat      grid7x7-4-p5-5-obs5.txt
+[362] error     640.7s  sharpsat-td grid7x7-4-p5-5-obs6.txt
+[363] ok         36.7s  max-term    grid7x7-4-p5-6-obs4.txt
+[364] ok        709.6s  mc-sat      grid7x7-4-p5-5-obs6.txt
+[365] ok        705.5s  mc-sat      grid7x7-4-p5-6-obs1.txt
+[366] error     666.7s  sharpsat-td grid7x7-4-p5-6-obs2.txt
+[367] ok         39.3s  max-term    grid7x7-4-p5-6-obs5.txt
+[368] error     938.1s  sharpsat-td grid7x7-4-p5-6-obs1.txt
+[369] ok        710.1s  mc-sat      grid7x7-4-p5-6-obs2.txt
+[370] ok         40.3s  max-term    grid7x7-4-p5-6-obs6.txt
+[371] error     639.7s  sharpsat-td grid7x7-4-p5-6-obs3.txt
+[372] ok         39.8s  max-term    grid7x7-4-p6-4-obs1.txt
+[373] ok        708.7s  mc-sat      grid7x7-4-p5-6-obs3.txt
+[374] error     640.8s  sharpsat-td grid7x7-4-p5-6-obs4.txt
+[375] ok         38.8s  max-term    grid7x7-4-p6-4-obs2.txt
+[376] ok        712.9s  mc-sat      grid7x7-4-p5-6-obs4.txt
+[377] error     640.9s  sharpsat-td grid7x7-4-p5-6-obs5.txt
+[378] ok         39.8s  max-term    grid7x7-4-p6-4-obs3.txt
+[379] ok        715.0s  mc-sat      grid7x7-4-p5-6-obs5.txt
+[380] error     641.9s  sharpsat-td grid7x7-4-p5-6-obs6.txt
+[381] ok         39.8s  max-term    grid7x7-4-p6-4-obs4.txt
+[382] ok        715.9s  mc-sat      grid7x7-4-p5-6-obs6.txt
+[383] ok        723.9s  mc-sat      grid7x7-4-p6-4-obs1.txt
+[384] error     678.0s  sharpsat-td grid7x7-4-p6-4-obs2.txt
+[385] ok         37.3s  max-term    grid7x7-4-p6-4-obs5.txt
+[386] ok        717.8s  mc-sat      grid7x7-4-p6-4-obs2.txt
+[387] error     945.9s  sharpsat-td grid7x7-4-p6-4-obs1.txt
+[388] ok         38.3s  max-term    grid7x7-4-p6-4-obs6.txt
+[389] error     641.8s  sharpsat-td grid7x7-4-p6-4-obs3.txt
+[390] ok         36.8s  max-term    grid7x7-4-p7-3-obs1.txt
+[391] error     642.2s  sharpsat-td grid7x7-4-p6-4-obs4.txt
+[392] ok        714.3s  mc-sat      grid7x7-4-p6-4-obs3.txt
+[393] ok         38.7s  max-term    grid7x7-4-p7-3-obs2.txt
+[394] ok        718.7s  mc-sat      grid7x7-4-p6-4-obs4.txt
+[395] error     642.6s  sharpsat-td grid7x7-4-p6-4-obs5.txt
+[396] ok         35.8s  max-term    grid7x7-4-p7-3-obs3.txt
+[397] ok        710.5s  mc-sat      grid7x7-4-p6-4-obs5.txt
+[398] error     639.6s  sharpsat-td grid7x7-4-p6-4-obs6.txt
+[399] ok         37.8s  max-term    grid7x7-4-p7-3-obs4.txt
+[400] ok        706.5s  mc-sat      grid7x7-4-p6-4-obs6.txt
+[401] ok        707.5s  mc-sat      grid7x7-4-p7-3-obs1.txt
+[402] error     668.8s  sharpsat-td grid7x7-4-p7-3-obs2.txt
+[403] ok         36.3s  max-term    grid7x7-4-p7-3-obs5.txt
+[404] ok        705.6s  mc-sat      grid7x7-4-p7-3-obs2.txt
+[405] error     940.6s  sharpsat-td grid7x7-4-p7-3-obs1.txt
+[406] ok         36.3s  max-term    grid7x7-4-p7-3-obs6.txt
+[407] error     639.7s  sharpsat-td grid7x7-4-p7-3-obs3.txt
+[408] ok         36.7s  max-term    grid7x7-4-p7-6-obs1.txt
+[409] ok        705.7s  mc-sat      grid7x7-4-p7-3-obs3.txt
+[410] error     640.8s  sharpsat-td grid7x7-4-p7-3-obs4.txt
+[411] ok         38.8s  max-term    grid7x7-4-p7-6-obs2.txt
+[412] ok        709.7s  mc-sat      grid7x7-4-p7-3-obs4.txt
+[413] error     640.7s  sharpsat-td grid7x7-4-p7-3-obs5.txt
+[414] ok         37.7s  max-term    grid7x7-4-p7-6-obs3.txt
+[415] ok        706.6s  mc-sat      grid7x7-4-p7-3-obs5.txt
+[416] error     639.7s  sharpsat-td grid7x7-4-p7-3-obs6.txt
+[417] ok         37.8s  max-term    grid7x7-4-p7-6-obs4.txt
+[418] ok        700.6s  mc-sat      grid7x7-4-p7-3-obs6.txt
+[419] ok        705.6s  mc-sat      grid7x7-4-p7-6-obs1.txt
+[420] error     674.8s  sharpsat-td grid7x7-4-p7-6-obs2.txt
+[421] ok         40.3s  max-term    grid7x7-4-p7-6-obs5.txt
+[422] ok        708.6s  mc-sat      grid7x7-4-p7-6-obs2.txt
+[423] error     937.6s  sharpsat-td grid7x7-4-p7-6-obs1.txt
+[424] ok         39.3s  max-term    grid7x7-4-p7-6-obs6.txt
+[425] error     638.7s  sharpsat-td grid7x7-4-p7-6-obs3.txt
+[426] ok        712.0s  mc-sat      grid7x7-4-p7-6-obs3.txt
+[427] error     641.6s  sharpsat-td grid7x7-4-p7-6-obs4.txt
+[428] ok        707.7s  mc-sat      grid7x7-4-p7-6-obs4.txt
+[429] error     641.8s  sharpsat-td grid7x7-4-p7-6-obs5.txt
+[430] ok        705.9s  mc-sat      grid7x7-4-p7-6-obs5.txt
+[431] error     642.6s  sharpsat-td grid7x7-4-p7-6-obs6.txt
+[432] ok        697.8s  mc-sat      grid7x7-4-p7-6-obs6.txt
+done
+=== 2026-10-17 18:30:04   8x8
+588 runs to do (limit 1200s, 8 jobs, reserve 2 GB)
+[1] ok         60.6s  max-term    grid8x8-1-p5-6-obs1.txt
+[2] ok         60.6s  max-term    grid8x8-1-p5-6-obs2.txt
+[3] ok         60.5s  max-term    grid8x8-1-p5-6-obs3.txt
+[4] ok         59.5s  max-term    grid8x8-1-p5-6-obs4.txt
+[5] error     658.6s  sharpsat-td grid8x8-1-p5-6-obs1.txt
+[6] error     658.6s  sharpsat-td grid8x8-1-p5-6-obs2.txt
+[7] error     658.6s  sharpsat-td grid8x8-1-p5-6-obs3.txt
+[8] ok         58.0s  max-term    grid8x8-1-p5-6-obs5.txt
+[9] error     675.2s  sharpsat-td grid8x8-1-p5-6-obs4.txt
+[10] ok         57.4s  max-term    grid8x8-1-p5-6-obs6.txt
+[11] timeout  1203.8s  mc-sat      grid8x8-1-p5-6-obs1.txt
+[12] timeout  1205.3s  mc-sat      grid8x8-1-p5-6-obs2.txt
+[13] timeout  1203.7s  mc-sat      grid8x8-1-p5-6-obs3.txt
+[14] ok         56.4s  max-term    grid8x8-1-p5-6-obs7.txt
+[15] timeout  1203.3s  mc-sat      grid8x8-1-p5-6-obs4.txt
+[16] error     664.1s  sharpsat-td grid8x8-1-p5-6-obs5.txt
+[17] ok         60.0s  max-term    grid8x8-1-p7-4-obs1.txt
+[18] ok         57.9s  max-term    grid8x8-1-p7-4-obs2.txt
+[19] error     660.5s  sharpsat-td grid8x8-1-p5-6-obs6.txt
+[20] timeout  1203.4s  mc-sat      grid8x8-1-p5-6-obs5.txt
+[21] error     658.9s  sharpsat-td grid8x8-1-p5-6-obs7.txt
+[22] ok         58.4s  max-term    grid8x8-1-p7-4-obs3.txt
+[23] timeout  1203.4s  mc-sat      grid8x8-1-p5-6-obs6.txt
+[24] error     655.7s  sharpsat-td grid8x8-1-p7-4-obs1.txt
+[25] ok         58.4s  max-term    grid8x8-1-p7-4-obs4.txt
+[26] error     656.2s  sharpsat-td grid8x8-1-p7-4-obs2.txt
+[27] ok         58.9s  max-term    grid8x8-1-p7-4-obs5.txt
+[28] timeout  1203.4s  mc-sat      grid8x8-1-p5-6-obs7.txt
+[29] error     656.4s  sharpsat-td grid8x8-1-p7-4-obs3.txt
+[30] timeout  1203.8s  mc-sat      grid8x8-1-p7-4-obs1.txt
+[31] ok         57.4s  max-term    grid8x8-1-p7-4-obs6.txt
+[32] timeout  1203.3s  mc-sat      grid8x8-1-p7-4-obs2.txt
+[33] error     675.1s  sharpsat-td grid8x8-1-p7-4-obs4.txt
+[34] ok         58.4s  max-term    grid8x8-1-p7-4-obs7.txt
+[35] error     663.4s  sharpsat-td grid8x8-1-p7-4-obs5.txt
+[36] ok         56.9s  max-term    grid8x8-1-p7-7-obs1.txt
+[37] timeout  1203.4s  mc-sat      grid8x8-1-p7-4-obs3.txt
+[38] error     660.2s  sharpsat-td grid8x8-1-p7-4-obs6.txt
+[39] timeout  1203.8s  mc-sat      grid8x8-1-p7-4-obs4.txt
+[40] ok         56.4s  max-term    grid8x8-1-p7-7-obs2.txt
+[41] error     661.2s  sharpsat-td grid8x8-1-p7-4-obs7.txt
+[42] ok         56.9s  max-term    grid8x8-1-p7-7-obs3.txt
+[43] error     654.7s  sharpsat-td grid8x8-1-p7-7-obs1.txt
+[44] timeout  1203.9s  mc-sat      grid8x8-1-p7-4-obs5.txt
+[45] ok         57.9s  max-term    grid8x8-1-p7-7-obs4.txt
+[46] timeout  1203.4s  mc-sat      grid8x8-1-p7-4-obs6.txt
+[47] timeout  1203.3s  mc-sat      grid8x8-1-p7-4-obs7.txt
+[48] error     654.9s  sharpsat-td grid8x8-1-p7-7-obs2.txt
+[49] ok         57.4s  max-term    grid8x8-1-p7-7-obs5.txt
+[50] error     655.3s  sharpsat-td grid8x8-1-p7-7-obs3.txt
+[51] ok         57.9s  max-term    grid8x8-1-p7-7-obs6.txt
+[52] timeout  1203.5s  mc-sat      grid8x8-1-p7-7-obs1.txt
+[53] error     655.3s  sharpsat-td grid8x8-1-p7-7-obs4.txt
+[54] ok         56.9s  max-term    grid8x8-1-p7-7-obs7.txt
+[55] timeout  1203.5s  mc-sat      grid8x8-1-p7-7-obs2.txt
+[56] error     665.4s  sharpsat-td grid8x8-1-p7-7-obs5.txt
+[57] ok         55.9s  max-term    grid8x8-1-p8-3-obs1.txt
+[58] timeout  1203.5s  mc-sat      grid8x8-1-p7-7-obs3.txt
+[59] error     659.5s  sharpsat-td grid8x8-1-p7-7-obs6.txt
+[60] ok         59.9s  max-term    grid8x8-1-p8-3-obs2.txt
+[61] timeout  1203.4s  mc-sat      grid8x8-1-p7-7-obs4.txt
+[62] error     660.4s  sharpsat-td grid8x8-1-p7-7-obs7.txt
+[63] timeout  1204.0s  mc-sat      grid8x8-1-p7-7-obs5.txt
+[64] ok         58.5s  max-term    grid8x8-1-p8-3-obs3.txt
+[65] error     655.3s  sharpsat-td grid8x8-1-p8-3-obs1.txt
+[66] ok         57.9s  max-term    grid8x8-1-p8-3-obs4.txt
+[67] error     656.6s  sharpsat-td grid8x8-1-p8-3-obs2.txt
+[68] timeout  1203.1s  mc-sat      grid8x8-1-p7-7-obs6.txt
+[69] ok         56.9s  max-term    grid8x8-1-p8-3-obs5.txt
+[70] timeout  1203.5s  mc-sat      grid8x8-1-p7-7-obs7.txt
+[71] error     656.3s  sharpsat-td grid8x8-1-p8-3-obs3.txt
+[72] ok         57.9s  max-term    grid8x8-1-p8-3-obs6.txt
+[73] timeout  1203.4s  mc-sat      grid8x8-1-p8-3-obs1.txt
+[74] timeout  1203.3s  mc-sat      grid8x8-1-p8-3-obs2.txt
+[75] error     899.3s  sharpsat-td grid8x8-1-p8-3-obs4.txt
+[76] ok         57.4s  max-term    grid8x8-1-p8-3-obs7.txt
+[77] error     659.2s  sharpsat-td grid8x8-1-p8-3-obs5.txt
+[78] ok         57.9s  max-term    grid8x8-1-p8-4-obs1.txt
+[79] timeout  1203.4s  mc-sat      grid8x8-1-p8-3-obs3.txt
+[80] error     659.2s  sharpsat-td grid8x8-1-p8-3-obs6.txt
+[81] ok         55.8s  max-term    grid8x8-1-p8-4-obs2.txt
+[82] timeout  1203.3s  mc-sat      grid8x8-1-p8-3-obs4.txt
+[83] timeout  1203.0s  mc-sat      grid8x8-1-p8-3-obs5.txt
+[84] error     659.7s  sharpsat-td grid8x8-1-p8-3-obs7.txt
+[85] ok         60.5s  max-term    grid8x8-1-p8-4-obs3.txt
+[86] error     654.2s  sharpsat-td grid8x8-1-p8-4-obs1.txt
+[87] ok         57.7s  max-term    grid8x8-1-p8-4-obs4.txt
+[88] timeout  1204.0s  mc-sat      grid8x8-1-p8-3-obs6.txt
+[89] error     653.9s  sharpsat-td grid8x8-1-p8-4-obs2.txt
+[90] ok         69.7s  max-term    grid8x8-1-p8-4-obs5.txt
+[91] timeout  1203.5s  mc-sat      grid8x8-1-p8-3-obs7.txt
+[92] error     660.2s  sharpsat-td grid8x8-1-p8-4-obs3.txt
+[93] timeout  1203.5s  mc-sat      grid8x8-1-p8-4-obs1.txt
+[94] ok         59.3s  max-term    grid8x8-1-p8-4-obs6.txt
+[95] timeout  1203.4s  mc-sat      grid8x8-1-p8-4-obs2.txt
+[96] ok         60.7s  max-term    grid8x8-1-p8-4-obs7.txt
+[97] error     666.2s  sharpsat-td grid8x8-1-p8-4-obs5.txt
+[98] error     948.5s  sharpsat-td grid8x8-1-p8-4-obs4.txt
+[99] ok         58.7s  max-term    grid8x8-1-p8-6-obs1.txt
+[100] timeout  1204.0s  mc-sat      grid8x8-1-p8-4-obs3.txt
+[101] error     663.4s  sharpsat-td grid8x8-1-p8-4-obs6.txt
+[102] timeout  1204.0s  mc-sat      grid8x8-1-p8-4-obs4.txt
+[103] ok         60.5s  max-term    grid8x8-1-p8-6-obs2.txt
+=== 2026-10-17 20:49:55 sweep stopped during 8x8 (by Claude): every 8x8 sharpsat-td run so far hit the 600 s per-count cap (34/34) and every mc-sat run the 1200 s limit (32/32); resumable
+=== 2026-10-17 20:50:14 followup 1: max-term, rest of 8x8
+159 runs to do (limit 1200s, 8 jobs, reserve 2 GB)
+[1] ok         58.5s  max-term    grid8x8-1-p8-6-obs3.txt
+[2] ok         58.0s  max-term    grid8x8-1-p8-6-obs4.txt
+[3] ok         59.6s  max-term    grid8x8-1-p8-6-obs5.txt
+[4] ok         59.0s  max-term    grid8x8-1-p8-6-obs6.txt
+[5] ok         58.5s  max-term    grid8x8-1-p8-6-obs7.txt
+[6] ok         60.6s  max-term    grid8x8-1-p8-7-obs1.txt
+[7] ok         60.1s  max-term    grid8x8-1-p8-7-obs2.txt
+[8] ok         59.5s  max-term    grid8x8-1-p8-7-obs3.txt
+[9] ok         57.6s  max-term    grid8x8-1-p8-7-obs4.txt
+[10] ok         58.6s  max-term    grid8x8-1-p8-7-obs5.txt
+[11] ok         58.0s  max-term    grid8x8-1-p8-7-obs7.txt
+[12] ok         60.1s  max-term    grid8x8-1-p8-7-obs6.txt
+[13] ok         60.6s  max-term    grid8x8-2-p3-8-obs1.txt
+[14] ok         60.6s  max-term    grid8x8-2-p3-8-obs2.txt
+[15] ok         61.6s  max-term    grid8x8-2-p3-8-obs3.txt
+[16] ok         61.1s  max-term    grid8x8-2-p3-8-obs4.txt
+[17] ok         60.6s  max-term    grid8x8-2-p3-8-obs5.txt
+[18] ok         60.6s  max-term    grid8x8-2-p3-8-obs6.txt
+[19] ok         60.6s  max-term    grid8x8-2-p3-8-obs7.txt
+[20] ok         60.6s  max-term    grid8x8-2-p5-6-obs1.txt
+[21] ok         60.6s  max-term    grid8x8-2-p5-6-obs2.txt
+[22] ok         60.6s  max-term    grid8x8-2-p5-6-obs3.txt
+[23] ok         60.6s  max-term    grid8x8-2-p5-6-obs4.txt
+[24] ok         61.6s  max-term    grid8x8-2-p5-6-obs5.txt
+[25] ok         60.5s  max-term    grid8x8-2-p5-6-obs6.txt
+[26] ok         60.5s  max-term    grid8x8-2-p5-6-obs7.txt
+[27] ok         60.5s  max-term    grid8x8-2-p6-5-obs1.txt
+[28] ok         60.5s  max-term    grid8x8-2-p6-5-obs2.txt
+[29] ok         60.5s  max-term    grid8x8-2-p6-5-obs3.txt
+[30] ok         60.5s  max-term    grid8x8-2-p6-5-obs4.txt
+[31] ok         60.5s  max-term    grid8x8-2-p6-5-obs5.txt
+[32] ok         61.6s  max-term    grid8x8-2-p6-5-obs6.txt
+[33] ok         61.6s  max-term    grid8x8-2-p6-5-obs7.txt
+[34] ok         62.6s  max-term    grid8x8-2-p7-6-obs1.txt
+[35] ok         62.6s  max-term    grid8x8-2-p7-6-obs2.txt
+[36] ok         62.6s  max-term    grid8x8-2-p7-6-obs3.txt
+[37] ok         62.6s  max-term    grid8x8-2-p7-6-obs4.txt
+[38] ok         61.1s  max-term    grid8x8-2-p7-6-obs6.txt
+[39] ok         64.2s  max-term    grid8x8-2-p7-6-obs5.txt
+[40] ok         62.6s  max-term    grid8x8-2-p7-6-obs7.txt
+[41] ok         62.6s  max-term    grid8x8-2-p7-8-obs1.txt
+[42] ok         63.6s  max-term    grid8x8-2-p7-8-obs2.txt
+[43] ok         62.1s  max-term    grid8x8-2-p7-8-obs3.txt
+[44] ok         62.6s  max-term    grid8x8-2-p7-8-obs4.txt
+[45] ok         61.1s  max-term    grid8x8-2-p7-8-obs5.txt
+[46] ok         62.6s  max-term    grid8x8-2-p7-8-obs6.txt
+[47] ok         62.6s  max-term    grid8x8-2-p7-8-obs7.txt
+[48] ok         63.6s  max-term    grid8x8-2-p8-7-obs1.txt
+[49] ok         62.6s  max-term    grid8x8-2-p8-7-obs2.txt
+[50] ok         63.6s  max-term    grid8x8-2-p8-7-obs3.txt
+[51] ok         63.1s  max-term    grid8x8-2-p8-7-obs4.txt
+[52] ok         63.6s  max-term    grid8x8-2-p8-7-obs5.txt
+[53] ok         63.1s  max-term    grid8x8-2-p8-7-obs6.txt
+[54] ok         62.6s  max-term    grid8x8-2-p8-7-obs7.txt
+[55] ok         62.6s  max-term    grid8x8-2-p8-8-obs1.txt
+[56] ok         63.6s  max-term    grid8x8-2-p8-8-obs2.txt
+[57] ok         61.6s  max-term    grid8x8-2-p8-8-obs3.txt
+[58] ok         63.6s  max-term    grid8x8-2-p8-8-obs4.txt
+[59] ok         63.1s  max-term    grid8x8-2-p8-8-obs5.txt
+[60] ok         63.6s  max-term    grid8x8-2-p8-8-obs6.txt
+[61] ok         63.1s  max-term    grid8x8-2-p8-8-obs7.txt
+[62] ok         63.6s  max-term    grid8x8-3-p4-7-obs1.txt
+[63] ok         63.6s  max-term    grid8x8-3-p4-7-obs2.txt
+[64] ok         61.6s  max-term    grid8x8-3-p4-7-obs3.txt
+[65] ok         63.6s  max-term    grid8x8-3-p4-7-obs4.txt
+[66] ok         63.6s  max-term    grid8x8-3-p4-7-obs5.txt
+[67] ok         64.6s  max-term    grid8x8-3-p4-7-obs6.txt
+[68] ok         64.6s  max-term    grid8x8-3-p4-7-obs7.txt
+[69] ok         64.1s  max-term    grid8x8-3-p4-8-obs1.txt
+[70] ok         64.6s  max-term    grid8x8-3-p4-8-obs2.txt
+[71] ok         64.6s  max-term    grid8x8-3-p4-8-obs3.txt
+[72] ok         63.6s  max-term    grid8x8-3-p4-8-obs4.txt
+[73] ok         62.6s  max-term    grid8x8-3-p4-8-obs5.txt
+[74] ok         61.6s  max-term    grid8x8-3-p4-8-obs6.txt
+[75] ok         61.6s  max-term    grid8x8-3-p4-8-obs7.txt
+[76] ok         61.6s  max-term    grid8x8-3-p7-6-obs1.txt
+[77] ok         63.6s  max-term    grid8x8-3-p7-6-obs2.txt
+[78] ok         63.6s  max-term    grid8x8-3-p7-6-obs3.txt
+[79] ok         63.6s  max-term    grid8x8-3-p7-6-obs4.txt
+[80] ok         63.6s  max-term    grid8x8-3-p7-6-obs5.txt
+[81] ok         62.6s  max-term    grid8x8-3-p7-6-obs6.txt
+[82] ok         63.6s  max-term    grid8x8-3-p7-6-obs7.txt
+[83] ok         64.7s  max-term    grid8x8-3-p7-7-obs1.txt
+[84] ok         63.1s  max-term    grid8x8-3-p7-7-obs2.txt
+[85] ok         64.6s  max-term    grid8x8-3-p7-7-obs3.txt
+[86] ok         64.6s  max-term    grid8x8-3-p7-7-obs4.txt
+[87] ok         64.6s  max-term    grid8x8-3-p7-7-obs5.txt
+[88] ok         64.6s  max-term    grid8x8-3-p7-7-obs6.txt
+[89] ok         63.6s  max-term    grid8x8-3-p7-7-obs7.txt
+[90] ok         64.6s  max-term    grid8x8-3-p7-8-obs1.txt
+[91] ok         64.6s  max-term    grid8x8-3-p7-8-obs2.txt
+[92] ok         64.1s  max-term    grid8x8-3-p7-8-obs3.txt
+[93] ok         64.6s  max-term    grid8x8-3-p7-8-obs4.txt
+[94] ok         64.6s  max-term    grid8x8-3-p7-8-obs5.txt
+[95] ok         64.6s  max-term    grid8x8-3-p7-8-obs6.txt
+[96] ok         64.6s  max-term    grid8x8-3-p7-8-obs7.txt
+[97] ok         65.6s  max-term    grid8x8-3-p8-4-obs1.txt
+[98] ok         64.6s  max-term    grid8x8-3-p8-4-obs2.txt
+[99] ok         63.6s  max-term    grid8x8-3-p8-4-obs3.txt
+[100] ok         64.6s  max-term    grid8x8-3-p8-4-obs4.txt
+[101] ok         63.6s  max-term    grid8x8-3-p8-4-obs5.txt
+[102] ok         63.6s  max-term    grid8x8-3-p8-4-obs6.txt
+[103] ok         64.6s  max-term    grid8x8-3-p8-4-obs7.txt
+[104] ok         64.5s  max-term    grid8x8-3-p8-8-obs1.txt
+[105] ok         63.6s  max-term    grid8x8-3-p8-8-obs2.txt
+[106] ok         62.6s  max-term    grid8x8-3-p8-8-obs3.txt
+[107] ok         63.6s  max-term    grid8x8-3-p8-8-obs4.txt
+[108] ok         64.6s  max-term    grid8x8-3-p8-8-obs5.txt
+[109] ok         63.6s  max-term    grid8x8-3-p8-8-obs6.txt
+[110] ok         62.1s  max-term    grid8x8-3-p8-8-obs7.txt
+[111] ok         61.6s  max-term    grid8x8-4-p3-8-obs1.txt
+[112] ok         61.6s  max-term    grid8x8-4-p3-8-obs2.txt
+[113] ok         61.6s  max-term    grid8x8-4-p3-8-obs3.txt
+[114] ok         60.6s  max-term    grid8x8-4-p3-8-obs4.txt
+[115] ok         59.6s  max-term    grid8x8-4-p3-8-obs5.txt
+[116] ok         60.6s  max-term    grid8x8-4-p3-8-obs6.txt
+[117] ok         61.6s  max-term    grid8x8-4-p3-8-obs7.txt
+[118] ok         61.1s  max-term    grid8x8-4-p5-6-obs1.txt
+[119] ok         61.6s  max-term    grid8x8-4-p5-6-obs2.txt
+[120] ok         60.1s  max-term    grid8x8-4-p5-6-obs3.txt
+[121] ok         61.6s  max-term    grid8x8-4-p5-6-obs4.txt
+[122] ok         61.6s  max-term    grid8x8-4-p5-6-obs5.txt
+[123] ok         61.6s  max-term    grid8x8-4-p5-6-obs6.txt
+[124] ok         61.6s  max-term    grid8x8-4-p5-6-obs7.txt
+[125] ok         60.6s  max-term    grid8x8-4-p6-5-obs1.txt
+[126] ok         61.6s  max-term    grid8x8-4-p6-5-obs2.txt
+[127] ok         61.6s  max-term    grid8x8-4-p6-5-obs3.txt
+[128] ok         61.1s  max-term    grid8x8-4-p6-5-obs4.txt
+[129] ok         60.6s  max-term    grid8x8-4-p6-5-obs5.txt
+[130] ok         60.6s  max-term    grid8x8-4-p6-5-obs6.txt
+[131] ok         60.6s  max-term    grid8x8-4-p6-5-obs7.txt
+[132] ok         59.6s  max-term    grid8x8-4-p8-3-obs1.txt
+[133] ok         59.6s  max-term    grid8x8-4-p8-3-obs2.txt
+[134] ok         59.6s  max-term    grid8x8-4-p8-3-obs3.txt
+[135] ok         59.6s  max-term    grid8x8-4-p8-3-obs4.txt
+[136] ok         60.6s  max-term    grid8x8-4-p8-3-obs5.txt
+[137] ok         59.6s  max-term    grid8x8-4-p8-3-obs6.txt
+[138] ok         59.6s  max-term    grid8x8-4-p8-3-obs7.txt
+[139] ok         60.6s  max-term    grid8x8-4-p8-6-obs1.txt
+[140] ok         59.6s  max-term    grid8x8-4-p8-6-obs2.txt
+[141] ok         59.6s  max-term    grid8x8-4-p8-6-obs3.txt
+[142] ok         59.6s  max-term    grid8x8-4-p8-6-obs4.txt
+[143] ok         59.6s  max-term    grid8x8-4-p8-6-obs5.txt
+[144] ok         59.6s  max-term    grid8x8-4-p8-6-obs6.txt
+[145] ok         59.6s  max-term    grid8x8-4-p8-6-obs7.txt
+[146] ok         59.6s  max-term    grid8x8-4-p8-7-obs1.txt
+[147] ok         60.6s  max-term    grid8x8-4-p8-7-obs2.txt
+[148] ok         60.6s  max-term    grid8x8-4-p8-7-obs3.txt
+[149] ok         60.6s  max-term    grid8x8-4-p8-7-obs4.txt
+[150] ok         60.6s  max-term    grid8x8-4-p8-7-obs5.txt
+[151] ok         60.6s  max-term    grid8x8-4-p8-7-obs6.txt
+[152] ok         60.6s  max-term    grid8x8-4-p8-7-obs7.txt
+[153] ok         60.1s  max-term    grid8x8-4-p8-8-obs1.txt
+[154] ok         59.6s  max-term    grid8x8-4-p8-8-obs2.txt
+[155] ok         60.1s  max-term    grid8x8-4-p8-8-obs3.txt
+[156] ok         59.6s  max-term    grid8x8-4-p8-8-obs4.txt
+[157] ok         60.1s  max-term    grid8x8-4-p8-8-obs5.txt
+[158] ok         59.6s  max-term    grid8x8-4-p8-8-obs6.txt
+[159] ok         59.0s  max-term    grid8x8-4-p8-8-obs7.txt
+done
+=== 2026-10-17 21:10:58 followup 2: 7x7 sharpsat-td reruns, per-count limit 1200 s
+37 runs to do (limit 1200s, 8 jobs, reserve 2 GB)
+[1] ok         50.5s  sharpsat-td grid7x7-3-p5-6-obs3.txt
+[2] timeout  1203.8s  sharpsat-td grid7x7-4-p3-7-obs1.txt
+[3] timeout  1206.4s  sharpsat-td grid7x7-4-p3-7-obs2.txt
+[4] timeout  1208.9s  sharpsat-td grid7x7-4-p3-7-obs3.txt
+[5] timeout  1211.5s  sharpsat-td grid7x7-4-p3-7-obs4.txt
+[6] timeout  1214.0s  sharpsat-td grid7x7-4-p3-7-obs5.txt
+[7] timeout  1216.5s  sharpsat-td grid7x7-4-p3-7-obs6.txt
+[8] timeout  1219.1s  sharpsat-td grid7x7-4-p5-5-obs1.txt
+[9] timeout  1204.0s  sharpsat-td grid7x7-4-p5-5-obs2.txt
+[10] timeout  1203.0s  sharpsat-td grid7x7-4-p5-5-obs3.txt
+[11] timeout  1205.6s  sharpsat-td grid7x7-4-p5-5-obs4.txt
+[12] timeout  1208.1s  sharpsat-td grid7x7-4-p5-5-obs5.txt
+[13] timeout  1210.7s  sharpsat-td grid7x7-4-p5-5-obs6.txt
+[14] timeout  1213.2s  sharpsat-td grid7x7-4-p5-6-obs1.txt
+[15] timeout  1215.8s  sharpsat-td grid7x7-4-p5-6-obs2.txt
+[16] timeout  1218.3s  sharpsat-td grid7x7-4-p5-6-obs3.txt
+[17] timeout  1203.2s  sharpsat-td grid7x7-4-p5-6-obs4.txt
+[18] timeout  1204.0s  sharpsat-td grid7x7-4-p5-6-obs5.txt
+[19] timeout  1206.6s  sharpsat-td grid7x7-4-p5-6-obs6.txt
+[20] timeout  1209.1s  sharpsat-td grid7x7-4-p6-4-obs1.txt
+[21] timeout  1211.7s  sharpsat-td grid7x7-4-p6-4-obs2.txt
+[22] timeout  1214.2s  sharpsat-td grid7x7-4-p6-4-obs3.txt
+[23] timeout  1216.7s  sharpsat-td grid7x7-4-p6-4-obs4.txt
+[24] timeout  1219.3s  sharpsat-td grid7x7-4-p6-4-obs5.txt
+[25] timeout  1211.7s  sharpsat-td grid7x7-4-p6-4-obs6.txt
+[26] timeout  1203.8s  sharpsat-td grid7x7-4-p7-3-obs1.txt
+[27] timeout  1206.4s  sharpsat-td grid7x7-4-p7-3-obs2.txt
+[28] timeout  1208.9s  sharpsat-td grid7x7-4-p7-3-obs3.txt
+[29] timeout  1211.5s  sharpsat-td grid7x7-4-p7-3-obs4.txt
+[30] timeout  1214.0s  sharpsat-td grid7x7-4-p7-3-obs5.txt
+[31] timeout  1216.5s  sharpsat-td grid7x7-4-p7-3-obs6.txt
+[32] timeout  1219.1s  sharpsat-td grid7x7-4-p7-6-obs1.txt
+[33] timeout  1221.6s  sharpsat-td grid7x7-4-p7-6-obs2.txt
+[34] timeout  1203.7s  sharpsat-td grid7x7-4-p7-6-obs3.txt
+[35] timeout  1206.3s  sharpsat-td grid7x7-4-p7-6-obs4.txt
+[36] timeout  1208.8s  sharpsat-td grid7x7-4-p7-6-obs5.txt
+[37] timeout  1211.4s  sharpsat-td grid7x7-4-p7-6-obs6.txt
+done
+=== 2026-10-17 22:52:46 followup 3: 8x8 sharpsat-td sample reruns, per-count limit 1200 s
+9 runs to do (limit 1200s, 8 jobs, reserve 2 GB)
+[1] timeout  1203.7s  sharpsat-td grid8x8-1-p5-6-obs1.txt
+[2] timeout  1206.3s  sharpsat-td grid8x8-1-p5-6-obs7.txt
+[3] timeout  1208.8s  sharpsat-td grid8x8-1-p7-4-obs1.txt
+[4] timeout  1211.4s  sharpsat-td grid8x8-1-p7-4-obs7.txt
+[5] timeout  1213.9s  sharpsat-td grid8x8-1-p7-7-obs1.txt
+[6] timeout  1216.5s  sharpsat-td grid8x8-1-p7-7-obs7.txt
+[7] timeout  1219.0s  sharpsat-td grid8x8-1-p8-3-obs1.txt
+[8] timeout  1221.5s  sharpsat-td grid8x8-1-p8-3-obs7.txt
+[9] timeout  1203.6s  sharpsat-td grid8x8-1-p8-4-obs1.txt
+done
+=== 2026-10-17 23:33:15 followup done

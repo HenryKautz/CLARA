@@ -2,9 +2,12 @@
 """run-recognize.py -- run FiFO's recognize.sh over the SimpleGrid problems.
 
 One run = one problem, one pinned evidence file (evidence/*-obsN.txt, with
---evidence-kind fifo) and one --counter method.  Each run gets a wall-clock time
-limit; on expiry its whole process tree is killed (recognize.sh starts each
-planner in a process group of its own, so killing one group is not enough).
+--evidence-kind fifo) and one --counter method.  Each run gets a time limit on
+AWAKE time -- CLOCK_UPTIME_RAW, time.monotonic() on macOS, which stops while the
+Mac sleeps, so a suspend neither inflates a time nor times a run out; on expiry
+its whole process tree is killed (recognize.sh starts each planner in a process
+group of its own, so killing one group is not enough).  Run sweeps under
+caffeinate -i to keep the Mac from idling to sleep in the first place.
 
 Runs go in parallel, but a run starts only when
   * fewer than --jobs runs are going (set it to the number of PERFORMANCE cores,
@@ -17,10 +20,21 @@ is one busy core.
 Each finished run is appended to --results as one JSON line, at once, so a
 sweep can be stopped and resumed: a (evidence, method, limit) already recorded
 is skipped.  --rerun-timeouts FROM_LIMIT reruns exactly the runs whose record
-at FROM_LIMIT seconds timed out.
+at FROM_LIMIT seconds timed out.  --rerun-solver-timeouts reruns, at --limit,
+the runs whose last record there is an error from FiFO's per-solver-call limit
+(*solver-timeout*, 600 s by default) or from SharpSAT-TD's FlowCutter being
+killed under load: runs before 2026-10-18 did not pass
+recognize.sh --timeout, so one count over 600 s failed a run whose own limit was
+longer.  Every run now passes --timeout LIMIT, so no single solver call is cut
+off before the run itself would be.  A rerun's record is appended after the
+old one; make-tables.py takes the later of two records at the same limit.
 
 Fields: evidence, problem, true_goal, n_obs, method, limit_s, status
-(ok / timeout / error), wall_s, exit_code, posterior {hyp: p}, c_O / c_notO
+(ok / timeout / error), wall_s (awake time), clock_s (wall clock, sleep
+included), slept_s, cpu_s (user + system, from os.wait4), timing ("awake";
+absent on records made before the clock change, whose wall_s is the wall
+clock), solver_timeout_s (the recognize.sh --timeout passed; absent = FiFO's
+default 600 s), exit_code, posterior {hyp: p}, c_O / c_notO
 (max-term only), argmax (list -- ties are kept), correct (true goal among the
 argmax), started, and for a failure the tail of the log.
 """
@@ -57,6 +71,21 @@ def descendants(pid):
             found.append(c)
             todo.append(c)
     return found
+
+
+def reap(run, block=False):
+    """Collect RUN's process if it has ended (or, with BLOCK, wait for it):
+    records its exit code, CPU time (os.wait4's rusage: the process and every
+    descendant it waited for) and the awake and wall clocks at that moment.
+    Returns whether it has ended."""
+    if "rusage" in run:
+        return True
+    pid, status, ru = os.wait4(run["proc"].pid, 0 if block else os.WNOHANG)
+    if pid == 0:
+        return False
+    run["proc"].returncode = os.waitstatus_to_exitcode(status)
+    run.update(rusage=ru, t_end=time.monotonic(), t_end_wall=time.time())
+    return True
 
 
 def kill_tree(proc):
@@ -113,19 +142,30 @@ def start(job, limit, work):
     log = open(out + ".log", "w")
     cmd = ["bash", RECOGNIZE, DOMAIN, os.path.join(HERE, job["problem"]),
            os.path.join(HERE, job["evidence"]),
-           "--evidence-kind", "fifo", "--counter", job["method"], "--out", out]
+           "--evidence-kind", "fifo", "--counter", job["method"], "--out", out,
+           "--timeout", f"{limit:g}"]
     # Run INSIDE the run's own directory: the counters write scratch files to
     # the working directory, and a run killed at its limit leaves them behind.
     proc = subprocess.Popen(cmd, cwd=out, stdout=log, stderr=subprocess.STDOUT,
                             start_new_session=True)
-    return {"job": job, "proc": proc, "t0": time.time(), "out": out, "log": log,
-            "limit": limit, "started": time.strftime("%Y-%m-%dT%H:%M:%S")}
+    return {"job": job, "proc": proc, "t0": time.monotonic(), "t0_wall": time.time(),
+            "out": out, "log": log, "limit": limit,
+            "started": time.strftime("%Y-%m-%dT%H:%M:%S")}
 
 
 def finish(run, timed_out):
     run["log"].close()
     job, out = run["job"], run["out"]
-    rec = dict(job, limit_s=run["limit"], wall_s=round(time.time() - run["t0"], 2),
+    # wall_s: awake time (CLOCK_UPTIME_RAW stops while the Mac sleeps), to the
+    # moment the run was reaped (polled every second); clock_s adds any sleep;
+    # cpu_s: user + system time of the run's tree (killed orphans are missed)
+    awake = run["t_end"] - run["t0"]
+    slept = max(0.0, (run["t_end_wall"] - run["t0_wall"]) - awake)
+    ru = run["rusage"]
+    rec = dict(job, limit_s=run["limit"], wall_s=round(awake, 2),
+               clock_s=round(awake + slept, 2), slept_s=round(slept, 2),
+               cpu_s=round(ru.ru_utime + ru.ru_stime, 2), timing="awake",
+               solver_timeout_s=run["limit"],
                exit_code=run["proc"].returncode, started=run["started"])
     summary = os.path.join(out, "summary.tsv")
     if timed_out:
@@ -174,6 +214,9 @@ def main():
     ap.add_argument("--match", default="", help="only evidence files matching this regex")
     ap.add_argument("--rerun-timeouts", type=float, metavar="FROM_LIMIT",
                     help="rerun only the runs that timed out at this limit")
+    ap.add_argument("--rerun-solver-timeouts", action="store_true",
+                    help="rerun, at --limit, the runs whose record there failed on "
+                         "FiFO's per-solver-call limit")
     a = ap.parse_args()
 
     os.makedirs(os.path.dirname(a.results), exist_ok=True)
@@ -183,6 +226,20 @@ def main():
     seen = {(r["evidence"], r["method"], r["limit_s"]) for r in done}
     todo = [j for j in jobs_for(methods) if (j["evidence"], j["method"], a.limit) not in seen
             and re.search(a.match, j["evidence"])]
+    if a.rerun_solver_timeouts:
+        # the LAST record at this limit decides, so a rerun that succeeded is
+        # not run again
+        last = {}
+        for r in done:
+            if r["limit_s"] == a.limit:
+                last[(r["evidence"], r["method"])] = r
+        # also SharpSAT-TD's tree-decomposition helper killed for ignoring its
+        # stop signal, which happens under load and is no property of the problem
+        capped = {k for k, r in last.items() if r["status"] == "error"
+                  and any("(*solver-timeout*)" in t or "flow_cutter_pace17 failed" in t
+                          for t in r.get("log_tail", []))}
+        todo = [j for j in jobs_for(methods) if (j["evidence"], j["method"]) in capped
+                and re.search(a.match, j["evidence"])]
     if a.rerun_timeouts is not None:
         timedout = {(r["evidence"], r["method"]) for r in done
                     if r["limit_s"] == a.rerun_timeouts and r["status"] == "timeout"}
@@ -201,15 +258,16 @@ def main():
                 time.sleep(0.5)   # let its memory show up before the next check
             time.sleep(1)
             for run in list(running):
-                over = time.time() - run["t0"] > run["limit"]
-                if run["proc"].poll() is None and not over:
-                    continue
-                if over and run["proc"].poll() is None:
+                # the limit is on awake time, so a sleep does not time a run out
+                over = time.monotonic() - run["t0"] > run["limit"]
+                if reap(run):
+                    rec = finish(run, False)
+                elif over:
                     kill_tree(run["proc"])
-                    run["proc"].wait()
+                    reap(run, block=True)
                     rec = finish(run, True)
                 else:
-                    rec = finish(run, False)
+                    continue
                 running.remove(run)
                 res.write(json.dumps(rec) + "\n")
                 res.flush()

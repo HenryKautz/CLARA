@@ -20,8 +20,13 @@ For each problem gridNxN-K.pddl, smallest grid first:
 The d4 that marginals.sh runs is shims/d4, which records d4's own time, its
 input CNF and its circuit dump; its sbcl is shims/sbcl, which gives SBCL an
 --sbcl-heap-mb heap (SBCL's default 1 GB is too small to import a circuit of
-~100k nodes).  Each compilation gets --limit seconds of wall
-clock (the whole marginals.sh run); while it runs, d4's resident memory is
+~100k nodes).  Each compilation gets --limit seconds of AWAKE time (the whole
+marginals.sh run), on CLOCK_UPTIME_RAW -- time.monotonic() on macOS -- which stops
+while the Mac sleeps, so a suspend neither inflates a time nor times a run out.
+Each record also has clock_s (wall clock, sleep included), slept_s and cpu_s (the
+run's user + system time, from os.wait4), and is appended to --results the
+moment the run ends.  Run the sweep under caffeinate -i to keep the Mac from
+idling to sleep in the first place.  While a compilation runs, d4's resident memory is
 sampled, so a run that times out still reports how large d4 had grown.  If
 available memory runs low, the largest d4 is killed (status memout) rather than
 let the machine swap.  The problems of one grid size compile in parallel; if
@@ -39,7 +44,7 @@ except those whose last attempt ended in an error or a wrong circuit, which are
 tried again (up to --attempts in a row).  A recorded ok circuit that was never
 checked is checked first.
 """
-import argparse, glob, json, os, re, shutil, signal, subprocess, sys, time
+import argparse, glob, hashlib, json, os, re, shutil, signal, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RECOGNIZE = os.path.expanduser("~/bin/recognize.sh")
@@ -88,7 +93,24 @@ def d4_rss_kb(pid, table):
                 if os.path.basename(table[p][2]) == "d4"] or [0])
 
 
-def kill_tree(proc):
+def reap(run, block=False):
+    """Collect RUN's process if it has ended (or, with BLOCK, wait for it):
+    records its exit code, its CPU time (os.wait4's rusage: the process and every
+    descendant it waited for) and the awake and wall clocks at that moment.
+    Returns whether it has ended.  Popen.poll/wait are not used after this, so
+    the exit status is not read twice."""
+    if "rusage" in run:
+        return True
+    pid, status, ru = os.wait4(run["proc"].pid, 0 if block else os.WNOHANG)
+    if pid == 0:
+        return False
+    run["proc"].returncode = os.waitstatus_to_exitcode(status)
+    run.update(rusage=ru, t_end=time.monotonic(), t_end_wall=time.time())
+    return True
+
+
+def kill_tree(run):
+    proc = run["proc"]
     pids = [proc.pid] + descendants(proc.pid, process_table())
     for sig in (signal.SIGTERM, signal.SIGKILL):
         for p in pids:
@@ -99,7 +121,7 @@ def kill_tree(proc):
         if sig == signal.SIGTERM:
             time.sleep(3)
             pids += descendants(proc.pid, process_table())
-    proc.wait()
+    reap(run, block=True)
 
 
 def prepare(problem, work):
@@ -143,16 +165,17 @@ def start(name, scnf, work, real, heap_mb, d4_options, node_limit):
                SBCL_NODE_LIMIT=str(node_limit or ""))
     log = open(os.path.join(work, "marginals.log"), "w")
     # The run notes the moment it ends, so the total time does not depend on how
-    # often the loop below polls.
+    # often the loop below polls -- on the awake clock (CLOCK_UPTIME_RAW, which
+    # is time.monotonic() here), like every duration this script records.
     cmd = ["bash", "-c", 'bash "$0" "$@"; rc=$?; '
-           'perl -MTime::HiRes=time -e \'printf "%.3f\\n", time\' > "$D4_LOG_DIR/total-end"; '
-           'exit $rc',
+           'python3 -c \'import time; print("%.3f" % time.clock_gettime(time.CLOCK_UPTIME_RAW))\''
+           ' > "$D4_LOG_DIR/total-end"; exit $rc',
            MARGINALS, scnf, "--solver", "d4", "--project",
            "--save-circuit", os.path.join(work, name + ".dnnf")]
     proc = subprocess.Popen(cmd, cwd=work, env=env, stdout=log, stderr=subprocess.STDOUT,
                             start_new_session=True)
-    return {"name": name, "proc": proc, "t0": time.time(), "log": log, "work": work,
-            "log_dir": log_dir, "peak_kb": 0}
+    return {"name": name, "proc": proc, "t0": time.monotonic(), "t0_wall": time.time(),
+            "log": log, "work": work, "log_dir": log_dir, "peak_kb": 0}
 
 
 def cnf_stats(path):
@@ -245,12 +268,21 @@ def finish(run, status, info):
     run["log"].close()
     d, work, name = run["log_dir"], run["work"], run["name"]
     end_file = os.path.join(d, "total-end")
-    end = float(open(end_file).read()) if os.path.exists(end_file) else time.time()
+    end = float(open(end_file).read()) if os.path.exists(end_file) else run["t_end"]
+    # wall_s: awake time (the clock stops while the Mac sleeps); clock_s: wall
+    # clock including any sleep; slept_s: the difference; cpu_s: user + system
+    # time of the run's process tree (descendants a timeout killed are missed).
+    # sleep = wall-clock minus awake time between start and reaping; clock_s is
+    # the run's own span (to its end-of-run stamp) plus that sleep
+    slept = max(0.0, (run["t_end_wall"] - run["t0_wall"]) - (run["t_end"] - run["t0"]))
+    ru = run["rusage"]
     rec = dict(info, status=status, wall_s=round(end - run["t0"], 2),
+               clock_s=round(end - run["t0"] + slept, 2), slept_s=round(slept, 2),
+               cpu_s=round(ru.ru_utime + ru.ru_stime, 2), timing="awake",
                exit_code=run["proc"].returncode, d4_peak_mb=round(run["peak_kb"] / 1024))
     rd = lambda f: open(os.path.join(d, f)).read().strip()
     if os.path.exists(os.path.join(d, "d4-start")):
-        end = float(rd("d4-end")) if os.path.exists(os.path.join(d, "d4-end")) else time.time()
+        end = float(rd("d4-end")) if os.path.exists(os.path.join(d, "d4-end")) else run["t_end"]
         rec["d4_s"] = round(end - float(rd("d4-start")), 2)
     if os.path.exists(os.path.join(d, "d4-input.cnf")):
         rec["cnf_vars"], rec["cnf_clauses"], rec["projected_vars"] = \
@@ -319,17 +351,21 @@ def main():
     for p, path in real.items():
         if not path or os.path.dirname(path) == SHIM:
             sys.exit(f"the real {p} must be on PATH (and {SHIM} must not be)")
+    # which d4 binary made each record (the d4 in use changed when its
+    # heap-overflow bug was fixed, d4v2 c11210d)
+    d4_sha = hashlib.sha256(open(real["d4"], "rb").read()).hexdigest()[:12]
     os.makedirs(os.path.join(HERE, "circuits"), exist_ok=True)
     os.makedirs(a.work, exist_ok=True)
     # done: the latest record of each problem; errors: its failed attempts since
-    # its last success.  Only records made with this FiFO (FIFO_LISP) count -- a
-    # different importer is a different experiment.
+    # its last success.  Only records made with this FiFO (FIFO_LISP) and this d4
+    # binary count -- a different importer, or the d4 before its heap-overflow
+    # fix (whose records have no d4_sha), is a different experiment.
     done, errors = {}, {}
     failed = ("error", "wrong")
     lisp = os.environ.get("FIFO_LISP", "installed")
     if os.path.exists(a.results) and not a.redo:
         for r in map(json.loads, open(a.results)):
-            if r.get("fifo_lisp", "installed") != lisp:
+            if r.get("fifo_lisp", "installed") != lisp or r.get("d4_sha") != d4_sha:
                 continue
             done[r["instance"]] = r
             errors[r["instance"]] = errors.get(r["instance"], 0) + 1 if r["status"] in failed else 0
@@ -384,6 +420,7 @@ def main():
                                  "sbcl_heap_mb": a.sbcl_heap_mb, "jobs": a.jobs,
                                  "d4_options": a.d4_options, "node_limit": a.node_limit,
                                  "fifo_lisp": os.environ.get("FIFO_LISP", "installed"),
+                                 "d4_sha": d4_sha,
                                  "attempt": errors.get(name, 0) + 1,
                                  "started": time.strftime("%Y-%m-%dT%H:%M:%S")}
                     running.append(r)
@@ -395,11 +432,12 @@ def main():
                 tree_kb = lambda r: sum(table[p][1] for p in descendants(r["proc"].pid, table))
                 victim = max(running, key=tree_kb) if low else None
                 for r in list(running):
-                    over = time.time() - r["t0"] > a.limit
-                    if r["proc"].poll() is not None:
+                    # the limit is on awake time, so a sleep does not time a run out
+                    over = time.monotonic() - r["t0"] > a.limit
+                    if reap(r):
                         status = "ok" if r["proc"].returncode == 0 else "error"
                     elif over or r is victim:
-                        kill_tree(r["proc"])
+                        kill_tree(r)
                         status = "timeout" if over else "memout"
                     else:
                         continue

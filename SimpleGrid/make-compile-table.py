@@ -7,12 +7,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 NAME = "compile-d4"
 PDF_WIDTH_IN = 7
-# Largest grid re-timed with the current FiFO (linear evaluator).  Larger grids
-# keep their earlier runs: from 8x8 on d4 crashes or returns wrong circuits, so
-# they were not redone; their sizes, counts and d4 times stand, but their total
-# times (which include the unconditioned marginals, then quadratic) are shown as
-# dashes, and no queries were timed on them.
-MAX_SIZE = 7
+# Runs started before this used FiFO's earlier, quadratic circuit evaluator
+# (fixed in FiFO fd0d0b9): their sizes, counts and d4 times stand, but their
+# total times (which include the unconditioned marginals) are shown as dashes.
+CURRENT_SINCE = "2026-10-16T15:20"
+SIZE_ORDER = ["3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"]
 TITLE = "SimpleGrid problems compiled to d-DNNF with d4 (projected, no evidence)"
 
 # (key, header lines, alignment)
@@ -41,7 +40,40 @@ def qtime(s):
 
 def stale(r):
     """A run older than the current FiFO: its total time is not comparable."""
-    return int(r["size"].split("x")[0]) > MAX_SIZE
+    return r.get("started", "") < CURRENT_SINCE
+
+
+def span(sizes):
+    """'3×3–7×7, 9×9' for a set of grid sizes: runs of consecutive sizes joined."""
+    idx = sorted(SIZE_ORDER.index(s) for s in set(sizes))
+    parts, i = [], 0
+    while i < len(idx):
+        j = i
+        while j + 1 < len(idx) and idx[j + 1] == idx[j] + 1:
+            j += 1
+        a, b = SIZE_ORDER[idx[i]], SIZE_ORDER[idx[j]]
+        parts.append(a if i == j else f"{a}–{b}")
+        i = j + 1
+    return ", ".join(parts).replace("x", "×")
+
+
+def by_value(recs, fn):
+    """{value: [sizes]} for FN over RECS, in order of first appearance."""
+    out = {}
+    for r in recs:
+        out.setdefault(fn(r), [])
+        if r["size"] not in out[fn(r)]:
+            out[fn(r)].append(r["size"])
+    return out
+
+
+def grouped(recs, fn, fmt):
+    """FMT(value) for a setting shared by every row, else each value with the
+    grid sizes it applies to: '30 minutes (3×3–7×7) or 20 minutes (8×8–10×10)'."""
+    g = by_value(recs, fn)
+    if len(g) == 1:
+        return fmt(next(iter(g)))
+    return " or ".join(f"{fmt(v)} ({span(s)})" for v, s in g.items())
 
 
 def row(r, tries, q):
@@ -99,25 +131,41 @@ def query_note(queries):
 
 
 def larger_note(recs, runs):
-    """Caption text for the grids past MAX_SIZE (not re-timed)."""
-    big = [r for r in recs if stale(r)]
-    if not big:
-        return ""
-    sizes = list(dict.fromkeys(r["size"] for r in big))
-    okd = [r for r in big if r["status"] == "ok"]
-    text = (f" Grids past {MAX_SIZE}×{MAX_SIZE} were not re-run with the current FiFO: "
-            "from 8×8 on, d4 often crashes (bus error or segmentation fault) or returns "
-            "a wrong circuit without any error, and repeated runs on the same CNF give "
-            "different circuits.")
-    if okd:
+    """Caption text for the d4 fix, and for rows whose total time is stale."""
+    text = ""
+    fixed = [r for r in recs if r.get("d4_sha")]
+    if fixed:
+        text += (" Until d4v2 commit c11210d (2026-10-16), d4 had a heap overflow "
+                 "(ListLit::setListLit) that from 8×8 on made it crash, or silently "
+                 "return a wrong circuit, at random. The "
+                 f"{span(r['size'] for r in fixed)} rows are from the fixed d4; the "
+                 f"{span(r['size'] for r in recs if not r.get('d4_sha'))} circuits were "
+                 "compiled before the fix, which did not affect them (every one passed "
+                 "the count check).")
+    old = [r for r in recs if stale(r) and r["status"] == "ok"]
+    if old:
         per = "; ".join(f"{r['instance']}: correct on {runs[r['instance']].count('ok')} "
-                        f"of {len(runs[r['instance']])}" for r in okd)
-        text += (f" Their rows give the run whose circuit passed the model-count check "
-                 f"({per} runs); its d4 time is that run's alone, not counting failed "
-                 "runs. Their total time is not shown: it was measured with the earlier, "
-                 "quadratic evaluator (and partly two compilations at a time); and no "
-                 "queries were timed on them.")
+                        f"of {len(runs[r['instance']])}" for r in old)
+        text += (f" The {span(r['size'] for r in old)} rows give the run whose circuit "
+                 f"passed the model-count check ({per} runs); its d4 time is that run's "
+                 "alone, not counting failed runs. Their total time is not shown: it was "
+                 "measured with FiFO's earlier, quadratic evaluator (and partly two "
+                 "compilations at a time); and no queries were timed on them.")
     return text
+
+
+def timing_note(recs):
+    """Caption text for the awake-time clock of the newer runs."""
+    awake = [r for r in recs if r.get("timing") == "awake"]
+    if not awake:
+        return ""
+    slept = [r["instance"] for r in awake if r.get("slept_s", 0) > 0]
+    return (f" The {span(r['size'] for r in awake)} runs were timed on the awake clock "
+            "(CLOCK_UPTIME_RAW), which stops while the computer sleeps, so a suspend "
+            "neither lengthens a time nor times a run out; their records also hold "
+            "wall-clock time and CPU time"
+            + (f" ({', '.join(slept)}: the computer slept during the run)." if slept
+               else ", and the computer did not sleep during any of them."))
 
 
 def caption(recs, tries, queries, runs, mean_rows=False):
@@ -129,11 +177,10 @@ def caption(recs, tries, queries, runs, mean_rows=False):
     if mean_rows:
         # a table of means shows only the problems that compiled: describe those
         recs = [r for r in recs if r["status"] == "ok"]
-    limit = recs[0]["limit_s"] / 60
-    big = [r for r in recs if r.get("sbcl_heap_mb", 8192) != 8192]
-    heaps = "an 8 GB heap" + (
-        "".join(f" ({r['instance']}: {r['sbcl_heap_mb'] / 1024:g} GB: with 8 GB, SBCL's "
-                "garbage collector failed while importing its circuit)" for r in big))
+    limits = grouped(recs, lambda r: r["limit_s"], lambda s: f"{s / 60:g} minutes")
+    heaps = grouped(recs, lambda r: r.get("sbcl_heap_mb", 8192),
+                    lambda mb: f"{'an' if str(mb / 1024).startswith('8') else 'a'} "
+                               f"{mb / 1024:g} GB heap")
     jobs = sorted({r.get("jobs", 4) for r in recs})
     one = lambda r: r.get("jobs", 4) == 1
     if len(jobs) == 1:
@@ -162,15 +209,24 @@ def caption(recs, tries, queries, runs, mean_rows=False):
             "whole marginals.sh run (reading the theory, the projection check, d4, "
             "importing and saving the circuit, and the marginals of the unconditioned "
             "circuit). Circuit nodes and edges are those of "
-            "d4's decision-DNNF, before FiFO smooths it. Times are wall-clock, "
-            f"{at_once}, each limited to "
-            f"{limit:g} minutes. SBCL ran with {heaps} and a 1 GB control stack, "
+            f"d4's decision-DNNF, before FiFO smooths it. Runs: {at_once}, each "
+            f"limited to {limits}. SBCL ran with {heaps} and a 1 GB control stack, "
             "d4 with a 64 MB stack (the defaults, 1 GB, 2 MB and 8 MB, are too small "
             "for the larger circuits).")
+    text += timing_note(recs)
     if any(r.get("fifo_lisp", "installed") != "installed" for r in recs):
         text += (" The circuits were imported by FiFO's d4 importer as rewritten to use "
                  "bit-vector scopes and iterative traversal (FiFO fd0d0b9); the earlier "
                  "importer ran out of memory on circuits of about a million nodes.")
+        # the records do not name the importer; the packed one (single-pass build,
+        # circuit in typed arrays) was first used on 2026-10-18
+        packed = [r["instance"] for r in recs if r.get("started", "") >= "2026-10-18"]
+        if packed:
+            text += (f" {', '.join(packed)} {'was' if len(packed) == 1 else 'were'} "
+                     "imported by its successor, which builds the circuit in one pass "
+                     "into packed typed arrays; with fd0d0b9, SBCL's garbage collector "
+                     "crashed while importing "
+                     f"{'it' if len(packed) == 1 else 'them'}, after d4 had finished.")
     text += (" Model count (verified) is the number of models of the compiled circuit "
              "(all literals set to 1 in the smoothed circuit), that is, the number of "
              "truck walks the theory allows. Every circuit kept was checked against an "
@@ -184,11 +240,14 @@ def caption(recs, tries, queries, runs, mean_rows=False):
         text += (" Tries counts the runs of d4 on a problem, failed ones included — a "
                  "run whose saved circuit a later check found wrong counts as failed.")
     text += query_note(queries)
-    for r in recs:
-        if r.get("node_limit"):
-            text += (f" For {r['instance']}, FiFO's circuit-size cap (*ddnnf-node-limit*, "
-                     f"2,000,000 nodes) was raised to {r['node_limit']:,}: the smoothed "
-                     "import of its d4 circuit exceeds the default.")
+    capped = [r for r in recs if r.get("node_limit")]
+    if capped:
+        text += (" FiFO's circuit-size cap (*ddnnf-node-limit*, 2,000,000 nodes by "
+                 "default) was raised to " + grouped(
+                     capped, lambda r: r["node_limit"], lambda n: f"{n:,}")
+                 + (f" for {span(r['size'] for r in capped)}" if
+                    len(by_value(capped, lambda r: r["node_limit"])) == 1 else "")
+                 + ", since a smoothed import of a large d4 circuit exceeds the default.")
     groups = {}
     for r in recs:
         if r.get("d4_options"):
@@ -284,9 +343,11 @@ def main():
     recs = sorted(recs.values(),
                   key=lambda r: (int(r["size"].split("x")[0]), int(r["instance"].split("-")[1])))
     lisp = lambda r: r.get("fifo_lisp", "installed")
-    # runs: every run of a problem with the reported run's FiFO, in order
+    # runs: every run of a problem with the reported run's FiFO and d4 binary, in
+    # order (runs of the buggy d4 are not tries of the fixed one)
     runs = {r["instance"]: [h["status"] for h in history
-                            if h["instance"] == r["instance"] and lisp(h) == lisp(r)]
+                            if h["instance"] == r["instance"] and lisp(h) == lisp(r)
+                            and h.get("d4_sha") == r.get("d4_sha")]
             for r in recs}
     # Tries: the runs that led to the reported one -- it and the failed runs
     # just before it, back to the previous run that passed (an earlier passing
