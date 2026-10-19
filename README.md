@@ -21,7 +21,7 @@ TwoPackage/
     <problem>-<pkg>-<place>-obsN.txt   observations from the cleaned plans, pinned to time steps
     <problem>-<pkg>-<place>-ordN.txt   the same observations, as an ordering only
   results/                          sweep results (compile-d4, query-evidence, recognition runs)
-  circuits/                         theories and d4 circuits; not committed, rebuilt by compile-d4.py
+  circuits/                         theories and d4 circuits (see circuits/README.md)
 ```
 
 ## SimpleGrid

@@ -8,8 +8,10 @@ SimpleGrid/circuits/grid9x9-1.dnnf
 SimpleGrid/circuits/grid9x9-2.dnnf
 SimpleGrid/circuits/grid9x9-3.dnnf
 SimpleGrid/circuits/grid9x9-4.dnnf
-# 1.1 GB of theories and d4 circuits, rebuilt by TwoPackage/compile-d4.py
-TwoPackage/circuits/
+# Circuits over GitHub's 100 MB limit are committed as split parts (see TwoPackage/circuits/README.md)
+TwoPackage/circuits/grid6x6-1.dnnf
+TwoPackage/circuits/grid6x6-3.dnnf
+TwoPackage/circuits/grid7x7-2.dnnf
 # planner scratch files left beside the goal variants
 TwoPackage/goals/*.scnf
 TwoPackage/goals/*.cnf
