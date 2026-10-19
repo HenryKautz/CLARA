@@ -8,3 +8,11 @@ SimpleGrid/circuits/grid9x9-1.dnnf
 SimpleGrid/circuits/grid9x9-2.dnnf
 SimpleGrid/circuits/grid9x9-3.dnnf
 SimpleGrid/circuits/grid9x9-4.dnnf
+# 1.1 GB of theories and d4 circuits, rebuilt by TwoPackage/compile-d4.py
+TwoPackage/circuits/
+# planner scratch files left beside the goal variants
+TwoPackage/goals/*.scnf
+TwoPackage/goals/*.cnf
+TwoPackage/goals/*.map
+TwoPackage/goals/*.satout
+TwoPackage/goals/*.log
