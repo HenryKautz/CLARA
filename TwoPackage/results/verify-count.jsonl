@@ -1,0 +1,2 @@
+{"instance": "grid6x6-3", "limit_s": 14400.0, "cache_mb": 16000, "started": "2026-10-19T13:57:33", "circuit_count": 25217036, "cnf_vars": 6800, "cnf_clauses": 275451, "count_s": 3478.1, "model_count": 25217036, "count_check": "agrees"}
+{"instance": "grid7x7-2", "limit_s": 14400.0, "cache_mb": 16000, "started": "2026-10-19T13:57:33", "circuit_count": 20152168, "cnf_vars": 9314, "cnf_clauses": 491010, "count_s": 4178.3, "model_count": 20152168, "count_check": "agrees"}

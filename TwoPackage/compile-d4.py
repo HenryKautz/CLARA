@@ -60,6 +60,9 @@ SIZES = ["3x3", "4x4", "5x5", "6x6", "7x7"]
 
 
 def available_bytes():
+    if sys.platform.startswith("linux"):
+        with open("/proc/meminfo") as f:
+            return int(re.search(r"^MemAvailable:\s+(\d+) kB", f.read(), re.M).group(1)) * 1024
     out = subprocess.run(["vm_stat"], capture_output=True, text=True).stdout
     page = int(re.search(r"page size of (\d+)", out).group(1))
     pages = sum(int(m.group(1)) for key in ("Pages free", "Pages inactive", "Pages speculative")
@@ -130,7 +133,9 @@ def prepare(problem, work):
     """Run recognize.sh once to get the problem's evidence-free theory; returns
     (scnf path in circuits/, horizon).  The theory does not depend on the
     evidence (only the horizon could, and one observation at slice 1 never
-    raises it), so any obs1 file of the problem will do."""
+    raises it), so any obs1 file of the problem will do.  --stop-after scnf
+    ends the run once the theory is instantiated, before the 2n MaxSAT solves
+    of a full recognition, which this needs none of."""
     name = problem[:-len(".pddl")]
     evs = sorted(glob.glob(os.path.join(HERE, "evidence", name + "-*-obs1.txt")))
     if not evs:
@@ -139,7 +144,7 @@ def prepare(problem, work):
     shutil.rmtree(out, ignore_errors=True)
     os.makedirs(out)
     r = subprocess.run(["bash", RECOGNIZE, DOMAIN, os.path.join(HERE, problem), evs[0],
-                        "--evidence-kind", "fifo", "--counter", "max-term", "--out", out],
+                        "--evidence-kind", "fifo", "--stop-after", "scnf", "--out", out],
                        cwd=work, capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit(f"recognize.sh failed on {problem}:\n{r.stdout}\n{r.stderr}")
@@ -152,19 +157,22 @@ def prepare(problem, work):
     return scnf, horizon
 
 
-def start(name, scnf, work, real, heap_mb, d4_options, node_limit):
+def start(name, scnf, work, real, heap_mb, d4_options, node_limit, limit):
     log_dir = os.path.join(work, "d4log")
     os.makedirs(log_dir, exist_ok=True)
     env = dict(os.environ, PATH=SHIM + os.pathsep + os.environ["PATH"],
                D4_LOG_DIR=log_dir, D4_REAL=real["d4"], SBCL_REAL=real["sbcl"],
                SBCL_HEAP_MB=str(heap_mb), D4_EXTRA=d4_options)
     log = open(os.path.join(work, "marginals.log"), "w")
-    # The run notes the moment it ends, on the awake clock, so the total time
-    # does not depend on how often the loop below polls.
+    # The run notes the moment it ends, on the awake clock -- time.monotonic(),
+    # CLOCK_UPTIME_RAW on macOS and CLOCK_MONOTONIC on Linux, both of which
+    # stop during sleep -- so the total time does not depend on how often the
+    # loop below polls.  --timeout: FiFO bounds d4 by *solver-timeout*, whose
+    # 600 s default would otherwise end a longer compilation first.
     cmd = ["bash", "-c", 'bash "$0" "$@"; rc=$?; '
-           'python3 -c \'import time; print("%.3f" % time.clock_gettime(time.CLOCK_UPTIME_RAW))\''
+           'python3 -c \'import time; print("%.3f" % time.monotonic())\''
            ' > "$D4_LOG_DIR/total-end"; exit $rc',
-           MARGINALS, scnf, "--solver", "d4", "--project",
+           MARGINALS, scnf, "--solver", "d4", "--project", "--timeout", f"{limit:g}",
            "--save-circuit", os.path.join(work, name + ".dnnf")]
     if node_limit:
         cmd += ["--node-limit", str(node_limit)]
@@ -395,7 +403,7 @@ def main():
                 while runs and len(running) < a.jobs:
                     name, scnf, horizon, work = runs.pop(0)
                     r = start(name, scnf, work, real, a.sbcl_heap_mb, a.d4_options,
-                              a.node_limit)
+                              a.node_limit, a.limit)
                     r["info"] = {"instance": name, "size": size, "horizon": horizon,
                                  "theory": "circuits/" + name + ".scnf", "limit_s": a.limit,
                                  "sbcl_heap_mb": a.sbcl_heap_mb, "jobs": a.jobs,

@@ -34,7 +34,17 @@ method, limit_s, status (ok / timeout / error), wall_s (awake time), clock_s
 (wall clock, sleep included), slept_s, cpu_s (user + system, from os.wait4),
 timing ("awake"), solver_timeout_s, exit_code, posterior {hyp: p}, c_O / c_notO
 (max-term only), argmax (list -- ties kept), correct (true goal among the
-argmax), started, and for a failure the tail of the log.
+argmax), tie_size (len(argmax)), score (1/tie_size when correct, else 0),
+started, and for a failure the tail of the log.
+
+`correct` alone overstates a method that ties: max-term's argmax is a tie in
+216 of its 240 runs here, and a k-way tie containing the true goal counted as a
+full success.  `score` is the expected accuracy of breaking the tie at random,
+and is what accuracy should be computed from.  Records written before it
+existed are scored the same way by summarize.py, from their argmax.
+
+On Linux, time.monotonic() is CLOCK_MONOTONIC, which also stops during suspend,
+and available memory comes from /proc/meminfo instead of vm_stat.
 """
 import argparse, glob, json, os, re, shutil, signal, subprocess, sys, time
 
@@ -44,6 +54,9 @@ DOMAIN = "clara-logistics.pddl"
 
 
 def available_bytes():
+    if sys.platform.startswith("linux"):
+        with open("/proc/meminfo") as f:
+            return int(re.search(r"^MemAvailable:\s+(\d+) kB", f.read(), re.M).group(1)) * 1024
     out = subprocess.run(["vm_stat"], capture_output=True, text=True).stdout
     page = int(re.search(r"page size of (\d+)", out).group(1))
     pages = 0
@@ -174,9 +187,10 @@ def finish(run, timed_out):
     elif run["proc"].returncode == 0 and os.path.exists(summary):
         post, co, cn = parse_summary(summary)
         top = max(post.values())
-        rec.update(status="ok", posterior=post,
-                   argmax=sorted(h for h, p in post.items() if p == top),
-                   correct=job["true_goal"] in [h for h, p in post.items() if p == top])
+        argmax = sorted(h for h, p in post.items() if p == top)
+        correct = job["true_goal"] in argmax
+        rec.update(status="ok", posterior=post, argmax=argmax, correct=correct,
+                   tie_size=len(argmax), score=1 / len(argmax) if correct else 0.0)
         if co:
             rec.update(c_O=co, c_notO=cn)
     else:

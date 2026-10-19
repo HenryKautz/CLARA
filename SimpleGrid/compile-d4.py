@@ -156,7 +156,7 @@ def prepare(problem, work):
     return scnf, horizon
 
 
-def start(name, scnf, work, real, heap_mb, d4_options, node_limit):
+def start(name, scnf, work, real, heap_mb, d4_options, node_limit, limit):
     log_dir = os.path.join(work, "d4log")
     os.makedirs(log_dir, exist_ok=True)
     env = dict(os.environ, PATH=SHIM + os.pathsep + os.environ["PATH"],
@@ -170,7 +170,9 @@ def start(name, scnf, work, real, heap_mb, d4_options, node_limit):
     cmd = ["bash", "-c", 'bash "$0" "$@"; rc=$?; '
            'python3 -c \'import time; print("%.3f" % time.clock_gettime(time.CLOCK_UPTIME_RAW))\''
            ' > "$D4_LOG_DIR/total-end"; exit $rc',
-           MARGINALS, scnf, "--solver", "d4", "--project",
+           # --timeout: FiFO bounds d4 by *solver-timeout*, whose 600 s default
+           # would otherwise end a longer compilation before this script's limit
+           MARGINALS, scnf, "--solver", "d4", "--project", "--timeout", f"{limit:g}",
            "--save-circuit", os.path.join(work, name + ".dnnf")]
     proc = subprocess.Popen(cmd, cwd=work, env=env, stdout=log, stderr=subprocess.STDOUT,
                             start_new_session=True)
@@ -414,7 +416,7 @@ def main():
                 while runs and len(running) < a.jobs:
                     name, scnf, horizon, work = runs.pop(0)
                     r = start(name, scnf, work, real, a.sbcl_heap_mb, a.d4_options,
-                              a.node_limit)
+                              a.node_limit, a.limit)
                     r["info"] = {"instance": name, "size": size, "horizon": horizon,
                                  "theory": "circuits/" + name + ".scnf", "limit_s": a.limit,
                                  "sbcl_heap_mb": a.sbcl_heap_mb, "jobs": a.jobs,
