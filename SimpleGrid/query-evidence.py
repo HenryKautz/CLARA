@@ -60,7 +60,7 @@ def run(problem, repeats):
         rec["status"] = "no evidence file"
         return rec
     horizon = int(re.search(r"fifo-projection-horizon: (\d+)",
-                            open(os.path.join(HERE, "circuits", problem + ".scnf")).read(2000))[1])
+                            open(os.path.join(HERE, "scnf", problem + ".scnf")).read(2000))[1])
     t = time.time()
     p = subprocess.run([SBCL, "--dynamic-space-size", "12288", "--control-stack-size", "1000MB",
                         "--noinform", "--non-interactive",

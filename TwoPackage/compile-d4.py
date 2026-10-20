@@ -7,7 +7,7 @@ For each problem gridNxN-K.pddl, smallest grid first:
      at its recognition horizon H (the largest per-hypothesis feasible horizon),
      with the goal's four literals as hypotheses.  It is the rec-problem.scnf of
      a recognize.sh run (the run's own evidence goes to a separate file and is
-     not used); saved as circuits/gridNxN-K.scnf.
+     not used); saved as scnf/gridNxN-K.scnf.
   2. Compile it with  marginals.sh --solver d4 --project --save-circuit, which
      projects onto the actions, the final-slice goal atoms and the weighted atoms
      (after checking that they determine every other atom, so the projection is
@@ -57,6 +57,12 @@ SHIM = os.path.join(HERE, "shims")
 CRASHES = "/tmp/tp-d4-crashes"
 DOMAIN = "clara-logistics.pddl"
 SIZES = ["3x3", "4x4", "5x5", "6x6", "7x7"]
+
+
+def theory_path(rel):
+    """A record's theory path, absolute.  The theories moved from circuits/ to
+    scnf/ (2026-10-20); records written before that still say circuits/."""
+    return os.path.join(HERE, re.sub(r"^circuits/(.*\.scnf)$", r"scnf/\1", rel))
 
 
 def available_bytes():
@@ -131,7 +137,7 @@ def kill_tree(run):
 
 def prepare(problem, work):
     """Run recognize.sh once to get the problem's evidence-free theory; returns
-    (scnf path in circuits/, horizon).  The theory does not depend on the
+    (scnf path in scnf/, horizon).  The theory does not depend on the
     evidence (only the horizon could, and one observation at slice 1 never
     raises it), so any obs1 file of the problem will do.  --stop-after scnf
     ends the run once the theory is instantiated, before the 2n MaxSAT solves
@@ -149,7 +155,7 @@ def prepare(problem, work):
     if r.returncode != 0:
         sys.exit(f"recognize.sh failed on {problem}:\n{r.stdout}\n{r.stderr}")
     horizon = int(re.search(r"^Horizon H = (\d+)", r.stdout + r.stderr, re.M).group(1))
-    scnf = os.path.join(HERE, "circuits", name + ".scnf")
+    scnf = os.path.join(HERE, "scnf", name + ".scnf")
     shutil.copy(os.path.join(out, "rec-problem.scnf"), scnf)
     shutil.rmtree(out, ignore_errors=True)
     for f in glob.glob(glob.escape(out) + "-*"):
@@ -364,6 +370,7 @@ def main():
         sys.exit("sharpSAT must be on PATH: it checks every circuit's count")
     d4_sha = hashlib.sha256(open(real["d4"], "rb").read()).hexdigest()[:12]
     os.makedirs(os.path.join(HERE, "circuits"), exist_ok=True)
+    os.makedirs(os.path.join(HERE, "scnf"), exist_ok=True)
     os.makedirs(os.path.dirname(os.path.abspath(a.results)), exist_ok=True)
     os.makedirs(a.work, exist_ok=True)
     # last: the latest record of each problem; errors: its failed attempts in a row
@@ -405,7 +412,7 @@ def main():
                     r = start(name, scnf, work, real, a.sbcl_heap_mb, a.d4_options,
                               a.node_limit, a.limit)
                     r["info"] = {"instance": name, "size": size, "horizon": horizon,
-                                 "theory": "circuits/" + name + ".scnf", "limit_s": a.limit,
+                                 "theory": "scnf/" + name + ".scnf", "limit_s": a.limit,
                                  "sbcl_heap_mb": a.sbcl_heap_mb, "jobs": a.jobs,
                                  "d4_options": a.d4_options, "node_limit": a.node_limit,
                                  "fifo_lisp": os.environ.get("FIFO_LISP", "installed"),
@@ -464,7 +471,7 @@ def main():
                         work = os.path.join(a.work, name)
                         shutil.rmtree(work, ignore_errors=True)
                         os.makedirs(work)
-                        runs.append((name, os.path.join(HERE, rec["theory"]), rec["horizon"], work))
+                        runs.append((name, theory_path(rec["theory"]), rec["horizon"], work))
         stuck = [n for n in names if last.get(n, {}).get("status") in ("timeout", "memout")
                  and last[n]["limit_s"] >= a.limit]
         if stuck:

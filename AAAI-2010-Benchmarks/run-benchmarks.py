@@ -4,13 +4,11 @@
 For each generated instance (IntrusionDetectionCosts at H = 6, BlocksWorldCosts
 at H = 15) and each evidence prefix evidence-K.txt (K = 1, 3, 5 by default):
 
-  prepare      recognize.sh --stop-after scnf instantiates the theory at H with
-               the observation monitor's axioms folded in, and writes the one
-               literal to condition on (the (occur-in-order ...) assertion).
-               Saved in theories/: <inst>-obsK.scnf, -assertion.txt, the
-               theory's weighted CNF in the MCC-2024 dialect (the one SharpSAT-TD
-               reads) without and with the evidence literal (.wcnf,
-               -evidence.wcnf), and .map (DIMACS variable -> FiFO atom).
+  (theories)   scnf/<inst>-obsK.scnf, the theory at H with the observation
+               monitor's axioms folded in, and -assertion.txt, the one literal to
+               condition on (the (occur-in-order ...) assertion).  Written, with
+               wff/ and wcnf/, by ../make-fifo-files.py (recognize.sh
+               --stop-after scnf); this script only checks they are there.
   max-term     recognize.sh --counter max-term: R&G's c(not O) - c(O), with the
                exact MaxSAT solver (bin/rc2-maxsat.py).
   sharpsat-td  recognize.sh --counter sharpsat-td: the exact posterior with the
@@ -117,58 +115,18 @@ def hyp_atom(h, H):
 
 
 def theory(inst, k):
-    return os.path.join(HERE, "theories", f"{inst}-obs{k}")
+    """scnf/<inst>-obsK: + ".scnf" is the theory, + "-assertion.txt" the literal."""
+    return os.path.join(HERE, "scnf", f"{inst}-obs{k}")
 
 
 def prepare(inst, k):
-    """The theory, assertion, WCNFs and map for (INST, K); skipped if present."""
-    dom, H, _ = INSTANCES[inst]
+    """The theory and its assertion must exist: ../make-fifo-files.py writes them
+    (scnf/, with the wff in wff/ and the weighted CNFs in wcnf/), regenerating each
+    with recognize.sh --stop-after scnf at the instance's horizon."""
     root = theory(inst, k)
-    if all(os.path.exists(root + s) for s in
-           (".scnf", "-assertion.txt", ".wcnf", "-evidence.wcnf", ".map")):
-        return
-    base = os.path.join(WORK, f"prep-{inst}-obs{k}")   # all of it inside base, as in one()
-    out = os.path.join(base, "run")
-    shutil.rmtree(base, ignore_errors=True)
-    os.makedirs(out)
-    rc, _ = run(["bash", f"{BIN}/recognize.sh", os.path.join(HERE, inst, dom),
-                 os.path.join(HERE, inst, "problem.pddl"),
-                 os.path.join(HERE, inst, f"evidence-{k}.txt"),
-                 "--horizon", str(H), "--stop-after", "scnf", "--out", out],
-                3600, out, out + ".log")
-    if rc != 0:
-        sys.exit(f"prepare {inst} obs{k} failed: see {out}.log")
-    os.makedirs(os.path.dirname(root), exist_ok=True)
-    shutil.copy(os.path.join(out, "rec-problem.scnf"), root + ".scnf")
-    shutil.copy(os.path.join(out, "rec-problem-assertion.txt"), root + "-assertion.txt")
-    assertion = open(root + "-assertion.txt").read().strip()
-    # The writer and the atom numbering FiFO's own counters use (wmc-write-wcnf,
-    # mx--index-atoms over the clauses and the weighted atoms, deterministic).
-    driver = f"""
-(progn
-  (wmc-write-wcnf "{root}.scnf" "{root}.wcnf" :dialect :mcc-2024)
-  (wmc-write-wcnf "{root}.scnf" "{root}-evidence.wcnf" :dialect :mcc-2024
-                  :evidence (list (let ((*read-eval* nil)) (read-from-string "{assertion}"))))
-  (multiple-value-bind (clauses probs opts weight-forms) (rw--read-scnf "{root}.scnf")
-    (declare (ignore probs opts))
-    (let ((a2i (mx--index-atoms clauses (mapcar (lambda (wf) (rw--literal-atom-and-sign (second wf)))
-                                                weight-forms)))
-          (rows nil))
-      (maphash (lambda (a i) (push (cons i a) rows)) a2i)
-      (with-open-file (s "{root}.map" :direction :output :if-exists :supersede)
-        (format s "c DIMACS variable -> FiFO atom, for {os.path.basename(root)}.wcnf and -evidence.wcnf~%")
-        (dolist (r (sort rows #'< :key #'car))
-          (format s "~D ~S~%" (car r) (cdr r)))))))
-"""
-    rc, _ = run(["sbcl", "--noinform", "--non-interactive",
-                 "--eval", f'(load "{FIFO_LISP}/FiFO.lisp")',
-                 "--eval", f'(load "{FIFO_LISP}/maxent.lisp")',
-                 "--eval", f'(load "{FIFO_LISP}/wmc.lisp")',
-                 "--eval", driver], 3600, out, out + "-wcnf.log")
-    if rc != 0:
-        sys.exit(f"writing the WCNF for {inst} obs{k} failed: see {out}-wcnf.log")
-    shutil.rmtree(base, ignore_errors=True)
-    log(f"prepared {inst} obs{k}")
+    missing = [root + s for s in (".scnf", "-assertion.txt") if not os.path.exists(root + s)]
+    if missing:
+        sys.exit(f"missing {missing}: run ../make-fifo-files.py --match {inst}-obs{k} first")
 
 
 def parse_summary(path):

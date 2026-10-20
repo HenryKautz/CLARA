@@ -11,7 +11,7 @@ marginals.sh --circuit --evidence-file does), REPEATS times, reporting the media
 Each answer is checked two ways:
   * every observed action gets probability 1;
   * against an independent oracle: SharpSAT-TD on the same theory and evidence
-    (marginals.sh --solver sharpsat-td on circuits/<problem>.scnf, which neither
+    (marginals.sh --solver sharpsat-td on scnf/<problem>.scnf, which neither
     reads the circuit nor runs d4), compared on every atom the circuit keeps.
     max_abs_diff is the largest difference; the oracle gets --oracle-limit
     seconds and is skipped (oracle "timeout") if it needs longer.
@@ -66,7 +66,7 @@ def observed(evfile):
 
 def oracle(problem, evfile, limit):
     """{atom: marginal} from SharpSAT-TD on the theory, or None on a timeout."""
-    scnf = os.path.join(HERE, "circuits", problem + ".scnf")
+    scnf = os.path.join(HERE, "scnf", problem + ".scnf")
     try:
         p = subprocess.run(["bash", MARGINALS, scnf, "--solver", "sharpsat-td",
                             "--evidence-file", evfile, "--timeout", f"{limit:g}"],

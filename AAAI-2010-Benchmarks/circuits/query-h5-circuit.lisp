@@ -9,7 +9,7 @@
 ;;        --load circuits/query-h5-circuit.lisp
 ;; It reads the binary circuit when present (fast) and otherwise the text one.
 ;; The binary .dnnfb is git-ignored; regenerate both files with
-;;   marginals.sh theories/IntrusionDetectionCosts-obs3-H5.scnf --solver d4 \
+;;   marginals.sh scnf/IntrusionDetectionCosts-obs3-H5.scnf --solver d4 \
 ;;                --save-circuit circuits/IntrusionDetectionCosts-obs3-H5.dnnf
 (let* ((here (directory-namestring (or *load-truename* *default-pathname-defaults*)))
        (bin (concatenate 'string here "IntrusionDetectionCosts-obs3-H5.dnnfb"))

@@ -5,7 +5,7 @@ compile-d4.py checks each circuit against sharpSAT's count of d4's own input CNF
 but gives that check only --verify-limit (120 s) and deletes the CNF afterwards.
 This script redoes the check with a long limit, from the theory itself:
 
-  1. FiFO writes circuits/NAME.scnf as plain DIMACS (propositionalize, :CNF --
+  1. FiFO writes scnf/NAME.scnf as plain DIMACS (propositionalize, :CNF --
      weights become comments, so the count is the theory's model count);
   2. sharpSAT counts it exactly, over all its variables;
   3. the count must equal the circuit's model count (circuits/NAME.dnnf, with
@@ -67,7 +67,7 @@ def main():
     ap.add_argument("--results", default=os.path.join(HERE, "results", "verify-count.jsonl"))
     a = ap.parse_args()
     for name in a.names:
-        scnf = os.path.join(HERE, "circuits", name + ".scnf")
+        scnf = os.path.join(HERE, "scnf", name + ".scnf")
         dnnf = os.path.join(HERE, "circuits", name + ".dnnf")
         for f in (scnf, dnnf):
             if not os.path.exists(f):

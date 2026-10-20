@@ -1,9 +1,10 @@
 # Compiled circuits
 
-`gridNxN-k.scnf` is the ground FiFO theory and `gridNxN-k.dnnf` the d4 circuit
-compiled from it (projected, no evidence) by `../compile-d4.py`; results are in
-`../results/compile-d4.jsonl` and `../sweep.log`.  `grid7x7-1` and `grid7x7-4`
-have a theory but no circuit: d4 did not finish within 1200 s.
+`gridNxN-k.dnnf` is the d4 circuit compiled (projected, no evidence) by
+`../compile-d4.py` from the ground FiFO theory `../scnf/gridNxN-k.scnf` (here
+until 2026-10-20); results are in `../results/compile-d4.jsonl` and
+`../sweep.log`.  `grid7x7-1` and `grid7x7-4` have a theory but no circuit: d4
+did not finish within 1200 s.
 
 Circuits over GitHub's 100 MB limit (`grid6x6-1`, `grid6x6-3`, `grid7x7-2`,
 150–300 MB each) are committed as 90 MB pieces made with `split -b 90m`, and the

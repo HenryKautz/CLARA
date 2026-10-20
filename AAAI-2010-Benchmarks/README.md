@@ -205,20 +205,36 @@ each run in `results/runs.jsonl`. The tables are printed by `summarize.py`.
 
 ### What is saved here
 
-- `theories/<instance>-obsK.*`, for each instance and evidence prefix:
-  - `.scnf`: the instantiated theory, with the observation monitor's axioms
-    folded in;
-  - `-assertion.txt`: the one literal to condition on;
-  - `.wcnf`: the weighted CNF in the MCC-2024 dialect, which SharpSAT-TD reads;
-  - `-evidence.wcnf`: the same, with that literal added as a unit clause;
-  - `.map`: DIMACS variable → FiFO atom.
+For each instance and evidence prefix, NAME = `<instance>-obsK` (K = 1, 3, 5),
+plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory:
+
+- `wff/NAME.wff`: the FiFO source. It is pddl2fifo's translation of the
+  problem, as `recognize.sh` normalized it, with the observation monitor's
+  axioms for `evidence-K.txt` appended as a FiFO formula. It sets its own
+  horizon and includes `wff/satplan.wff`, a copy of FiFO's SatPlan axioms, so
+  instantiating it alone gives the clauses of `scnf/NAME.scnf`. They are the
+  same clauses but in another order: the planner appends the axioms after the
+  problem's clauses.
+- `scnf/NAME.scnf`: the instantiated (symbolic) theory, with the monitor axioms
+  folded in; this is what the runs used. `scnf/NAME-assertion.txt` holds the
+  one literal to condition on.
+- `wcnf/NAME-2020.wcnf`, `wcnf/NAME-2024.wcnf`: the weighted CNF in the MCC 2020
+  dialect (ADDMC) and the MCC 2024 dialect (SharpSAT-TD).
+  `wcnf/NAME-ev-2020.wcnf` and `wcnf/NAME-ev-2024.wcnf` are the same with the
+  literal added as a unit clause. `wcnf/NAME.map` maps each DIMACS variable to
+  its FiFO atom, and is the same for all four.
 - `circuits/`: the saved d-DNNF circuits. **No compile finished at the benchmark
   horizons**, full or projected (see Results), so there is no circuit for
   them. The one circuit here is for the cross-check at H = 5 described below:
   `IntrusionDetectionCosts-obs3-H5.dnnf`, compiled in 55 s, 60 MB as text. Its
-  theory is `theories/IntrusionDetectionCosts-obs3-H5.scnf`, and
+  theory is `scnf/IntrusionDetectionCosts-obs3-H5.scnf`, and
   `query-h5-circuit.lisp` reproduces that posterior from it without
   recompiling.
+
+`../make-fifo-files.py` writes `wff/`, `scnf/` and `wcnf/`. It regenerates each
+theory with `recognize.sh --stop-after scnf` and requires it to be
+byte-identical to the one the runs used. (Until 2026-10-20 the theories and
+their weighted CNFs were in `theories/`, in the 2024 dialect only.)
 
 ### Theory sizes
 

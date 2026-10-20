@@ -11,6 +11,12 @@ SimpleGrid/
   evidence/
     <problem>-<place>-obsN.txt      observations from those plans, pinned to time steps
     <problem>-<place>-ordN.txt      the same observations, as an ordering only
+  wff/<problem>.wff                 FiFO source of each problem's recognition theory
+  scnf/<problem>.scnf               that theory, instantiated (symbolic CNF)
+  wcnf/                             its weighted CNF, both dialects, and the solved
+                                    examples (see wcnf/README.md)
+  circuits/                         d4 circuits (see circuits/README.md)
+  results/                          sweep results
 TwoPackage/
   gridNxN-K.pddl                    problems
   goals/
@@ -20,9 +26,55 @@ TwoPackage/
   evidence/
     <problem>-<pkg>-<place>-obsN.txt   observations from the cleaned plans, pinned to time steps
     <problem>-<pkg>-<place>-ordN.txt   the same observations, as an ordering only
+  wff/, scnf/, wcnf/                as for SimpleGrid
+  circuits/                         d4 circuits (see circuits/README.md)
   results/                          sweep results (compile-d4, query-evidence, recognition runs)
-  circuits/                         theories and d4 circuits (see circuits/README.md)
+AAAI-2010-Benchmarks/               Ramírez & Geffner's BlockWords and IntrusionDetection,
+                                    original and as recognition instances, with
+                                    wff/, scnf/, wcnf/ and exact-posterior results
+                                    (see its README.md)
+make-fifo-files.py                  writes every benchmark's wff/, scnf/ and wcnf/
 ```
+
+## FiFO files and weighted CNF
+
+Every benchmark directory holds, for each problem:
+
+- **`wff/P.wff`: the FiFO source.** It is the SatPlan encoding `pddl2fifo`
+  produced for the recognition problem, i.e. the problem as `recognize.sh`
+  normalizes it, with the goal's disjuncts as hypotheses. It is
+  self-contained:
+  - it sets its own horizon, `(option *satplan-numslices* H)`;
+  - it includes `wff/satplan.wff`, a copy of FiFO's SatPlan axioms.
+
+  So `(instantiate "P.wff")` alone gives the clauses of `scnf/P.scnf`.
+- **`scnf/P.scnf`: the instantiated theory** (FiFO's symbolic CNF) that every
+  experiment used. For SimpleGrid and TwoPackage it is evidence-free:
+  observations pinned to time steps (`evidence/*-obsN.txt`) are unit literals
+  over its atoms. For the AAAI-2010 benchmarks, each evidence prefix has its own
+  theory, with the ordering evidence's monitor axioms folded in.
+- **`wcnf/P-2020.wcnf` and `wcnf/P-2024.wcnf`: its weighted CNF**, in the MCC
+  2020 dialect (ADDMC) and the MCC 2024 dialect (SharpSAT-TD); the two are not
+  interchangeable. `wcnf/P.map` maps each variable number to its FiFO atom.
+
+The WCNFs are written by FiFO's own writer.
+
+`python3 make-fifo-files.py [--match REGEX] [--jobs N]` regenerates all three
+from the problems (FiFO installed). Nothing is solved. Each theory is rebuilt
+with `recognize.sh --stop-after scnf` at the problem's horizon, as the
+experiments built it, and must be byte-identical to the archived one; each
+`.wff` must instantiate to the same clauses.
+
+On 2026-10-20 all 59 problems passed both checks:
+
+- 32 SimpleGrid problems;
+- 20 TwoPackage problems;
+- 7 AAAI-2010 theories, whose clauses come out in another order, since the
+  planner appends the monitor axioms last.
+
+The theories used to live in `circuits/` (SimpleGrid, TwoPackage) and
+`theories/` (AAAI-2010). The seven solved SimpleGrid WCNF examples were the
+top-level `WcnfExamples/` directory; they are now in `SimpleGrid/wcnf/`.
 
 ## SimpleGrid
 

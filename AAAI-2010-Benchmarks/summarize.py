@@ -2,7 +2,7 @@
 """summarize.py -- Markdown tables from results/runs.jsonl (run-benchmarks.py).
 
 Prints, for the README:
-  * theory sizes (from theories/*.wcnf);
+  * theory sizes (from wcnf/*-2024.wcnf);
   * per instance and evidence prefix, each method's status, time, recognized
     hypothesis (argmax, ties kept) and the posterior and rank of the true goal;
   * the agreement of the two exact methods (largest posterior difference);
@@ -48,15 +48,14 @@ def sizes():
     print("| Theory | H | Variables | Clauses |")
     print("|---|--:|--:|--:|")
     for inst in ORDER:
-        for path in sorted(glob.glob(os.path.join(HERE, "theories", f"{inst}-obs*.wcnf"))):
-            if path.endswith("-evidence.wcnf"):
-                continue
+        # the theories at the benchmark horizon: not -ev-, not the H5 cross-check
+        for path in sorted(glob.glob(os.path.join(HERE, "wcnf", f"{inst}-obs[0-9]-2024.wcnf"))):
             with open(path) as f:
                 for line in f:
                     if line.startswith("p "):
                         _, _, v, c = line.split()
                         break
-            name = os.path.basename(path)[:-5]
+            name = os.path.basename(path)[:-len("-2024.wcnf")]
             H = 6 if inst.startswith("Intrusion") else 15
             print(f"| {name} | {H} | {int(v):,} | {int(c):,} |")
     print()

@@ -7,7 +7,7 @@ For each problem gridNxN-K.pddl, smallest grid first:
      at its recognition horizon H (the largest per-goal feasible horizon), with
      the goal literals as hypotheses.  It is the rec-problem.scnf of a
      recognize.sh run (the run's own evidence goes to a separate file and is not
-     used); saved as circuits/gridNxN-K.scnf.
+     used); saved as scnf/gridNxN-K.scnf.
   2. Compile it with  marginals.sh --solver d4 --project --save-circuit, which
      projects onto the actions, the final-slice goal atoms and the weighted atoms
      (after checking that they determine every other atom, so the projection is
@@ -53,6 +53,12 @@ SHIM = os.path.join(HERE, "shims")
 CRASHES = "/tmp/sg-d4-crashes"
 DOMAIN = "clara-logistics.pddl"
 SIZES = ["3x3", "4x4", "5x5", "6x6", "7x7", "8x8", "9x9", "10x10"]
+
+
+def theory_path(rel):
+    """A record's theory path, absolute.  The theories moved from circuits/ to
+    scnf/ (2026-10-20); records written before that still say circuits/."""
+    return os.path.join(HERE, re.sub(r"^circuits/(.*\.scnf)$", r"scnf/\1", rel))
 
 
 def available_bytes():
@@ -126,7 +132,7 @@ def kill_tree(run):
 
 def prepare(problem, work):
     """Run recognize.sh once to get the problem's evidence-free theory; returns
-    (scnf path in circuits/, horizon)."""
+    (scnf path in scnf/, horizon)."""
     name = problem[:-len(".pddl")]
     evs = sorted(glob.glob(os.path.join(HERE, "evidence", name + "-*-obs1.txt")))
     if evs:
@@ -148,7 +154,7 @@ def prepare(problem, work):
     if r.returncode != 0:
         sys.exit(f"recognize.sh failed on {problem}:\n{r.stdout}\n{r.stderr}")
     horizon = int(re.search(r"^Horizon H = (\d+)", r.stdout + r.stderr, re.M).group(1))
-    scnf = os.path.join(HERE, "circuits", name + ".scnf")
+    scnf = os.path.join(HERE, "scnf", name + ".scnf")
     shutil.copy(os.path.join(out, "rec-problem.scnf"), scnf)
     shutil.rmtree(out, ignore_errors=True)
     for f in glob.glob(glob.escape(out) + "-*"):
@@ -293,7 +299,7 @@ def finish(run, status, info):
         rec["nodes"], rec["edges"] = nnf_stats(os.path.join(d, "d4.nnf"))
     dnnf = os.path.join(work, name + ".dnnf")
     dest = os.path.join(HERE, "circuits", name + ".dnnf")
-    if status == "ok" and os.path.exists(dnnf) and verify(rec, dnnf, os.path.join(HERE, info["theory"])):
+    if status == "ok" and os.path.exists(dnnf) and verify(rec, dnnf, theory_path(info["theory"])):
         shutil.move(dnnf, dest)
         rec["circuit"] = "circuits/" + name + ".dnnf"
         rec["circuit_bytes"] = os.path.getsize(dest)
@@ -357,6 +363,7 @@ def main():
     # heap-overflow bug was fixed, d4v2 c11210d)
     d4_sha = hashlib.sha256(open(real["d4"], "rb").read()).hexdigest()[:12]
     os.makedirs(os.path.join(HERE, "circuits"), exist_ok=True)
+    os.makedirs(os.path.join(HERE, "scnf"), exist_ok=True)
     os.makedirs(a.work, exist_ok=True)
     # done: the latest record of each problem; errors: its failed attempts since
     # its last success.  Only records made with this FiFO (FIFO_LISP) and this d4
@@ -377,7 +384,7 @@ def main():
         if r["status"] == "ok" and "circuit_count" not in r:
             rec = dict(r, checked_later=time.strftime("%Y-%m-%dT%H:%M:%S"))
             path = os.path.join(HERE, rec["circuit"])
-            if not verify(rec, path, os.path.join(HERE, rec["theory"])):
+            if not verify(rec, path, theory_path(rec["theory"])):
                 os.remove(path)
                 for k in ("circuit", "circuit_bytes"):
                     rec.pop(k, None)
@@ -418,7 +425,7 @@ def main():
                     r = start(name, scnf, work, real, a.sbcl_heap_mb, a.d4_options,
                               a.node_limit, a.limit)
                     r["info"] = {"instance": name, "size": size, "horizon": horizon,
-                                 "theory": "circuits/" + name + ".scnf", "limit_s": a.limit,
+                                 "theory": "scnf/" + name + ".scnf", "limit_s": a.limit,
                                  "sbcl_heap_mb": a.sbcl_heap_mb, "jobs": a.jobs,
                                  "d4_options": a.d4_options, "node_limit": a.node_limit,
                                  "fifo_lisp": os.environ.get("FIFO_LISP", "installed"),
@@ -459,7 +466,7 @@ def main():
                         work = os.path.join(a.work, name)
                         shutil.rmtree(work, ignore_errors=True)
                         os.makedirs(work)
-                        runs.append((name, os.path.join(HERE, rec["theory"]), rec["horizon"], work))
+                        runs.append((name, theory_path(rec["theory"]), rec["horizon"], work))
         if not any(done.get(n, {}).get("status") == "ok" for n in names):
             print(f"no {size} problem compiled within the limit; stopping", flush=True)
             break
