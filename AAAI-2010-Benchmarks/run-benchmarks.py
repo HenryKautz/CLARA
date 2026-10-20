@@ -41,7 +41,7 @@ resumes where it left off (a run with a record is not redone).
 
 Usage: run-benchmarks.py [--limit S] [--jobs N] [--obs 1,3,5] [--match REGEX]
 """
-import argparse, concurrent.futures as cf, glob, json, os, re, shutil, signal
+import argparse, concurrent.futures as cf, json, os, re, shutil, signal
 import subprocess, sys, threading, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -127,8 +127,9 @@ def prepare(inst, k):
     if all(os.path.exists(root + s) for s in
            (".scnf", "-assertion.txt", ".wcnf", "-evidence.wcnf", ".map")):
         return
-    out = os.path.join(WORK, f"prep-{inst}-obs{k}")
-    shutil.rmtree(out, ignore_errors=True)
+    base = os.path.join(WORK, f"prep-{inst}-obs{k}")   # all of it inside base, as in one()
+    out = os.path.join(base, "run")
+    shutil.rmtree(base, ignore_errors=True)
     os.makedirs(out)
     rc, _ = run(["bash", f"{BIN}/recognize.sh", os.path.join(HERE, inst, dom),
                  os.path.join(HERE, inst, "problem.pddl"),
@@ -166,9 +167,7 @@ def prepare(inst, k):
                  "--eval", driver], 3600, out, out + "-wcnf.log")
     if rc != 0:
         sys.exit(f"writing the WCNF for {inst} obs{k} failed: see {out}-wcnf.log")
-    shutil.rmtree(out, ignore_errors=True)
-    for f in glob.glob(glob.escape(out) + "*.log"):
-        os.remove(f)
+    shutil.rmtree(base, ignore_errors=True)
     log(f"prepared {inst} obs{k}")
 
 
@@ -280,8 +279,10 @@ def run_d4(inst, k, limit, out, project=False):
 
 def run_ddnnf(inst, k, limit, out):
     """FiFO's own d-DNNF compiler, through hypothesis-posterior -- what
-    recognize.sh --counter ddnnf runs -- but in an SBCL with a 48 GB heap: at
-    the default heap it was exhausted within 3 minutes on IntrusionDetectionCosts."""
+    recognize.sh --counter ddnnf runs -- but in an SBCL with a 48 GB heap and
+    a node limit of 100 M: at the default heap it was exhausted within 3
+    minutes on IntrusionDetectionCosts, and with the heap alone it stopped at
+    the default 2 M nodes after 10."""
     _, H, _ = INSTANCES[inst]
     root = theory(inst, k)
     assertion = open(root + "-assertion.txt").read().strip()
@@ -291,7 +292,8 @@ def run_ddnnf(inst, k, limit, out):
     (progn
       (hypothesis-posterior "{root}.scnf" :hypotheses (quote ({hyps}))
                             :evidence (list (let ((*read-eval* nil)) (read-from-string "{assertion}")))
-                            :baseline :per-hypothesis :counter "ddnnf")
+                            :baseline :per-hypothesis :counter "ddnnf"
+                            :node-limit 100000000)
       (sb-ext:exit :code 0))
   (error (e) (format t "~&ERROR: ~A~%" e) (sb-ext:exit :code 1)))
 """
@@ -301,7 +303,7 @@ def run_ddnnf(inst, k, limit, out):
                     "--eval", f'(load "{FIFO_LISP}/ddnnf.lisp")',
                     "--eval", f'(load "{FIFO_LISP}/hypotheses.lisp")',
                     "--eval", driver], limit, out, out + ".log")
-    rec = {"wall_s": round(wall, 1), "heap_mb": 48000}
+    rec = {"wall_s": round(wall, 1), "heap_mb": 48000, "node_limit": 100000000}
     text = open(out + ".log").read()
     if rc is None:
         return dict(rec, status="timeout")
@@ -315,8 +317,15 @@ def run_ddnnf(inst, k, limit, out):
 
 def one(inst, k, method, limit, results):
     key = f"{inst}-obs{k}-{method}"
-    out = os.path.join(WORK, key)
-    shutil.rmtree(out, ignore_errors=True)
+    # Everything a run writes -- its working directory, its logs (out + ".log"),
+    # recognize.sh's scratch beside its --out -- stays inside base, and only
+    # base is removed afterwards.  The first version globbed WORK/<key>* to
+    # clean up, and "...-d4" is a prefix of "...-d4-project": a finishing full
+    # d4 run deleted the log of the projected run on the same theory, whose
+    # thread then failed to read it and recorded nothing.
+    base = os.path.join(WORK, key)
+    out = os.path.join(base, "run")
+    shutil.rmtree(base, ignore_errors=True)
     os.makedirs(out)
     log(f"start {key}")
     t = time.strftime("%Y-%m-%dT%H:%M:%S")
@@ -343,12 +352,7 @@ def one(inst, k, method, limit, results):
     with LOCK:
         with open(results, "a") as f:
             f.write(json.dumps(rec) + "\n")
-    shutil.rmtree(out, ignore_errors=True)
-    for f in glob.glob(glob.escape(out) + "*"):
-        try:
-            os.remove(f)
-        except OSError:
-            shutil.rmtree(f, ignore_errors=True)
+    shutil.rmtree(base, ignore_errors=True)
     log(f"done  {key}: {rec['status']} {rec['wall_s']} s")
 
 

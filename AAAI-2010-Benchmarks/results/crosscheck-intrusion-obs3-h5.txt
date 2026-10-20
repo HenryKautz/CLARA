@@ -1,0 +1,23 @@
+Cross-check of the two exact methods on IntrusionDetectionCosts, 3 observations
+(evidence-3.txt), at horizon 5 instead of the benchmark's 6 -- where d4 can
+compile.  Wall time for the whole posterior: d4 58.3 s, SharpSAT-TD 6.8 s.
+
+Theory: recognize.sh --horizon 5 --stop-after scnf; evidence = the assertion
+literal (OBSDONE 1 3 5); per-hypothesis baseline, uniform priors:
+  marginals.sh rec-problem.scnf --hypotheses '(holds (hypI) 5)' ... \
+      --baseline per-hypothesis --evidence '(OBSDONE 1 3 5)' --solver S
+
+hypothesis   sharpsat-td   d4
+(HYP0)       0.357643      0.357643
+(HYP1)       0.000000      0.000000
+(HYP2)       0.328353      0.328353
+(HYP3)       0.000000      0.000000
+(HYP4)       0.000000      0.000000
+(HYP5)       0.000000      0.000000
+(HYP6)       0.314004      0.314004
+(HYP7)       0.000000      0.000000
+(HYP8)       0.000000      0.000000
+(HYP9)       0.000000      0.000000
+
+Identical to the 6 digits printed.  (At horizon 4 they also agree, but
+vacuously: the evidence leaves only hyp0 possible, 1.0 / 0.)
