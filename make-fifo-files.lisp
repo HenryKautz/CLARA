@@ -1,16 +1,18 @@
 ;;; make-fifo-files.lisp -- the Lisp half of make-fifo-files.py.
 ;;;
 ;;; Loaded after FiFO.lisp, maxent.lisp, wmc.lisp, pddl2fifo.lisp and planner.lisp.
-;;; Three entry points, each printing one result line make-fifo-files.py reads:
+;;; FiFO's own functions do the work -- wmc-write-wcnf (with :map-file) writes the
+;;; weighted CNFs, wmc--read-forms reads scnf files -- so the archive is written
+;;; exactly as FiFO writes it, not by a copy that could drift.  Each entry point
+;;; prints result lines make-fifo-files.py reads and ends with "DONE"; an error
+;;; anywhere exits non-zero (make-fifo-files.py wraps each call in cf-run).
 ;;;
 ;;;   (cf-write-wcnf SCNF BASE &key evidence-forms evtag)
 ;;;       BASE-2020.wcnf and BASE-2024.wcnf -- SCNF's weighted CNF in the MCC 2020
 ;;;       (ADDMC) and MCC 2024 (SharpSAT-TD) dialects -- and BASE.map, variable
 ;;;       number -> FiFO atom.  With EVIDENCE-FORMS, also BASE<EVTAG>-2020.wcnf and
-;;;       BASE<EVTAG>-2024.wcnf, the theory plus those forms' clauses; it is an
-;;;       error unless both number every atom the same way, so one map serves all.
-;;;       FiFO's own writer, as in wmc-write-wcnf: theory clauses (+ evidence),
-;;;       atoms numbered by mx--index-atoms, wmc--write-mcc in each dialect.
+;;;       BASE<EVTAG>-2024.wcnf, the theory plus those forms' clauses; an error
+;;;       unless their numbering is BASE.map's, so one map serves all four.
 ;;;
 ;;;   (cf-pddl-wff PROBLEM DOMAIN EVFILE)
 ;;;       Translate PROBLEM with pddl2fifo, registering the PDDL evidence in EVFILE
@@ -27,40 +29,33 @@
 ;;;       emits them first.  Prints WFF-CHECK OK (same order too), WFF-CHECK
 ;;;       OK-REORDERED, or WFF-CHECK MISMATCH, with the two clause counts.
 
-(defun cf--clauses (file)
-  "Every form in the scnf FILE (comment lines are skipped by READ)."
-  (with-open-file (in file)
-    (let ((*read-eval* nil))
-      (loop for f = (read in nil :eof) until (eq f :eof) collect f))))
+(defmacro cf-run (&body body)
+  "Run BODY; print DONE on success, or the error and exit 1."
+  `(handler-case (progn ,@body (format t "~&DONE~%") (finish-output))
+     (error (e) (format t "~&ERROR: ~A~%" e) (finish-output) (sb-ext:exit :code 1))))
 
 (defun cf-write-wcnf (scnf base &key evidence-forms (evtag "-ev"))
-  (multiple-value-bind (clauses probs opts weight-forms) (rw--read-scnf scnf)
-    (declare (ignore probs opts))
-    (let* ((weight-atoms (mapcar (lambda (wf) (rw--literal-atom-and-sign (second wf)))
-                                 weight-forms))
-           (scale (rw--resolve-scale scnf nil nil))
-           (maps '()))
-      (dolist (variant (cons (cons "" nil) (when evidence-forms (list (cons evtag evidence-forms)))))
-        (let* ((ev (and (cdr variant) (wmc--evidence-clauses (cdr variant) nil clauses)))
-               (all (append clauses ev)))
-          (when (and (cdr variant) (null ev))
-            (error "the evidence gave no clauses: ~S" (cdr variant)))
-          (multiple-value-bind (a2i nvars) (mx--index-atoms all weight-atoms)
-            (dolist (d '((:mcc-2020 . "-2020") (:mcc-2024 . "-2024")))
-              (with-open-file (s (format nil "~A~A~A.wcnf" base (car variant) (cdr d))
-                                 :direction :output :if-exists :supersede)
-                (wmc--write-mcc all weight-forms a2i nvars s :scale scale :dialect (car d))))
-            (let ((m (make-array (1+ nvars))))
-              (maphash (lambda (atom v) (setf (aref m v) atom)) a2i)
-              (push m maps))
-            (format t "~&WCNF ~A~A ~D ~D~%" (file-namestring base) (car variant)
-                    nvars (length all)))))
-      (when (and (second maps) (not (equalp (first maps) (second maps))))
-        (error "the evidence variant numbers the atoms differently"))
-      (with-open-file (s (format nil "~A.map" base) :direction :output :if-exists :supersede)
-        (let ((*print-pretty* nil))
-          (loop for v from 1 below (length (first maps))
-                do (format s "~D ~S~%" v (aref (first maps) v))))))))
+  (let ((map (format nil "~A.map" base)))
+    (dolist (d '((:mcc-2020 . "-2020") (:mcc-2024 . "-2024")))
+      (multiple-value-bind (out nvars nclauses)
+          (wmc-write-wcnf scnf (format nil "~A~A.wcnf" base (cdr d))
+                          :dialect (car d) :map-file map :verbose nil)
+        (declare (ignore out))
+        (when (eq (car d) :mcc-2024)
+          (format t "~&WCNF ~A ~D ~D~%" (file-namestring base) nvars nclauses))))
+    (when evidence-forms
+      (let ((evmap (format nil "~A~A.map" base evtag)))
+        (dolist (d '((:mcc-2020 . "-2020") (:mcc-2024 . "-2024")))
+          (multiple-value-bind (out nvars nclauses)
+              (wmc-write-wcnf scnf (format nil "~A~A~A.wcnf" base evtag (cdr d))
+                              :dialect (car d) :evidence evidence-forms :map-file evmap
+                              :verbose nil)
+            (declare (ignore out))
+            (when (eq (car d) :mcc-2024)
+              (format t "~&WCNF ~A~A ~D ~D~%" (file-namestring base) evtag nvars nclauses))))
+        (unless (equal (uiop:read-file-string map) (uiop:read-file-string evmap))
+          (error "the evidence variant numbers the atoms differently from ~A" map))
+        (delete-file evmap)))))
 
 (defun cf-pddl-wff (problem domain evfile)
   (let* ((forms (plan--evidence-forms nil evfile)))
@@ -84,7 +79,7 @@
 (defun cf-check-wff (wff scnf out)
   (unless (instantiate wff :scnfile out)
     (error "instantiating ~A failed" wff))
-  (let* ((a (cf--clauses out)) (b (cf--clauses scnf))
+  (let* ((a (wmc--read-forms out)) (b (wmc--read-forms scnf))
          (key (lambda (c) (let ((*print-pretty* nil)) (prin1-to-string c))))
          (verdict (cond ((equal a b) "OK")
                         ((equal (sort (mapcar key a) #'string<) (sort (mapcar key b) #'string<))

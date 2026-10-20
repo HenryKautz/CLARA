@@ -62,6 +62,9 @@ def theory_path(rel):
 
 
 def available_bytes():
+    if sys.platform.startswith("linux"):
+        with open("/proc/meminfo") as f:
+            return int(re.search(r"^MemAvailable:\s+(\d+) kB", f.read(), re.M).group(1)) * 1024
     out = subprocess.run(["vm_stat"], capture_output=True, text=True).stdout
     page = int(re.search(r"page size of (\d+)", out).group(1))
     pages = sum(int(m.group(1)) for key in ("Pages free", "Pages inactive", "Pages speculative")
@@ -174,7 +177,7 @@ def start(name, scnf, work, real, heap_mb, d4_options, node_limit, limit):
     # often the loop below polls -- on the awake clock (CLOCK_UPTIME_RAW, which
     # is time.monotonic() here), like every duration this script records.
     cmd = ["bash", "-c", 'bash "$0" "$@"; rc=$?; '
-           'python3 -c \'import time; print("%.3f" % time.clock_gettime(time.CLOCK_UPTIME_RAW))\''
+           'python3 -c \'import time; print("%.3f" % time.monotonic())\''
            ' > "$D4_LOG_DIR/total-end"; exit $rc',
            # --timeout: FiFO bounds d4 by *solver-timeout*, whose 600 s default
            # would otherwise end a longer compilation before this script's limit

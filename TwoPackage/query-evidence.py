@@ -24,7 +24,9 @@ import argparse, glob, json, os, re, statistics, subprocess, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FIFO_LISP = os.environ.get("FIFO_LISP", os.path.expanduser("~/lib/fifo/lisp"))
-SBCL = os.environ.get("SBCL_REAL", "/opt/homebrew/bin/sbcl")
+# Homebrew's sbcl on the Mac (where ~/bin/sbcl may be a wrapper), else the one on PATH
+SBCL = os.environ.get("SBCL_REAL") or (
+    "/opt/homebrew/bin/sbcl" if os.path.exists("/opt/homebrew/bin/sbcl") else "sbcl")
 MARGINALS = os.path.expanduser("~/bin/marginals.sh")
 OUT = os.path.join(HERE, "results", "query-evidence.jsonl")
 TOL = 1e-6
