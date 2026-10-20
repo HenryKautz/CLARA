@@ -12,7 +12,8 @@ import glob, json, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ORDER = ["IntrusionDetectionCosts", "BlocksWorldCosts"]
-METHODS = ["max-term", "sharpsat-td", "d4"]
+METHODS = ["max-term", "sharpsat-td", "d4", "d4-project", "ddnnf", "mc-sat"]
+EXACT = ["sharpsat-td", "d4", "d4-project", "ddnnf"]
 
 
 def load():
@@ -69,7 +70,9 @@ def results(recs):
             for m in METHODS:
                 r = recs.get((inst, k, m))
                 if r is None:
-                    print(f"| {inst} | {k} | {m} | not run | – | – | – |")
+                    # ddnnf and mc-sat are cross-checks, run where needed
+                    if m not in ("ddnnf", "mc-sat"):
+                        print(f"| {inst} | {k} | {m} | not run | – | – | – |")
                     continue
                 if r["status"] != "ok":
                     limit = f" ({fmt_time(r['limit_s'])} limit)" if r["status"] == "timeout" else ""
@@ -87,33 +90,40 @@ def results(recs):
 
 
 def agreement(recs):
-    print("| Instance | Obs. | max \\|d4 − sharpsat-td\\| over the posteriors |")
-    print("|---|--:|--:|")
+    """Each exact method that finished, against sharpsat-td: the largest
+    difference over the hypotheses' posteriors."""
+    print("| Instance | Obs. | Methods compared with sharpsat-td | max \\|difference\\| over the posteriors |")
+    print("|---|--:|---|--:|")
     for inst in ORDER:
         for k in sorted({k for (i, k, _) in recs if i == inst}):
-            a, b = recs.get((inst, k, "d4")), recs.get((inst, k, "sharpsat-td"))
-            if a and b and a["status"] == b["status"] == "ok":
-                d = max(abs(a["posterior"][h] - b["posterior"][h]) for h in a["posterior"])
-                print(f"| {inst} | {k} | {d:.1e} |")
-            else:
-                print(f"| {inst} | {k} | – (not both finished) |")
+            b = recs.get((inst, k, "sharpsat-td"))
+            others = [m for m in EXACT[1:] if recs.get((inst, k, m), {}).get("status") == "ok"]
+            if not (b and b["status"] == "ok" and others):
+                print(f"| {inst} | {k} | – | – (no two exact methods finished) |")
+                continue
+            for m in others:
+                a = recs[(inst, k, m)]
+                d = max(abs(a["posterior"][h] - b["posterior"][h]) for h in b["posterior"])
+                print(f"| {inst} | {k} | {m} | {d:.1e} |")
     print()
 
 
 def compile_table(recs):
-    print("| Instance | Obs. | Status | Compile | Circuit (text) | Load (binary) | Query with evidence |")
-    print("|---|--:|---|--:|--:|--:|--:|")
+    print("| Instance | Obs. | Compilation | Status | Compile | Circuit (text) | Load (binary) | Query with evidence |")
+    print("|---|--:|---|---|--:|--:|--:|--:|")
     for inst in ORDER:
         for k in sorted({k for (i, k, _) in recs if i == inst}):
-            r = recs.get((inst, k, "d4"))
-            if r is None:
-                continue
-            if r["status"] != "ok":
-                print(f"| {inst} | {k} | {r['status']} | {fmt_time(r.get('compile_s'))} | – | – | – |")
-                continue
-            mb = r["circuit_bytes"] / 2**20
-            print(f"| {inst} | {k} | ok | {fmt_time(r['compile_s'])} | {mb:.1f} MB | "
-                  f"{fmt_time(r['load_s'])} | {fmt_time(r['query_s'])} |")
+            for m in ("d4", "d4-project"):
+                r = recs.get((inst, k, m))
+                if r is None:
+                    continue
+                label = "full" if m == "d4" else "projected"
+                if r["status"] != "ok":
+                    print(f"| {inst} | {k} | {label} | {r['status']} | {fmt_time(r.get('compile_s'))} | – | – | – |")
+                    continue
+                mb = r["circuit_bytes"] / 2**20
+                print(f"| {inst} | {k} | {label} | ok | {fmt_time(r['compile_s'])} | {mb:.1f} MB | "
+                      f"{fmt_time(r['load_s'])} | {fmt_time(r['query_s'])} |")
     print()
 
 

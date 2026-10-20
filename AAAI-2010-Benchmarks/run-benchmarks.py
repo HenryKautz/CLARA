@@ -28,6 +28,11 @@ at H = 15) and each evidence prefix evidence-K.txt (K = 1, 3, 5 by default):
                atom, after a SAT check that these determine every other atom
                (so the marginals are exactly the full theory's).
                circuits/<inst>-obsK-projected.dnnf.
+  ddnnf        FiFO's own d-DNNF compiler, a third exact method sharing no
+               counting code with the other two: hypothesis-posterior (what
+               recognize.sh --counter ddnnf runs) in an SBCL with a 48 GB heap.
+  mc-sat       recognize.sh --counter mc-sat: MC-SAT sampling (WalkSAT v58), an
+               APPROXIMATE but independent check on the exact posteriors.
 
 Each run has a wall-clock limit (--limit, default 3600 s) on its whole process
 tree, and the solvers inside get --timeout LIMIT too.  Runs go --jobs at a time.
@@ -46,7 +51,7 @@ INSTANCES = {   # directory: (domain file, horizon H, true goal)
     "IntrusionDetectionCosts": ("intrusion-detection-costs.pddl", 6, "hyp0"),
     "BlocksWorldCosts": ("block-words-costs.pddl", 15, "hyp16"),
 }
-METHODS = ["max-term", "sharpsat-td", "d4", "d4-project"]
+METHODS = ["max-term", "sharpsat-td", "d4", "d4-project", "ddnnf", "mc-sat"]
 WORK = os.path.join(HERE, "work")
 LOCK = threading.Lock()
 
@@ -56,9 +61,28 @@ def log(msg):
         print(time.strftime("%H:%M:%S ") + msg, flush=True)
 
 
+def descendants(pid):
+    """All descendant pids of PID, from one ps snapshot."""
+    out = subprocess.run(["ps", "-A", "-o", "pid=,ppid="], capture_output=True, text=True).stdout
+    kids = {}
+    for line in out.split("\n"):
+        f = line.split()
+        if len(f) == 2:
+            kids.setdefault(int(f[1]), []).append(int(f[0]))
+    found, todo = [], [pid]
+    while todo:
+        for c in kids.get(todo.pop(), []):
+            found.append(c)
+            todo.append(c)
+    return found
+
+
 def run(cmd, limit, cwd, logfile):
-    """Run CMD in its own session; kill its whole process group at LIMIT seconds.
-    Returns (exit code or None on a timeout, wall seconds)."""
+    """Run CMD in its own session; kill its whole process TREE at LIMIT seconds.
+    The tree, not the process group: SBCL starts each solver as the leader of
+    its own group, so a group kill leaves the solver running, orphaned (a
+    sharpSAT outlived its timed-out run that way).  Returns (exit code or None
+    on a timeout, wall seconds)."""
     t0 = time.monotonic()
     with open(logfile, "w") as lf:
         p = subprocess.Popen(cmd, cwd=cwd, stdout=lf, stderr=subprocess.STDOUT,
@@ -66,13 +90,17 @@ def run(cmd, limit, cwd, logfile):
         try:
             rc = p.wait(timeout=limit)
         except subprocess.TimeoutExpired:
+            pids = [p.pid] + descendants(p.pid)
             for sig in (signal.SIGTERM, signal.SIGKILL):
-                try:
-                    os.killpg(p.pid, sig)
-                except ProcessLookupError:
-                    pass
+                for q in pids:
+                    try:
+                        os.kill(q, sig)
+                    except ProcessLookupError:
+                        pass
                 if sig == signal.SIGTERM:
                     time.sleep(5)
+                    # anything started meanwhile, and what is left
+                    pids = pids + descendants(p.pid)
             p.wait()
             rc = None
     return rc, time.monotonic() - t0
@@ -250,6 +278,41 @@ def run_d4(inst, k, limit, out, project=False):
                 p_h_given_o=dict((h, cond[hyp_atom(h, H)]) for h in hyps))
 
 
+def run_ddnnf(inst, k, limit, out):
+    """FiFO's own d-DNNF compiler, through hypothesis-posterior -- what
+    recognize.sh --counter ddnnf runs -- but in an SBCL with a 48 GB heap: at
+    the default heap it was exhausted within 3 minutes on IntrusionDetectionCosts."""
+    _, H, _ = INSTANCES[inst]
+    root = theory(inst, k)
+    assertion = open(root + "-assertion.txt").read().strip()
+    hyps = " ".join(hyp_atom(h, H) for h in hypotheses(inst))
+    driver = f"""
+(handler-case
+    (progn
+      (hypothesis-posterior "{root}.scnf" :hypotheses (quote ({hyps}))
+                            :evidence (list (let ((*read-eval* nil)) (read-from-string "{assertion}")))
+                            :baseline :per-hypothesis :counter "ddnnf")
+      (sb-ext:exit :code 0))
+  (error (e) (format t "~&ERROR: ~A~%" e) (sb-ext:exit :code 1)))
+"""
+    rc, wall = run(["sbcl", "--dynamic-space-size", "48000", "--noinform", "--non-interactive",
+                    "--eval", f'(load "{FIFO_LISP}/FiFO.lisp")',
+                    "--eval", f"(setf *solver-timeout* {limit:g})",
+                    "--eval", f'(load "{FIFO_LISP}/ddnnf.lisp")',
+                    "--eval", f'(load "{FIFO_LISP}/hypotheses.lisp")',
+                    "--eval", driver], limit, out, out + ".log")
+    rec = {"wall_s": round(wall, 1), "heap_mb": 48000}
+    text = open(out + ".log").read()
+    if rc is None:
+        return dict(rec, status="timeout")
+    if "Heap exhausted" in text:
+        return dict(rec, status="out of memory (48 GB heap)")
+    rows = re.findall(r"^\(HYPOTHESIS \(HOLDS \((HYP\d+)\) \d+\) :posterior (\S+)", text, re.M)
+    if rc != 0 or not rows:
+        return dict(rec, status="error")
+    return dict(rec, status="ok", posterior={h.lower(): float(p) for h, p in rows})
+
+
 def one(inst, k, method, limit, results):
     key = f"{inst}-obs{k}-{method}"
     out = os.path.join(WORK, key)
@@ -259,6 +322,8 @@ def one(inst, k, method, limit, results):
     t = time.strftime("%Y-%m-%dT%H:%M:%S")
     if method in ("d4", "d4-project"):
         rec = run_d4(inst, k, limit, out, project=(method == "d4-project"))
+    elif method == "ddnnf":
+        rec = run_ddnnf(inst, k, limit, out)
     else:
         rec = run_recognize(inst, k, method, limit, out)
     _, H, true_goal = INSTANCES[inst]
