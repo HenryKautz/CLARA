@@ -1,0 +1,18 @@
+#!/bin/bash
+# sbcl shim for compare-encodings.py's "pairwise" runs: the usual heap shim
+# (../shims/sbcl) with FiFO's *mutex-pairwise* switched on before anything is
+# loaded, so every MUTEX (SatPlan's interfering-action mutexes) is written one
+# clause per pair, as the original encoding wrote them.  FiFO.lisp's DEFVAR
+# keeps a value already set, and a wff option scope starts from it.  The form
+# goes just before the caller's first --eval: SBCL's runtime options (such as
+# --noinform) must all precede it.
+args=()
+done_=
+for a in "$@"; do
+  if [[ -z "$done_" && "$a" == "--eval" ]]; then
+    args+=(--eval "(set '*mutex-pairwise* t)")
+    done_=1
+  fi
+  args+=("$a")
+done
+exec "$(dirname "$0")/../shims/sbcl" ${args[@]+"${args[@]}"}

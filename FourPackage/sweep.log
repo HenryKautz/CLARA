@@ -1,0 +1,127 @@
+=== 2026-10-25 15:34:55 general problems, 1800s per run
+=== 15:34:55 6x6: 4 general runs, 6 at a time
+  grid6x6-2: ok 11.7s H=5 cost 94
+  grid6x6-1: ok 14.5s H=6 cost 96
+  grid6x6-4: ok 16.2s H=7 cost 98
+  grid6x6-3: ok 17.8s H=9 cost 102
+=== 15:35:13 7x7: 4 general runs, 6 at a time
+  grid7x7-2: ok 23.2s H=6 cost 96
+  grid7x7-3: ok 32.8s H=9 cost 102
+  grid7x7-1: ok 39.8s H=11 cost 106
+  grid7x7-4: ok 39.9s H=11 cost 106
+=== 15:35:53 8x8: 4 general runs, 6 at a time
+  grid8x8-3: ok 48.0s H=7 cost 98
+  grid8x8-2: ok 61.7s H=9 cost 102
+  grid8x8-1: ok 73.9s H=12 cost 108
+  grid8x8-4: ok 74.3s H=12 cost 108
+=== 15:37:08 9x9: 4 general runs, 4 at a time
+  grid9x9-2: ok 79.8s H=8 cost 100
+  grid9x9-3: ok 98.9s H=10 cost 104
+  grid9x9-4: ok 106.0s H=11 cost 106
+  grid9x9-1: ok 106.3s H=11 cost 106
+=== 15:38:55 10x10: 4 general runs, 4 at a time
+  grid10x10-4: ok 148.8s H=10 cost 104
+  grid10x10-1: ok 163.0s H=11 cost 106
+  grid10x10-3: ok 164.5s H=11 cost 106
+  grid10x10-2: ok 180.4s H=13 cost 110
+=== 15:41:56 11x11: 4 general runs, 2 at a time
+  grid11x11-2: ok 160.8s H=13 cost 110
+  grid11x11-1: ok 217.9s H=15 cost 114
+  grid11x11-3: ok 90.7s H=9 cost 102
+  grid11x11-4: ok 332.9s H=17 cost 118
+=== 15:51:10 12x12: 4 general runs, 2 at a time
+  grid12x12-1: ok 172.7s H=10 cost 104
+  grid12x12-3: ok 94.1s H=6 cost 96
+  grid12x12-4: ok 139.5s H=8 cost 100
+  grid12x12-2: ok 525.3s H=18 cost 120
+=== 15:59:58 13x13: 4 general runs, 1 at a time
+  grid13x13-1: ok 363.1s H=17 cost 118
+  grid13x13-2: ok 416.3s H=19 cost 122
+  grid13x13-3: ok 387.2s H=16 cost 116
+  grid13x13-4: ok 281.1s H=12 cost 108
+=== 16:24:19 14x14: 4 general runs, 1 at a time
+  grid14x14-1: ok 386.6s H=14 cost 112
+  grid14x14-2: ok 275.7s H=11 cost 106
+  grid14x14-3: ok 688.3s H=21 cost 126
+  grid14x14-4: ok 493.7s H=17 cost 118
+=== 16:55:21 15x15: 4 general runs, 1 at a time
+  grid15x15-1: failed 772.9s   25:     0x3000000c8 pc=0x80030504f0 {0x80030501a0+0350} (FLET "WITHOUT-INTERRUPTS-BODY-3" :IN SB-IMPL::START-LISP) |   26:     0x300000000 pc=0x8003050370 {0x80030501a0+01d0} SB-IMPL::%START-LISP
+  grid15x15-2: ok 365.9s H=11 cost 106
+  grid15x15-3: failed 799.7s   21:     0x3000000c8 pc=0x80030504f0 {0x80030501a0+0350} (FLET "WITHOUT-INTERRUPTS-BODY-3" :IN SB-IMPL::START-LISP) |   22:     0x300000000 pc=0x8003050370 {0x80030501a0+01d0} SB-IMPL::%START-LISP
+  grid15x15-4: ok 446.6s H=13 cost 110
+done
+=== 2026-10-25 17:35:15 clamped goals and evidence, 1800s per run
+=== 17:35:15 6x6: 48 goals runs, 6 at a time
+  grid6x6-1-pkg1-p1-3: ok 16.6s H=6 cost 96
+  grid6x6-1-pkg1-p1-4: ok 22.2s H=7 cost 98
+  grid6x6-1-pkg2-p5-6: ok 32.6s H=11 cost 106
+  grid6x6-1-pkg2-p2-5: ok 40.4s H=13 cost 110
+  grid6x6-1-pkg1-p5-1: ok 41.1s H=14 cost 112
+  grid6x6-1-pkg3-p4-5: ok 31.3s H=13 cost 110
+  grid6x6-1-pkg4-p4-5: ok 12.0s H=7 cost 98
+  grid6x6-1-pkg4-p5-2: ok 38.3s H=15 cost 114
+  grid6x6-1-pkg4-p6-6: ok 44.5s H=16 cost 116
+  grid6x6-2-pkg1-p5-5: failed 20.6s   Exporting them as a sequence would demand they happen at different slices -- a claim the source plan does not make, and the exported problem could be unsatisfiable. |   Narrow the selection until at most one action is observed per slice -- --slices to drop the crowded ones, --observe to keep fewer action names (note it filters by NAME, so it cannot separate two groundings of the same action) -- or use --export-constraints, which pins each observation to its own slice -- or --nonstrict-ordering 1, whose operator lets observations share a slice.
+  grid6x6-1-pkg2-p4-3: ok 163.4s H=17 cost 118
+  grid6x6-2-pkg1-p3-3: failed 39.7s   Exporting them as a sequence would demand they happen at different slices -- a claim the source plan does not make, and the exported problem could be unsatisfiable. |   Narrow the selection until at most one action is observed per slice -- --slices to drop the crowded ones, --observe to keep fewer action names (note it filters by NAME, so it cannot separate two groundings of the same action) -- or use --export-constraints, which pins each observation to its own slice -- or --nonstrict-ordering 1, whose operator lets observations share a slice.
+  grid6x6-2-pkg2-p4-5: failed 79.3s   Exporting them as a sequence would demand they happen at different slices -- a claim the source plan does not make, and the exported problem could be unsatisfiable. |   Narrow the selection until at most one action is observed per slice -- --slices to drop the crowded ones, --observe to keep fewer action names (note it filters by NAME, so it cannot separate two groundings of the same action) -- or use --export-constraints, which pins each observation to its own slice -- or --nonstrict-ordering 1, whose operator lets observations share a slice.
+  grid6x6-2-pkg2-p1-2: failed 116.9s   Exporting them as a sequence would demand they happen at different slices -- a claim the source plan does not make, and the exported problem could be unsatisfiable. |   Narrow the selection until at most one action is observed per slice -- --slices to drop the crowded ones, --observe to keep fewer action names (note it filters by NAME, so it cannot separate two groundings of the same action) -- or use --export-constraints, which pins each observation to its own slice -- or --nonstrict-ordering 1, whose operator lets observations share a slice.
+  grid6x6-2-pkg2-p5-6: failed 87.9s   Exporting them as a sequence would demand they happen at different slices -- a claim the source plan does not make, and the exported problem could be unsatisfiable. |   Narrow the selection until at most one action is observed per slice -- --slices to drop the crowded ones, --observe to keep fewer action names (note it filters by NAME, so it cannot separate two groundings of the same action) -- or use --export-constraints, which pins each observation to its own slice -- or --nonstrict-ordering 1, whose operator lets observations share a slice.
+  grid6x6-2-pkg3-p2-4: ok 10.7s H=8 cost 100
+  grid6x6-2-pkg4-p2-1: ok 6.5s H=5 cost 94
+  grid6x6-2-pkg4-p6-3: ok 19.7s H=13 cost 110
+  grid6x6-2-pkg4-p3-2: ok 8.8s H=7 cost 98
+  grid6x6-3-pkg1-p6-2: ok 14.7s H=12 cost 108
+  grid6x6-3-pkg1-p3-6: ok 28.4s H=17 cost 118
+  grid6x6-3-pkg1-p2-5: ok 10.9s H=9 cost 102
+  grid6x6-2-pkg1-p2-4: ok 457.0s H=20 cost 122
+  grid6x6-2-pkg3-p6-5: ok 805.3s H=21 cost 126
+  grid6x6-3-pkg2-p5-3: ok 202.1s H=19 cost 122
+  grid6x6-3-pkg3-p3-4: ok 14.5s H=12 cost 108
+  grid6x6-3-pkg3-p6-6: ok 19.4s H=15 cost 114
+  grid6x6-2-pkg3-p5-5: ok 1218.9s H=22 cost 128
+  grid6x6-3-pkg4-p3-4: ok 27.7s H=16 cost 116
+  grid6x6-3-pkg4-p3-2: ok 11.9s H=10 cost 104
+  grid6x6-3-pkg4-p5-5: ok 16.4s H=13 cost 110
+  grid6x6-3-pkg3-p3-2: ok 177.0s H=18 cost 120
+  grid6x6-1-pkg3-p5-5: timeout 1830.3s Found a plan with 24 time slices. | Minimizing cost at 24 time slices with wmaxcdcl (wcnf)...
+  grid6x6-1-pkg3-p5-4: timeout 1830.3s Found a plan with 23 time slices. | Minimizing cost at 23 time slices with wmaxcdcl (wcnf)...
+  grid6x6-4-pkg2-p1-2: ok 13.2s H=7 cost 98
+  grid6x6-4-pkg2-p5-4: ok 26.3s H=17 cost 118
+  grid6x6-4-pkg2-p4-1: ok 14.2s H=11 cost 106
+  grid6x6-4-pkg3-p3-6: ok 11.7s H=9 cost 102
+  grid6x6-4-pkg3-p1-3: ok 10.3s H=8 cost 100
+  grid6x6-4-pkg3-p5-1: ok 16.1s H=12 cost 108
+  grid6x6-4-pkg4-p3-2: ok 22.3s H=15 cost 114
+  grid6x6-4-pkg1-p6-2: ok 614.4s H=24 cost 132
+  grid6x6-3-pkg2-p2-4: timeout 1830.2s Found a plan with 23 time slices. | Minimizing cost at 23 time slices with wmaxcdcl (wcnf)...
+  grid6x6-4-pkg4-p3-3: ok 42.1s H=16 cost 116
+  grid6x6-3-pkg2-p3-6: timeout 1830.2s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with wmaxcdcl (wcnf)...
+  grid6x6-4-pkg4-p1-6: ok 593.7s H=21 cost 126
+  grid6x6-4-pkg1-p1-6: timeout 1830.2s Found a plan with 35 time slices. | Minimizing cost at 35 time slices with wmaxcdcl (wcnf)...
+  grid6x6-4-pkg1-p1-5: timeout 1830.2s Found a plan with 34 time slices. | Minimizing cost at 34 time slices with wmaxcdcl (wcnf)...
+6x6: 6 run(s) hit the 1800 s limit; no larger size is tried at this limit
+done
+=== 2026-10-25 18:36:57 FiFO and weighted-CNF files, 1800s per problem
+18:37:41 grid7x7-1: ok H=19 826527 clauses, instantiate 18.27 s 
+18:38:33 grid7x7-2: ok H=23 1009423 clauses, instantiate 22.28 s 
+18:39:29 grid7x7-3: ok H=25 1101351 clauses, instantiate 23.36 s 
+18:40:11 grid7x7-4: ok H=18 780899 clauses, instantiate 17.3 s 
+18:41:52 grid8x8-1: ok H=27 1960817 clauses, instantiate 40.57 s 
+18:43:22 grid8x8-2: ok H=24 1734249 clauses, instantiate 36.54 s 
+18:45:14 grid8x8-3: ok H=30 2187249 clauses, instantiate 45.68 s 
+18:46:43 grid8x8-4: ok H=24 1734433 clauses, instantiate 36.43 s 
+18:49:31 grid9x9-1: ok H=28 3174747 clauses, instantiate 64.91 s 
+18:52:17 grid9x9-2: ok H=28 3175179 clauses, instantiate 64.91 s 
+18:54:47 grid9x9-3: ok H=26 2939419 clauses, instantiate 59.81 s 
+18:57:34 grid9x9-4: ok H=29 3291639 clauses, instantiate 66.93 s 
+19:02:23 grid10x10-1: ok H=31 5270553 clauses, instantiate 108.46 s 
+19:06:31 grid10x10-2: ok H=27 4567065 clauses, instantiate 94.31 s 
+19:11:10 grid10x10-3: ok H=30 5095817 clauses, instantiate 104.33 s 
+19:16:12 grid10x10-4: ok H=33 5621369 clauses, instantiate 116.66 s 
+19:21:43 grid11x11-1: ok H=25 6081687 clauses, instantiate 125.64 s 
+19:29:47 grid11x11-2: ok H=35 8612143 clauses, instantiate 179.25 s 
+19:36:48 grid11x11-3: ok H=31 7599999 clauses, instantiate 160.17 s 
+19:45:03 grid11x11-4: ok H=36 8866539 clauses, instantiate 186.5 s 
+19:54:05 grid12x12-1: failed H=35 - clauses, instantiate 255.41 s   28:     0x108eb00c8 pc=0x80030504f0 {0x80030501a0+0350} (FLET "WITHOUT-INTERRUPTS-BODY-3" :IN SB-IMPL::START-LISP) |   29:     0x108eb0000 pc=0x8003050370 {0x80030501a0+01d0} SB-IMPL::%START-LISP
+20:11:28 grid12x12-2: failed H=64 - clauses, instantiate 542.4 s   28:     0x106ff00c8 pc=0x80030504f0 {0x80030501a0+0350} (FLET "WITHOUT-INTERRUPTS-BODY-3" :IN SB-IMPL::START-LISP) |   29:     0x106ff0000 pc=0x8003050370 {0x80030501a0+01d0} SB-IMPL::%START-LISP

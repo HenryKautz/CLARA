@@ -23,3 +23,10 @@ TwoPackage/goals/*.cnf
 TwoPackage/goals/*.map
 TwoPackage/goals/*.satout
 TwoPackage/goals/*.log
+# FourPackage: regenerable and far too large (scnf 7 GB, wcnf 2.5 GB with files
+# over GitHub's 100 MB limit): make-formats.py writes wcnf/ from wff/, and
+# run-plans.py --stage general rewrites general/*.{wcnf,map}
+FourPackage/scnf/
+FourPackage/wcnf/
+FourPackage/general/*.wcnf
+FourPackage/general/*.map

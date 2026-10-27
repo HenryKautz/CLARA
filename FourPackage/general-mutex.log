@@ -1,0 +1,21 @@
+=== 12:35:30 12x12: 4 general runs, 2 at a time
+  grid12x12-1: ok 166.1s H=10 cost 104
+  grid12x12-3: ok 91.3s H=6 cost 96
+  grid12x12-4: ok 112.7s H=8 cost 100
+  grid12x12-2: ok 532.5s H=18 cost 120
+=== 12:44:22 13x13: 4 general runs, 1 at a time
+  grid13x13-1: ok 328.2s H=17 cost 118
+  grid13x13-2: ok 323.5s H=19 cost 122
+  grid13x13-3: ok 356.7s H=16 cost 116
+  grid13x13-4: ok 219.7s H=12 cost 108
+=== 13:04:52 14x14: 4 general runs, 1 at a time
+  grid14x14-1: ok 319.3s H=14 cost 112
+  grid14x14-2: ok 204.1s H=11 cost 106
+  grid14x14-3: ok 617.7s H=21 cost 126
+  grid14x14-4: ok 376.5s H=17 cost 118
+=== 13:30:11 15x15: 4 general runs, 1 at a time
+  grid15x15-1: ok 1208.4s H=22 cost 128
+  grid15x15-2: ok 203.6s H=11 cost 106
+  grid15x15-3: timeout 1830.2s Found a plan with 23 time slices. | Minimizing cost at 23 time slices with wmaxcdcl (wcnf)...
+  grid15x15-4: ok 245.6s H=13 cost 110
+done

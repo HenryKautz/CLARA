@@ -1,0 +1,128 @@
+=== 14:29:13 chain: goals 12x12 (budget 4M, beside the 11x11 sweep)
+=== 14:29:13 12x12: 48 goals runs, 6 at a time within 4M predicted clauses
+  grid12x12-2-pkg1-p5-2: ok 1584.8s H=58 cost 294
+  grid12x12-2-pkg1-p1-4: ok 1693.0s H=64 cost 312
+  grid12x12-2-pkg4-p11-1: ok 878.5s H=41 cost 226
+  grid12x12-2-pkg2-p5-9: ok 972.7s H=39 cost 204
+  grid12x12-2-pkg1-p10-9: ok 1094.6s H=44 cost 240
+  grid12x12-3-pkg4-p12-2: ok 1252.4s H=39 cost 220
+  grid12x12-2-pkg2-p11-10: ok 1012.2s H=38 cost 196
+  grid12x12-3-pkg4-p12-4: ok 795.3s H=37 cost 204
+  grid12x12-1-pkg3-p2-8: ok 1049.2s H=35 cost 196
+  grid12x12-3-pkg1-p9-5: ok 767.5s H=35 cost 202
+  grid12x12-4-pkg1-p1-12: ok 774.6s H=35 cost 178
+  grid12x12-1-pkg3-p2-6: ok 964.4s H=33 cost 176
+  grid12x12-2-pkg3-p4-4: ok 721.4s H=33 cost 182
+  grid12x12-3-pkg1-p4-6: ok 716.7s H=33 cost 188
+  grid12x12-1-pkg3-p12-6: ok 809.3s H=31 cost 190
+  grid12x12-3-pkg2-p7-3: ok 730.2s H=31 cost 178
+  grid12x12-2-pkg4-p7-7: ok 655.7s H=29 cost 168
+  grid12x12-4-pkg3-p4-11: ok 752.2s H=28 cost 172
+  grid12x12-3-pkg1-p1-5: ok 721.9s H=27 cost 140
+  grid12x12-4-pkg1-p3-2: ok 799.6s H=27 cost 166
+  grid12x12-3-pkg2-p12-6: ok 1172.1s H=43 cost 236
+  grid12x12-3-pkg2-p2-5: ok 682.5s H=26 cost 138
+  grid12x12-1-pkg4-p10-4: ok 624.7s H=25 cost 156
+  grid12x12-2-pkg3-p12-6: ok 601.3s H=25 cost 140
+  grid12x12-4-pkg3-p5-7: ok 664.4s H=25 cost 158
+  grid12x12-4-pkg1-p4-6: ok 628.6s H=24 cost 146
+  grid12x12-2-pkg3-p6-7: ok 560.6s H=22 cost 128
+  grid12x12-4-pkg2-p9-8: ok 533.6s H=22 cost 144
+  grid12x12-1-pkg1-p12-7: ok 607.5s H=20 cost 132
+  grid12x12-4-pkg3-p10-3: ok 571.2s H=20 cost 124
+  grid12x12-1-pkg1-p5-7: ok 661.4s H=19 cost 130
+  grid12x12-4-pkg4-p6-7: ok 658.7s H=20 cost 124
+  grid12x12-1-pkg1-p8-7: ok 608.4s H=18 cost 120
+  grid12x12-1-pkg4-p9-10: ok 590.5s H=18 cost 128
+  grid12x12-2-pkg2-p6-3: ok 483.9s H=18 cost 120
+  grid12x12-1-pkg2-p10-1: ok 615.9s H=17 cost 118
+  grid12x12-1-pkg2-p9-4: ok 201.6s H=11 cost 106
+  grid12x12-4-pkg4-p10-10: ok 270.4s H=15 cost 114
+  grid12x12-4-pkg2-p5-4: ok 270.9s H=14 cost 112
+  grid12x12-1-pkg4-p6-6: ok 647.0s H=17 cost 126
+  grid12x12-2-pkg4-p7-1: ok 1422.3s H=47 cost 246
+  grid12x12-4-pkg2-p7-4: ok 169.7s H=8 cost 100
+  grid12x12-3-pkg3-p4-10: ok 209.8s H=11 cost 106
+  grid12x12-4-pkg4-p12-4: ok 167.4s H=9 cost 102
+  grid12x12-3-pkg3-p8-8: ok 212.7s H=11 cost 106
+  grid12x12-1-pkg2-p10-4: ok 188.6s H=10 cost 104
+  grid12x12-3-pkg3-p11-12: ok 110.4s H=6 cost 96
+  grid12x12-3-pkg4-p6-2: ok 1187.2s H=47 cost 256
+done
+=== 22:17:40 chain: goals 13x13-15x15 (budget 12M)
+=== 22:17:40 13x13: 48 goals runs, 6 at a time within 12M predicted clauses
+  grid13x13-3-pkg3-p3-3: timeout 1800.5s Found a plan with 41 time slices. | Minimizing cost at 41 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg3-p3-9: timeout 1800.5s Found a plan with 47 time slices. | Minimizing cost at 47 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg3-p5-9: timeout 1800.5s Found a plan with 47 time slices. | Minimizing cost at 47 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg3-p1-10: timeout 1800.6s Found a plan with 50 time slices. | Minimizing cost at 50 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-3-pkg3-p2-2: timeout 1800.6s Found a plan with 43 time slices. | Minimizing cost at 43 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-3-pkg2-p12-11: timeout 1800.6s Found a plan with 44 time slices. | Minimizing cost at 44 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg4-p4-12: timeout 1800.3s Found a plan with 38 time slices. | Minimizing cost at 38 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-3-pkg2-p10-3: timeout 1800.3s Can't handle sig11 in non-lisp thread 0x16f1eb000 @ 0x0 | 
+  grid13x13-3-pkg4-p1-10: timeout 1800.3s Found a plan with 36 time slices. | Minimizing cost at 36 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg2-p4-5: timeout 1830.5s Found a plan with 32 time slices. | Minimizing cost at 32 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-4-pkg3-p6-4: timeout 1830.5s Found a plan with 32 time slices. | Minimizing cost at 32 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-2-pkg1-p1-13: timeout 1830.4s Found a plan with 33 time slices. | Minimizing cost at 33 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg4-p9-10: timeout 1830.2s Found a plan with 31 time slices. | Minimizing cost at 31 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg4-p10-11: timeout 1830.2s Found a plan with 31 time slices. | Minimizing cost at 31 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-1-pkg2-p13-3: timeout 1830.2s Found a plan with 31 time slices. | Minimizing cost at 31 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-2-pkg4-p8-6: timeout 1830.2s Found a plan with 31 time slices. | Minimizing cost at 31 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-3-pkg4-p3-11: timeout 1830.3s Found a plan with 31 time slices. | Minimizing cost at 31 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-2-pkg1-p2-11: timeout 1830.3s Found a plan with 30 time slices. | Minimizing cost at 30 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid13x13-3-pkg4-p4-1: ok 1702.2s H=28 cost 148
+  grid13x13-2-pkg3-p12-12: ok 1705.3s H=28 cost 184
+  grid13x13-2-pkg2-p11-10: ok 1702.9s H=29 cost 186
+  grid13x13-4-pkg1-p11-11: ok 1724.8s H=29 cost 182
+  grid13x13-4-pkg3-p11-6: ok 1719.5s H=29 cost 164
+  grid13x13-3-pkg2-p5-4: ok 1754.4s H=30 cost 190
+  grid13x13-4-pkg1-p6-5: ok 1633.8s H=28 cost 172
+  grid13x13-2-pkg3-p12-11: ok 1546.7s H=27 cost 178
+  grid13x13-2-pkg1-p5-13: ok 1589.2s H=27 cost 164
+  grid13x13-1-pkg2-p6-7: ok 1473.6s H=26 cost 166
+  grid13x13-2-pkg4-p9-8: ok 1351.1s H=26 cost 162
+  grid13x13-2-pkg4-p10-11: ok 1460.0s H=26 cost 158
+  grid13x13-2-pkg2-p4-9: ok 1195.7s H=21 cost 126
+  grid13x13-3-pkg1-p6-8: ok 1194.5s H=21 cost 126
+  grid13x13-2-pkg3-p12-5: ok 1280.5s H=23 cost 130
+  grid13x13-3-pkg3-p4-13: ok 1309.6s H=24 cost 132
+  grid13x13-4-pkg3-p8-10: ok 1307.8s H=24 cost 154
+  grid13x13-4-pkg1-p11-9: ok 1443.0s H=25 cost 170
+  grid13x13-1-pkg1-p9-12: ok 1070.7s H=19 cost 122
+  grid13x13-4-pkg2-p12-7: ok 1145.3s H=20 cost 128
+  grid13x13-2-pkg2-p1-8: ok 956.5s H=19 cost 122
+  grid13x13-3-pkg1-p9-9: ok 884.8s H=19 cost 122
+  grid13x13-4-pkg2-p3-9: ok 832.9s H=19 cost 122
+  grid13x13-4-pkg4-p7-13: ok 760.4s H=19 cost 124
+  grid13x13-4-pkg4-p8-9: ok 373.3s H=12 cost 108
+  grid13x13-4-pkg4-p7-10: ok 469.4s H=14 cost 112
+  grid13x13-1-pkg1-p2-7: ok 739.6s H=17 cost 118
+  grid13x13-3-pkg1-p9-6: ok 581.3s H=16 cost 116
+  grid13x13-1-pkg1-p8-4: ok 794.5s H=18 cost 120
+  grid13x13-4-pkg2-p5-12: ok 561.7s H=16 cost 116
+=== 05:12:55 14x14: 48 goals runs, 6 at a time within 12M predicted clauses
+  grid14x14-4-pkg1-p1-12: timeout 1800.5s Can't handle sig11 in non-lisp thread 0x16b7df000 @ 0x0 | 
+  grid14x14-3-pkg3-p12-3: timeout 1800.5s Can't handle sig11 in non-lisp thread 0x16fbb3000 @ 0x0 | 
+  grid14x14-3-pkg2-p3-1: timeout 1800.6s Wrote /private/tmp/claude-501/fp-plans-mutex/goal-grid14x14-3-pkg2-p3-1/grid14x14-3-pkg2-p3-1.wff | Trying 42 time slices with kissat (cnf)...
+  grid14x14-3-pkg4-p9-11: timeout 1800.6s Wrote /private/tmp/claude-501/fp-plans-mutex/goal-grid14x14-3-pkg4-p9-11/grid14x14-3-pkg4-p9-11.wff | Trying 48 time slices with kissat (cnf)...
+  grid14x14-3-pkg2-p1-3: timeout 1800.6s Wrote /private/tmp/claude-501/fp-plans-mutex/goal-grid14x14-3-pkg2-p1-3/grid14x14-3-pkg2-p1-3.wff | Trying 44 time slices with kissat (cnf)...
+  grid14x14-3-pkg2-p2-3: timeout 1800.7s Wrote /private/tmp/claude-501/fp-plans-mutex/goal-grid14x14-3-pkg2-p2-3/grid14x14-3-pkg2-p2-3.wff | Trying 43 time slices with kissat (cnf)...
+  grid14x14-3-pkg3-p6-5: timeout 1800.5s Found a plan with 35 time slices. | Minimizing cost at 35 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-1-pkg2-p10-1: timeout 1800.5s Found a plan with 39 time slices. | Minimizing cost at 39 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg2-p9-14: timeout 1800.5s Found a plan with 40 time slices. | Minimizing cost at 40 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-3-pkg4-p6-5: timeout 1800.6s Found a plan with 35 time slices. | Minimizing cost at 35 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-3-pkg3-p3-8: timeout 1800.6s Found a plan with 37 time slices. | Minimizing cost at 37 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-3-pkg4-p5-3: timeout 1800.6s Found a plan with 34 time slices. | Minimizing cost at 34 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg1-p1-14: timeout 10989.7s Found a plan with 28 time slices. | Minimizing cost at 28 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-1-pkg2-p14-11: timeout 10989.8s Can't handle sig11 in non-lisp thread 0x16bc33000 @ 0x0 | 
+  grid14x14-4-pkg4-p5-12: timeout 10989.8s Found a plan with 30 time slices. | Minimizing cost at 30 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg2-p7-12: timeout 10989.8s Found a plan with 28 time slices. | Minimizing cost at 28 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-3-pkg1-p3-13: timeout 10989.8s Found a plan with 28 time slices. | Minimizing cost at 28 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg4-p5-10: timeout 10989.9s Found a plan with 28 time slices. | Minimizing cost at 28 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg2-p3-6: timeout 3967.7s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg1-p14-5: timeout 3967.7s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-1-pkg4-p12-14: timeout 3967.8s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-4-pkg1-p8-3: timeout 3967.6s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-1-pkg2-p7-10: timeout 3967.9s Found a plan with 27 time slices. | Minimizing cost at 27 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+  grid14x14-2-pkg3-p2-13: timeout 3967.7s Found a plan with 26 time slices. | Minimizing cost at 26 time slices with tt-open-wbo-inc-Glucose4_1 (wcnf)...
+=== 11:14:37 chain2: goals 13x13-15x15 (budget 5M, limit 3600 s)
+=== 11:14:37 13x13: 18 goals runs, 6 at a time within 5M predicted clauses

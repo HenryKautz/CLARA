@@ -1,0 +1,15 @@
+{"problem": "grid6x6-1", "horizon": 6, "solver": "tt-open-wbo-inc-Glucose4_1", "kind": "anytime", "limit_s": 600, "wall_s": 8.89, "cost": "96", "solved": true}
+{"problem": "grid6x6-1", "horizon": 6, "solver": "nuwls-c", "kind": "anytime", "limit_s": 600, "wall_s": 8.84, "cost": "96", "solved": true}
+{"problem": "grid6x6-1", "horizon": 6, "solver": "wmaxcdcl", "kind": "exact", "limit_s": 600, "wall_s": 6.69, "cost": "96", "solved": true}
+{"problem": "grid6x6-1", "horizon": 6, "solver": "EvalMaxSAT_bin", "kind": "exact", "limit_s": 600, "wall_s": 6.79, "cost": "96", "solved": true}
+{"problem": "grid6x6-1", "horizon": 6, "solver": "rc2-maxsat.py", "kind": "exact", "limit_s": 600, "wall_s": 6.96, "cost": "96", "solved": true}
+{"problem": "grid8x8-1", "horizon": 12, "solver": "tt-open-wbo-inc-Glucose4_1", "kind": "anytime", "limit_s": 600, "wall_s": 45.79, "cost": "108", "solved": true}
+{"problem": "grid8x8-1", "horizon": 12, "solver": "nuwls-c", "kind": "anytime", "limit_s": 600, "wall_s": 50.46, "cost": "108", "solved": true}
+{"problem": "grid8x8-1", "horizon": 12, "solver": "wmaxcdcl", "kind": "exact", "limit_s": 600, "wall_s": 43.86, "cost": "108", "solved": true}
+{"problem": "grid8x8-1", "horizon": 12, "solver": "EvalMaxSAT_bin", "kind": "exact", "limit_s": 600, "wall_s": 48.4, "cost": "108", "solved": true}
+{"problem": "grid8x8-1", "horizon": 12, "solver": "rc2-maxsat.py", "kind": "exact", "limit_s": 600, "wall_s": 35.98, "cost": "108", "solved": true}
+{"problem": "grid10x10-1", "horizon": 11, "solver": "tt-open-wbo-inc-Glucose4_1", "kind": "anytime", "limit_s": 600, "wall_s": 85.39, "cost": "106", "solved": true}
+{"problem": "grid10x10-1", "horizon": 11, "solver": "nuwls-c", "kind": "anytime", "limit_s": 600, "wall_s": 80.72, "cost": "106", "solved": true}
+{"problem": "grid10x10-1", "horizon": 11, "solver": "wmaxcdcl", "kind": "exact", "limit_s": 600, "wall_s": 73.66, "cost": "106", "solved": true}
+{"problem": "grid10x10-1", "horizon": 11, "solver": "EvalMaxSAT_bin", "kind": "exact", "limit_s": 600, "wall_s": 74.23, "cost": "106", "solved": true}
+{"problem": "grid10x10-1", "horizon": 11, "solver": "rc2-maxsat.py", "kind": "exact", "limit_s": 600, "wall_s": 74.5, "cost": "106", "solved": true}
