@@ -1,0 +1,6 @@
+=== 2026-10-28 09:48:11 formats 15x15, limit 7200 s
+10:50:22 grid15x15-1: ok H=79 ~3.9M predicted, 3775647 clauses 
+11:29:17 grid15x15-2: ok H=54 ~2.7M predicted, 2563933 clauses 
+12:12:36 grid15x15-3: ok H=59 ~2.9M predicted, 2807655 clauses 
+done
+=== 2026-10-28 12:12:36 done

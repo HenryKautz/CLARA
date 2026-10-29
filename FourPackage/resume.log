@@ -1,0 +1,167 @@
+=== 2026-10-27 11:58:22 general grid15x15-3 with EvalMaxSAT_bin (wmaxcdcl timed out)
+=== 11:58:22 15x15: 1 general runs, 1 at a time
+  grid15x15-3: ok 1224.8s H=23 cost 130
+done
+=== 2026-10-27 12:18:48 clamped goals 13x13-15x15: 8 at once, budget 16M, 3600s
+=== 12:18:48 13x13: 18 goals runs, 8 at a time within 16M predicted clauses
+  grid13x13-3-pkg2-p12-11: failed 1428.8s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 44 slices | FAILED: the problem could not be solved.
+  grid13x13-3-pkg2-p10-3: ok 1228.0s H=36 cost 204
+  grid13x13-1-pkg4-p4-12: ok 1240.4s H=38 cost 218
+  grid13x13-3-pkg3-p3-3: ok 1319.9s H=41 cost 220
+  grid13x13-3-pkg3-p2-2: ok 1399.3s H=43 cost 242
+  grid13x13-1-pkg3-p5-9: ok 1519.6s H=47 cost 228
+  grid13x13-1-pkg3-p3-9: ok 1536.2s H=47 cost 264
+  grid13x13-3-pkg4-p1-10: ok 1176.5s H=36 cost 212
+  grid13x13-1-pkg3-p1-10: ok 1598.0s H=50 cost 246
+  grid13x13-2-pkg1-p1-13: ok 1093.9s H=33 cost 188
+  grid13x13-1-pkg2-p4-5: ok 1066.7s H=32 cost 186
+  grid13x13-4-pkg3-p6-4: ok 1115.3s H=32 cost 186
+  grid13x13-1-pkg2-p13-3: ok 1042.8s H=31 cost 188
+  grid13x13-1-pkg4-p9-10: ok 1076.2s H=31 cost 186
+  grid13x13-1-pkg4-p10-11: ok 1067.6s H=31 cost 190
+  grid13x13-2-pkg4-p8-6: ok 1064.4s H=31 cost 192
+  grid13x13-3-pkg4-p3-11: ok 1037.0s H=31 cost 186
+  grid13x13-2-pkg1-p2-11: ok 1009.3s H=30 cost 190
+=== 14:58:29 14x14: 48 goals runs, 8 at a time within 16M predicted clauses
+  grid14x14-4-pkg1-p1-12: failed 1026.0s planner: SAT solver kissat failed at 44 slices | FAILED: the problem could not be solved.
+  grid14x14-3-pkg3-p12-3: failed 2172.9s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 51 slices | FAILED: the problem could not be solved.
+  grid14x14-1-pkg2-p10-1: ok 1595.0s H=39 cost 228
+  grid14x14-2-pkg2-p9-14: ok 1636.3s H=40 cost 224
+  grid14x14-3-pkg2-p3-1: ok 1734.9s H=42 cost 228
+  grid14x14-3-pkg2-p2-3: ok 1917.4s H=43 cost 238
+  grid14x14-3-pkg3-p3-8: ok 1544.4s H=37 cost 218
+  grid14x14-3-pkg2-p1-3: ok 1832.9s H=44 cost 242
+  grid14x14-3-pkg4-p9-11: ok 2053.8s H=48 cost 258
+  grid14x14-3-pkg3-p6-5: ok 1438.5s H=35 cost 204
+  grid14x14-2-pkg1-p1-14: ok 1185.9s H=28 cost 168
+  grid14x14-4-pkg4-p5-12: ok 1279.0s H=30 cost 182
+  grid14x14-2-pkg2-p7-12: ok 1189.3s H=28 cost 180
+  grid14x14-1-pkg2-p14-11: ok 1238.0s H=29 cost 174
+  grid14x14-3-pkg4-p5-3: ok 1419.6s H=34 cost 208
+  grid14x14-3-pkg4-p6-5: ok 1472.2s H=35 cost 206
+  grid14x14-2-pkg4-p5-10: ok 1208.8s H=28 cost 182
+  grid14x14-3-pkg1-p3-13: ok 1183.3s H=28 cost 140
+  grid14x14-1-pkg4-p12-14: ok 1115.4s H=26 cost 170
+  grid14x14-2-pkg1-p14-5: ok 1108.3s H=26 cost 170
+  grid14x14-1-pkg2-p7-10: ok 1170.2s H=27 cost 178
+  grid14x14-2-pkg2-p3-6: ok 1115.5s H=26 cost 168
+  grid14x14-2-pkg3-p2-13: ok 1112.0s H=26 cost 152
+  grid14x14-4-pkg1-p8-3: ok 1120.3s H=26 cost 164
+  grid14x14-1-pkg4-p10-11: ok 1079.3s H=25 cost 170
+  grid14x14-4-pkg2-p13-2: ok 1120.3s H=26 cost 172
+  grid14x14-4-pkg3-p9-10: ok 1039.0s H=24 cost 166
+  grid14x14-1-pkg3-p7-11: ok 1012.9s H=23 cost 160
+  grid14x14-2-pkg1-p4-12: ok 1003.8s H=23 cost 130
+  grid14x14-2-pkg4-p2-2: ok 1011.1s H=23 cost 130
+  grid14x14-1-pkg4-p10-3: ok 1076.4s H=25 cost 166
+  grid14x14-4-pkg4-p8-9: ok 1045.3s H=24 cost 166
+  grid14x14-4-pkg3-p12-2: ok 1022.9s H=23 cost 156
+  grid14x14-4-pkg1-p10-4: ok 1034.8s H=23 cost 160
+  grid14x14-3-pkg1-p4-10: ok 968.4s H=22 cost 128
+  grid14x14-1-pkg1-p9-7: ok 951.1s H=21 cost 126
+  grid14x14-2-pkg4-p9-3: ok 937.5s H=21 cost 150
+  grid14x14-4-pkg2-p11-4: ok 969.9s H=22 cost 160
+  grid14x14-4-pkg3-p5-12: ok 970.3s H=22 cost 150
+  grid14x14-4-pkg4-p5-8: ok 973.8s H=22 cost 150
+  grid14x14-1-pkg1-p5-4: ok 905.7s H=20 cost 124
+  grid14x14-3-pkg1-p11-2: ok 945.7s H=21 cost 126
+  grid14x14-2-pkg3-p1-1: ok 320.0s H=11 cost 106
+  grid14x14-1-pkg1-p8-1: ok 422.3s H=14 cost 112
+  grid14x14-1-pkg3-p13-8: ok 590.5s H=18 cost 120
+  grid14x14-4-pkg2-p11-3: ok 687.5s H=17 cost 118
+  grid14x14-2-pkg3-p10-2: ok 864.7s H=19 cost 122
+  grid14x14-1-pkg3-p13-12: ok 901.0s H=20 cost 124
+=== 20:57:43 15x15: 48 goals runs, 8 at a time within 16M predicted clauses
+  grid15x15-1-pkg2-p4-6: failed 2199.5s planner: SAT solver kissat failed at 79 slices | FAILED: the problem could not be solved.
+  grid15x15-2-pkg1-p15-7: failed 2783.5s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 54 slices | FAILED: the problem could not be solved.
+  grid15x15-3-pkg4-p14-12: failed 3236.2s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 59 slices | FAILED: the problem could not be solved.
+  grid15x15-1-pkg2-p13-5: failed 2368.0s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 43 slices | FAILED: the problem could not be solved.
+  grid15x15-3-pkg4-p11-5: ok 2426.2s H=47 cost 248
+  grid15x15-2-pkg1-p9-8: ok 2469.2s H=47 cost 252
+  grid15x15-2-pkg3-p9-9: ok 2204.6s H=42 cost 230
+  grid15x15-2-pkg2-p14-10: ok 2072.4s H=40 cost 226
+  grid15x15-1-pkg3-p4-3: ok 2309.9s H=44 cost 248
+  grid15x15-3-pkg1-p2-1: ok 2098.8s H=40 cost 224
+  grid15x15-4-pkg4-p4-3: failed 1922.6s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 36 slices | FAILED: the problem could not be solved.
+  grid15x15-3-pkg4-p4-7: ok 2110.5s H=40 cost 230
+  grid15x15-1-pkg2-p13-2: ok 1947.4s H=38 cost 214
+  grid15x15-2-pkg1-p2-6: ok 1945.3s H=38 cost 218
+  grid15x15-3-pkg1-p5-2: ok 1849.1s H=36 cost 198
+  grid15x15-1-pkg4-p3-5: ok 1802.0s H=35 cost 216
+  grid15x15-4-pkg2-p6-13: ok 2022.4s H=38 cost 210
+  grid15x15-1-pkg1-p12-8: failed 1701.1s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 33 slices | FAILED: the problem could not be solved.
+  grid15x15-1-pkg1-p11-2: ok 2418.2s H=46 cost 242
+  grid15x15-2-pkg2-p9-14: ok 1831.1s H=35 cost 216
+  grid15x15-4-pkg4-p1-9: ok 1799.1s H=35 cost 188
+  grid15x15-1-pkg1-p6-5: ok 1774.8s H=34 cost 208
+  grid15x15-2-pkg2-p9-1: ok 1778.5s H=34 cost 206
+  grid15x15-2-pkg3-p3-10: ok 1606.8s H=31 cost 192
+  grid15x15-2-pkg3-p3-8: ok 1702.5s H=33 cost 196
+  grid15x15-4-pkg1-p8-8: failed 1511.7s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 29 slices | FAILED: the problem could not be solved.
+  grid15x15-3-pkg1-p8-5: ok 1562.4s H=30 cost 186
+  grid15x15-3-pkg2-p13-12: ok 1566.8s H=30 cost 180
+  grid15x15-1-pkg4-p8-5: failed 1581.4s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 28 slices | FAILED: the problem could not be solved.
+  grid15x15-3-pkg3-p7-14: ok 1583.5s H=30 cost 188
+  grid15x15-4-pkg1-p10-9: ok 1571.3s H=30 cost 176
+  grid15x15-1-pkg3-p10-14: ok 1516.0s H=29 cost 192
+  grid15x15-3-pkg3-p4-1: ok 1502.8s H=28 cost 152
+  grid15x15-2-pkg4-p5-7: ok 1411.9s H=27 cost 138
+  grid15x15-1-pkg4-p10-14: ok 1245.9s H=23 cost 130
+  grid15x15-3-pkg3-p6-4: ok 1236.4s H=23 cost 130
+  grid15x15-3-pkg2-p11-15: ok 1425.5s H=27 cost 142
+  grid15x15-3-pkg2-p9-14: ok 1375.3s H=26 cost 136
+  grid15x15-4-pkg4-p1-13: ok 1438.7s H=27 cost 166
+  grid15x15-4-pkg1-p9-5: ok 1246.0s H=23 cost 152
+  grid15x15-4-pkg2-p14-2: ok 525.8s H=13 cost 110
+  grid15x15-2-pkg4-p11-6: ok 972.1s H=18 cost 120
+  grid15x15-4-pkg2-p14-8: ok 1233.7s H=23 cost 138
+  grid15x15-4-pkg3-p4-6: ok 1051.5s H=19 cost 122
+  grid15x15-1-pkg3-p14-11: ok 1187.9s H=22 cost 128
+  grid15x15-4-pkg3-p8-15: ok 1198.2s H=22 cost 142
+  grid15x15-4-pkg3-p2-12: ok 1140.8s H=21 cost 130
+  grid15x15-2-pkg4-p13-1: ok 424.7s H=11 cost 106
+done
+=== 2026-10-28 05:38:05 FiFO and weighted-CNF files 12x12-15x15
+05:46:25 grid12x12-1: ok H=35 ~1.1M predicted, 1046057 clauses 
+06:02:57 grid12x12-2: ok H=64 ~2.0M predicted, 1936005 clauses 
+06:14:32 grid12x12-3: ok H=47 ~1.5M predicted, 1413373 clauses 
+06:22:51 grid12x12-4: ok H=35 ~1.1M predicted, 1045377 clauses 
+06:39:49 grid13x13-1: ok H=50 ~1.9M predicted, 1775043 clauses 
+06:50:27 grid13x13-2: ok H=33 ~1.2M predicted, 1158999 clauses 
+07:05:04 grid13x13-3: ok H=44 ~1.6M predicted, 1555411 clauses 
+07:15:19 grid13x13-4: ok H=32 ~1.2M predicted, 1123805 clauses 
+07:32:25 grid14x14-1: ok H=39 ~1.7M predicted, 1596981 clauses 
+07:50:03 grid14x14-2: ok H=40 ~1.7M predicted, 1641471 clauses 
+08:13:13 grid14x14-3: ok H=51 ~2.2M predicted, 2103409 clauses 
+08:32:48 grid14x14-4: ok H=44 ~1.9M predicted, 1808585 clauses 
+08:47:56 grid15x15-1: failed H=79 ~3.9M predicted, - clauses perl: warning: Falling back to the standard locale ("C"). | Wrote /tmp/fourpackage/fp-formats/grid15x15-1/rec/rec-problem.wff
+09:03:04 grid15x15-2: failed H=54 ~2.7M predicted, - clauses perl: warning: Falling back to the standard locale ("C"). | Wrote /tmp/fourpackage/fp-formats/grid15x15-2/rec/rec-problem.wff
+09:18:13 grid15x15-3: failed H=59 ~2.9M predicted, - clauses perl: warning: Falling back to the standard locale ("C"). | Wrote /tmp/fourpackage/fp-formats/grid15x15-3/rec/rec-problem.wff
+09:40:04 grid15x15-4: ok H=38 ~1.9M predicted, 1791887 clauses 
+done
+=== 2026-10-28 09:40:04 evidence for every goal planned ok
+  grid10x10-1-pkg1-p4-6: K=[2, 4, 8] ok
+  grid10x10-1-pkg1-p5-3: K=[2, 4, 8] ok
+  grid10x10-1-pkg1-p7-6: K=[2, 4, 8] ok
+  grid10x10-1-pkg2-p10-9: K=[2, 4, 8] ok
+  grid10x10-1-pkg2-p6-7: K=[2, 4, 8] ok
+  grid10x10-1-pkg2-p7-1: K=[2, 4, 8] ok
+  grid10x10-1-pkg3-p1-2: K=[2, 4, 8] ok
+  grid10x10-1-pkg3-p4-4: K=[2, 4, 8] ok
+  grid10x10-1-pkg3-p6-2: K=[2, 4, 8] ok
+  grid10x10-1-pkg4-p10-5: K=[2, 4, 8] ok
+  grid10x10-1-pkg4-p2-7: K=[2, 4, 8] ok
+  grid10x10-1-pkg4-p7-1: K=[2, 4, 8] ok
+  grid10x10-2-pkg1-p7-2: K=[2, 4, 8] ok
+  grid10x10-2-pkg1-p8-6: K=[2, 4, 8] ok
+  grid10x10-2-pkg1-p9-1: K=[2, 4, 8] ok
+  grid10x10-2-pkg2-p3-5: K=[2, 4, 8] ok
+  grid10x10-2-pkg2-p4-2: K=[2, 4, 8] ok
+  grid10x10-2-pkg2-p8-8: K=[2, 4, 8] ok
+  grid10x10-2-pkg3-p10-9: K=[2, 4, 8] ok
+  grid10x10-2-pkg3-p9-3: K=[2, 4, 8] ok
+  grid10x10-2-pkg3-p9-5: K=[2, 4, 8] ok
+  grid10x10-2-pkg4-p2-6: K=[2, 4, 8] ok
+  grid10x10-2-pkg4-p4-3: K=[2, 4, 8] ok
+  grid10x10-2-pkg4-p8-7: K=[2, 4, 8] ok
+slurmstepd: error: *** JOB 6744341 ON affogato05 CANCELLED AT 2026-10-28T12:15:15 ***

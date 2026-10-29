@@ -1,0 +1,22 @@
+=== 2026-10-28 12:15:38 rerun failed goals 13-15, solver cap 1800 s
+=== 12:15:38 13x13: 1 goals runs, 8 at a time within 16M predicted clauses
+  grid13x13-3-pkg2-p12-11: ok 2699.8s H=44 cost 240
+=== 13:41:28 14x14: 2 goals runs, 8 at a time within 16M predicted clauses
+  grid14x14-4-pkg1-p1-12: ok 3253.1s H=44 cost 230
+  grid14x14-3-pkg3-p12-3: ok 3352.7s H=51 cost 270
+=== 15:44:43 15x15: 8 goals runs, 8 at a time within 16M predicted clauses
+  grid15x15-1-pkg1-p12-8: ok 3198.5s H=33 cost 198
+  grid15x15-1-pkg2-p4-6: failed 7442.2s planner: weighted solver tt-open-wbo-inc-Glucose4_1 failed at 79 slices | FAILED: the problem could not be solved.
+  grid15x15-4-pkg4-p4-3: ok 3429.4s H=36 cost 202
+  grid15x15-1-pkg2-p13-5: ok 3857.4s H=43 cost 244
+  grid15x15-2-pkg1-p15-7: ok 4299.8s H=54 cost 244
+  grid15x15-3-pkg4-p14-12: ok 4745.6s H=59 cost 280
+  grid15x15-1-pkg4-p8-5: ok 3076.4s H=28 cost 140
+  grid15x15-4-pkg1-p8-8: ok 3025.3s H=29 cost 182
+done
+=== 2026-10-28 19:27:48 done
+=== 2026-10-28 19:29:26 last goal, solver cap 7200 s
+=== 19:29:26 15x15: 1 goals runs, 1 at a time within 16M predicted clauses
+  grid15x15-1-pkg2-p4-6: ok 12536.5s H=79 cost 312
+done
+=== 2026-10-29 01:46:53 done

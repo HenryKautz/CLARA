@@ -1,0 +1,14 @@
+  grid12x12-1-pkg1-p12-7: K=[2, 4, 8] ok
+  grid12x12-1-pkg1-p5-7: K=[2, 4, 8] ok
+  grid12x12-1-pkg1-p8-7: K=[2, 4, 8] ok
+  grid12x12-1-pkg2-p10-1: K=[2, 4, 8] ok
+  grid12x12-1-pkg2-p10-4: K=[2, 4, 8] ok
+  grid12x12-1-pkg2-p9-4: K=[2, 4, 8] ok
+  grid12x12-1-pkg3-p12-6: K=[2, 4, 8] ok
+  grid12x12-1-pkg3-p2-6: K=[2, 4, 8] ok
+  grid12x12-1-pkg3-p2-8: K=[2, 4, 8] ok
+  grid12x12-1-pkg4-p10-4: K=[2, 4, 8] ok
+  grid12x12-1-pkg4-p6-6: K=[2, 4, 8] ok
+  grid12x12-1-pkg4-p9-10: K=[2, 4, 8] ok
+  grid12x12-2-pkg1-p1-4: K=[2, 4, 8] ok
+  grid12x12-2-pkg1-p10-9: K=[2, 4, 8] ok

@@ -140,8 +140,11 @@ def one(name, limit, max_clauses):
     t1 = sorted(o for o in at if o.startswith("truck"))[0]
     nxt = sorted(roads[at[t1]])[0]
     open(ev, "w").write(f"(and\n  (occurs (drive {t1} {at[t1]} {nxt}) 1))\n")
+    # --planner-timeout: recognize.sh's own watchdog was a fixed 900 s, which killed
+    # the 15x15 instantiations at 54-79 slices however large LIMIT was
     status, wall, out = run(["bash", RECOGNIZE, F.DOMAIN, src, ev, "--evidence-kind", "fifo",
                              "--horizon", str(H), "--stop-after", "scnf",
+                             "--planner-timeout", str(limit),
                              "--out", os.path.join(work, "rec")], work, limit, log)
     rec["instantiate_s"] = round(wall, 2)
     theory = os.path.join(work, "rec", "rec-problem.scnf")
