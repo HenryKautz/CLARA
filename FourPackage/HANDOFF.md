@@ -46,11 +46,17 @@ pairwise and linear all reach the same optimum on all 24 problems; linear is
 
 | Stage | 6x6..11x11 | 12x12 | 13x13 | 14x14 | 15x15 |
 |---|---|---|---|---|---|
-| general (wmaxcdcl) | done | 4/4 | 4/4 | 4/4 | 3/4: **15x15-3 timed out** (1800 s, minimizing at H=23) |
-| goals (tt-open-wbo-inc, 300 s solver cap) | 48/48 each | 48/48 | **30/48** | **0/48** | **not started** |
-| formats | done | **todo** | **todo** | **todo** | **todo** |
-| evidence (`--stage evidence`) | needs rerun (old strict ordK) | | | | |
+| general (wmaxcdcl) | done | 4/4 | 4/4 | 4/4 | 4/4 (15x15-3 by EvalMaxSAT_bin, 1225 s, H=23) |
+| goals (tt-open-wbo-inc) | 48/48 each | 48/48 | 48/48 | 48/48 | 48/48 |
+| formats | done | 4/4 | 4/4 | 4/4 | 4/4 |
+| evidence (`--stage evidence`) | done | done | done | done | done |
 | recognition | 1 test run only | | | | |
+
+Updated 2026-10-29, after the server run (Slurm `cpu` partition). Eleven
+13x13-15x15 goals needed a solver limit above 300 s (1800 s; one, 7200 s);
+15x15-1/2/3 formats needed `recognize.sh --planner-timeout` (FiFO 4c43ec4).
+Results and the experiments not run for lack of time: `README.md` in this
+directory.
 
 13x13/14x14 goals failed on the laptop for machine reasons, not the encoding:
 6 goals at once on 16 GB swapped (SBCL ~2.5 GB each plus ~1 GB per million
@@ -103,4 +109,5 @@ set `FIFO_LISP` to a pre-MUTEX FiFO lisp, e.g. `git worktree` of FiFO c5b1d61),
 
 - R&G scope (subset of evidence, which sizes).
 - Whether `/code-review high` on FiFO's `parse-mutex` section and these scripts.
-- Updating CLARA README's FourPackage section once the tables are final.
+- ~~Updating CLARA README's FourPackage section once the tables are final.~~
+  Done 2026-10-29: `FourPackage/README.md`.
