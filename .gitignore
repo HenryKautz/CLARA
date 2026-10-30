@@ -12,6 +12,8 @@ SimpleGrid/circuits/grid9x9-4.dnnf
 TwoPackage/circuits/grid6x6-1.dnnf
 TwoPackage/circuits/grid6x6-3.dnnf
 TwoPackage/circuits/grid7x7-2.dnnf
+# ThreePackage likewise (see ThreePackage/README.md)
+ThreePackage/circuits/grid5x5-3.dnnf
 # make-fifo-files.py's scratch
 work-fifo-files/
 # run-benchmarks.py's scratch, and the binary circuits (the text .dnnf is kept)

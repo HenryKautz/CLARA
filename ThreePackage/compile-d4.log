@@ -25,3 +25,9 @@
   grid6x6-4: timeout 3614.1s (d4 3498.13s, peak 18335 MB, check -)
 6x6: grid6x6-1, grid6x6-2, grid6x6-3, grid6x6-4 did not compile within 3600s; no larger size is tried at this limit
 done
+5x5: 2 of 4 to compile
+  grid5x5-3: theory at horizon 22
+  grid5x5-4: theory at horizon 27
+  grid5x5-3: ok 1198.0s (d4 1148.45s, peak 6541 MB, check agrees)
+  grid5x5-4: ok 1684.5s (d4 1629.0s, peak 2979 MB, check timeout)
+done

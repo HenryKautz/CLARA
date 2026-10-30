@@ -180,8 +180,8 @@ Two runs of that same evidence file were then made by hand with no limit
 |---|--:|--:|--:|---|--:|--:|--:|--:|---|
 | grid5x5-1 | 18 | 8,492 | 37,961 | ok (limit 3600 s) | 214 s | 174 s | 93,041 | 560 MB | count (verify-count.py, 580 s) |
 | grid5x5-2 | 24 | 11,726 | 50,966 | ok (limit 3600 s) | 272 s | 182 s | 32,573 | 383 MB | unverified (count timed out at 7,200 s) |
-| grid5x5-3 | 22 | 10,716 | 46,735 | error (limit 3600 s) | 1,391 s | – | – | 6,541 MB | – |
-| grid5x5-4 | 27 | 13,553 | 57,674 | error (limit 3600 s) | 2,050 s | – | – | 2,978 MB | – |
+| grid5x5-3 | 22 | 10,716 | 46,735 | ok (limit 3600 s; FiFO 2b264a3) | 1,198 s | 1,148 s | 1,866,595 | 6,541 MB | count (603 s check) |
+| grid5x5-4 | 27 | 13,553 | 57,674 | ok (limit 3600 s; FiFO 2b264a3) | 1,684 s | 1,629 s | 311,315 | 2,979 MB | unverified (count timed out at 3,600 s) |
 | grid6x6-1 | 24 | 16,554 | 74,815 | timeout (limit 3600 s) | 3,605 s | – | – | 11,216 MB | – |
 | grid6x6-2 | 29 | 21,127 | 90,872 | timeout (limit 3600 s) | 3,608 s | – | – | 25,627 MB | – |
 | grid6x6-3 | 38 | 27,424 | 119,801 | timeout (limit 3600 s) | 3,611 s | – | – | 4,156 MB | – |
@@ -192,15 +192,28 @@ Two runs of that same evidence file were then made by hand with no limit
 projection given to d4 as a `c p show` line.)
 
 d4 compiled grid5x5-1 and grid5x5-2 in 3–5 minutes.  On grid5x5-3 and
-grid5x5-4 it produced a "projected" circuit that mentions an atom outside the
-projection (a `TSEITIN` atom of the mutex encoding) — d4 did not honour its
-projection — and FiFO refused it, on all three attempts, the same atom each
-time.  All four 6×6 compilations hit the 1-hour limit, so 7×7 was not tried.
-`verify-count.py` (TwoPackage's) checks the two circuits' model counts against
-sharpSAT's exact count of the theory, given 2 hours each.  grid5x5-1's agrees
-(1,295,682 models, counted in 580 s); grid5x5-2's count did not finish, so that
-circuit is **unverified** — d4 has returned wrong circuits before (SimpleGrid,
-from 8×8 on), so check it before relying on it.
+grid5x5-4 it first produced a "projected" circuit that mentions an atom outside
+the projection (a `TSEITIN` atom of the mutex encoding), and FiFO refused it, on
+all three attempts, the same atom each time.  The cause is a d4 bug: when its
+projected compiler reaches a component with no projected variable left, it
+writes that component's implied literals on the arc without filtering them to
+the projection.  FiFO 2b264a3 drops those literals in its importer, after
+checking that doing so is sound (decomposability, and determinism on the kept
+variables) — FiFO's `discussion.md`, "d4's projected dump leaks implied
+literals".  Rerun with it (`scripts/run-d4-fixed.sh`, 2026-10-30), both compiled,
+and grid5x5-3's circuit **agrees** with sharpSAT's exact count of the whole
+theory (179,559,483 models), so the repaired circuit is right.  All four 6×6
+compilations hit the 1-hour limit, so 7×7 was not tried.
+
+`verify-count.py` (TwoPackage's) checks circuits whose short count check did not
+finish, with 2 hours each.  grid5x5-1's agrees (1,295,682 models, 580 s);
+grid5x5-2's count did not finish, nor did grid5x5-4's 1-hour check, so those two
+circuits are **unverified**: d4 has returned wrong circuits before (SimpleGrid,
+from 8×8 on), so check them before relying on them.
+
+grid5x5-3's circuit (361 MB) is over GitHub's 100 MB limit, so it is committed as
+90 MB pieces; rebuild it with `cat grid5x5-3.dnnf.part-* > grid5x5-3.dnnf` in
+`circuits/`.
 
 ## Summary
 
@@ -212,8 +225,9 @@ the sense of being cheap to run:
   An untimed max-term run takes about 13 minutes at 5×5 and, at 4 observed
   actions, does not discriminate (posterior 1/8 for every goal); exact counting
   takes more than 3 hours.
-- **d4** compiles half the 5×5 theories, fails on the other half (an invalid
-  projection), and none at 6×6 within an hour.
+- **d4** compiles all four 5×5 theories, two of them only after FiFO's
+  workaround for a d4 projection bug, and none at 6×6 within an hour.  Two of
+  the four 5×5 circuits are verified against an exact count.
 
 Runs that would answer more, but were not made because of the time they take:
 max-term at 5×5 with a longer limit (≈13 min × 64 pinned files ≈ 14 CPU-hours,

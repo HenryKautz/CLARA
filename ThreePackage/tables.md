@@ -43,8 +43,8 @@
 |---|--:|--:|--:|---|--:|--:|--:|--:|---|
 | grid5x5-1 | 18 | 8,492 | 37,961 | ok (limit 3600 s) | 214 s | 174 s | 93,041 | 560 MB | count (verify-count.py, 580 s) |
 | grid5x5-2 | 24 | 11,726 | 50,966 | ok (limit 3600 s) | 272 s | 182 s | 32,573 | 383 MB | unverified (count timed out at 7,200 s) |
-| grid5x5-3 | 22 | 10,716 | 46,735 | error (limit 3600 s) | 1,391 s | – | – | 6,541 MB | – |
-| grid5x5-4 | 27 | 13,553 | 57,674 | error (limit 3600 s) | 2,050 s | – | – | 2,978 MB | – |
+| grid5x5-3 | 22 | 10,716 | 46,735 | ok (limit 3600 s) | 1,198 s | 1,148 s | 1,866,595 | 6,541 MB | count |
+| grid5x5-4 | 27 | 13,553 | 57,674 | ok (limit 3600 s) | 1,684 s | 1,629 s | 311,315 | 2,979 MB | unverified (count timed out) |
 | grid6x6-1 | 24 | 16,554 | 74,815 | timeout (limit 3600 s) | 3,605 s | – | – | 11,216 MB | – |
 | grid6x6-2 | 29 | 21,127 | 90,872 | timeout (limit 3600 s) | 3,608 s | – | – | 25,627 MB | – |
 | grid6x6-3 | 38 | 27,424 | 119,801 | timeout (limit 3600 s) | 3,611 s | – | – | 4,156 MB | – |
