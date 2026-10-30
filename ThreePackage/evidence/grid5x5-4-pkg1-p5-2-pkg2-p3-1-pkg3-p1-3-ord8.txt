@@ -1,0 +1,14 @@
+;; The first 8 actions of goals/grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p1-3.answer, an optimal plan for
+;; (and (at pkg1 p5-2) (at pkg2 p3-1) (at pkg3 p1-3)).  Written by scripts/plan-goals.py.
+;; Their order only, non-strict (two may share a step); ONE form,
+;; for recognize.sh --evidence-kind pddl.
+
+(occur-in-nonstrict-order
+  (drive truck1 p3-5 p4-5)
+  (drive truck1 p4-5 p5-5)
+  (drive truck1 p5-5 p5-4)
+  (load pkg1 truck1 p5-4)
+  (drive truck1 p5-4 p5-3)
+  (drive truck1 p5-3 p5-2)
+  (unload pkg1 truck1 p5-2)
+  (drive truck1 p5-2 p5-3))

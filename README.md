@@ -10,6 +10,7 @@ were made, and its results.
 |---|---|---|
 | `SimpleGrid/` | One truck on an N×N grid (3×3–10×10) heading for one of several destinations. | [SimpleGrid/README.md](SimpleGrid/README.md) |
 | `TwoPackage/` | One truck, two packages with two destinations each, 3×3–7×7; four hypotheses.  Recognition by max-term, SharpSAT-TD, MC-SAT and d4. | [TwoPackage/README.md](TwoPackage/README.md) |
+| `ThreePackage/` | One truck, three packages with two destinations each, all to be delivered, 5×5–7×7 with 20% of the roads knocked out; eight hypotheses (destination combinations).  Planning at every size; recognition and d4 stop at 5×5. | [ThreePackage/README.md](ThreePackage/README.md) |
 | `FourPackage/` | Two trucks, four packages with three destinations each, 6×6–15×15 with 40% of the roads knocked out; twelve hypotheses, preferences.  Planning at every size; recognition mostly not run (too slow). | [FourPackage/README.md](FourPackage/README.md) |
 | `AAAI-2010-Benchmarks/` | Ramírez & Geffner's BlockWords and IntrusionDetection, original and as recognition instances, with exact posteriors. | [AAAI-2010-Benchmarks/README.md](AAAI-2010-Benchmarks/README.md) |
 

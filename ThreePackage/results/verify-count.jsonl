@@ -1,0 +1,2 @@
+{"instance": "grid5x5-1", "limit_s": 7200.0, "cache_mb": 16000, "started": "2026-10-30T02:36:13", "circuit_count": 1295682, "cnf_vars": 8492, "cnf_clauses": 37961, "count_s": 579.5, "model_count": 1295682, "count_check": "agrees"}
+{"instance": "grid5x5-2", "limit_s": 7200.0, "cache_mb": 16000, "started": "2026-10-30T02:46:01", "circuit_count": 36686, "cnf_vars": 11726, "cnf_clauses": 50966, "count_s": 7200.0, "count_check": "timeout"}

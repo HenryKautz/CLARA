@@ -1,0 +1,18 @@
+288 runs to do (limit 600s, 14 jobs); stopped already: {}
+[1] timeout   604.0s  max-term    grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p4-3-obs4.txt
+    max-term stopped at 5x5: killing its 6 other run(s) there; none at 5x5 or larger is started
+[2] killed    606.1s  max-term    grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p5-4-obs4.txt
+[3] killed    608.2s  max-term    grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3-obs4.txt
+[4] killed    610.3s  max-term    grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p5-4-obs4.txt
+[5] killed    612.4s  max-term    grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p4-3-obs4.txt
+[6] killed    614.5s  max-term    grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p5-4-obs4.txt
+[7] killed    616.6s  max-term    grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p4-3-obs4.txt
+[8] error     622.1s  sharpsat-td grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p4-3-obs4.txt
+[9] error     621.1s  sharpsat-td grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p5-4-obs4.txt
+[10] error     620.1s  sharpsat-td grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3-obs4.txt
+[11] timeout   622.2s  sharpsat-td grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p5-4-obs4.txt
+    sharpsat-td stopped at 5x5: killing its 3 other run(s) there; none at 5x5 or larger is started
+[12] killed    624.3s  sharpsat-td grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p4-3-obs4.txt
+[13] killed    626.4s  sharpsat-td grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p5-4-obs4.txt
+[14] killed    628.5s  sharpsat-td grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p4-3-obs4.txt
+done

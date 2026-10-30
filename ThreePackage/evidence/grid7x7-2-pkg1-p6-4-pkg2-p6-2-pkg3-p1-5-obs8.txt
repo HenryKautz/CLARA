@@ -1,0 +1,14 @@
+;; The first 8 actions of goals/grid7x7-2-pkg1-p6-4-pkg2-p6-2-pkg3-p1-5.answer, an optimal plan for
+;; (and (at pkg1 p6-4) (at pkg2 p6-2) (at pkg3 p1-5)).  Written by scripts/plan-goals.py.
+;; Each action is pinned to its time step; ONE (and ...) form,
+;; for recognize.sh --evidence-kind fifo.
+
+(and
+  (occurs (drive truck1 p6-6 p6-5) 1)
+  (occurs (drive truck1 p6-5 p6-4) 2)
+  (occurs (drive truck1 p6-4 p7-4) 3)
+  (occurs (load pkg2 truck1 p7-4) 4)
+  (occurs (drive truck1 p7-4 p6-4) 5)
+  (occurs (drive truck1 p6-4 p6-3) 6)
+  (occurs (drive truck1 p6-3 p6-2) 7)
+  (occurs (unload pkg2 truck1 p6-2) 8))
