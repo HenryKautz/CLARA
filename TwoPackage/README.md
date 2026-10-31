@@ -4,6 +4,11 @@ Harder plan-recognition problems in the `clara-logistics` domain, made the same
 way as [SimpleGrid](../SimpleGrid/README.md) (`make-instances.sh N`).  The file
 types are described in the [top-level README](../README.md).
 
+**Domain name.** Made and solved with the `clara-logistics` of before
+2026-10-30, now FiFO's `clara-logistics-old` (free handling, `transfer`): every
+problem here names `(:domain clara-logistics-old)`, as do the scripts.  Nothing
+was regenerated -- see [SimpleGrid](../SimpleGrid/README.md#simplegrid).
+
 ## Layout
 
 ```
@@ -46,7 +51,7 @@ As for SimpleGrid, the first `N` actions of the cleaned plan, now any of
 `drive`, `load` and `unload`, for N = 1 up to the smaller of gridsize − 2 and
 the plan's length.  The true goal of `<problem>-<pkg>-<place>-obsN.txt` is the
 hypothesis `at-<pkg>-<place>`, e.g.
-`recognize.sh clara-logistics.pddl grid4x4-1.pddl evidence/grid4x4-1-pkg1-p2-3-obs2.txt --evidence-kind fifo`.
+`recognize.sh clara-logistics-old.pddl grid4x4-1.pddl evidence/grid4x4-1-pkg1-p2-3-obs2.txt --evidence-kind fifo`.
 
 ## Results
 

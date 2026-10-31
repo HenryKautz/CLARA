@@ -8,7 +8,7 @@
 ;;
 
 (define (problem grid5x5-1-pkg1-p4-1)
-  (:domain clara-logistics)
+  (:domain clara-logistics-old)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p1-5 p2-1 p2-2 p2-3 p2-4 p2-5 p3-1 p3-2 p3-3 p3-4 p3-5 p4-1 p4-2 p4-3 p4-4 p4-5 p5-1 p5-2 p5-3 p5-4 p5-5 - place

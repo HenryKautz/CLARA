@@ -22,7 +22,7 @@
 ;;   --seed 3
 
 (define (problem grid4x4-3)
-  (:domain clara-logistics)
+  (:domain clara-logistics-old)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p2-1 p2-2 p2-3 p2-4 p3-1 p3-2 p3-3 p3-4 p4-1 p4-2 p4-3 p4-4 - place

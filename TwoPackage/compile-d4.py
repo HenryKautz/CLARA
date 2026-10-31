@@ -55,7 +55,7 @@ RECOGNIZE = os.path.expanduser("~/bin/recognize.sh")
 MARGINALS = os.path.expanduser("~/bin/marginals.sh")
 SHIM = os.path.join(HERE, "shims")
 CRASHES = "/tmp/tp-d4-crashes"
-DOMAIN = "clara-logistics.pddl"
+DOMAIN = "clara-logistics-old.pddl"
 SIZES = ["3x3", "4x4", "5x5", "6x6", "7x7"]
 
 

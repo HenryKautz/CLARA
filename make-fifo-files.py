@@ -167,7 +167,7 @@ def one(j):
         else:   # as compile-d4.py: any legal first drive; the theory ignores it
             ev = os.path.join(work, "first-drive.txt")
             open(ev, "w").write("(and\n  (occurs (drive truck1 p1-1 p2-1) 1))\n")
-        cmd = ["bash", RECOGNIZE, "clara-logistics.pddl", j["problem"], ev,
+        cmd = ["bash", RECOGNIZE, "clara-logistics-old.pddl", j["problem"], ev,
                "--evidence-kind", "fifo", "--horizon", str(H),
                "--stop-after", "scnf", "--out", os.path.join(work, "rec")]
     r = subprocess.run(cmd, cwd=work, capture_output=True, text=True)

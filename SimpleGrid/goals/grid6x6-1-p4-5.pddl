@@ -8,7 +8,7 @@
 ;;
 
 (define (problem grid6x6-1-p4-5)
-  (:domain clara-logistics)
+  (:domain clara-logistics-old)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p1-5 p1-6 p2-1 p2-2 p2-3 p2-4 p2-5 p2-6 p3-1 p3-2 p3-3 p3-4 p3-5 p3-6 p4-1 p4-2 p4-3 p4-4 p4-5 p4-6 p5-1 p5-2 p5-3 p5-4 p5-5 p5-6 p6-1 p6-2 p6-3 p6-4 p6-5 p6-6 - place
