@@ -9,14 +9,19 @@ Each goal is planned twice, both by planner.sh (domain F/clara-logistics.pddl):
 
   tt    tt-open-wbo-inc-Glucose4_1 (anytime): planner.sh searches horizons
         upward with kissat for the SHORTEST feasible one, H, and minimises cost
-        there.  The search starts at the horizon the OldVersions plan of the
-        same goal had, minus one (the feasible horizons did not change: the new
-        domain only charges for load/unload and drops transfer, which needs two
-        vehicles at one place).  That slice count must be UNSAT and the next
-        SAT, which proves H shortest (a SatPlan plan stays a plan with an extra
-        idle slice, so feasibility is monotone in the horizon).  If the first
-        slice tried is already SAT the hint was wrong and the goal is planned
-        again with the full search.  -> goals/<goal>-tt.answer
+        there.  In a family with the same world as its source (SimpleGrid,
+        TwoPackage: common.Family.same_world) the search starts at the horizon
+        the OldVersions plan of the same goal had, minus one (the feasible
+        horizons did not change: the new domain only charges for load/unload
+        and drops transfer, which needs two vehicles at one place).  That
+        slice count must be UNSAT and the next SAT, which proves H shortest (a
+        SatPlan plan stays a plan with an extra idle slice, so feasibility is
+        monotone in the horizon).  If the first slice tried is already SAT the
+        hint was wrong and the goal is planned again with the full search.  In
+        a family whose roads changed (ThreePackage and FourPackage without
+        knockout, TwoPackageOneway) the old horizons are no guide, so there is
+        no hint and the search is the full one from the start.
+        -> goals/<goal>-tt.answer
   eval  EvalMaxSAT_bin (exact) at the same H (--numslices H): ok only when it
         PROVES its optimum within the solver limit.  -> goals/<goal>-eval.answer
 

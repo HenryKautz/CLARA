@@ -1,20 +1,25 @@
 #!/bin/bash
 # unassemble.sh — split files too large for GitHub into committable pieces.
 #
-# GitHub refuses files over 100 MB.  This script finds every file over 100 MB
-# under the directory it lives in (skipping .git and existing pieces), splits
-# each one F into 90 MB pieces F.part-aa, F.part-ab, ... (split -b 90m), and
-# adds F to .gitignore, so that only the pieces are committed.  A file whose
-# pieces git would ignore anyway (it sits in a directory .gitignore keeps out,
-# such as OldVersions/FourPackage/wcnf/) is skipped.
-# reassemble.sh puts the files back together.
+# GitHub refuses files over 100 MB.  This script splits every file F over
+# 100 MB under the directory it lives in into 90 MB pieces F.part-aa,
+# F.part-ab, ... (split -b 90m) and adds F to .gitignore, so that only the
+# pieces are committed; reassemble.sh puts F back together.  It also looks at
+# every F that already has pieces, whatever its size now.
 #
-# Running it again is harmless: a file whose pieces are all newer than it and
-# add up to exactly its length is reported as already split and left alone.
-# When the file is newer than its pieces (it changed, or reassemble.sh just
-# rebuilt it) the pieces are compared with it byte for byte: if they match,
-# it is already split; if not, its old pieces are removed and it is split
-# again.
+# For each F, with the rule reassemble.sh shares:
+#   git ignores F by some other rule (a pattern such as general/*.wcnf, or an
+#   ignored directory): it is kept out on purpose -> skipped
+#   a piece newer than F (e.g. after git pull): F is the stale copy -> skipped,
+#     with a reminder to run reassemble.sh
+#   no piece newer than F, same total length -> "already split"
+#   F differs from its pieces (changed here):
+#     over 100 MB -> its old pieces are replaced by new ones
+#     100 MB or less -> its pieces and its .gitignore line are removed, so F
+#                       itself is committed
+#   no pieces, over 100 MB -> split
+# New pieces get F's modification time, so right after a split both scripts
+# see F as up to date.  Running it again is harmless.
 #
 # Usage: ./unassemble.sh          (from anywhere; works on the CLARA checkout)
 #
@@ -22,86 +27,126 @@
 
 here=$(cd "$(dirname "$0")" && pwd -P) || exit 1
 ignore=$here/.gitignore
+limit=104857600          # 100 MB (MiB, as GitHub counts), the same as find's +100M
 piece=90m
 
-split_count=0 current=0 ignored=0 skipped=0 failed=0
+# an interrupted run must not leave partial pieces behind
+cur=""
+trap '[ -n "$cur" ] && rm -f "$cur".split-tmp-*' EXIT
+trap 'exit 130' INT TERM HUP
+
+# every file over 100 MB, and every file that has pieces, once each
+candidates() {
+    find "$here" -name .git -prune -o -type f -size +100M ! -name '*.part-*' \
+         ! -name '*.split-tmp-*' ! -name '*.reassemble-tmp' -print0
+    find "$here" -name .git -prune -o -type f -name '*.part-aa' -print0 |
+        while IFS= read -r -d '' p; do printf '%s\0' "${p%.part-aa}"; done
+}
+
+add_ignore() {           # add the line $1 to .gitignore unless it is there
+    if ! grep -qxF "$1" "$ignore" 2>/dev/null; then
+        if [ -s "$ignore" ] && [ -n "$(tail -c 1 "$ignore")" ]; then
+            echo >> "$ignore"            # .gitignore lacked a final newline
+        fi
+        echo "$1" >> "$ignore"
+        echo "  added to .gitignore: $1"
+        ignored=$((ignored + 1))
+    fi
+}
+
+drop_ignore() {          # remove the line $1 from .gitignore
+    if grep -qxF "$1" "$ignore" 2>/dev/null; then
+        grep -vxF "$1" "$ignore" > "$ignore.tmp" && cat "$ignore.tmp" > "$ignore"
+        rm -f "$ignore.tmp"
+        echo "  removed from .gitignore: $1"
+    fi
+}
+
+split_count=0 current=0 ignored=0 unsplit=0 skipped=0 failed=0
 while IFS= read -r -d '' whole; do
+    [ -f "$whole" ] || continue          # pieces only: reassemble.sh's job
     rel=${whole#"$here"/}
 
-    # a file in a place .gitignore keeps out on purpose (e.g. a whole
-    # ignored directory) would have its pieces ignored too: leave it alone
-    if git -C "$here" check-ignore -q -- "$rel.part-aa"; then
-        echo "skipped (git ignores its location): $rel"
-        skipped=$((skipped + 1))
-        continue
-    fi
-
-    size=$(wc -c < "$whole") || { failed=$((failed + 1)); continue; }
-
-    # already split?  pieces exist and add up to the file's length, and either
-    # all are newer than the file or (as after reassemble.sh, which leaves the
-    # file newer) their contents are the file's
-    up_to_date=no
-    if [ -f "$whole.part-aa" ]; then
-        total=0
-        pieces_newer=yes
-        for p in "$whole".part-*; do
-            total=$((total + $(wc -c < "$p")))
-            if [ ! "$p" -nt "$whole" ]; then
-                pieces_newer=no
-            fi
-        done
-        if [ "$total" -eq "$size" ]; then
-            if [ "$pieces_newer" = yes ]; then
-                up_to_date=yes
-            elif cat "$whole".part-* | cmp -s - "$whole"; then
-                up_to_date=yes
-            fi
-        fi
-    fi
-
-    if [ "$up_to_date" = yes ]; then
-        echo "already split: $rel"
-        current=$((current + 1))
-    else
-        echo "splitting: $rel ($((size / 1048576)) MB)"
-        rm -f "$whole".part-*          # old pieces, which may be more than the new ones
-        if split -b "$piece" "$whole" "$whole.part-"; then
-            total=0
-            for p in "$whole".part-*; do
-                total=$((total + $(wc -c < "$p")))
-            done
-            if [ "$total" -eq "$size" ]; then
-                split_count=$((split_count + 1))
-            else
-                echo "  FAILED: the pieces of $rel do not add up to its length" >&2
-                rm -f "$whole".part-*
-                failed=$((failed + 1))
-                continue
-            fi
-        else
-            echo "  FAILED: could not split $rel" >&2
-            rm -f "$whole".part-*
-            failed=$((failed + 1))
+    # ignored by a rule other than its own line?  (check-ignore reports the
+    # last rule that matches, which is its own line when that is present)
+    rule=$(git -C "$here" check-ignore -v -- "$rel" 2>/dev/null)
+    if [ -n "$rule" ]; then
+        pattern=${rule%%$'\t'*}
+        pattern=${pattern#*:}
+        pattern=${pattern#*:}
+        # a "!pattern" match means NOT ignored
+        if [ "${pattern#!}" = "$pattern" ] && [ "$pattern" != "$rel" ] && [ "$pattern" != "/$rel" ]; then
+            echo "skipped (git ignores it by '$pattern'): $rel"
+            skipped=$((skipped + 1))
             continue
         fi
     fi
 
-    # keep the whole file out of git
-    if ! grep -qxF "$rel" "$ignore" 2>/dev/null; then
-        # make sure .gitignore ends with a newline before appending
-        if [ -s "$ignore" ] && [ -n "$(tail -c 1 "$ignore")" ]; then
-            echo >> "$ignore"
+    size=$(wc -c < "$whole") || { failed=$((failed + 1)); continue; }
+
+    if [ -f "$whole.part-aa" ]; then
+        total=0
+        pieces_newer=no
+        for p in "$whole".part-*; do
+            total=$((total + $(wc -c < "$p")))
+            if [ "$p" -nt "$whole" ]; then
+                pieces_newer=yes
+            fi
+        done
+        if [ "$pieces_newer" = yes ]; then
+            echo "skipped (its pieces are newer; run ./reassemble.sh first): $rel"
+            skipped=$((skipped + 1))
+            continue
         fi
-        echo "$rel" >> "$ignore"
-        echo "  added to .gitignore: $rel"
-        ignored=$((ignored + 1))
+        if [ "$total" -eq "$size" ]; then
+            echo "already split: $rel"
+            current=$((current + 1))
+            add_ignore "$rel"
+            continue
+        fi
+        if [ "$size" -le "$limit" ]; then
+            echo "now 100 MB or less, so no longer split: $rel"
+            rm -f "$whole".part-*
+            drop_ignore "$rel"
+            unsplit=$((unsplit + 1))
+            continue
+        fi
     fi
+
+    echo "splitting: $rel ($((size / 1048576)) MB)"
+    cur=$whole
+    if split -b "$piece" "$whole" "$whole.split-tmp-"; then
+        total=0
+        for p in "$whole".split-tmp-*; do
+            total=$((total + $(wc -c < "$p")))
+        done
+    else
+        total=-1
+    fi
+    if [ "$total" -ne "$size" ]; then
+        echo "  FAILED: could not split $rel" >&2
+        rm -f "$whole".split-tmp-*
+        failed=$((failed + 1))
+        cur=""
+        continue
+    fi
+    # the new pieces take F's time (so F is not older than them), then
+    # replace the old ones
+    touch -r "$whole" "$whole".split-tmp-*
+    rm -f "$whole".part-*
+    for p in "$whole".split-tmp-*; do
+        mv -f "$p" "$whole.part-${p#"$whole".split-tmp-}"
+    done
+    cur=""
+    split_count=$((split_count + 1))
+    add_ignore "$rel"
+
     if git -C "$here" ls-files --error-unmatch -- "$rel" > /dev/null 2>&1; then
         echo "  WARNING: $rel is tracked by git; .gitignore does not untrack it." >&2
         echo "           Run: git -C \"$here\" rm --cached -- \"$rel\"" >&2
     fi
-done < <(find "$here" -name .git -prune -o -type f -size +100M ! -name '*.part-*' -print0 | sort -z)
+done < <(candidates | sort -zu)
 
-echo "$split_count split, $current already split, $ignored added to .gitignore, $skipped skipped, $failed failed"
+echo "$split_count split, $current already split, $unsplit no longer split," \
+     "$ignored added to .gitignore, $skipped skipped, $failed failed"
 [ "$failed" -eq 0 ]

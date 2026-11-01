@@ -30,25 +30,28 @@ SHIMS = os.path.join(SCRIPTS, "shims")
 #
 # How make-problems.py makes a family from OldVersions/<source>: it replays each
 # old problem's recorded ppgen settings, dropping the flags in "drop" and
-# appending those in "add".  "same_world": the result must have exactly the old
-# problem's objects, :init and goal literals (checked), so the old plans'
-# horizons are valid hints for plan-goals.py; False when the roads change
-# (knockout dropped, one-way roads added), which can move the starts and
-# destinations too.
+# appending those in "add".  A family that drops and adds nothing has the SAME
+# WORLD as its source (Family.same_world): exactly the old problem's objects,
+# :init and goal literals (checked), so the old plans' horizons are valid hints
+# for plan-goals.py.  One that drops or adds flags changes only the roads here
+# (--knockout and --oneway draw from their own random state in ppgen, so the
+# seed still gives the old starts and destinations; make-problems.py checks
+# that everything except the road facts is the old problem's), but the old
+# horizons are then no guide.
 FAMILIES = {
     "SimpleGrid":   dict(sizes=list(range(3, 11)), kind="literals", source="SimpleGrid",
-                         drop=(), add=(), same_world=True),
+                         drop=(), add=()),
     "TwoPackage":   dict(sizes=list(range(3, 8)),  kind="literals", source="TwoPackage",
-                         drop=(), add=(), same_world=True),
+                         drop=(), add=()),
     # 2026-11-01: ThreePackage and FourPackage remade without --knockout (the
     # full grid of two-way roads); TwoPackageOneway is TwoPackage with 25% of
     # the roads one-way
     "TwoPackageOneway": dict(sizes=list(range(3, 8)), kind="literals", source="TwoPackage",
-                             drop=(), add=(("--oneway", ["25"]),), same_world=False),
+                             drop=(), add=(("--oneway", ["25"]),)),
     "ThreePackage": dict(sizes=[5, 6, 7],          kind="combos", source="ThreePackage",
-                         drop=("--knockout",), add=(), same_world=False),
+                         drop=("--knockout",), add=()),
     "FourPackage":  dict(sizes=list(range(6, 16)), kind="literals", source="FourPackage",
-                         drop=("--knockout",), add=(), same_world=False),
+                         drop=("--knockout",), add=()),
 }
 DOMAIN_NAME = "clara-logistics"
 EVIDENCE_FRACTIONS = (25, 100)     # percent of the plan's actions; plus "none"
@@ -67,7 +70,7 @@ class Family:
         self.kind = FAMILIES[name]["kind"]
         self.drop = FAMILIES[name]["drop"]
         self.add = FAMILIES[name]["add"]
-        self.same_world = FAMILIES[name]["same_world"]
+        self.same_world = not self.drop and not self.add
         self.dir = os.path.join(CLARA, name)
         self.old = os.path.join(OLD, FAMILIES[name]["source"])
         self.domain = os.path.join(self.dir, DOMAIN_NAME + ".pddl")
