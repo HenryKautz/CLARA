@@ -1,4 +1,4 @@
-;; grid7x7-2-pkg2-p6-3: the first 3 of the 10 actions of goals/grid7x7-2-pkg2-p6-3.answer
+;; grid7x7-2-pkg2-p6-3: the first 2 of the 8 actions of goals/grid7x7-2-pkg2-p6-3.answer
 ;; (25%, rounded up), a plan for (at pkg2 p6-3) by EvalMaxSAT_bin.
 ;; True hypothesis: at-pkg2-p6-3.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
@@ -6,5 +6,4 @@
 
 (and
   (occurs (drive truck2 p3-2 p2-2) 1)
-  (occurs (load pkg2 truck2 p2-2) 2)
-  (occurs (drive truck2 p2-2 p2-3) 3))
+  (occurs (load pkg2 truck2 p2-2) 2))

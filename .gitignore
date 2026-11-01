@@ -49,4 +49,5 @@ TwoPackage/circuits/grid7x7-1.dnnf
 TwoPackage/circuits/grid7x7-2.dnnf
 TwoPackage/circuits/grid7x7-4.dnnf
 ThreePackage/circuits/grid5x5-3.dnnf
-ThreePackage/circuits/grid6x6-1.dnnf
+TwoPackageOneway/circuits/grid6x6-3.dnnf
+TwoPackageOneway/circuits/grid7x7-2.dnnf

@@ -1,12 +1,12 @@
-15:14:36 FourPackage: d4, limit 7200s, 2 jobs
-16:23:40 6x6: 4 of 4 to compile
-16:24:14   grid6x6-1: theory at horizon 24
-16:24:40   grid6x6-2: theory at horizon 22
-18:24:18   grid6x6-1: timeout 7203.7s (d4 7038.67s, peak 45662 MB, check -)
-18:24:42   grid6x6-3: theory at horizon 26
-18:24:47   grid6x6-2: timeout 7206.6s (d4 7119.67s, peak 32067 MB, check -)
-18:25:15   grid6x6-4: theory at horizon 35
-20:24:45   grid6x6-3: timeout 7203.2s (d4 7117.89s, peak 54138 MB, check -)
-20:25:19   grid6x6-4: timeout 7203.6s (d4 6859.08s, peak 58718 MB, check -)
-20:25:19 6x6: grid6x6-1, grid6x6-2, grid6x6-3, grid6x6-4 did not compile (timeout/memout); no larger size is tried
-20:25:19 done
+09:16:44 FourPackage: d4, limit 7200s, 2 jobs
+10:21:48 6x6: 4 of 4 to compile
+10:22:10   grid6x6-1: theory at horizon 13
+10:22:31   grid6x6-2: theory at horizon 13
+12:22:14   grid6x6-1: timeout 7203.7s (d4 7179.97s, peak 35914 MB, check -)
+12:22:31   grid6x6-3: theory at horizon 13
+12:22:36   grid6x6-2: timeout 7204.9s (d4 7172.63s, peak 40576 MB, check -)
+12:23:00   grid6x6-4: theory at horizon 19
+14:22:36   grid6x6-3: timeout 7204.6s (d4 7183.98s, peak 46014 MB, check -)
+14:23:05   grid6x6-4: timeout 7204.9s (d4 7154.4s, peak 45199 MB, check -)
+14:23:05 6x6: grid6x6-1, grid6x6-2, grid6x6-3, grid6x6-4 did not compile (timeout/memout); no larger size is tried
+14:23:05 done

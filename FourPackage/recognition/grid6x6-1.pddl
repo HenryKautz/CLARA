@@ -1,19 +1,19 @@
 ;; grid6x6-1: the recognition problem
 ;; FourPackage/grid6x6-1.pddl with its goal written as ONE disjunction of its
 ;; 12 hypotheses (the same set of plans).  recognize.sh's names:
-;;   at-pkg1-p1-4     (at pkg1 p1-4)   shortest horizon 7
+;;   at-pkg1-p1-4     (at pkg1 p1-4)   shortest horizon 5
 ;;   at-pkg1-p1-3     (at pkg1 p1-3)   shortest horizon 6
-;;   at-pkg1-p5-1     (at pkg1 p5-1)   shortest horizon 14
-;;   at-pkg2-p4-3     (at pkg2 p4-3)   shortest horizon 17
-;;   at-pkg2-p5-6     (at pkg2 p5-6)   shortest horizon 11
-;;   at-pkg2-p2-5     (at pkg2 p2-5)   shortest horizon 13
-;;   at-pkg3-p4-5     (at pkg3 p4-5)   shortest horizon 13
-;;   at-pkg3-p5-5     (at pkg3 p5-5)   shortest horizon 24
-;;   at-pkg3-p5-4     (at pkg3 p5-4)   shortest horizon 23
-;;   at-pkg4-p6-6     (at pkg4 p6-6)   shortest horizon 16
-;;   at-pkg4-p5-2     (at pkg4 p5-2)   shortest horizon 15
+;;   at-pkg1-p5-1     (at pkg1 p5-1)   shortest horizon 10
+;;   at-pkg2-p4-3     (at pkg2 p4-3)   shortest horizon 11
+;;   at-pkg2-p5-6     (at pkg2 p5-6)   shortest horizon 9
+;;   at-pkg2-p2-5     (at pkg2 p2-5)   shortest horizon 7
+;;   at-pkg3-p4-5     (at pkg3 p4-5)   shortest horizon 11
+;;   at-pkg3-p5-5     (at pkg3 p5-5)   shortest horizon 12
+;;   at-pkg3-p5-4     (at pkg3 p5-4)   shortest horizon 13
+;;   at-pkg4-p6-6     (at pkg4 p6-6)   shortest horizon 10
+;;   at-pkg4-p5-2     (at pkg4 p5-2)   shortest horizon 9
 ;;   at-pkg4-p4-5     (at pkg4 p4-5)   shortest horizon 7
-;; Recognition horizon: 24
+;; Recognition horizon: 13
 ;;   (the largest shortest horizon: every hypothesis is achievable at it)
 ;; Written by scripts/plan-goals.py.
 
@@ -40,36 +40,60 @@
         (road p1-1 p2-1)
         (road p1-2 p1-1)
         (road p1-1 p1-2)
+        (road p2-2 p1-2)
+        (road p1-2 p2-2)
         (road p1-3 p1-2)
         (road p1-2 p1-3)
         (road p2-3 p1-3)
         (road p1-3 p2-3)
+        (road p1-4 p1-3)
+        (road p1-3 p1-4)
+        (road p2-4 p1-4)
+        (road p1-4 p2-4)
         (road p1-5 p1-4)
         (road p1-4 p1-5)
         (road p2-5 p1-5)
         (road p1-5 p2-5)
+        (road p1-6 p1-5)
+        (road p1-5 p1-6)
         (road p2-6 p1-6)
         (road p1-6 p2-6)
         (road p3-1 p2-1)
         (road p2-1 p3-1)
+        (road p2-2 p2-1)
+        (road p2-1 p2-2)
         (road p3-2 p2-2)
         (road p2-2 p3-2)
         (road p2-3 p2-2)
         (road p2-2 p2-3)
+        (road p3-3 p2-3)
+        (road p2-3 p3-3)
         (road p2-4 p2-3)
         (road p2-3 p2-4)
         (road p3-4 p2-4)
         (road p2-4 p3-4)
         (road p2-5 p2-4)
         (road p2-4 p2-5)
+        (road p3-5 p2-5)
+        (road p2-5 p3-5)
+        (road p2-6 p2-5)
+        (road p2-5 p2-6)
         (road p3-6 p2-6)
         (road p2-6 p3-6)
         (road p4-1 p3-1)
         (road p3-1 p4-1)
+        (road p3-2 p3-1)
+        (road p3-1 p3-2)
         (road p4-2 p3-2)
         (road p3-2 p4-2)
+        (road p3-3 p3-2)
+        (road p3-2 p3-3)
+        (road p4-3 p3-3)
+        (road p3-3 p4-3)
         (road p3-4 p3-3)
         (road p3-3 p3-4)
+        (road p4-4 p3-4)
+        (road p3-4 p4-4)
         (road p3-5 p3-4)
         (road p3-4 p3-5)
         (road p4-5 p3-5)
@@ -78,12 +102,26 @@
         (road p3-5 p3-6)
         (road p4-6 p3-6)
         (road p3-6 p4-6)
+        (road p5-1 p4-1)
+        (road p4-1 p5-1)
+        (road p4-2 p4-1)
+        (road p4-1 p4-2)
+        (road p5-2 p4-2)
+        (road p4-2 p5-2)
         (road p4-3 p4-2)
         (road p4-2 p4-3)
         (road p5-3 p4-3)
         (road p4-3 p5-3)
+        (road p4-4 p4-3)
+        (road p4-3 p4-4)
         (road p5-4 p4-4)
         (road p4-4 p5-4)
+        (road p4-5 p4-4)
+        (road p4-4 p4-5)
+        (road p5-5 p4-5)
+        (road p4-5 p5-5)
+        (road p4-6 p4-5)
+        (road p4-5 p4-6)
         (road p5-6 p4-6)
         (road p4-6 p5-6)
         (road p6-1 p5-1)
@@ -92,14 +130,24 @@
         (road p5-1 p5-2)
         (road p6-2 p5-2)
         (road p5-2 p6-2)
+        (road p5-3 p5-2)
+        (road p5-2 p5-3)
         (road p6-3 p5-3)
         (road p5-3 p6-3)
+        (road p5-4 p5-3)
+        (road p5-3 p5-4)
         (road p6-4 p5-4)
         (road p5-4 p6-4)
         (road p5-5 p5-4)
         (road p5-4 p5-5)
         (road p6-5 p5-5)
         (road p5-5 p6-5)
+        (road p5-6 p5-5)
+        (road p5-5 p5-6)
+        (road p6-6 p5-6)
+        (road p5-6 p6-6)
+        (road p6-2 p6-1)
+        (road p6-1 p6-2)
         (road p6-3 p6-2)
         (road p6-2 p6-3)
         (road p6-4 p6-3)

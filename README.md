@@ -6,19 +6,58 @@ Files for UVA DARPA CLARA: plan-recognition benchmarks, made and solved with
 Each benchmark directory has its own README, describing its problems, how they
 were made, and its results.
 
-The four grid benchmarks were **regenerated on 2026-10-31** (see
+The four grid benchmarks were **regenerated on 2026-10-31**, and on
+2026-11-01 ThreePackage and FourPackage were made again without road
+knockout and TwoPackageOneway was added (see
 [The 2026-10-31 regeneration](#the-2026-10-31-regeneration)); the versions
-before that, with their results, are in `OldVersions/`.
+before 2026-10-31, with their results, are in `OldVersions/`.
 
 | Directory | What it holds | README |
 |---|---|---|
 | `SimpleGrid/` | One truck on an N×N grid (3×3–10×10) heading for one of N−1 destinations. | [SimpleGrid/README.md](SimpleGrid/README.md) |
 | `TwoPackage/` | One truck, two packages with two destinations each, 3×3–7×7; four hypotheses (at least one package delivered). | [TwoPackage/README.md](TwoPackage/README.md) |
-| `ThreePackage/` | One truck, three packages with two destinations each, all to be delivered, 5×5–7×7 with 20% of the roads knocked out; eight hypotheses (destination combinations). | [ThreePackage/README.md](ThreePackage/README.md) |
-| `FourPackage/` | Two trucks, four packages with three destinations each, 6×6–15×15 with 40% of the roads knocked out; twelve hypotheses (at least one package delivered). | [FourPackage/README.md](FourPackage/README.md) |
-| `scripts/` | The one pipeline that made and solved all four (below). | |
+| `TwoPackageOneway/` | TwoPackage with 25% of the roads one-way. | [TwoPackageOneway/README.md](TwoPackageOneway/README.md) |
+| `ThreePackage/` | One truck, three packages with two destinations each, all to be delivered, 5×5–7×7; eight hypotheses (destination combinations). | [ThreePackage/README.md](ThreePackage/README.md) |
+| `FourPackage/` | Two trucks, four packages with three destinations each, 6×6–15×15; twelve hypotheses (at least one package delivered). | [FourPackage/README.md](FourPackage/README.md) |
+| `scripts/` | The one pipeline that made and solved all five (below). | [scripts/README.md](scripts/README.md) |
 | `AAAI-2010-Benchmarks/` | Ramírez & Geffner's BlockWords and IntrusionDetection, original and as recognition instances, with exact posteriors. | [AAAI-2010-Benchmarks/README.md](AAAI-2010-Benchmarks/README.md) |
 | `OldVersions/` | The grid benchmarks as they were before 2026-10-31 (old domain; FourPackage with goal preferences), their results and scripts; `RestrictedPlanning/` (FiFO's experimental `planner.sh --restrict` evaluated on them); and `make-fifo-files.py`/`.lisp`, which wrote the `wff/`, `scnf/` and `wcnf/` files of the old SimpleGrid, TwoPackage and AAAI-2010-Benchmarks (it still has those directories' old paths). | the READMEs inside |
+
+## The datasets at a glance
+
+All five grid families are made by FiFO's `ppgen.sh` with `--style grid
+--airports 0 --airplanes 0 --handle-cost 1 --preferences none --domain
+clara-logistics`, four problems per size (`--seed 1`…`4`), and solved by the
+pipeline below: planning with tt-open-wbo-inc and EvalMaxSAT, recognition
+with max-term, SharpSAT-TD and MC-SAT (30 minutes per run), d4 compilation
+(2 hours).
+
+| Family | Sizes | Other `ppgen.sh` settings | Hypotheses |
+|---|---|---|---|
+| SimpleGrid | 3×3–10×10 (32 problems) | `--trucks 1 --packages 0 --destinations N−1 --require all --mindist N+1` (3 at 3×3) `--drive-cost 1` | N−1 truck destinations |
+| TwoPackage | 3×3–7×7 (20) | `--trucks 1 --packages 2 --destinations 2 --require some --drive-cost 1` | 4 literals |
+| TwoPackageOneway | 3×3–7×7 (20) | TwoPackage's, plus `--oneway 25` | 4 literals |
+| ThreePackage | 5×5–7×7 (12) | `--trucks 1 --packages 3 --destinations 2 --require all --drive-cost 2` | 8 destination combinations |
+| FourPackage | 6×6–15×15 (40) | `--trucks 2 --packages 4 --destinations 3 --require some --drive-cost 2` | 12 literals |
+
+No family uses `--knockout`.  Each problem's header lists every setting it was
+made with.
+
+**Where each method timed out** — the smallest size at which a run failed by
+timeout or memory, after which that method was stopped (— means it finished
+every size it was given; tt and EvalMaxSAT plan each hypothesis as a goal, 30
+minutes per solver call; recognition only runs on sizes that were planned):
+
+| Family | tt-open-wbo-inc | EvalMaxSAT | max-term | SharpSAT-TD | MC-SAT | d4 |
+|---|---|---|---|---|---|---|
+| SimpleGrid | — | — | — | 7×7 | 7×7 | 10×10 (1 of 4 compiled) |
+| TwoPackage | — | — | — | 4×4 | 4×4 | — |
+| TwoPackageOneway | — | — | — | 4×4 | 5×5 | 7×7 (3 of 4 compiled) |
+| ThreePackage | 6×6 | 6×6 | 5×5 | 5×5 | 5×5 | 6×6 |
+| FourPackage | 9×9 | 7×7 | 6×6 | 6×6 | 6×6 | 6×6 (none compiled) |
+
+MC-SAT also often failed to mix (a frozen chain, status `nomix`) on the sizes
+it did finish; the family READMEs give its counts.
 
 ## The 2026-10-31 regeneration
 
@@ -38,6 +77,18 @@ old problem's header, except:
 The same seeds give the same grids, roads, starts and destinations; the script
 checks that every new problem matches its old one apart from `(handle-cost)` and
 the preferences.
+
+**2026-11-01.**  ThreePackage and FourPackage had been made with
+`--knockout 20` and `--knockout 40` (that share of the roads removed, keeping
+a spanning tree); they were made again without it, from the same seeds, which
+leaves their starts and destinations as they were and restores every road.
+**TwoPackageOneway** was added: TwoPackage's settings and seeds plus
+`--oneway 25`, which makes a quarter of the two-way roads one-way while
+keeping every place reachable.  For these three families the script checks
+the settings block instead (knockout gone, `--oneway 25` present), and the
+planner searches horizons from scratch rather than starting from the old
+plan's.  The 2026-10-31 knockout versions and their results are in git at
+commit d228f28.
 
 The pipeline (`scripts/`, one Slurm job per family, `scripts/run-family.sh`):
 
@@ -66,14 +117,9 @@ size are killed and nothing is run at that size or larger.
 `python3 scripts/summarize.py --family F` writes the tables in each family's
 `tables.md`.
 
-**Where each stopped** (details in each family's README):
-
-| Family | Planning (tt / EvalMaxSAT) | max-term | SharpSAT-TD | MC-SAT | d4 compiled |
-|---|---|---|---|---|---|
-| SimpleGrid | all sizes / all | all sizes | to 6×6 (stopped 7×7) | to 6×6, many `nomix` (stopped 7×7) | all to 9×9; 1 of 4 at 10×10 |
-| TwoPackage | all / all | all sizes | 3×3 (stopped 4×4) | 3×3, half `nomix` (stopped 4×4) | all sizes |
-| ThreePackage | 5×5 / 5×5 (both stopped 6×6) | stopped 5×5 | stopped 5×5 | stopped 5×5 | 5×5, one 6×6 |
-| FourPackage | to 9×9 (stopped 10×10) / stopped 6×6 | stopped 6×6 | stopped 6×6 | stopped 6×6 | none (all 6×6 timed out) |
+Where each method stopped is tabulated in
+[The datasets at a glance](#the-datasets-at-a-glance); details are in each
+family's README.
 
 d4 differs from the stop rule in one way: it finishes the size where a
 compilation first fails, then tries nothing larger.  Circuits from SimpleGrid

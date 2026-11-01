@@ -1,7 +1,7 @@
 """common.py -- shared by the CLARA benchmark scripts in this directory.
 
-The four grid benchmarks (SimpleGrid, TwoPackage, ThreePackage, FourPackage)
-were regenerated on 2026-10-31 with one set of scripts: this module holds the
+The grid benchmarks (SimpleGrid, TwoPackage, TwoPackageOneway, ThreePackage,
+FourPackage) were regenerated on 2026-10-31/11-01 with one set of scripts: this module holds the
 family table, problem/goal/hypothesis parsing, paths, the environment FiFO runs
 in, and the process runner with the stop-at-first-failure rule that every stage
 shares.
@@ -27,11 +27,28 @@ SHIMS = os.path.join(SCRIPTS, "shims")
 # goal is (or l1 ... ln) and each literal is a hypothesis; "combos": the goal is
 # (and (or ...) (or ...) ...) and each choice of one literal per disjunction is a
 # hypothesis (ThreePackage: 2^3 = 8).
+#
+# How make-problems.py makes a family from OldVersions/<source>: it replays each
+# old problem's recorded ppgen settings, dropping the flags in "drop" and
+# appending those in "add".  "same_world": the result must have exactly the old
+# problem's objects, :init and goal literals (checked), so the old plans'
+# horizons are valid hints for plan-goals.py; False when the roads change
+# (knockout dropped, one-way roads added), which can move the starts and
+# destinations too.
 FAMILIES = {
-    "SimpleGrid":   dict(sizes=list(range(3, 11)), kind="literals"),
-    "TwoPackage":   dict(sizes=list(range(3, 8)),  kind="literals"),
-    "ThreePackage": dict(sizes=[5, 6, 7],          kind="combos"),
-    "FourPackage":  dict(sizes=list(range(6, 16)), kind="literals"),
+    "SimpleGrid":   dict(sizes=list(range(3, 11)), kind="literals", source="SimpleGrid",
+                         drop=(), add=(), same_world=True),
+    "TwoPackage":   dict(sizes=list(range(3, 8)),  kind="literals", source="TwoPackage",
+                         drop=(), add=(), same_world=True),
+    # 2026-11-01: ThreePackage and FourPackage remade without --knockout (the
+    # full grid of two-way roads); TwoPackageOneway is TwoPackage with 25% of
+    # the roads one-way
+    "TwoPackageOneway": dict(sizes=list(range(3, 8)), kind="literals", source="TwoPackage",
+                             drop=(), add=(("--oneway", ["25"]),), same_world=False),
+    "ThreePackage": dict(sizes=[5, 6, 7],          kind="combos", source="ThreePackage",
+                         drop=("--knockout",), add=(), same_world=False),
+    "FourPackage":  dict(sizes=list(range(6, 16)), kind="literals", source="FourPackage",
+                         drop=("--knockout",), add=(), same_world=False),
 }
 DOMAIN_NAME = "clara-logistics"
 EVIDENCE_FRACTIONS = (25, 100)     # percent of the plan's actions; plus "none"
@@ -48,8 +65,11 @@ class Family:
         self.name = name
         self.sizes = FAMILIES[name]["sizes"]
         self.kind = FAMILIES[name]["kind"]
+        self.drop = FAMILIES[name]["drop"]
+        self.add = FAMILIES[name]["add"]
+        self.same_world = FAMILIES[name]["same_world"]
         self.dir = os.path.join(CLARA, name)
-        self.old = os.path.join(OLD, name)
+        self.old = os.path.join(OLD, FAMILIES[name]["source"])
         self.domain = os.path.join(self.dir, DOMAIN_NAME + ".pddl")
         self.results = os.path.join(self.dir, "results")
         # scratch: its path must contain no "." (FiFO derives .satout from the

@@ -1,4 +1,4 @@
-;; grid8x8-1-pkg4-p1-2: all of the 11 actions of goals/grid8x8-1-pkg4-p1-2.answer
+;; grid8x8-1-pkg4-p1-2: all of the 9 actions of goals/grid8x8-1-pkg4-p1-2.answer
 ;; (100%, rounded up), a plan for (at pkg4 p1-2) by EvalMaxSAT_bin.
 ;; True hypothesis: at-pkg4-p1-2.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
@@ -12,7 +12,5 @@
   (occurs (drive truck2 p4-2 p3-2) 5)
   (occurs (drive truck2 p3-2 p2-2) 6)
   (occurs (load pkg4 truck2 p2-2) 7)
-  (occurs (drive truck2 p2-2 p2-3) 8)
-  (occurs (drive truck2 p2-3 p1-3) 9)
-  (occurs (drive truck2 p1-3 p1-2) 10)
-  (occurs (unload pkg4 truck2 p1-2) 11))
+  (occurs (drive truck2 p2-2 p1-2) 8)
+  (occurs (unload pkg4 truck2 p1-2) 9))

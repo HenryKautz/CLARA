@@ -1,12 +1,11 @@
-;; grid8x8-1-pkg2-p1-6: the first 5 of the 19 actions of goals/grid8x8-1-pkg2-p1-6.answer
-;; (25%, rounded up), a plan for (at pkg2 p1-6) by EvalMaxSAT_bin.
+;; grid8x8-1-pkg2-p1-6: the first 4 of the 15 actions of goals/grid8x8-1-pkg2-p1-6.answer
+;; (25%, rounded up), a plan for (at pkg2 p1-6) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
 ;; True hypothesis: at-pkg2-p1-6.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
 ;; Written by scripts/plan-goals.py.
 
 (and
   (occurs (drive truck2 p6-4 p6-3) 1)
-  (occurs (drive truck2 p6-3 p6-2) 2)
-  (occurs (drive truck2 p6-2 p5-2) 3)
-  (occurs (drive truck2 p5-2 p4-2) 4)
-  (occurs (drive truck2 p4-2 p3-2) 5))
+  (occurs (drive truck2 p6-3 p5-3) 2)
+  (occurs (drive truck2 p5-3 p4-3) 3)
+  (occurs (drive truck2 p4-3 p4-2) 4))

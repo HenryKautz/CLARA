@@ -1,4 +1,4 @@
-;; grid10x10-1-pkg1-p5-3: the first 5 of the 19 actions of goals/grid10x10-1-pkg1-p5-3.answer
+;; grid10x10-1-pkg1-p5-3: the first 3 of the 11 actions of goals/grid10x10-1-pkg1-p5-3.answer
 ;; (25%, rounded up), a plan for (at pkg1 p5-3) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
 ;; True hypothesis: at-pkg1-p5-3.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
@@ -6,7 +6,5 @@
 
 (and
   (occurs (drive truck2 p2-3 p3-3) 1)
-  (occurs (drive truck2 p3-3 p3-4) 2)
-  (occurs (drive truck2 p3-4 p3-5) 3)
-  (occurs (drive truck2 p3-5 p3-6) 4)
-  (occurs (drive truck2 p3-6 p3-7) 5))
+  (occurs (drive truck2 p3-3 p4-3) 2)
+  (occurs (drive truck2 p4-3 p5-3) 3))

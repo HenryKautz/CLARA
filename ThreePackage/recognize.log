@@ -1,17 +1,18 @@
-15:14:36 ThreePackage: methods ['max-term', 'sharpsat-td', 'mc-sat'], limit 1800s, 8 jobs; stopped: {}
-15:32:38 size 5x5: 204 runs queued
-15:45:40 ok         781.3s max-term    grid5x5-1-none.txt
-16:02:09 size 7x7: 0 runs queued
-16:02:43 timeout   1800.7s mc-sat      grid5x5-1-none.txt
-16:02:43     mc-sat stopped at 5x5: killing its 2 other run(s) there or larger
-16:02:46 killed    1802.3s mc-sat      grid5x5-2-none.txt
-16:02:49 killed    1803.9s mc-sat      grid5x5-3-none.txt
-16:02:52 timeout   1809.5s sharpsat-td grid5x5-1-none.txt
-16:02:52     sharpsat-td stopped at 5x5: killing its 2 other run(s) there or larger
-16:02:55 killed    1811.1s sharpsat-td grid5x5-2-none.txt
-16:02:58 killed    1035.5s sharpsat-td grid5x5-3-none.txt
-16:03:02 timeout   1818.3s max-term    grid5x5-2-none.txt
-16:03:02     max-term stopped at 5x5: killing its 1 other run(s) there or larger
-16:03:05 killed    1819.9s max-term    grid5x5-3-none.txt
-16:15:36 size 6x6: 51 runs queued
-16:15:36 done; stopped: {'mc-sat': 5, 'sharpsat-td': 5, 'max-term': 5}
+09:16:43 ThreePackage: methods ['max-term', 'sharpsat-td', 'mc-sat'], limit 1800s, 8 jobs; stopped: {}
+09:44:47 size 5x5: 204 runs queued
+09:51:32 ok         402.7s max-term    grid5x5-1-none.txt
+09:55:21 ok         630.7s sharpsat-td grid5x5-1-none.txt
+10:14:53 timeout   1801.7s mc-sat      grid5x5-1-none.txt
+10:14:53     mc-sat stopped at 5x5: killing its 2 other run(s) there or larger
+10:14:56 killed    1803.2s mc-sat      grid5x5-2-none.txt
+10:14:59 killed    1804.8s mc-sat      grid5x5-3-none.txt
+10:15:02 timeout   1810.0s max-term    grid5x5-2-none.txt
+10:15:02     max-term stopped at 5x5: killing its 2 other run(s) there or larger
+10:15:05 killed    1811.5s max-term    grid5x5-3-none.txt
+10:15:08 killed    1184.5s max-term    grid5x5-4-none.txt
+10:15:11 timeout   1818.2s sharpsat-td grid5x5-2-none.txt
+10:15:11     sharpsat-td stopped at 5x5: killing its 1 other run(s) there or larger
+10:15:14 killed    1419.3s sharpsat-td grid5x5-3-none.txt
+10:22:15 size 6x6: 51 runs queued
+10:22:15 size 7x7: 0 runs queued
+10:22:15 done; stopped: {'mc-sat': 5, 'max-term': 5, 'sharpsat-td': 5}

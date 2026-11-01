@@ -10,10 +10,14 @@ settings, except
   --preferences none         (FourPackage had --preferences 8 8: every goal
                               literal was also a weighted preference)
 
-so the only goal is the hard (or ...) / (and (or ...) ...) the old problem had.
-The same seed gives the same grid, roads, starts and destinations: each new
-problem is checked to have exactly the old one's objects, :init (apart from the
-new (= (handle-cost) 1)) and goal literals.
+so the only goal is the hard (or ...) / (and (or ...) ...) the old problem had,
+and with the family's own changes (common.FAMILIES "drop"/"add"): ThreePackage
+and FourPackage drop --knockout; TwoPackageOneway is made from OldVersions/
+TwoPackage with --oneway 25.  Where nothing else changes (SimpleGrid,
+TwoPackage) the same seed gives the same grid, roads, starts and destinations:
+each new problem is checked to have exactly the old one's objects, :init (apart
+from the new (= (handle-cost) 1)) and goal literals.  Every new problem's
+settings block is checked to show the dropped and added flags as intended.
 
 Also written: F/clara-logistics.pddl (a copy of FiFO's library domain) and
 goals/<goal>.pddl, one per hypothesis (common.Family.hypotheses).
@@ -40,9 +44,10 @@ def old_flags(path):
     return flags
 
 
-def new_flags(flags):
-    out = [(f, a) for f, a in flags if f not in ("--preferences", "--handle-cost", "--domain")]
-    out += [("--handle-cost", ["1"]), ("--preferences", ["none"])]
+def new_flags(flags, fam):
+    gone = ("--preferences", "--handle-cost", "--domain") + tuple(fam.drop) + tuple(f for f, _ in fam.add)
+    out = [(f, a) for f, a in flags if f not in gone]
+    out += [("--handle-cost", ["1"]), ("--preferences", ["none"])] + [(f, list(a)) for f, a in fam.add]
     return out
 
 
@@ -71,22 +76,34 @@ def main():
         name = f[:-5]
         old = os.path.join(fam.old, f)
         cmd = ["ppgen.sh"]
-        for flag, args in new_flags(old_flags(old)):
+        for flag, args in new_flags(old_flags(old), fam):
             cmd += [flag] + args
         cmd += ["--domain", C.DOMAIN_NAME, "--name", name, "-o", fam.path(f)]
         r = subprocess.run(cmd, capture_output=True, text=True)
         if r.returncode != 0:
             sys.exit(f"ppgen failed on {name}:\n{r.stdout}{r.stderr}")
-        # same world as the old problem?  (goal: compare the literal sets)
-        drop = [r"\(= \(handle-cost\)"]
+        notes = [l for l in r.stderr.strip().split("\n") if l and not l.startswith("Wrote ")]
+        if notes:                        # e.g. --oneway's "too few roads" warning
+            print(f"{name}: ppgen says: {' / '.join(notes)}", flush=True)
         old_t, new_t = open(old).read(), open(fam.path(f)).read()
-        ob = [l.rstrip(")") for l in body_without(old_t, drop)]
-        nb = [l.rstrip(")") for l in body_without(new_t, drop)]
-        og = sorted(set(re.findall(r"\(at \S+ [^\s()]+\)", C.goal_text(old).split("(preference")[0])))
-        ng = sorted(set(re.findall(r"\(at \S+ [^\s()]+\)", C.goal_text(fam.path(f)))))
-        if ob != nb or og != ng:
-            sys.exit(f"{name}: the regenerated problem differs from the old one beyond "
-                     f"handle-cost and preferences")
+        if fam.same_world:
+            # same world as the old problem?  (goal: compare the literal sets)
+            drop = [r"\(= \(handle-cost\)"]
+            ob = [l.rstrip(")") for l in body_without(old_t, drop)]
+            nb = [l.rstrip(")") for l in body_without(new_t, drop)]
+            og = sorted(set(re.findall(r"\(at \S+ [^\s()]+\)", C.goal_text(old).split("(preference")[0])))
+            ng = sorted(set(re.findall(r"\(at \S+ [^\s()]+\)", C.goal_text(fam.path(f)))))
+            if ob != nb or og != ng:
+                sys.exit(f"{name}: the regenerated problem differs from the old one beyond "
+                         f"handle-cost and preferences")
+        # the settings block must show the flags as intended
+        got = dict(old_flags(fam.path(f)))
+        for flag in fam.drop:
+            if got.get(flag, ["0"]) != ["0"]:
+                sys.exit(f"{name}: {flag} {got[flag]} still in effect")
+        for flag, args in fam.add:
+            if got.get(flag) != list(args):
+                sys.exit(f"{name}: expected {flag} {' '.join(args)}, got {got.get(flag)}")
         if "(= (handle-cost) 1)" not in new_t or "preference" in C.goal_text(fam.path(f)):
             sys.exit(f"{name}: expected (= (handle-cost) 1) and no preferences")
         for h in fam.hypotheses(name):

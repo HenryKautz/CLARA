@@ -8,6 +8,6 @@
   (occurs (drive truck2 p2-3 p2-4) 1)
   (occurs (drive truck2 p2-4 p3-4) 2)
   (occurs (load pkg4 truck2 p3-4) 3)
-  (occurs (drive truck2 p3-4 p3-5) 4)
-  (occurs (drive truck2 p3-5 p4-5) 5)
+  (occurs (drive truck2 p3-4 p4-4) 4)
+  (occurs (drive truck2 p4-4 p4-5) 5)
   (occurs (unload pkg4 truck2 p4-5) 6))

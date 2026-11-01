@@ -5,10 +5,10 @@
 ;; Written by scripts/plan-goals.py.
 
 (and
-  (occurs (drive truck2 p1-2 p2-2) 1)
-  (occurs (drive truck2 p2-2 p2-3) 2)
+  (occurs (drive truck2 p1-2 p1-3) 1)
+  (occurs (drive truck2 p1-3 p2-3) 2)
   (occurs (drive truck2 p2-3 p2-4) 3)
   (occurs (load pkg3 truck2 p2-4) 4)
-  (occurs (drive truck2 p2-4 p2-3) 5)
-  (occurs (drive truck2 p2-3 p1-3) 6)
+  (occurs (drive truck2 p2-4 p1-4) 5)
+  (occurs (drive truck2 p1-4 p1-3) 6)
   (occurs (unload pkg3 truck2 p1-3) 7))

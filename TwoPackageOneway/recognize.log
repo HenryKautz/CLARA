@@ -1,0 +1,320 @@
+09:16:44 TwoPackageOneway: methods ['max-term', 'sharpsat-td', 'mc-sat'], limit 1800s, 8 jobs; stopped: {}
+09:18:15 size 3x3: 108 runs queued
+09:18:23 ok           7.6s max-term    grid3x3-1-none.txt
+09:18:27 ok          10.2s sharpsat-td grid3x3-1-none.txt
+09:18:27 ok          10.9s max-term    grid3x3-2-none.txt
+09:18:27 ok           8.3s max-term    grid3x3-3-none.txt
+09:18:31 ok          10.6s sharpsat-td grid3x3-2-none.txt
+09:18:33 ok          10.1s sharpsat-td grid3x3-3-none.txt
+09:18:40 ok          12.6s max-term    grid3x3-4-none.txt
+09:18:40 ok          11.4s sharpsat-td grid3x3-4-none.txt
+09:18:40 ok           9.1s max-term    grid3x3-1-pkg1-p1-3-obs25.txt  score=0.00
+09:18:52 ok          11.1s sharpsat-td grid3x3-1-pkg1-p1-3-obs25.txt  score=0.00
+09:18:52 ok           9.3s max-term    grid3x3-1-pkg1-p2-1-obs25.txt  score=1.00
+09:19:01 ok           6.8s max-term    grid3x3-1-pkg2-p1-1-obs25.txt  score=0.50
+09:19:03 ok          10.1s sharpsat-td grid3x3-1-pkg1-p2-1-obs25.txt  score=1.00
+09:19:16 ok          11.6s sharpsat-td grid3x3-1-pkg2-p1-1-obs25.txt  score=0.00
+09:19:16 size 4x4: 108 runs queued
+09:19:16 size 5x5: 108 runs queued
+09:19:27 ok           9.3s max-term    grid3x3-1-pkg2-p2-1-obs25.txt  score=0.50
+09:20:28 ok         131.5s mc-sat      grid3x3-1-none.txt
+09:20:35 ok         121.4s mc-sat      grid3x3-1-pkg1-p1-3-obs25.txt  score=0.00
+09:20:39 ok         117.8s mc-sat      grid3x3-1-pkg1-p2-1-obs25.txt  score=0.00
+09:20:42 ok          12.8s sharpsat-td grid3x3-1-pkg2-p2-1-obs25.txt  score=0.00
+09:20:53 ok          17.2s max-term    grid3x3-2-pkg1-p1-2-obs25.txt  score=0.50
+09:20:55 ok          13.0s sharpsat-td grid3x3-2-pkg1-p1-2-obs25.txt  score=0.00
+09:21:10 ok          16.7s max-term    grid3x3-2-pkg1-p2-2-obs25.txt  score=0.50
+09:21:14 ok         132.6s mc-sat      grid3x3-1-pkg2-p1-1-obs25.txt  score=0.00
+09:21:19 ok         180.7s mc-sat      grid3x3-2-none.txt
+09:21:19 size 6x6: 108 runs queued
+09:21:24 ok          13.1s sharpsat-td grid3x3-2-pkg1-p2-2-obs25.txt  score=0.00
+09:21:30 ok          15.2s max-term    grid3x3-2-pkg2-p1-2-obs25.txt  score=1.00
+09:21:37 ok          12.4s sharpsat-td grid3x3-2-pkg2-p1-2-obs25.txt  score=1.00
+09:21:39 ok         131.5s mc-sat      grid3x3-1-pkg2-p2-1-obs25.txt  score=0.00
+09:21:44 ok          13.0s max-term    grid3x3-2-pkg2-p2-2-obs25.txt  score=0.00
+09:21:52 ok          12.7s sharpsat-td grid3x3-2-pkg2-p2-2-obs25.txt  score=0.00
+09:21:55 ok          10.7s max-term    grid3x3-3-pkg1-p2-3-obs25.txt  score=0.50
+09:22:08 ok          11.9s sharpsat-td grid3x3-3-pkg1-p2-3-obs25.txt  score=0.50
+09:22:20 ok          12.3s max-term    grid3x3-3-pkg1-p3-2-obs25.txt  score=0.50
+09:22:43 nomix      255.0s mc-sat      grid3x3-4-none.txt
+09:22:54 ok           9.9s sharpsat-td grid3x3-3-pkg1-p3-2-obs25.txt  score=0.50
+09:23:03 ok           7.9s max-term    grid3x3-3-pkg2-p2-1-obs25.txt  score=0.50
+09:23:19 ok         158.5s mc-sat      grid3x3-2-pkg1-p1-2-obs25.txt  score=0.00
+09:23:30 ok          10.1s sharpsat-td grid3x3-3-pkg2-p2-1-obs25.txt  score=1.00
+09:23:34 nomix      158.2s mc-sat      grid3x3-2-pkg1-p2-2-obs25.txt
+09:23:39 ok           8.0s max-term    grid3x3-3-pkg2-p3-2-obs25.txt  score=0.50
+09:23:50 ok          10.0s sharpsat-td grid3x3-3-pkg2-p3-2-obs25.txt  score=0.00
+09:23:52 nomix      152.7s mc-sat      grid3x3-2-pkg2-p1-2-obs25.txt
+09:24:01 nomix      143.5s mc-sat      grid3x3-2-pkg2-p2-2-obs25.txt
+09:24:03 ok          12.0s max-term    grid3x3-4-pkg1-p2-1-obs25.txt  score=1.00
+09:24:12 ok          10.2s sharpsat-td grid3x3-4-pkg1-p2-1-obs25.txt  score=1.00
+09:24:17 ok          12.1s max-term    grid3x3-4-pkg1-p2-2-obs25.txt  score=0.00
+09:24:27 ok          10.2s sharpsat-td grid3x3-4-pkg1-p2-2-obs25.txt  score=0.00
+09:24:40 nomix      379.9s mc-sat      grid3x3-3-none.txt
+09:24:40 ok          12.3s max-term    grid3x3-4-pkg2-p2-2-obs25.txt  score=0.50
+09:24:51 ok          10.3s sharpsat-td grid3x3-4-pkg2-p2-2-obs25.txt  score=0.00
+09:25:04 ok          12.4s max-term    grid3x3-4-pkg2-p3-3-obs25.txt  score=0.50
+09:25:25 size 7x7: 108 runs queued
+09:27:02 nomix      188.4s mc-sat      grid3x3-4-pkg1-p2-1-obs25.txt
+09:27:13 ok          10.3s sharpsat-td grid3x3-4-pkg2-p3-3-obs25.txt  score=1.00
+09:27:21 ok           7.5s max-term    grid3x3-1-pkg1-p1-3-obs100.txt  score=1.00
+09:27:24 nomix      190.9s mc-sat      grid3x3-4-pkg1-p2-2-obs25.txt
+09:27:26 nomix      331.7s mc-sat      grid3x3-3-pkg1-p2-3-obs25.txt
+09:27:35 ok           9.9s sharpsat-td grid3x3-1-pkg1-p1-3-obs100.txt  score=1.00
+09:27:35 ok           7.6s max-term    grid3x3-1-pkg1-p2-1-obs100.txt  score=1.00
+09:27:44 ok           7.9s sharpsat-td grid3x3-1-pkg1-p2-1-obs100.txt  score=1.00
+09:27:51 nomix      189.9s mc-sat      grid3x3-4-pkg2-p2-2-obs25.txt
+09:27:53 ok           7.5s max-term    grid3x3-1-pkg2-p1-1-obs100.txt  score=1.00
+09:28:00 nomix      338.1s mc-sat      grid3x3-3-pkg1-p3-2-obs25.txt
+09:28:04 ok           9.8s sharpsat-td grid3x3-1-pkg2-p1-1-obs100.txt  score=1.00
+09:28:09 ok           7.2s max-term    grid3x3-1-pkg2-p2-1-obs100.txt  score=1.00
+09:28:13 ok         189.0s mc-sat      grid3x3-4-pkg2-p3-3-obs25.txt  score=1.00
+09:28:20 ok           9.9s sharpsat-td grid3x3-1-pkg2-p2-1-obs100.txt  score=1.00
+09:28:25 ok          10.4s max-term    grid3x3-2-pkg1-p1-2-obs100.txt  score=1.00
+09:28:35 ok           9.9s sharpsat-td grid3x3-2-pkg1-p1-2-obs100.txt  score=1.00
+09:28:38 ok         333.9s mc-sat      grid3x3-3-pkg2-p2-1-obs25.txt  score=1.00
+09:28:46 ok          10.8s max-term    grid3x3-2-pkg1-p2-2-obs100.txt  score=1.00
+09:28:57 ok          94.7s mc-sat      grid3x3-1-pkg1-p1-3-obs100.txt  score=1.00
+09:28:57 ok          10.0s sharpsat-td grid3x3-2-pkg1-p2-2-obs100.txt  score=1.00
+09:29:08 ok         332.7s mc-sat      grid3x3-3-pkg2-p3-2-obs25.txt  score=0.00
+09:29:08 ok          93.0s mc-sat      grid3x3-1-pkg1-p2-1-obs100.txt  score=1.00
+09:29:08 ok          10.7s max-term    grid3x3-2-pkg2-p1-2-obs100.txt  score=1.00
+09:29:18 ok           8.0s sharpsat-td grid3x3-2-pkg2-p1-2-obs100.txt  score=1.00
+09:29:20 ok          10.6s max-term    grid3x3-2-pkg2-p2-2-obs100.txt  score=1.00
+09:29:25 ok          93.7s mc-sat      grid3x3-1-pkg2-p1-1-obs100.txt  score=1.00
+09:29:30 ok          10.0s sharpsat-td grid3x3-2-pkg2-p2-2-obs100.txt  score=1.00
+09:29:30 ok           8.3s max-term    grid3x3-3-pkg1-p2-3-obs100.txt  score=1.00
+09:29:39 ok          94.2s mc-sat      grid3x3-1-pkg2-p2-1-obs100.txt  score=1.00
+09:29:39 ok           8.0s sharpsat-td grid3x3-3-pkg1-p2-3-obs100.txt  score=1.00
+09:29:39 ok           8.2s max-term    grid3x3-3-pkg1-p3-2-obs100.txt  score=1.00
+09:29:48 ok           8.0s sharpsat-td grid3x3-3-pkg1-p3-2-obs100.txt  score=1.00
+09:29:48 ok           8.2s max-term    grid3x3-3-pkg2-p2-1-obs100.txt  score=1.00
+09:29:59 ok           9.9s sharpsat-td grid3x3-3-pkg2-p2-1-obs100.txt  score=1.00
+09:30:08 ok           7.8s max-term    grid3x3-3-pkg2-p3-2-obs100.txt  score=1.00
+09:30:27 ok         125.3s mc-sat      grid3x3-2-pkg1-p1-2-obs100.txt  score=1.00
+09:30:37 ok           9.9s sharpsat-td grid3x3-3-pkg2-p3-2-obs100.txt  score=1.00
+09:30:46 ok         127.5s mc-sat      grid3x3-2-pkg1-p2-2-obs100.txt  score=1.00
+09:30:51 ok          12.2s max-term    grid3x3-4-pkg1-p2-1-obs100.txt  score=1.00
+09:30:59 ok           8.1s sharpsat-td grid3x3-4-pkg1-p2-1-obs100.txt  score=1.00
+09:31:02 nomix      123.2s mc-sat      grid3x3-2-pkg2-p1-2-obs100.txt
+09:31:13 ok          12.4s max-term    grid3x3-4-pkg1-p2-2-obs100.txt  score=1.00
+09:31:15 ok         125.0s mc-sat      grid3x3-2-pkg2-p2-2-obs100.txt  score=1.00
+09:31:24 ok          10.1s sharpsat-td grid3x3-4-pkg1-p2-2-obs100.txt  score=1.00
+09:31:28 ok          12.2s max-term    grid3x3-4-pkg2-p2-2-obs100.txt  score=1.00
+09:31:39 ok          10.1s sharpsat-td grid3x3-4-pkg2-p2-2-obs100.txt  score=1.00
+09:31:52 ok          12.4s max-term    grid3x3-4-pkg2-p3-3-obs100.txt  score=1.00
+09:33:36 nomix      168.6s mc-sat      grid3x3-4-pkg1-p2-1-obs100.txt
+09:33:55 ok         171.1s mc-sat      grid3x3-4-pkg1-p2-2-obs100.txt  score=1.00
+09:33:57 ok          19.4s sharpsat-td grid3x3-4-pkg2-p3-3-obs100.txt  score=1.00
+09:34:00 nomix      274.3s mc-sat      grid3x3-3-pkg1-p2-3-obs100.txt
+09:34:15 nomix      274.0s mc-sat      grid3x3-3-pkg1-p3-2-obs100.txt
+09:34:17 ok         172.3s mc-sat      grid3x3-4-pkg2-p2-2-obs100.txt  score=1.00
+09:34:26 ok         275.7s mc-sat      grid3x3-3-pkg2-p2-1-obs100.txt  score=1.00
+09:34:32 ok          36.6s max-term    grid4x4-1-none.txt
+09:34:41 nomix      169.0s mc-sat      grid3x3-4-pkg2-p3-3-obs100.txt
+09:34:44 ok          43.5s sharpsat-td grid4x4-1-none.txt
+09:34:46 ok          30.8s max-term    grid4x4-2-none.txt
+09:34:57 ok          24.4s max-term    grid4x4-3-none.txt
+09:35:00 ok         291.4s mc-sat      grid3x3-3-pkg2-p3-2-obs100.txt  score=1.00
+09:35:04 ok          18.7s sharpsat-td grid4x4-3-none.txt
+09:35:04 ok          17.9s max-term    grid4x4-4-none.txt
+09:35:20 ok          18.1s sharpsat-td grid4x4-4-none.txt
+09:35:53 ok          47.6s max-term    grid4x4-1-pkg1-p1-4-obs25.txt  score=0.50
+09:35:53 ok          31.9s sharpsat-td grid4x4-1-pkg1-p1-4-obs25.txt  score=0.00
+09:36:38 ok          44.7s max-term    grid4x4-1-pkg1-p2-3-obs25.txt  score=0.50
+09:37:11 ok          32.0s sharpsat-td grid4x4-1-pkg1-p2-3-obs25.txt  score=1.00
+09:37:46 ok          33.8s max-term    grid4x4-1-pkg2-p1-4-obs25.txt  score=0.50
+09:48:12 ok         809.2s mc-sat      grid4x4-3-none.txt
+09:48:39 ok          24.9s sharpsat-td grid4x4-1-pkg2-p1-4-obs25.txt  score=1.00
+09:49:30 ok          49.5s max-term    grid4x4-1-pkg2-p3-1-obs25.txt  score=0.50
+09:50:17 ok         918.7s mc-sat      grid4x4-4-none.txt
+09:50:44 ok          25.3s sharpsat-td grid4x4-1-pkg2-p3-1-obs25.txt  score=0.00
+09:51:25 ok          40.7s max-term    grid4x4-2-pkg1-p2-1-obs25.txt  score=0.50
+09:57:03 nomix     1364.7s mc-sat      grid4x4-2-none.txt
+10:00:29 ok        1590.5s mc-sat      grid4x4-1-none.txt
+10:01:14 ok          44.5s max-term    grid4x4-2-pkg1-p3-2-obs25.txt  score=0.50
+10:01:24 nomix     1578.1s mc-sat      grid4x4-1-pkg1-p1-4-obs25.txt
+10:02:01 nomix     1568.3s mc-sat      grid4x4-1-pkg1-p2-3-obs25.txt
+10:02:45 ok          42.3s max-term    grid4x4-2-pkg2-p3-2-obs25.txt  score=0.25
+10:04:02 nomix     1575.5s mc-sat      grid4x4-1-pkg2-p1-4-obs25.txt
+10:04:30 timeout   1801.2s sharpsat-td grid4x4-2-none.txt
+10:04:30     sharpsat-td stopped at 4x4: killing its 3 other run(s) there or larger
+10:04:33 killed     447.2s sharpsat-td grid4x4-2-pkg1-p2-1-obs25.txt
+10:04:36 killed     188.8s sharpsat-td grid4x4-2-pkg1-p3-2-obs25.txt
+10:04:39 killed      34.2s sharpsat-td grid4x4-2-pkg2-p3-2-obs25.txt
+10:05:00 ok          17.8s max-term    grid4x4-3-pkg1-p1-3-obs25.txt  score=1.00
+10:05:18 ok          17.8s max-term    grid4x4-3-pkg1-p3-3-obs25.txt  score=0.00
+10:05:21 ok          40.4s max-term    grid4x4-2-pkg2-p3-3-obs25.txt  score=0.25
+10:05:40 ok          17.2s max-term    grid4x4-3-pkg2-p1-1-obs25.txt  score=0.50
+10:13:47 ok        1340.9s mc-sat      grid4x4-2-pkg1-p2-1-obs25.txt  score=0.00
+10:14:08 ok          18.9s max-term    grid4x4-3-pkg2-p3-3-obs25.txt  score=0.00
+10:15:46 ok        1575.4s mc-sat      grid4x4-1-pkg2-p3-1-obs25.txt  score=0.00
+10:16:01 ok          12.9s max-term    grid4x4-4-pkg1-p1-4-obs25.txt  score=0.50
+10:17:53 nomix      790.1s mc-sat      grid4x4-3-pkg1-p1-3-obs25.txt
+10:18:07 ok          13.9s max-term    grid4x4-4-pkg1-p3-3-obs25.txt  score=0.50
+10:18:18 nomix      778.1s mc-sat      grid4x4-3-pkg1-p3-3-obs25.txt
+10:18:31 ok          12.6s max-term    grid4x4-4-pkg2-p4-2-obs25.txt  score=0.50
+10:18:35 ok         775.4s mc-sat      grid4x4-3-pkg2-p1-1-obs25.txt  score=0.00
+10:18:48 ok          12.4s max-term    grid4x4-4-pkg2-p4-4-obs25.txt  score=0.50
+10:23:23 nomix     1327.0s mc-sat      grid4x4-2-pkg1-p3-2-obs25.txt
+10:23:54 ok          30.3s max-term    grid4x4-1-pkg1-p1-4-obs100.txt  score=1.00
+10:24:45 ok        1319.7s mc-sat      grid4x4-2-pkg2-p3-2-obs25.txt  score=0.00
+10:25:16 ok          30.6s max-term    grid4x4-1-pkg1-p2-3-obs100.txt  score=1.00
+10:26:58 nomix     1336.2s mc-sat      grid4x4-2-pkg2-p3-3-obs25.txt
+10:27:23 ok         794.0s mc-sat      grid4x4-3-pkg2-p3-3-obs25.txt  score=1.00
+10:27:31 ok          32.8s max-term    grid4x4-1-pkg2-p1-4-obs100.txt  score=1.00
+10:28:06 ok          33.4s max-term    grid4x4-1-pkg2-p3-1-obs100.txt  score=1.00
+10:31:07 ok         905.8s mc-sat      grid4x4-4-pkg1-p1-4-obs25.txt  score=0.00
+10:31:34 ok          26.1s max-term    grid4x4-2-pkg1-p2-1-obs100.txt  score=1.00
+10:33:24 ok         915.9s mc-sat      grid4x4-4-pkg1-p3-3-obs25.txt  score=1.00
+10:33:24 nomix      893.0s mc-sat      grid4x4-4-pkg2-p4-2-obs25.txt
+10:33:50 ok          25.1s max-term    grid4x4-2-pkg1-p3-2-obs100.txt  score=1.00
+10:33:54 nomix      905.2s mc-sat      grid4x4-4-pkg2-p4-4-obs25.txt
+10:34:25 ok          34.4s max-term    grid4x4-2-pkg2-p3-2-obs100.txt  score=1.00
+10:34:52 ok          26.6s max-term    grid4x4-2-pkg2-p3-3-obs100.txt  score=1.00
+10:50:00 ok        1565.7s mc-sat      grid4x4-1-pkg1-p1-4-obs100.txt  score=1.00
+10:50:18 ok          16.9s max-term    grid4x4-3-pkg1-p1-3-obs100.txt  score=1.00
+10:50:49 ok        1533.5s mc-sat      grid4x4-1-pkg1-p2-3-obs100.txt  score=1.00
+10:51:06 ok          16.4s max-term    grid4x4-3-pkg1-p3-3-obs100.txt  score=1.00
+10:53:00 nomix     1536.2s mc-sat      grid4x4-1-pkg2-p1-4-obs100.txt
+10:53:11 nomix     1296.0s mc-sat      grid4x4-2-pkg1-p2-1-obs100.txt
+10:53:17 ok          16.3s max-term    grid4x4-3-pkg2-p1-1-obs100.txt  score=1.00
+10:53:34 ok          16.2s max-term    grid4x4-3-pkg2-p3-3-obs100.txt  score=1.00
+10:53:59 nomix     1552.3s mc-sat      grid4x4-1-pkg2-p3-1-obs100.txt
+10:54:12 ok          11.9s max-term    grid4x4-4-pkg1-p1-4-obs100.txt  score=1.00
+10:55:01 nomix     1295.1s mc-sat      grid4x4-2-pkg1-p3-2-obs100.txt
+10:55:14 ok          12.2s max-term    grid4x4-4-pkg1-p3-3-obs100.txt  score=1.00
+10:55:26 ok        1290.5s mc-sat      grid4x4-2-pkg2-p3-2-obs100.txt  score=1.00
+10:55:39 ok          12.0s max-term    grid4x4-4-pkg2-p4-2-obs100.txt  score=1.00
+10:55:54 nomix     1261.0s mc-sat      grid4x4-2-pkg2-p3-3-obs100.txt
+10:56:06 ok          12.0s max-term    grid4x4-4-pkg2-p4-4-obs100.txt  score=1.00
+11:02:14 nomix      714.9s mc-sat      grid4x4-3-pkg1-p1-3-obs100.txt
+11:02:25 ok           8.8s max-term    grid5x5-1-none.txt
+11:03:22 nomix      734.7s mc-sat      grid4x4-3-pkg1-p3-3-obs100.txt
+11:03:53 ok          29.2s max-term    grid5x5-2-none.txt
+11:05:54 nomix      761.6s mc-sat      grid4x4-3-pkg2-p1-1-obs100.txt
+11:05:54 ok         737.8s mc-sat      grid4x4-3-pkg2-p3-3-obs100.txt  score=1.00
+11:06:22 ok          26.8s max-term    grid5x5-3-none.txt
+11:06:57 ok          34.5s max-term    grid5x5-4-none.txt
+11:08:55 nomix      881.8s mc-sat      grid4x4-4-pkg1-p1-4-obs100.txt
+11:09:06 ok           9.0s max-term    grid5x5-1-pkg1-p4-1-obs25.txt  score=0.50
+11:09:31 nomix      829.9s mc-sat      grid4x4-4-pkg2-p4-2-obs100.txt
+11:09:41 ok           9.0s max-term    grid5x5-1-pkg1-p4-4-obs25.txt  score=0.50
+11:09:58 ok         883.6s mc-sat      grid4x4-4-pkg1-p3-3-obs100.txt  score=1.00
+11:10:09 ok           8.7s max-term    grid5x5-1-pkg2-p2-4-obs25.txt  score=1.00
+11:10:30 nomix      862.4s mc-sat      grid4x4-4-pkg2-p4-4-obs100.txt
+11:10:40 ok           8.7s max-term    grid5x5-1-pkg2-p3-4-obs25.txt  score=0.00
+11:26:10 ok        1424.8s mc-sat      grid5x5-1-none.txt
+11:26:41 ok          29.6s max-term    grid5x5-2-pkg1-p1-1-obs25.txt  score=0.50
+11:32:19 ok        1391.7s mc-sat      grid5x5-1-pkg1-p4-1-obs25.txt  score=0.00
+11:32:35 nomix     1346.6s mc-sat      grid5x5-1-pkg2-p2-4-obs25.txt
+11:32:56 ok        1394.1s mc-sat      grid5x5-1-pkg1-p4-4-obs25.txt  score=0.00
+11:33:03 ok          43.8s max-term    grid5x5-2-pkg1-p4-2-obs25.txt  score=0.50
+11:33:16 nomix     1353.9s mc-sat      grid5x5-1-pkg2-p3-4-obs25.txt
+11:33:36 ok          39.9s max-term    grid5x5-2-pkg2-p5-3-obs25.txt  score=0.50
+11:33:58 timeout   1801.8s mc-sat      grid5x5-2-none.txt
+11:33:58     mc-sat stopped at 5x5: killing its 6 other run(s) there or larger
+11:34:01 killed    1684.2s mc-sat      grid5x5-3-none.txt
+11:34:04 killed    1624.4s mc-sat      grid5x5-4-none.txt
+11:34:08 killed     443.2s mc-sat      grid5x5-2-pkg1-p1-1-obs25.txt
+11:34:11 killed      92.0s mc-sat      grid5x5-2-pkg1-p4-2-obs25.txt
+11:34:14 killed      67.7s mc-sat      grid5x5-2-pkg2-p5-3-obs25.txt
+11:34:17 killed      37.3s mc-sat      grid5x5-2-pkg2-p5-4-obs25.txt
+11:34:17 ok          39.7s max-term    grid5x5-2-pkg2-p5-4-obs25.txt  score=0.50
+11:34:43 ok          25.6s max-term    grid5x5-3-pkg1-p4-3-obs25.txt  score=0.50
+11:34:50 ok          30.8s max-term    grid5x5-3-pkg1-p4-4-obs25.txt  score=0.50
+11:34:52 ok          33.0s max-term    grid5x5-3-pkg2-p1-5-obs25.txt  score=0.50
+11:34:52 ok          33.3s max-term    grid5x5-3-pkg2-p4-4-obs25.txt  score=0.50
+11:34:52 ok           8.9s max-term    grid5x5-1-pkg1-p4-1-obs100.txt  score=1.00
+11:35:00 ok          39.0s max-term    grid5x5-4-pkg2-p4-3-obs25.txt  score=0.50
+11:35:00 ok           8.9s max-term    grid5x5-1-pkg1-p4-4-obs100.txt  score=1.00
+11:35:03 ok          40.4s max-term    grid5x5-4-pkg2-p1-5-obs25.txt  score=0.50
+11:35:03 ok           8.9s max-term    grid5x5-1-pkg2-p2-4-obs100.txt  score=1.00
+11:35:03 ok           9.0s max-term    grid5x5-1-pkg2-p3-4-obs100.txt  score=1.00
+11:35:09 ok          48.9s max-term    grid5x5-4-pkg1-p4-2-obs25.txt  score=0.50
+11:35:09 ok          47.4s max-term    grid5x5-4-pkg1-p4-5-obs25.txt  score=0.50
+11:35:24 ok          29.1s max-term    grid5x5-2-pkg1-p1-1-obs100.txt  score=1.00
+11:35:30 ok          29.4s max-term    grid5x5-2-pkg1-p4-2-obs100.txt  score=1.00
+11:35:30 ok          26.9s max-term    grid5x5-3-pkg1-p4-3-obs100.txt  score=1.00
+11:35:33 ok          30.3s max-term    grid5x5-2-pkg2-p5-3-obs100.txt  score=1.00
+11:35:33 ok          29.4s max-term    grid5x5-2-pkg2-p5-4-obs100.txt  score=1.00
+11:35:33 ok          27.0s max-term    grid5x5-3-pkg1-p4-4-obs100.txt  score=1.00
+11:35:37 ok          26.9s max-term    grid5x5-3-pkg2-p1-5-obs100.txt  score=1.00
+11:35:37 ok          25.9s max-term    grid5x5-3-pkg2-p4-4-obs100.txt  score=1.00
+11:35:58 ok          33.3s max-term    grid5x5-4-pkg1-p4-2-obs100.txt  score=1.00
+11:36:05 ok          33.7s max-term    grid5x5-4-pkg2-p1-5-obs100.txt  score=1.00
+11:36:05 ok          28.8s max-term    grid6x6-2-none.txt
+11:36:08 ok          31.9s max-term    grid5x5-4-pkg2-p4-3-obs100.txt  score=1.00
+11:36:12 ok          41.9s max-term    grid5x5-4-pkg1-p4-5-obs100.txt  score=1.00
+11:36:56 ok          42.8s max-term    grid6x6-2-pkg1-p1-1-obs25.txt  score=0.50
+11:36:58 ok          82.1s max-term    grid6x6-1-none.txt
+11:37:29 ok          30.8s max-term    grid6x6-2-pkg2-p1-2-obs25.txt  score=1.00
+11:37:32 ok         111.7s max-term    grid6x6-4-none.txt
+11:37:34 ok          93.8s max-term    grid6x6-1-pkg1-p1-3-obs25.txt  score=0.25
+11:37:39 ok          91.9s max-term    grid6x6-1-pkg2-p3-4-obs25.txt  score=0.25
+11:37:41 ok          44.4s max-term    grid6x6-2-pkg1-p2-5-obs25.txt  score=0.50
+11:37:50 ok         103.2s max-term    grid6x6-1-pkg1-p6-2-obs25.txt  score=0.25
+11:38:03 ok         113.8s max-term    grid6x6-1-pkg2-p6-1-obs25.txt  score=0.50
+11:38:03 ok          32.9s max-term    grid6x6-2-pkg2-p4-4-obs25.txt  score=0.00
+11:38:10 ok         151.8s max-term    grid6x6-3-none.txt
+11:39:52 ok         107.0s max-term    grid6x6-4-pkg2-p1-2-obs25.txt  score=0.50
+11:39:52 ok         101.6s max-term    grid6x6-4-pkg2-p4-2-obs25.txt  score=0.50
+11:39:59 ok         128.4s max-term    grid6x6-4-pkg1-p4-1-obs25.txt  score=0.50
+11:40:01 ok         118.4s max-term    grid6x6-4-pkg1-p5-5-obs25.txt  score=0.50
+11:40:51 ok         195.8s max-term    grid6x6-3-pkg1-p5-6-obs25.txt  score=0.25
+11:40:57 ok         203.9s max-term    grid6x6-3-pkg1-p1-6-obs25.txt  score=0.25
+11:41:14 ok          81.4s max-term    grid6x6-1-pkg1-p1-3-obs100.txt  score=1.00
+11:41:20 ok         220.2s max-term    grid6x6-3-pkg2-p2-6-obs25.txt  score=0.25
+11:41:20 ok          86.6s max-term    grid6x6-1-pkg1-p6-2-obs100.txt  score=1.00
+11:41:20 ok          29.8s max-term    grid6x6-2-pkg1-p1-1-obs100.txt  score=1.00
+11:41:28 ok          29.8s max-term    grid6x6-2-pkg1-p2-5-obs100.txt  score=1.00
+11:41:33 ok          89.3s max-term    grid6x6-1-pkg2-p6-1-obs100.txt  score=1.00
+11:41:35 ok          95.5s max-term    grid6x6-1-pkg2-p3-4-obs100.txt  score=1.00
+11:41:44 ok          29.8s max-term    grid6x6-2-pkg2-p1-2-obs100.txt  score=1.00
+11:41:50 ok         248.0s max-term    grid6x6-3-pkg2-p3-3-obs25.txt  score=0.25
+11:41:53 ok          30.4s max-term    grid6x6-2-pkg2-p4-4-obs100.txt  score=1.00
+11:43:27 ok         125.5s max-term    grid6x6-3-pkg1-p1-6-obs100.txt  score=1.00
+11:43:29 ok         112.0s max-term    grid6x6-4-pkg1-p4-1-obs100.txt  score=1.00
+11:43:38 ok         112.5s max-term    grid6x6-4-pkg1-p5-5-obs100.txt  score=1.00
+11:43:47 ok         114.2s max-term    grid6x6-4-pkg2-p1-2-obs100.txt  score=1.00
+11:43:47 ok         112.1s max-term    grid6x6-4-pkg2-p4-2-obs100.txt  score=1.00
+11:43:52 ok         149.5s max-term    grid6x6-3-pkg1-p5-6-obs100.txt  score=1.00
+11:44:10 ok         157.1s max-term    grid6x6-3-pkg2-p3-3-obs100.txt  score=1.00
+11:44:21 ok         171.8s max-term    grid6x6-3-pkg2-p2-6-obs100.txt  score=1.00
+11:44:48 ok          68.5s max-term    grid7x7-3-none.txt
+11:47:17 ok         208.3s max-term    grid7x7-4-none.txt
+11:47:23 ok         232.7s max-term    grid7x7-2-none.txt
+11:48:09 ok         200.2s max-term    grid7x7-2-pkg1-p2-7-obs25.txt  score=0.50
+11:51:04 ok         220.0s max-term    grid7x7-2-pkg2-p5-1-obs25.txt  score=0.50
+11:51:23 ok         244.2s max-term    grid7x7-2-pkg1-p7-2-obs25.txt  score=0.50
+11:52:26 ok          81.9s max-term    grid7x7-3-pkg1-p2-6-obs25.txt  score=0.25
+11:52:29 ok         258.9s max-term    grid7x7-2-pkg2-p6-2-obs25.txt  score=0.50
+11:52:49 ok          85.0s max-term    grid7x7-3-pkg1-p6-7-obs25.txt  score=0.25
+11:53:53 ok          85.5s max-term    grid7x7-3-pkg2-p4-4-obs25.txt  score=0.25
+11:53:57 ok          87.3s max-term    grid7x7-3-pkg2-p5-4-obs25.txt  score=0.25
+11:56:16 ok         747.1s max-term    grid7x7-1-pkg1-p1-3-obs25.txt  score=0.50
+11:56:37 ok         763.1s max-term    grid7x7-1-pkg1-p4-2-obs25.txt  score=0.50
+11:56:49 ok         802.2s max-term    grid7x7-1-none.txt
+11:58:19 ok         847.8s max-term    grid7x7-1-pkg2-p4-1-obs25.txt  score=0.50
+11:58:36 ok         853.2s max-term    grid7x7-1-pkg2-p5-2-obs25.txt  score=0.50
+11:59:27 ok         328.3s max-term    grid7x7-4-pkg2-p2-5-obs25.txt  score=0.50
+12:00:49 ok         479.6s max-term    grid7x7-4-pkg1-p2-1-obs25.txt  score=0.25
+12:01:02 ok         428.6s max-term    grid7x7-4-pkg1-p5-1-obs25.txt  score=0.25
+12:02:30 ok         373.7s max-term    grid7x7-4-pkg2-p3-1-obs25.txt  score=0.50
+12:02:46 ok         198.7s max-term    grid7x7-2-pkg1-p2-7-obs100.txt  score=1.00
+12:03:44 ok         173.4s max-term    grid7x7-2-pkg1-p7-2-obs100.txt  score=1.00
+12:03:46 ok          59.0s max-term    grid7x7-3-pkg1-p2-6-obs100.txt  score=1.00
+12:04:19 ok         196.1s max-term    grid7x7-2-pkg2-p5-1-obs100.txt  score=1.00
+12:04:42 ok          58.2s max-term    grid7x7-3-pkg1-p6-7-obs100.txt  score=1.00
+12:04:49 ok          61.8s max-term    grid7x7-3-pkg2-p4-4-obs100.txt  score=1.00
+12:05:22 ok          60.9s max-term    grid7x7-3-pkg2-p5-4-obs100.txt  score=1.00
+12:05:32 ok         182.0s max-term    grid7x7-2-pkg2-p6-2-obs100.txt  score=1.00
+12:09:20 ok         271.5s max-term    grid7x7-4-pkg1-p5-1-obs100.txt  score=1.00
+12:09:57 ok         799.0s max-term    grid7x7-1-pkg1-p1-3-obs100.txt  score=1.00
+12:10:05 ok         322.4s max-term    grid7x7-4-pkg1-p2-1-obs100.txt  score=1.00
+12:10:15 ok         282.1s max-term    grid7x7-4-pkg2-p3-1-obs100.txt  score=1.00
+12:10:50 ok         326.4s max-term    grid7x7-4-pkg2-p2-5-obs100.txt  score=1.00
+12:11:26 ok         876.8s max-term    grid7x7-1-pkg1-p4-2-obs100.txt  score=1.00
+12:11:43 ok         802.2s max-term    grid7x7-1-pkg2-p4-1-obs100.txt  score=1.00
+12:13:24 ok         886.7s max-term    grid7x7-1-pkg2-p5-2-obs100.txt  score=1.00
+12:13:24 done; stopped: {'sharpsat-td': 4, 'mc-sat': 5}

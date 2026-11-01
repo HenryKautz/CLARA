@@ -78,7 +78,10 @@ def record(rec):
 
 
 def old_horizon(problem, hyp):
-    """The shortest horizon of the same goal in OldVersions, if it was planned."""
+    """The shortest horizon of the same goal in OldVersions, if it was planned
+    and the family's world is the old one (no hint when the roads changed)."""
+    if not FAM.same_world:
+        return None
     names = [hyp.goal]
     if FAM.name == "SimpleGrid":            # old name: <problem>-<place>
         names.append(f"{problem}-{hyp.lits[0][1]}")

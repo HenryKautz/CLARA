@@ -1,0 +1,3 @@
+;; grid6x6-3: no observations.  Written by scripts/plan-goals.py.
+
+(and)

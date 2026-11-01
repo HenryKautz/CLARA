@@ -1,4 +1,4 @@
-;; grid8x8-1-pkg4-p1-2: the first 3 of the 11 actions of goals/grid8x8-1-pkg4-p1-2.answer
+;; grid8x8-1-pkg4-p1-2: the first 3 of the 9 actions of goals/grid8x8-1-pkg4-p1-2.answer
 ;; (25%, rounded up), a plan for (at pkg4 p1-2) by EvalMaxSAT_bin.
 ;; True hypothesis: at-pkg4-p1-2.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.

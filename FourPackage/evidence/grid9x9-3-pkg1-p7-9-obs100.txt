@@ -1,27 +1,22 @@
-;; grid9x9-3-pkg1-p7-9: all of the 20 actions of goals/grid9x9-3-pkg1-p7-9.answer
+;; grid9x9-3-pkg1-p7-9: all of the 15 actions of goals/grid9x9-3-pkg1-p7-9.answer
 ;; (100%, rounded up), a plan for (at pkg1 p7-9) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
 ;; True hypothesis: at-pkg1-p7-9.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
 ;; Written by scripts/plan-goals.py.
 
 (and
-  (occurs (drive truck1 p3-7 p3-6) 1)
-  (occurs (drive truck1 p3-6 p3-5) 2)
-  (occurs (drive truck1 p3-5 p3-4) 3)
-  (occurs (drive truck1 p3-4 p4-4) 4)
-  (occurs (drive truck1 p4-4 p5-4) 5)
-  (occurs (drive truck1 p5-4 p5-3) 6)
-  (occurs (drive truck1 p5-3 p6-3) 7)
-  (occurs (drive truck1 p6-3 p7-3) 8)
-  (occurs (load pkg1 truck1 p7-3) 9)
-  (occurs (drive truck1 p7-3 p6-3) 10)
-  (occurs (drive truck1 p6-3 p5-3) 11)
-  (occurs (drive truck1 p5-3 p5-4) 12)
-  (occurs (drive truck1 p5-4 p5-5) 13)
-  (occurs (drive truck1 p5-5 p6-5) 14)
-  (occurs (drive truck1 p6-5 p7-5) 15)
-  (occurs (drive truck1 p7-5 p7-6) 16)
-  (occurs (drive truck1 p7-6 p7-7) 17)
-  (occurs (drive truck1 p7-7 p7-8) 18)
-  (occurs (drive truck1 p7-8 p7-9) 19)
-  (occurs (unload pkg1 truck1 p7-9) 20))
+  (occurs (drive truck2 p1-4 p1-3) 1)
+  (occurs (drive truck2 p1-3 p2-3) 2)
+  (occurs (drive truck2 p2-3 p3-3) 3)
+  (occurs (drive truck2 p3-3 p4-3) 4)
+  (occurs (drive truck2 p4-3 p5-3) 5)
+  (occurs (drive truck2 p5-3 p6-3) 6)
+  (occurs (drive truck2 p6-3 p7-3) 7)
+  (occurs (load pkg1 truck2 p7-3) 8)
+  (occurs (drive truck2 p7-3 p7-4) 9)
+  (occurs (drive truck2 p7-4 p7-5) 10)
+  (occurs (drive truck2 p7-5 p7-6) 11)
+  (occurs (drive truck2 p7-6 p7-7) 12)
+  (occurs (drive truck2 p7-7 p7-8) 13)
+  (occurs (drive truck2 p7-8 p7-9) 14)
+  (occurs (unload pkg1 truck2 p7-9) 15))

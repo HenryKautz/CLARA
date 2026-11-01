@@ -1,4 +1,4 @@
-;; grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4: all of the 16 actions of goals/grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4.answer
+;; grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4: all of the 14 actions of goals/grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4.answer
 ;; (100%, rounded up), a plan for (and (at pkg1 p4-4) (at pkg2 p3-4) (at pkg3 p5-4)) by EvalMaxSAT_bin.
 ;; True hypothesis: rechyp5.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
@@ -6,18 +6,16 @@
 
 (and
   (occurs (drive truck1 p2-1 p2-2) 1)
-  (occurs (drive truck1 p2-2 p2-3) 2)
-  (occurs (drive truck1 p2-3 p2-4) 3)
-  (occurs (load pkg3 truck1 p2-4) 4)
-  (occurs (drive truck1 p2-4 p2-3) 5)
-  (occurs (drive truck1 p2-3 p3-3) 6)
-  (occurs (load pkg2 truck1 p3-3) 7)
-  (occurs (drive truck1 p3-3 p3-2) 8)
-  (occurs (load pkg1 truck1 p3-2) 9)
-  (occurs (drive truck1 p3-2 p3-3) 10)
-  (occurs (drive truck1 p3-3 p3-4) 11)
-  (occurs (unload pkg2 truck1 p3-4) 12)
-  (occurs (drive truck1 p3-4 p4-4) 13)
-  (occurs (unload pkg1 truck1 p4-4) 14)
-  (occurs (drive truck1 p4-4 p5-4) 15)
-  (occurs (unload pkg3 truck1 p5-4) 16))
+  (occurs (drive truck1 p2-2 p3-2) 2)
+  (occurs (load pkg1 truck1 p3-2) 3)
+  (occurs (drive truck1 p3-2 p3-3) 4)
+  (occurs (load pkg2 truck1 p3-3) 5)
+  (occurs (drive truck1 p3-3 p3-4) 6)
+  (occurs (unload pkg2 truck1 p3-4) 7)
+  (occurs (drive truck1 p3-4 p2-4) 8)
+  (occurs (load pkg3 truck1 p2-4) 9)
+  (occurs (drive truck1 p2-4 p3-4) 10)
+  (occurs (drive truck1 p3-4 p4-4) 11)
+  (occurs (unload pkg1 truck1 p4-4) 12)
+  (occurs (drive truck1 p4-4 p5-4) 13)
+  (occurs (unload pkg3 truck1 p5-4) 14))

@@ -7,6 +7,6 @@
 (and
   (occurs (drive truck1 p5-2 p5-3) 1)
   (occurs (drive truck1 p5-3 p6-3) 2)
-  (occurs (drive truck1 p6-3 p7-3) 3)
-  (occurs (drive truck1 p7-3 p8-3) 4)
-  (occurs (drive truck1 p8-3 p9-3) 5))
+  (occurs (drive truck1 p6-3 p6-4) 3)
+  (occurs (drive truck1 p6-4 p7-4) 4)
+  (occurs (drive truck1 p7-4 p8-4) 5))

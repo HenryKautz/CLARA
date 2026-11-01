@@ -1,4 +1,4 @@
-;; grid9x9-2-pkg4-p7-8: the first 4 of the 15 actions of goals/grid9x9-2-pkg4-p7-8.answer
+;; grid9x9-2-pkg4-p7-8: the first 4 of the 13 actions of goals/grid9x9-2-pkg4-p7-8.answer
 ;; (25%, rounded up), a plan for (at pkg4 p7-8) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
 ;; True hypothesis: at-pkg4-p7-8.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
@@ -6,6 +6,6 @@
 
 (and
   (occurs (drive truck1 p5-5 p6-5) 1)
-  (occurs (drive truck1 p6-5 p7-5) 2)
-  (occurs (drive truck1 p7-5 p8-5) 3)
-  (occurs (drive truck1 p8-5 p8-4) 4))
+  (occurs (drive truck1 p6-5 p6-4) 2)
+  (occurs (drive truck1 p6-4 p7-4) 3)
+  (occurs (drive truck1 p7-4 p8-4) 4))

@@ -1,31 +1,27 @@
-;; grid8x8-1-pkg2-p6-8: all of the 24 actions of goals/grid8x8-1-pkg2-p6-8.answer
-;; (100%, rounded up), a plan for (at pkg2 p6-8) by EvalMaxSAT_bin.
+;; grid8x8-1-pkg2-p6-8: all of the 20 actions of goals/grid8x8-1-pkg2-p6-8.answer
+;; (100%, rounded up), a plan for (at pkg2 p6-8) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
 ;; True hypothesis: at-pkg2-p6-8.  Each action is pinned to its time step;
 ;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
 ;; Written by scripts/plan-goals.py.
 
 (and
-  (occurs (drive truck2 p6-4 p6-3) 1)
-  (occurs (drive truck2 p6-3 p6-2) 2)
-  (occurs (drive truck2 p6-2 p5-2) 3)
-  (occurs (drive truck2 p5-2 p4-2) 4)
-  (occurs (drive truck2 p4-2 p3-2) 5)
-  (occurs (drive truck2 p3-2 p2-2) 6)
-  (occurs (drive truck2 p2-2 p2-1) 7)
+  (occurs (drive truck2 p6-4 p5-4) 1)
+  (occurs (drive truck2 p5-4 p5-3) 2)
+  (occurs (drive truck2 p5-3 p5-2) 3)
+  (occurs (drive truck2 p5-2 p5-1) 4)
+  (occurs (drive truck2 p5-1 p4-1) 5)
+  (occurs (drive truck2 p4-1 p3-1) 6)
+  (occurs (drive truck2 p3-1 p2-1) 7)
   (occurs (load pkg2 truck2 p2-1) 8)
-  (occurs (drive truck2 p2-1 p2-2) 9)
-  (occurs (drive truck2 p2-2 p3-2) 10)
-  (occurs (drive truck2 p3-2 p4-2) 11)
-  (occurs (drive truck2 p4-2 p5-2) 12)
-  (occurs (drive truck2 p5-2 p6-2) 13)
-  (occurs (drive truck2 p6-2 p7-2) 14)
-  (occurs (drive truck2 p7-2 p7-3) 15)
-  (occurs (drive truck2 p7-3 p8-3) 16)
-  (occurs (drive truck2 p8-3 p8-4) 17)
-  (occurs (drive truck2 p8-4 p8-5) 18)
-  (occurs (drive truck2 p8-5 p8-6) 19)
-  (occurs (drive truck2 p8-6 p7-6) 20)
-  (occurs (drive truck2 p7-6 p6-6) 21)
-  (occurs (drive truck2 p6-6 p6-7) 22)
-  (occurs (drive truck2 p6-7 p6-8) 23)
-  (occurs (unload pkg2 truck2 p6-8) 24))
+  (occurs (drive truck2 p2-1 p3-1) 9)
+  (occurs (drive truck2 p3-1 p4-1) 10)
+  (occurs (drive truck2 p4-1 p5-1) 11)
+  (occurs (drive truck2 p5-1 p6-1) 12)
+  (occurs (drive truck2 p6-1 p6-2) 13)
+  (occurs (drive truck2 p6-2 p6-3) 14)
+  (occurs (drive truck2 p6-3 p6-4) 15)
+  (occurs (drive truck2 p6-4 p6-5) 16)
+  (occurs (drive truck2 p6-5 p6-6) 17)
+  (occurs (drive truck2 p6-6 p6-7) 18)
+  (occurs (drive truck2 p6-7 p6-8) 19)
+  (occurs (unload pkg2 truck2 p6-8) 20))
