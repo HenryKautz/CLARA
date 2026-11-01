@@ -10,7 +10,7 @@ name="$(basename "$ev" .txt)"
 prob="${name%-p*-obs*}.pddl"
 out="/tmp/sg-cnf-size/$name"
 rm -rf "$out"; mkdir -p "$out"
-bash ~/bin/recognize.sh clara-logistics.pddl "$prob" "$ev" --evidence-kind fifo --out "$out" >"$out.log" 2>&1
+bash ~/bin/recognize.sh clara-logistics-old.pddl "$prob" "$ev" --evidence-kind fifo --out "$out" >"$out.log" 2>&1
 h="$(sed -n 's/^Horizon H = \([0-9]*\).*/\1/p' "$out.log")"
 cat "$out/rec-problem.scnf" "$out/rec-problem-evidence.scnf" > "$out/both.scnf"
 (cd "$out" && sbcl --noinform --non-interactive --eval '(load "~/lib/fifo/lisp/FiFO.lisp")' \

@@ -4,6 +4,14 @@ Plan-recognition problems in the `clara-logistics` PDDL domain, made with the
 [FiFO](https://github.com/HenryKautz/FiFO) tools `ppgen.sh`, `planner.sh` and
 `evgen.sh`.  The file types are described in the [top-level README](../README.md).
 
+**Domain name.** These problems were made and solved with the `clara-logistics`
+of before 2026-10-30 (free loading and unloading, a `transfer` action).  FiFO's
+`clara-logistics` has since changed (handling costs `(handle-cost)`, no
+transfer); the old one is FiFO's `pddl/clara-logistics-old.pddl`, and every
+problem here now names `(:domain clara-logistics-old)`, as do this directory's
+scripts.  Nothing was regenerated: the results and archived theories are those
+the old domain produced, and planning these problems now reproduces them.
+
 ## Layout
 
 ```
@@ -66,7 +74,7 @@ length of the plan.
 - Each file is one form, which is what `recognize.sh` needs to negate it.  The
   original problems can be given to `recognize.sh` directly: their goal literals
   `(at truck1 <place>)` are the hypotheses, e.g.
-  `recognize.sh clara-logistics.pddl grid4x4-1.pddl evidence/grid4x4-1-p3-4-ord3.txt`.
+  `recognize.sh clara-logistics-old.pddl grid4x4-1.pddl evidence/grid4x4-1-p3-4-ord3.txt`.
 - Each file opens with comment lines recording the `evgen.sh` settings that made
   it, with paths relative to `SimpleGrid/`: run `evgen.sh` with those settings
   from `SimpleGrid/` to regenerate it exactly.

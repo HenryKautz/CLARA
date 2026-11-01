@@ -42,7 +42,7 @@ import argparse, glob, json, os, re, shutil, signal, subprocess, sys, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RECOGNIZE = os.path.expanduser("~/bin/recognize.sh")
-DOMAIN = "clara-logistics.pddl"
+DOMAIN = "clara-logistics-old.pddl"
 
 
 def available_bytes():
