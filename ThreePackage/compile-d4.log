@@ -1,33 +1,16 @@
-5x5: 4 of 4 to compile
-  grid5x5-1: theory at horizon 18
-  grid5x5-2: theory at horizon 24
-  grid5x5-3: theory at horizon 22
-  grid5x5-4: theory at horizon 27
-  grid5x5-1: ok 213.6s (d4 173.6s, peak 560 MB, check timeout)
-  grid5x5-2: ok 272.0s (d4 181.52s, peak 383 MB, check timeout)
-  grid5x5-3: error 1533.5s (d4 1489.39s, peak 6541 MB, check -)
-5x5: 2 of 4 to compile
-  grid5x5-3: theory at horizon 22
-  grid5x5-4: theory at horizon 27
-  grid5x5-3: error 1254.9s (d4 1219.35s, peak 6541 MB, check -)
-  grid5x5-4: error 2004.8s (d4 1954.18s, peak 2978 MB, check -)
-  grid5x5-3: error 1390.9s (d4 1352.9s, peak 6541 MB, check -)
-  grid5x5-4: error 2412.3s (d4 2354.3s, peak 2979 MB, check -)
-  grid5x5-4: error 2049.9s (d4 1992.93s, peak 2978 MB, check -)
-6x6: 4 of 4 to compile
-  grid6x6-1: theory at horizon 24
-  grid6x6-2: theory at horizon 29
-  grid6x6-3: theory at horizon 38
-  grid6x6-4: theory at horizon 27
-  grid6x6-1: timeout 3604.9s (d4 3494.52s, peak 11216 MB, check -)
-  grid6x6-2: timeout 3608.0s (d4 3467.0s, peak 25627 MB, check -)
-  grid6x6-3: timeout 3611.1s (d4 3356.61s, peak 4156 MB, check -)
-  grid6x6-4: timeout 3614.1s (d4 3498.13s, peak 18335 MB, check -)
-6x6: grid6x6-1, grid6x6-2, grid6x6-3, grid6x6-4 did not compile within 3600s; no larger size is tried at this limit
-done
-5x5: 2 of 4 to compile
-  grid5x5-3: theory at horizon 22
-  grid5x5-4: theory at horizon 27
-  grid5x5-3: ok 1198.0s (d4 1148.45s, peak 6541 MB, check agrees)
-  grid5x5-4: ok 1684.5s (d4 1629.0s, peak 2979 MB, check timeout)
-done
+15:14:36 ThreePackage: d4, limit 7200s, 2 jobs
+15:32:38 5x5: 4 of 4 to compile
+15:32:45   grid5x5-1: theory at horizon 18
+15:32:55   grid5x5-2: theory at horizon 24
+15:49:49   grid5x5-1: ok 255.3s (d4 212.43s, peak 560 MB, check agrees)
+15:49:59   grid5x5-3: theory at horizon 22
+16:08:27   grid5x5-2: ok 327.6s (d4 224.75s, peak 384 MB, check timeout)
+16:08:33   grid5x5-4: theory at horizon 27
+16:29:47   grid5x5-3: ok 1776.2s (d4 1708.29s, peak 6541 MB, check agrees)
+17:09:11   grid5x5-4: ok 1832.6s (d4 1769.2s, peak 2978 MB, check timeout)
+17:09:11 6x6: 1 of 1 to compile
+17:09:19   grid6x6-1: theory at horizon 24
+18:32:09   grid6x6-1: ok 3133.8s (d4 2991.88s, peak 12940 MB, check timeout)
+18:32:09 7x7: 0 of 0 to compile
+18:32:09 7x7: no recognition problems; stopping
+18:32:09 done

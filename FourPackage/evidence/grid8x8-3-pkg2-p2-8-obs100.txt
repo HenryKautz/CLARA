@@ -1,0 +1,20 @@
+;; grid8x8-3-pkg2-p2-8: all of the 13 actions of goals/grid8x8-3-pkg2-p2-8.answer
+;; (100%, rounded up), a plan for (at pkg2 p2-8) by EvalMaxSAT_bin.
+;; True hypothesis: at-pkg2-p2-8.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck2 p4-1 p3-1) 1)
+  (occurs (drive truck2 p3-1 p2-1) 2)
+  (occurs (drive truck2 p2-1 p2-2) 3)
+  (occurs (drive truck2 p2-2 p2-3) 4)
+  (occurs (drive truck2 p2-3 p1-3) 5)
+  (occurs (drive truck2 p1-3 p1-4) 6)
+  (occurs (load pkg2 truck2 p1-4) 7)
+  (occurs (drive truck2 p1-4 p1-5) 8)
+  (occurs (drive truck2 p1-5 p1-6) 9)
+  (occurs (drive truck2 p1-6 p2-6) 10)
+  (occurs (drive truck2 p2-6 p2-7) 11)
+  (occurs (drive truck2 p2-7 p2-8) 12)
+  (occurs (unload pkg2 truck2 p2-8) 13))

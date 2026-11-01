@@ -1,0 +1,20 @@
+;; grid9x9-3-pkg4-p9-2: all of the 13 actions of goals/grid9x9-3-pkg4-p9-2.answer
+;; (100%, rounded up), a plan for (at pkg4 p9-2) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
+;; True hypothesis: at-pkg4-p9-2.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck1 p3-7 p3-6) 1)
+  (occurs (drive truck1 p3-6 p3-5) 2)
+  (occurs (drive truck1 p3-5 p3-4) 3)
+  (occurs (load pkg4 truck1 p3-4) 4)
+  (occurs (drive truck1 p3-4 p4-4) 5)
+  (occurs (drive truck1 p4-4 p5-4) 6)
+  (occurs (drive truck1 p5-4 p5-3) 7)
+  (occurs (drive truck1 p5-3 p6-3) 8)
+  (occurs (drive truck1 p6-3 p7-3) 9)
+  (occurs (drive truck1 p7-3 p8-3) 10)
+  (occurs (drive truck1 p8-3 p8-2) 11)
+  (occurs (drive truck1 p8-2 p9-2) 12)
+  (occurs (unload pkg4 truck1 p9-2) 13))

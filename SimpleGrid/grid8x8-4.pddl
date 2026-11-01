@@ -17,6 +17,7 @@
 ;;   --packages 0
 ;;   --drive-cost 1
 ;;   --fly-cost 3
+;;   --handle-cost 1
 ;;   --preferences none
 ;;   --destinations 7
 ;;   --require all
@@ -262,10 +263,12 @@
         (road p8-7 p8-8)
 
 
-        ;; travel prices: one value for every drive, one for every flight
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 1)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
   (:goal (and
         (or (at truck1 p8-7) (at truck1 p8-6) (at truck1 p5-6) (at truck1 p3-8) (at truck1 p6-5) (at truck1 p8-8) (at truck1 p8-3))))

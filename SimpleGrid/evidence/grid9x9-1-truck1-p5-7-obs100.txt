@@ -1,0 +1,17 @@
+;; grid9x9-1-truck1-p5-7: all of the 10 actions of goals/grid9x9-1-truck1-p5-7.answer
+;; (100%, rounded up), a plan for (at truck1 p5-7) by EvalMaxSAT_bin.
+;; True hypothesis: at-truck1-p5-7.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck1 p1-1 p1-2) 1)
+  (occurs (drive truck1 p1-2 p1-3) 2)
+  (occurs (drive truck1 p1-3 p2-3) 3)
+  (occurs (drive truck1 p2-3 p2-4) 4)
+  (occurs (drive truck1 p2-4 p3-4) 5)
+  (occurs (drive truck1 p3-4 p3-5) 6)
+  (occurs (drive truck1 p3-5 p3-6) 7)
+  (occurs (drive truck1 p3-6 p4-6) 8)
+  (occurs (drive truck1 p4-6 p4-7) 9)
+  (occurs (drive truck1 p4-7 p5-7) 10))

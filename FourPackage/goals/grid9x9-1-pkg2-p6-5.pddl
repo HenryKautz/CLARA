@@ -1,9 +1,10 @@
 ;; grid9x9-1-pkg2-p6-5
-;; Clamped variant of grid9x9-1.pddl: the hard goal is (at pkg2 p6-5) only;
-;; the 12 goal preferences (utility 8 each) are kept.
+;; Single-goal variant of FourPackage/grid9x9-1.pddl: the hard goal is
+;; (at pkg2 p6-5) -- hypothesis at-pkg2-p6-5 of the recognition problem.
+;; No preferences or weights.  Written by scripts/make-problems.py.
 
 (define (problem grid9x9-1-pkg2-p6-5)
-  (:domain clara-logistics-handling)
+  (:domain clara-logistics)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p1-5 p1-6 p1-7 p1-8 p1-9 p2-1 p2-2 p2-3 p2-4 p2-5 p2-6 p2-7 p2-8 p2-9 p3-1 p3-2 p3-3 p3-4 p3-5 p3-6 p3-7 p3-8 p3-9 p4-1 p4-2 p4-3 p4-4 p4-5 p4-6 p4-7 p4-8 p4-9 p5-1 p5-2 p5-3 p5-4 p5-5 p5-6 p5-7 p5-8 p5-9 p6-1 p6-2 p6-3 p6-4 p6-5 p6-6 p6-7 p6-8 p6-9 p7-1 p7-2 p7-3 p7-4 p7-5 p7-6 p7-7 p7-8 p7-9 p8-1 p8-2 p8-3 p8-4 p8-5 p8-6 p8-7 p8-8 p8-9 p9-1 p9-2 p9-3 p9-4 p9-5 p9-6 p9-7 p9-8 p9-9 - place
@@ -194,24 +195,14 @@
         (road p9-8 p9-7)
         (road p9-7 p9-8)
 
-        ;; travel prices: one value for every drive, one for every flight
+
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 2)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
-  (:goal (and
-        (at pkg2 p6-5)
-        (preference deliver-pkg1-1 (at pkg1 p5-3) 8)
-        (preference deliver-pkg1-2 (at pkg1 p5-9) 8)
-        (preference deliver-pkg1-3 (at pkg1 p4-1) 8)
-        (preference deliver-pkg2-1 (at pkg2 p6-5) 8)
-        (preference deliver-pkg2-2 (at pkg2 p3-9) 8)
-        (preference deliver-pkg2-3 (at pkg2 p3-3) 8)
-        (preference deliver-pkg3-1 (at pkg3 p2-1) 8)
-        (preference deliver-pkg3-2 (at pkg3 p2-4) 8)
-        (preference deliver-pkg3-3 (at pkg3 p9-6) 8)
-        (preference deliver-pkg4-1 (at pkg4 p9-3) 8)
-        (preference deliver-pkg4-2 (at pkg4 p9-5) 8)
-        (preference deliver-pkg4-3 (at pkg4 p5-2) 8)))
+  (:goal (at pkg2 p6-5))
 
   (:metric minimize (total-cost)))

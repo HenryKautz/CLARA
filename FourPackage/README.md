@@ -1,204 +1,80 @@
 # FourPackage
 
-Larger problems in the family of [TwoPackage](../TwoPackage/README.md)
-(`scripts/make-problems.sh`), to see how far planning and recognition scale.
-The file types are described in the [top-level README](../README.md);
-[HANDOFF.md](HANDOFF.md) records how the runs were set up and resumed.
+Two trucks, four packages, at least one delivered; regenerated 2026-10-31 (the
+version before, with goal preferences, and its results, is
+[OldVersions/FourPackage](../OldVersions/FourPackage/README.md)).  How the
+problems were made and solved is in the [top-level README](../README.md) and
+[scripts/README.md](../scripts/README.md).
+
+## Problems
+
+`gridNxN-K.pddl`, N = 6..15, K = 1..4 (the seed): an N×N grid with no
+airports, 40% of the roads knocked out (a random spanning tree is kept, so every
+place stays reachable), two trucks and four packages placed at random, three
+possible destinations per package (never its own start), and the goal that
+**at least one** package reaches one of its destinations (`ppgen.sh --require
+some`): a disjunction of twelve literals `(at pkgI <place>)`.  Drives cost 2,
+each load and unload 1 (domain `clara-logistics.pddl`, the same actions and
+costs as the old `clara-logistics-handling.pddl`).
+
+**No preferences.**  The old version also made each goal literal a preference
+of weight 8 (`--preferences 8 8`); now the hard disjunction is the only goal.
+
+The **hypotheses** are the twelve literals, named `at-pkgI-<place>` by
+`recognize.sh`; chance is 1/12.  FiFO's SatPlan axioms use the linear `mutex`
+encoding at every size (the old version kept the pairwise one up to 11×11);
+the two have the same plans.
 
 ## Layout
 
 ```
-gridNxN-K.pddl                    problems
-clara-logistics-handling.pddl     their domain
-general/<problem>.answer          a plan for each problem as posed
+gridNxN-K.pddl              problems; clara-logistics.pddl, their domain
 goals/
-  <problem>-<pkg>-<place>.pddl    single-goal variants of the problems
-  <problem>-<pkg>-<place>.answer  a plan for each variant
+  <goal>.pddl               the problem with one hypothesis as its hard goal
+  <goal>-tt.answer          tt-open-wbo-inc's plan at the goal's shortest horizon
+  <goal>-eval.answer        EvalMaxSAT's, when it proved its optimum within 30 minutes
+  <goal>.answer             the plan the evidence was cut from (EvalMaxSAT's, else tt's)
 evidence/
-  <problem>-<pkg>-<place>-obsK.txt   observations from those plans, pinned to time steps
-  <problem>-<pkg>-<place>-ordK.txt   the same observations, as an ordering only
-wff/<problem>.wff                 FiFO source of each problem's recognition theory;
-                                  wff/satplan.wff and wff/satplan-mutex.wff, the axioms
-wcnf/                             its weighted CNF (not in git; make-formats.py writes it)
-scripts/                          the runners and summarize.py
-results/                          one JSON record per run (a rerun supersedes)
-*.log                             the runs' logs
+  <problem>-none.txt        no observations: (and)
+  <goal>-obs25.txt          the first 25% of the plan's actions (rounded up), pinned
+  <goal>-obs100.txt         all of the plan's actions, pinned
+recognition/<problem>.pddl  the goal as one disjunction of the hypotheses; its header
+                            lists them, their shortest horizons, and the
+                            RECOGNITION HORIZON (the largest), which every run uses
+scnf/<problem>.scnf         the evidence-free recognition theory (compile-d4.py)
+circuits/<problem>.dnnf     its d4 circuit, where d4 succeeded
+results/                    plans.jsonl, runs.jsonl, compile-d4.jsonl: a record per run
+tables.md                   scripts/summarize.py's tables
+*.log                       the stages' logs
 ```
 
-There is no `scnf/`: the instantiated theories are 50–820 MB each.
-
-## Problems
-
-`gridNxN-K.pddl`, N = 6..15, four per size (K is the seed).
-- An N×N grid with no airports; 40% of the roads between adjacent places are
-  knocked out, keeping a random spanning tree so every place stays reachable.
-- Two trucks and four packages, placed at random.
-- Domain `clara-logistics-handling.pddl`: `clara-logistics` with a cost of 1 on
-  each `load` and `unload`, and without the transfer action, so a package
-  changes trucks by an unload and a load.  A drive costs 2.
-- Each package has three possible destinations, giving twelve literals
-  `(at pkgI <place>)`.  The hard goal is their disjunction (at least one
-  delivered), and each literal is also a preference: 8 is paid for each one not
-  achieved.  The metric is total cost.  The twelve literals are the recognition
-  hypotheses, so chance is 1/12.
-
-## `general/`
-
-A plan for each problem as posed.
-
-## `goals/`
-
-For each goal literal, the problem with that literal as its hard goal (the
-preferences kept), and a plan for it at its shortest horizon.
-
-## `evidence/`
-
-The first K actions of each goal's plan, K = 2, 4 and 8 (fewer when the plan is
-shorter), as `obsK` (pinned to time steps) and `ordK` (ordering only), as for
-[SimpleGrid](../SimpleGrid/README.md).  The true goal of
-`<problem>-<pkg>-<place>-obsK.txt` is the hypothesis `at-<pkg>-<place>`.
-
-## `wff/`
-
-Each problem's recognition theory, at its recognition horizon: the largest of
-its twelve goal horizons, and at least 9 slices.  Every recognition run on a
-problem scores this one theory.
-
-## Encoding
-
-SatPlan's mutexes between interfering actions on
-`(in pkg truck)` grow as n⁴ per time step; at 6×6 they were 80% of the clauses.
-FiFO's `mutex` operator writes them as a linear chain of defined auxiliary atoms
-when that is smaller.  It has the same models, so it gives the same optima.  The
-user rule for this dataset: **sizes 6..11 keep the original pairwise encoding**
-(`wff/satplan.wff`); **12..15 use the mutex encoding**
-(`wff/satplan-mutex.wff`).  That is why the clause counts below drop at 12×12.
-On the 24 general problems of sizes 6..11, the original, pairwise and linear
-encodings all reached the same optimum; the linear one has 0.11–0.30× the
-clauses and runs about 2× faster (`results/encodings.jsonl`).
+`<goal>` is the problem name followed by the hypothesis's package and place,
+e.g. `grid6x6-1-pkg1-p1-4`.  The true hypothesis of `<goal>-obs*.txt` is that
+goal's.
 
 ## Results
 
-The tables are regenerated by `python3 scripts/summarize.py` from
-`results/*.jsonl`.  The runs were on the UVA CS Slurm `cpu` partition
-(2026-10-27 to 29), except the 6..11 theories and the encoding comparison,
-which were made on a laptop.
+Full tables: [tables.md](tables.md).  Every limit below is wall-clock time;
+when a run of some kind failed by timeout or memory at a size, that kind of
+run was stopped there for that size and every larger one ("killed" in the
+tables).  Sizes run in parallel, so runs at larger sizes that had already
+finished when a stop came are kept.
 
-**Per problem.**  H general is the horizon of the problem's optimal plan as
-posed; H recog. is its recognition horizon; clauses are those of the recognition
-theory's weighted CNF.
+**Planning** (30 minutes per solver call).  tt-open-wbo-inc planned every
+goal from 6×6 to 9×9.  The 30 minutes bound each call of the solver, one per
+horizon tried, so a whole tt run can take longer (up to 41 minutes at 10×10).
+At 10×10 it timed out on `grid10x10-4-pkg2-p7-4`, after planning 40 of the 48
+goals (two problems complete); 11×11 and up were not planned.  EvalMaxSAT
+timed out on one 6×6 goal, so it stopped at 6×6; by then it had proved 46 of
+the 48 6×6 plans optimal, 47 at 7×7 and 33 at 8×8, and tt's plans were
+optimal in every one of those cases.  The evidence comes from EvalMaxSAT's
+plan where it has one and from tt's otherwise (2, 1, 15, 48 and 40 goals at
+6×6 … 10×10).
 
-| Problem | Roads | H general | Plan cost | Plan time | H recog. | Recog. clauses | Encoding |
-|---|--:|--:|--:|--:|--:|--:|---|
-| grid6x6-1 | 36 | 6 | 96 | 14.5 s | 24 | 601,745 | original |
-| grid6x6-2 | 36 | 5 | 94 | 11.7 s | 22 | 549,441 | original |
-| grid6x6-3 | 36 | 9 | 102 | 17.8 s | 26 | 653,849 | original |
-| grid6x6-4 | 36 | 7 | 98 | 16.2 s | 35 | 890,777 | original |
-| grid7x7-1 | 50 | 11 | 106 | 39.8 s | 19 | 826,527 | original |
-| grid7x7-2 | 50 | 6 | 96 | 23.2 s | 23 | 1,009,423 | original |
-| grid7x7-3 | 50 | 9 | 102 | 32.8 s | 25 | 1,101,351 | original |
-| grid7x7-4 | 50 | 11 | 106 | 39.9 s | 18 | 780,899 | original |
-| grid8x8-1 | 67 | 12 | 108 | 73.9 s | 27 | 1,960,817 | original |
-| grid8x8-2 | 67 | 9 | 102 | 61.7 s | 24 | 1,734,249 | original |
-| grid8x8-3 | 67 | 7 | 98 | 48.0 s | 30 | 2,187,249 | original |
-| grid8x8-4 | 67 | 12 | 108 | 74.3 s | 24 | 1,734,433 | original |
-| grid9x9-1 | 86 | 11 | 106 | 106.3 s | 28 | 3,174,747 | original |
-| grid9x9-2 | 86 | 8 | 100 | 79.8 s | 28 | 3,175,179 | original |
-| grid9x9-3 | 86 | 10 | 104 | 98.9 s | 26 | 2,939,419 | original |
-| grid9x9-4 | 86 | 11 | 106 | 106.0 s | 29 | 3,291,639 | original |
-| grid10x10-1 | 108 | 11 | 106 | 163.0 s | 31 | 5,270,553 | original |
-| grid10x10-2 | 108 | 13 | 110 | 180.4 s | 27 | 4,567,065 | original |
-| grid10x10-3 | 108 | 11 | 106 | 164.5 s | 30 | 5,095,817 | original |
-| grid10x10-4 | 108 | 10 | 104 | 148.8 s | 33 | 5,621,369 | original |
-| grid11x11-1 | 132 | 15 | 114 | 217.9 s | 25 | 6,081,687 | original |
-| grid11x11-2 | 132 | 13 | 110 | 160.8 s | 35 | 8,612,143 | original |
-| grid11x11-3 | 132 | 9 | 102 | 90.7 s | 31 | 7,599,999 | original |
-| grid11x11-4 | 132 | 17 | 118 | 332.9 s | 36 | 8,866,539 | original |
-| grid12x12-1 | 158 | 10 | 104 | 166.1 s | 35 | 1,046,057 | mutex |
-| grid12x12-2 | 158 | 18 | 120 | 532.5 s | 64 | 1,936,005 | mutex |
-| grid12x12-3 | 158 | 6 | 96 | 91.3 s | 47 | 1,413,373 | mutex |
-| grid12x12-4 | 158 | 8 | 100 | 112.7 s | 35 | 1,045,377 | mutex |
-| grid13x13-1 | 187 | 17 | 118 | 328.2 s | 50 | 1,775,043 | mutex |
-| grid13x13-2 | 187 | 19 | 122 | 323.5 s | 33 | 1,158,999 | mutex |
-| grid13x13-3 | 187 | 16 | 116 | 356.7 s | 44 | 1,555,411 | mutex |
-| grid13x13-4 | 187 | 12 | 108 | 219.7 s | 32 | 1,123,805 | mutex |
-| grid14x14-1 | 218 | 14 | 112 | 319.3 s | 39 | 1,596,981 | mutex |
-| grid14x14-2 | 218 | 11 | 106 | 204.1 s | 40 | 1,641,471 | mutex |
-| grid14x14-3 | 218 | 21 | 126 | 617.7 s | 51 | 2,103,409 | mutex |
-| grid14x14-4 | 218 | 17 | 118 | 376.5 s | 44 | 1,808,585 | mutex |
-| grid15x15-1 | 252 | 22 | 128 | 1,208.4 s | 79 | 3,775,647 | mutex |
-| grid15x15-2 | 252 | 11 | 106 | 203.6 s | 54 | 2,563,933 | mutex |
-| grid15x15-3 | 252 | 23 | 130 | 1,224.8 s | 59 | 2,807,655 | mutex |
-| grid15x15-4 | 252 | 13 | 110 | 245.6 s | 38 | 1,791,887 | mutex |
+**Recognition** (30 minutes per run).  Every method stopped at 6×6, the
+smallest size: with no evidence max-term finished one problem (1777 s) and
+timed out on another; SharpSAT-TD and MC-SAT timed out on their first.  No
+run with evidence was reached.
 
-**Per size.**  General plans were solved by WMaxCDCL, except grid15x15-3 by
-EvalMaxSAT (WMaxCDCL had timed out at 1800 s); both are exact.  Goal plans were
-solved by WMaxCDCL for 37 of the 6×6 goals and by the anytime solver
-tt-open-wbo-inc for the rest: those 443 plans are the best found within the
-time limit, **not proven optimal**.  Times are wall clock per run, including
-instantiation.
-
-| Grid | General plans | Mean plan time | Goals planned | Proven optimal | Mean goal time | Max goal time | Evidence files (obs) | Recog. clauses (mean) | R&G runs |
-|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|
-| 6×6 | 4/4 | 15.1 s | 48/48 | 37 | 158.3 s | 1,219 s | 136 | 673,953 | 1 |
-| 7×7 | 4/4 | 33.9 s | 48/48 | 0 | 175.2 s | 451 s | 142 | 929,550 | 0 |
-| 8×8 | 4/4 | 64.5 s | 48/48 | 0 | 376.5 s | 635 s | 143 | 1,904,187 | 0 |
-| 9×9 | 4/4 | 97.7 s | 48/48 | 0 | 408.3 s | 733 s | 142 | 3,145,246 | 0 |
-| 10×10 | 4/4 | 164.2 s | 48/48 | 0 | 445.7 s | 627 s | 144 | 5,138,701 | 0 |
-| 11×11 | 4/4 | 200.6 s | 48/48 | 0 | 594.8 s | 1,304 s | 144 | 7,790,092 | 0 |
-| 12×12 | 4/4 | 225.7 s | 48/48 | 0 | 709.8 s | 1,693 s | 142 | 1,360,203 | 0 |
-| 13×13 | 4/4 | 307.0 s | 48/48 | 0 | 1,240.8 s | 2,700 s | 144 | 1,403,314 | 0 |
-| 14×14 | 4/4 | 379.4 s | 48/48 | 0 | 1,231.9 s | 3,353 s | 144 | 1,787,612 | 0 |
-| 15×15 | 4/4 | 720.6 s | 48/48 | 0 | 2,140.7 s | 12,537 s | 144 | 2,734,780 | 0 |
-
-The `ordK` evidence files match the `obsK` ones in number.  Eleven goals at
-13×13–15×15 failed at a 300 s solver limit and were planned at 1800 s; the
-slowest, grid15x15-1-pkg2-p4-6 (horizon 79, cost 312), needed a 7200 s solver
-limit and 12,537 s in all.
-
-**Recognition.**  One Ramírez & Geffner run (`scripts/run-recognize.py`, the
-`max-term` counter with EvalMaxSAT) was made, on the laptop, before this run:
-grid6x6-2 with 2 observations, pinned.  It took 7932 s, and the true goal tied
-for the top posterior with 8 of the other 11 hypotheses.  Its record was not
-kept.
-
-## Experiments not run: time required
-
-Each of these would take far longer than the time available.  The estimates are
-extrapolated from the one timed recognition run and the planning times above.
-
-- **Ramírez & Geffner recognition at scale.**  A run makes 24 exact MaxSAT
-  solves, one with and one without the evidence for each of the 12 hypotheses,
-  all at the problem's recognition horizon.  The one timed run averaged about
-  330 s per solve on the smallest theory of the 40 (grid6x6-2, 549,441 clauses,
-  H = 22).  The 136 pinned 6×6 evidence files alone would take about 300
-  CPU-hours, and every other problem has a larger theory: up to 16× the clauses
-  at 11×11, up to 3.6× the horizon at 12×12–15×15.  The whole set, 1,425 pinned
-  files, would take several thousand CPU-hours at the very least.  Not run at
-  any size beyond the single 6×6 test.
-  - Not because of the evidence: pinned evidence O is a few unit clauses, and
-    ¬O is one clause of their negations.  The cost is in proving each solve
-    optimal at a horizon longer than the hypothesis needs.
-  - The share of each cause has not been measured.  One instrumented 6×6 run
-    (each solve's time, cost and proof status, and the slowest hypotheses
-    again at their own shortest horizon) would separate them, in about 2–3
-    hours.
-- **Recognition from ordering-only evidence** (`ordK`).  The ordering is
-  compiled into monitor axioms folded into the theory, and O and ¬O are one
-  assertion literal and its negation, so a run makes the same 24 solves on a
-  somewhat larger theory, with the observations free to fall at any slice.
-  Expect at least the pinned runs' cost.  Not run.
-- **Exact and sampled posteriors** (SharpSAT-TD, d4, MC-SAT).  On TwoPackage,
-  SharpSAT-TD finished no 6×6 run within 20 minutes, d4 timed out compiling
-  two of the four 7×7 theories, and MC-SAT was slow from 4×4.  The 6×6 FourPackage
-  theories have 20,000–32,000 variables against TwoPackage 6×6's 4,600–6,800.
-  Not run.
-- **Proving the goal plans optimal.**  The 443 goal plans from tt-open-wbo-inc
-  are unproven.  An exact solver on them would cost at least the per-solve time
-  above for each, at sizes where finding a plan already takes 10–35 minutes.
-  Not run; the plans are used only to generate evidence, for which a good plan
-  suffices.
-- **The encoding comparison at 12..15.**  The original encoding's theory is
-  about 25,500·(n/6)⁴·H clauses, against about 220·n²·H for the mutex
-  encoding, which makes it roughly 14M clauses on the smallest 12×12
-  recognition theory.  Not run.
+**d4** (2 hours per compilation).  None of the four 6×6 theories compiled
+within 2 hours (peak memory up to 59 GB), so no larger size was tried.

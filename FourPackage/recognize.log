@@ -1,0 +1,24 @@
+15:14:36 FourPackage: methods ['max-term', 'sharpsat-td', 'mc-sat'], limit 1800s, 8 jobs; stopped: {}
+16:23:44 size 6x6: 300 runs queued
+16:23:44 size 7x7: 300 runs queued
+16:53:24 ok        1777.0s max-term    grid6x6-2-none.txt
+16:53:48 timeout   1800.8s max-term    grid6x6-1-none.txt
+16:53:48     max-term stopped at 6x6: killing its 1 other run(s) there or larger
+16:53:51 killed    1800.9s max-term    grid6x6-3-none.txt
+16:53:54 timeout   1806.5s mc-sat      grid6x6-1-none.txt
+16:53:54     mc-sat stopped at 6x6: killing its 2 other run(s) there or larger
+16:53:57 killed    1808.1s mc-sat      grid6x6-2-none.txt
+16:54:01 killed    1809.7s mc-sat      grid6x6-3-none.txt
+16:54:04 timeout   1815.3s sharpsat-td grid6x6-1-none.txt
+16:54:04     sharpsat-td stopped at 6x6: killing its 2 other run(s) there or larger
+16:54:07 killed    1816.9s sharpsat-td grid6x6-2-none.txt
+16:54:10 killed      42.6s sharpsat-td grid6x6-3-none.txt
+16:54:40 size 8x8: 300 runs queued
+18:09:19 size 9x9: 300 runs queued
+18:57:55 size 10x10: 150 runs queued
+18:57:55 size 11x11: 0 runs queued
+18:57:55 size 12x12: 0 runs queued
+18:57:55 size 13x13: 0 runs queued
+18:57:55 size 14x14: 0 runs queued
+18:57:55 size 15x15: 0 runs queued
+18:57:55 done; stopped: {'max-term': 6, 'mc-sat': 6, 'sharpsat-td': 6}

@@ -7,7 +7,7 @@ at H = 15) and each evidence prefix evidence-K.txt (K = 1, 3, 5 by default):
   (theories)   scnf/<inst>-obsK.scnf, the theory at H with the observation
                monitor's axioms folded in, and -assertion.txt, the one literal to
                condition on (the (occur-in-order ...) assertion).  Written, with
-               wff/ and wcnf/, by ../make-fifo-files.py (recognize.sh
+               wff/ and wcnf/, by ../OldVersions/make-fifo-files.py (recognize.sh
                --stop-after scnf); this script only checks they are there.
   max-term     recognize.sh --counter max-term: R&G's c(not O) - c(O), with the
                exact MaxSAT solver (bin/rc2-maxsat.py).
@@ -120,13 +120,13 @@ def theory(inst, k):
 
 
 def prepare(inst, k):
-    """The theory and its assertion must exist: ../make-fifo-files.py writes them
+    """The theory and its assertion must exist: ../OldVersions/make-fifo-files.py writes them
     (scnf/, with the wff in wff/ and the weighted CNFs in wcnf/), regenerating each
     with recognize.sh --stop-after scnf at the instance's horizon."""
     root = theory(inst, k)
     missing = [root + s for s in (".scnf", "-assertion.txt") if not os.path.exists(root + s)]
     if missing:
-        sys.exit(f"missing {missing}: run ../make-fifo-files.py --match {inst}-obs{k} first")
+        sys.exit(f"missing {missing}: run ../OldVersions/make-fifo-files.py --match {inst}-obs{k} first")
 
 
 def parse_summary(path):

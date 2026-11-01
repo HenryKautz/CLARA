@@ -1,0 +1,9 @@
+;; grid9x9-2-pkg2-p3-7: the first 2 of the 7 actions of goals/grid9x9-2-pkg2-p3-7.answer
+;; (25%, rounded up), a plan for (at pkg2 p3-7) by tt-open-wbo-inc-Glucose4_1 (EvalMaxSAT_bin did not prove an optimum).
+;; True hypothesis: at-pkg2-p3-7.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck2 p2-7 p3-7) 1)
+  (occurs (drive truck2 p3-7 p3-6) 2))

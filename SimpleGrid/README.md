@@ -1,72 +1,92 @@
 # SimpleGrid
 
-Plan-recognition problems in the `clara-logistics` PDDL domain, made with the
-[FiFO](https://github.com/HenryKautz/FiFO) tools `ppgen.sh`, `planner.sh` and
-`evgen.sh`.  The file types are described in the [top-level README](../README.md).
+One truck heading for one of several destinations; regenerated 2026-10-31 (the
+version before, with its results, is
+[OldVersions/SimpleGrid](../OldVersions/SimpleGrid/README.md)).  How the
+problems were made and solved is in the [top-level README](../README.md) and
+[scripts/README.md](../scripts/README.md).
+
+## Problems
+
+`gridNxN-K.pddl`, N = 3..10, K = 1..4 (the seed): an N×N grid of places `pR-C`
+with two-way roads between neighbours and no airports, airplanes or packages.
+One truck starts at the corner `p1-1`; the goal is that it reaches any one of
+N−1 destinations (2 at 3×3), all at least N+1 road steps from `p1-1` (3 at
+3×3): `(or (at truck1 a) (at truck1 b) …)`.  Drives cost 1 (domain
+`clara-logistics.pddl`; with no packages, the new handling cost never applies,
+so these problems plan exactly as before).  No preferences.
+
+The **hypotheses** are the destinations, named `at-truck1-<place>` by
+`recognize.sh`; chance is 1/(N−1).
 
 ## Layout
 
 ```
-gridNxN-K.pddl                    problems
+gridNxN-K.pddl              problems; clara-logistics.pddl, their domain
 goals/
-  <problem>-<place>.pddl          single-goal variants of the problems
-  <problem>-<place>.answer        a plan for each variant
+  <goal>.pddl               the problem with one hypothesis as its hard goal
+  <goal>-tt.answer          tt-open-wbo-inc's plan at the goal's shortest horizon
+  <goal>-eval.answer        EvalMaxSAT's, when it proved its optimum within 30 minutes
+  <goal>.answer             the plan the evidence was cut from (EvalMaxSAT's, else tt's)
 evidence/
-  <problem>-<place>-obsN.txt      observations from those plans, pinned to time steps
-  <problem>-<place>-ordN.txt      the same observations, as an ordering only
-wff/<problem>.wff                 FiFO source of each problem's recognition theory
-scnf/<problem>.scnf               that theory, instantiated (symbolic CNF)
-wcnf/                             its weighted CNF, both dialects, and the solved
-                                  examples (see wcnf/README.md)
-circuits/                         d4 circuits (see circuits/README.md)
-results/                          sweep results, and the tables made from them
-                                  (summary-by-grid.md, table-*.md, compile-d4*.md)
+  <problem>-none.txt        no observations: (and)
+  <goal>-obs25.txt          the first 25% of the plan's actions (rounded up), pinned
+  <goal>-obs100.txt         all of the plan's actions, pinned
+recognition/<problem>.pddl  the goal as one disjunction of the hypotheses; its header
+                            lists them, their shortest horizons, and the
+                            RECOGNITION HORIZON (the largest), which every run uses
+scnf/<problem>.scnf         the evidence-free recognition theory (compile-d4.py)
+circuits/<problem>.dnnf     its d4 circuit, where d4 succeeded; one over 100 MB is
+                            committed as .part-* pieces: cat <problem>.dnnf.part-* > <problem>.dnnf
+results/                    plans.jsonl, runs.jsonl, compile-d4.jsonl: a record per run
+tables.md                   scripts/summarize.py's tables
+*.log                       the stages' logs
 ```
 
-## Problems
+`<goal>` is the problem name followed by the hypothesis's object and place,
+e.g. `grid4x4-1-truck1-p3-4` (the old version named it `grid4x4-1-p3-4`).  The
+true hypothesis of `<goal>-obs*.txt` is that goal's.
 
-`gridNxN-K.pddl`.  An N×N grid of places named `pR-C` (row, column), with
-two-way roads between adjacent places and no airports, airplanes or packages.
-A single truck starts at the corner `p1-1`.  The goal is a disjunction: the
-truck must reach any one of several possible destinations, all at least a fixed
-number of road steps from `p1-1`.  `K` numbers the problems of each size, which
-differ in the destinations chosen.  Each file opens with comment lines
-recording the `ppgen.sh` settings that generated it, so it can be regenerated
-exactly.
+## Results
 
-## `goals/`
+Full tables: [tables.md](tables.md).  Every limit below is wall-clock time
+for the whole run; when a run of some kind failed by timeout or memory at a
+size, that kind of run was stopped there for that size and every larger one
+("killed" in the tables).  Accuracy scores a run 1/k when the true hypothesis
+ties with k − 1 others for the highest posterior.
 
-One entry per possible goal of a problem.
-- `<problem>-<place>.pddl` is the problem with its goal narrowed to that single
-  destination: the truck must end at `<place>`.  Everything else is unchanged.
-- `<problem>-<place>.answer` is a shortest plan for it, as written by
-  `planner.sh`: `SAT`, the plan's cost as `(*OBJECTIVE* n)`, then the trajectory
-  — `(HOLDS fluent t)` for what is true at time step `t`, and `(OCCURS action t)`
-  for the action taken at step `t`.  Each plan is one of possibly many shortest
-  routes, so it stands for "an agent heading to `<place>`".
+**Planning** (30 minutes per solver run).  Every goal at every size was
+planned by tt-open-wbo-inc in seconds, and EvalMaxSAT proved every plan
+optimal; tt's plans were all already optimal, so the evidence comes from
+EvalMaxSAT's plans throughout.
 
-## `evidence/`
+**Recognition** (30 minutes per run).
 
-What an observer sees of such an agent: the first `N` actions of the plan in
-`goals/<problem>-<place>.answer`, in two forms.  Only actions are observed, not
-the truck's location.  The file's true goal is `<place>`; a recognizer is given
-the original problem's possible goals and the evidence, and asked which goal is
-being pursued.  Longer prefixes (larger `N`) give more evidence, up to the
-length of the plan.
-- `<problem>-<place>-obsN.txt` pins each action to its time step: a single
-  `(and ...)` of `(occurs (drive truck1 from to) t)` literals, the actions at
-  steps 1..N.  This claims the agent started at once and was watched without
-  gaps.  Use it with `recognize.sh --evidence-kind fifo`, or
-  `planner.sh --evidence-file`.
-- `<problem>-<place>-ordN.txt` gives the same actions as an ordering only: a
-  single `(occur-in-order a1 ... aN)` — they happened in this order, at time
-  steps it does not fix.  This is the Ramírez & Geffner observation model.  Use
-  it with `recognize.sh` (its default `--evidence-kind pddl`), or
-  `planner.sh --pddl-evidence-file`.
-- Each file is one form, which is what `recognize.sh` needs to negate it.  The
-  original problems can be given to `recognize.sh` directly: their goal literals
-  `(at truck1 <place>)` are the hypotheses, e.g.
-  `recognize.sh clara-logistics.pddl grid4x4-1.pddl evidence/grid4x4-1-p3-4-ord3.txt`.
-- Each file opens with comment lines recording the `evgen.sh` settings that made
-  it, with paths relative to `SimpleGrid/`: run `evgen.sh` with those settings
-  from `SimpleGrid/` to regenerate it exactly.
+- **max-term** solved every run at every size (mean 6 s at 3×3, 700–970 s at
+  10×10).
+- **SharpSAT-TD** solved everything through 6×6.  At 7×7 it timed out on one
+  run with 25% evidence and stopped (5 runs with full evidence were killed).
+- **MC-SAT** failed to mix on many runs from 5×5 on (status `nomix`: the
+  chain froze, so the estimate is unusable; this is not a timeout, so it did
+  not stop MC-SAT), e.g. 24 of 44 runs at 6×6, each taking about 25 minutes.
+  At 7×7 it timed out on an evidence-free run and stopped.
+
+With 25% of the plan observed no method does much better than chance: the
+observed prefix is compatible with most destinations.  Even the **whole
+plan** does not identify the goal: max-term's accuracy is 0.75 at 3×3,
+falling to about 0.5 at 9×9 and 10×10 (chance 1/(N−1)).  Every run uses the
+problem's recognition horizon, the longest of its goals' shortest plans, and a
+hypothesis is scored at the final slice; after a shorter plan reaches its
+destination, the truck can still drive on to another destination in the
+remaining slices, so those destinations keep posterior mass.  SharpSAT-TD's
+exact posterior, which counts every such continuation, puts even less on the
+true goal than max-term's (accuracy 0.25–0.5 with full evidence).
+
+**d4** (2 hours per compilation).  Every theory through 9×9 compiled; at
+10×10 only `grid10x10-3` did (2404 s, 2.8 M nodes, 12 GB peak), the other
+three timed out.  sharpSAT confirmed the circuit's model count for every
+circuit through 6×6 and three of four at 7×7; from 8×8 on every check ran out
+of its 30 minutes, so those circuits are unverified (d4 is known to
+miscompile larger theories; see
+[OldVersions/SimpleGrid/results/compile-d4.md](../OldVersions/SimpleGrid/results/compile-d4.md)).
+No count check disagreed.

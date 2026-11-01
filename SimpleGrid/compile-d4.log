@@ -1,0 +1,75 @@
+15:14:36 SimpleGrid: d4, limit 7200s, 2 jobs
+15:15:37 3x3: 4 of 4 to compile
+15:15:40   grid3x3-1: theory at horizon 5
+15:15:43   grid3x3-2: theory at horizon 5
+15:15:47   grid3x3-1: ok 3.0s (d4 0.05s, peak 0 MB, check agrees)
+15:15:50   grid3x3-3: theory at horizon 5
+15:15:52   grid3x3-2: ok 2.7s (d4 0.06s, peak 0 MB, check agrees)
+15:15:56   grid3x3-4: theory at horizon 5
+15:16:00   grid3x3-3: ok 2.7s (d4 0.06s, peak 0 MB, check agrees)
+15:16:02   grid3x3-4: ok 2.8s (d4 0.04s, peak 0 MB, check agrees)
+15:16:02 4x4: 4 of 4 to compile
+15:16:05   grid4x4-1: theory at horizon 7
+15:16:08   grid4x4-2: theory at horizon 7
+15:16:12   grid4x4-1: ok 2.7s (d4 0.06s, peak 0 MB, check agrees)
+15:16:15   grid4x4-3: theory at horizon 7
+15:16:17   grid4x4-2: ok 2.9s (d4 0.06s, peak 0 MB, check agrees)
+15:16:21   grid4x4-4: theory at horizon 7
+15:16:25   grid4x4-3: ok 2.8s (d4 0.06s, peak 0 MB, check agrees)
+15:16:27   grid4x4-4: ok 2.8s (d4 0.06s, peak 0 MB, check agrees)
+15:16:27 5x5: 4 of 4 to compile
+15:16:30   grid5x5-1: theory at horizon 9
+15:16:33   grid5x5-2: theory at horizon 8
+15:16:37   grid5x5-1: ok 3.4s (d4 0.28s, peak 0 MB, check agrees)
+15:16:41   grid5x5-3: theory at horizon 9
+15:16:43   grid5x5-2: ok 2.8s (d4 0.08s, peak 0 MB, check agrees)
+15:16:46   grid5x5-4: theory at horizon 8
+15:16:50   grid5x5-3: ok 3.2s (d4 0.28s, peak 0 MB, check agrees)
+15:16:52   grid5x5-4: ok 3.1s (d4 0.09s, peak 0 MB, check agrees)
+15:17:52 6x6: 4 of 4 to compile
+15:17:57   grid6x6-1: theory at horizon 11
+15:18:01   grid6x6-2: theory at horizon 11
+15:18:23   grid6x6-2: ok 9.4s (d4 4.9s, peak 61 MB, check agrees)
+15:18:28   grid6x6-3: theory at horizon 10
+15:18:36   grid6x6-3: ok 4.5s (d4 0.9s, peak 37 MB, check agrees)
+15:18:41   grid6x6-4: theory at horizon 11
+15:19:12   grid6x6-4: ok 7.3s (d4 2.58s, peak 48 MB, check agrees)
+15:19:34   grid6x6-1: ok 7.2s (d4 3.39s, peak 0 MB, check agrees)
+15:19:34 7x7: 4 of 4 to compile
+15:19:40   grid7x7-1: theory at horizon 12
+15:19:44   grid7x7-2: theory at horizon 12
+15:20:48   grid7x7-1: ok 17.2s (d4 10.75s, peak 95 MB, check agrees)
+15:20:54   grid7x7-3: theory at horizon 12
+15:21:40   grid7x7-2: ok 17.3s (d4 11.17s, peak 89 MB, check agrees)
+15:21:45   grid7x7-4: theory at horizon 12
+15:50:22   grid7x7-4: ok 20.7s (d4 14.24s, peak 98 MB, check agrees)
+15:51:15   grid7x7-3: ok 18.1s (d4 12.62s, peak 98 MB, check timeout)
+15:51:15 8x8: 4 of 4 to compile
+15:51:19   grid8x8-1: theory at horizon 14
+15:51:23   grid8x8-2: theory at horizon 15
+16:23:07   grid8x8-1: ok 99.2s (d4 86.83s, peak 541 MB, check timeout)
+16:23:11   grid8x8-3: theory at horizon 15
+16:29:07   grid8x8-2: ok 431.4s (d4 394.8s, peak 2196 MB, check timeout)
+16:29:11   grid8x8-4: theory at horizon 15
+16:57:58   grid8x8-3: ok 266.6s (d4 242.31s, peak 1478 MB, check timeout)
+17:08:55   grid8x8-4: ok 544.2s (d4 500.21s, peak 2801 MB, check timeout)
+17:08:55 9x9: 4 of 4 to compile
+17:09:01   grid9x9-1: theory at horizon 16
+17:09:06   grid9x9-2: theory at horizon 16
+17:55:42   grid9x9-1: ok 932.8s (d4 857.09s, peak 4905 MB, check timeout)
+17:55:47   grid9x9-3: theory at horizon 16
+17:57:32   grid9x9-2: ok 1024.4s (d4 937.44s, peak 5012 MB, check timeout)
+17:57:37   grid9x9-4: theory at horizon 16
+18:35:11   grid9x9-3: ok 523.5s (d4 478.66s, peak 2735 MB, check timeout)
+18:35:36   grid9x9-4: ok 423.1s (d4 386.3s, peak 2413 MB, check timeout)
+18:35:36 10x10: 4 of 4 to compile
+18:35:42   grid10x10-1: theory at horizon 18
+18:35:48   grid10x10-2: theory at horizon 18
+20:35:46   grid10x10-1: timeout 7204.0s (d4 7194.78s, peak 33325 MB, check -)
+20:35:52   grid10x10-3: theory at horizon 17
+20:35:57   grid10x10-2: timeout 7209.3s (d4 7201.84s, peak 33591 MB, check -)
+20:36:04   grid10x10-4: theory at horizon 18
+21:48:16   grid10x10-3: ok 2404.0s (d4 2247.3s, peak 12356 MB, check timeout)
+22:36:08   grid10x10-4: timeout 7204.1s (d4 7196.83s, peak 30818 MB, check -)
+22:36:08 10x10: grid10x10-1, grid10x10-2, grid10x10-4 did not compile (timeout/memout); no larger size is tried
+22:36:08 done

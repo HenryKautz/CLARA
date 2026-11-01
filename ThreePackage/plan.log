@@ -1,0 +1,170 @@
+15:14:38 ThreePackage: 12 problems, 96 goals, 96 runs to do, 12 at a time; stopped: {}
+15:14:55 tt      ok       grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p4-3 8.83s horizon=13 cost=22.0 actions=14
+15:14:55 tt      ok       grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p5-4 12.29s horizon=15 cost=26.0 actions=16
+15:15:02 tt      ok       grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3 23.18s horizon=16 cost=26.0 actions=16
+15:15:02 tt      ok       grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p5-4 18.13s horizon=16 cost=26.0 actions=16
+15:15:02 tt      ok       grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p5-4 16.83s horizon=16 cost=26.0 actions=16
+15:15:02 eval    ok       grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p4-3 5.77s horizon=13 cost=22.0 actions=14
+15:15:11 tt      ok       grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4 20.06s horizon=17 cost=26.0 actions=16
+15:15:11 tt      ok       grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p4-3 23.13s horizon=17 cost=28.0 actions=17
+15:15:11 eval    ok       grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p5-4 9.02s horizon=15 cost=26.0 actions=16
+15:15:19 tt      ok       grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p4-3 31.99s horizon=18 cost=28.0 actions=17
+15:15:25 eval    ok       grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p5-4 18.5s horizon=16 cost=26.0 actions=16
+15:15:32 eval    ok       grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p5-4 22.3s horizon=16 cost=26.0 actions=16
+15:15:38 eval    ok       grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p4-3 20.81s horizon=17 cost=28.0 actions=17
+15:15:44 tt      ok       grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-3 52.16s horizon=22 cost=36.0 actions=21
+15:15:44 eval    ok       grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3 37.34s horizon=16 cost=26.0 actions=16
+15:15:51 tt      ok       grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-2 60.23s horizon=22 cost=36.0 actions=21
+15:15:51 tt      ok       grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-3 41.78s horizon=21 cost=34.0 actions=20
+15:15:51 tt      ok       grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-2 36.27s horizon=21 cost=34.0 actions=20
+15:15:59 tt      ok       grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-3 68.69s horizon=24 cost=40.0 actions=23
+15:15:59 eval    ok       grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4 41.17s horizon=17 cost=26.0 actions=16
+15:15:59 tt      ok       grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p4-4 12.33s horizon=17 cost=30.0 actions=18
+15:16:07 eval    ok       grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p4-3 41.57s horizon=18 cost=28.0 actions=17
+15:16:07 goal             grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3  horizon=16 cost=26.0 actions=16 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p5-4  horizon=16 cost=26.0 actions=16 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p4-3  horizon=13 cost=22.0 actions=14 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p2-4-pkg2-p2-4-pkg3-p5-4  horizon=15 cost=26.0 actions=16 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p4-3  horizon=18 cost=28.0 actions=17 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p4-4-pkg2-p3-4-pkg3-p5-4  horizon=17 cost=26.0 actions=16 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p4-3  horizon=17 cost=28.0 actions=17 plan_from=eval
+15:16:07 goal             grid5x5-1-pkg1-p4-4-pkg2-p2-4-pkg3-p5-4  horizon=16 cost=26.0 actions=16 plan_from=eval
+15:16:07 problem ok       grid5x5-1  recognition_horizon=18
+15:16:13 eval    ok       grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p4-4 12.46s horizon=17 cost=30.0 actions=18
+15:16:19 tt      ok       grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-2 47.38s horizon=23 cost=38.0 actions=22
+15:16:19 tt      ok       grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p5-2 37.16s horizon=22 cost=38.0 actions=22
+15:16:19 tt      ok       grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p4-4 10.87s horizon=16 cost=30.0 actions=18
+15:16:27 tt      ok       grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-2 93.38s horizon=24 cost=40.0 actions=23
+15:16:33 tt      ok       grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p5-2 30.28s horizon=20 cost=36.0 actions=21
+15:16:33 eval    ok       grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p4-4 8.44s horizon=16 cost=30.0 actions=18
+15:16:40 tt      ok       grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-3 69.88s horizon=23 cost=38.0 actions=22
+15:16:56 tt      ok       grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p5-2 40.14s horizon=22 cost=38.0 actions=22
+15:16:56 tt      ok       grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p4-4 21.55s horizon=20 cost=34.0 actions=20
+15:17:08 eval    ok       grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-2 72.63s horizon=21 cost=34.0 actions=20
+15:17:08 eval    ok       grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p5-2 33.81s horizon=20 cost=36.0 actions=21
+15:17:25 eval    ok       grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-3 93.24s horizon=21 cost=34.0 actions=20
+15:17:25 tt      ok       grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p4-4 15.94s horizon=18 cost=32.0 actions=19
+15:17:33 eval    ok       grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p5-2 68.41s horizon=22 cost=38.0 actions=22
+15:17:33 eval    ok       grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p4-4 28.87s horizon=20 cost=34.0 actions=20
+15:17:50 tt      ok       grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p5-2 40.97s horizon=21 cost=36.0 actions=21
+15:17:56 eval    ok       grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p4-4 26.16s horizon=18 cost=32.0 actions=19
+15:18:07 eval    ok       grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-2 131.52s horizon=22 cost=36.0 actions=21
+15:18:38 eval    ok       grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-3 169.55s horizon=22 cost=36.0 actions=21
+15:19:19 tt      ok       grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p5-2 104.61s horizon=26 cost=44.0 actions=25
+15:19:30 eval    ok       grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p5-2 153.24s horizon=22 cost=38.0 actions=22
+15:19:30 tt      ok       grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p1-3 93.95s horizon=25 cost=42.0 actions=24
+15:19:30 tt      ok       grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p5-2 80.92s horizon=26 cost=46.0 actions=26
+15:19:43 tt      ok       grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p5-2 136.22s horizon=27 cost=46.0 actions=26
+15:19:43 tt      ok       grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p1-3 128.92s horizon=25 cost=42.0 actions=24
+15:19:56 eval    ok       grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p5-2 123.16s horizon=21 cost=36.0 actions=21
+15:19:56 goal             grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p5-2  horizon=22 cost=38.0 actions=22 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-4-pkg2-p1-5-pkg3-p4-4  horizon=17 cost=30.0 actions=18 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p5-2  horizon=20 cost=36.0 actions=21 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-4-pkg2-p4-4-pkg3-p4-4  horizon=16 cost=30.0 actions=18 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p5-2  horizon=22 cost=38.0 actions=22 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-3-pkg2-p1-5-pkg3-p4-4  horizon=20 cost=34.0 actions=20 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p5-2  horizon=21 cost=36.0 actions=21 plan_from=eval
+15:19:56 goal             grid5x5-3-pkg1-p4-3-pkg2-p4-4-pkg3-p4-4  horizon=18 cost=32.0 actions=19 plan_from=eval
+15:19:56 problem ok       grid5x5-3  recognition_horizon=22
+15:20:12 tt      ok       grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p5-2 34.84s horizon=23 cost=40.0 actions=23
+15:21:13 tt      ok       grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p1-3 74.99s horizon=25 cost=42.0 actions=24
+15:21:29 eval    ok       grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-2 306.82s horizon=23 cost=38.0 actions=22
+15:21:55 eval    ok       grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-3 355.08s horizon=24 cost=40.0 actions=23
+15:22:12 eval    ok       grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-3 328.79s horizon=23 cost=38.0 actions=22
+15:22:18 eval    ok       grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p5-2 120.08s horizon=23 cost=40.0 actions=23
+15:22:24 eval    ok       grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-2 354.88s horizon=24 cost=40.0 actions=23
+15:22:24 tt      ok       grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p1-3 225.56s horizon=27 cost=46.0 actions=26
+15:22:24 goal             grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-3  horizon=22 cost=36.0 actions=21 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-2-pkg2-p5-3-pkg3-p2-2  horizon=22 cost=36.0 actions=21 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-3  horizon=24 cost=40.0 actions=23 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-2-pkg2-p5-4-pkg3-p2-2  horizon=24 cost=40.0 actions=23 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-3  horizon=21 cost=34.0 actions=20 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-1-pkg2-p5-3-pkg3-p2-2  horizon=21 cost=34.0 actions=20 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-3  horizon=23 cost=38.0 actions=22 plan_from=eval
+15:22:24 goal             grid5x5-2-pkg1-p1-1-pkg2-p5-4-pkg3-p2-2  horizon=23 cost=38.0 actions=22 plan_from=eval
+15:22:24 problem ok       grid5x5-2  recognition_horizon=24
+15:22:46 tt      ok       grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p3-6 30.42s horizon=18 cost=28.0 actions=17
+15:23:07 tt      ok       grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p3-6 94.78s horizon=24 cost=40.0 actions=23
+15:23:13 tt      ok       grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p4-5 50.75s horizon=20 cost=32.0 actions=19
+15:23:29 tt      ok       grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p3-6 62.17s horizon=22 cost=36.0 actions=21
+15:23:35 tt      ok       grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p4-5 94.31s horizon=24 cost=40.0 actions=23
+15:23:46 eval    ok       grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p3-6 56.27s horizon=18 cost=28.0 actions=17
+15:23:52 eval    ok       grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p5-2 257.65s horizon=26 cost=46.0 actions=26
+15:24:44 tt      ok       grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p3-6 48.42s horizon=20 cost=32.0 actions=19
+15:25:10 tt      ok       grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p4-5 80.25s horizon=22 cost=36.0 actions=21
+15:25:36 eval    ok       grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p4-5 139.77s horizon=20 cost=32.0 actions=19
+15:26:27 eval    ok       grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p3-6 98.67s horizon=20 cost=32.0 actions=19
+15:26:34 eval    ok       grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p3-6 184.0s horizon=22 cost=36.0 actions=21
+15:26:40 eval    ok       grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p1-3 411.35s horizon=25 cost=42.0 actions=24
+15:26:46 eval    ok       grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p1-3 328.66s horizon=25 cost=42.0 actions=24
+15:26:57 eval    ok       grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p1-3 444.82s horizon=25 cost=42.0 actions=24
+15:27:28 eval    ok       grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p4-5 136.7s horizon=22 cost=36.0 actions=21
+15:27:39 tt      ok       grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p4-5 120.93s horizon=22 cost=36.0 actions=21
+15:27:45 eval    ok       grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p5-2 481.56s horizon=27 cost=46.0 actions=26
+15:28:31 eval    ok       grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p5-2 547.72s horizon=26 cost=44.0 actions=25
+15:28:58 tt      ok       grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p5-5 147.81s horizon=20 cost=32.0 actions=19
+15:29:09 tt      ok       grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p6-5 150.55s horizon=21 cost=34.0 actions=20
+15:29:55 eval    ok       grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p3-6 406.11s horizon=24 cost=40.0 actions=23
+15:30:31 eval    ok       grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p4-5 414.74s horizon=24 cost=40.0 actions=23
+15:30:37 eval    ok       grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p4-5 173.94s horizon=22 cost=36.0 actions=21
+15:30:37 goal             grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p3-6  horizon=24 cost=40.0 actions=23 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p1-3-pkg2-p6-1-pkg3-p4-5  horizon=24 cost=40.0 actions=23 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p3-6  horizon=18 cost=28.0 actions=17 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p1-3-pkg2-p3-4-pkg3-p4-5  horizon=20 cost=32.0 actions=19 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p3-6  horizon=22 cost=36.0 actions=21 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p6-3-pkg2-p6-1-pkg3-p4-5  horizon=22 cost=36.0 actions=21 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p3-6  horizon=20 cost=32.0 actions=19 plan_from=eval
+15:30:37 goal             grid6x6-1-pkg1-p6-3-pkg2-p3-4-pkg3-p4-5  horizon=22 cost=36.0 actions=21 plan_from=eval
+15:30:37 problem ok       grid6x6-1  recognition_horizon=24
+15:31:14 tt      ok       grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p5-5 255.86s horizon=23 cost=38.0 actions=22
+15:32:20 eval    ok       grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p1-3 591.28s horizon=27 cost=46.0 actions=26
+15:32:20 goal             grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p5-2  horizon=27 cost=46.0 actions=26 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p3-2-pkg2-p3-1-pkg3-p1-3  horizon=25 cost=42.0 actions=24 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p5-2  horizon=26 cost=44.0 actions=25 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p3-2-pkg2-p2-2-pkg3-p1-3  horizon=25 cost=42.0 actions=24 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p5-2  horizon=26 cost=46.0 actions=26 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p5-2-pkg2-p3-1-pkg3-p1-3  horizon=27 cost=46.0 actions=26 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p5-2  horizon=23 cost=40.0 actions=23 plan_from=eval
+15:32:20 goal             grid5x5-4-pkg1-p5-2-pkg2-p2-2-pkg3-p1-3  horizon=25 cost=42.0 actions=24 plan_from=eval
+15:32:20 problem ok       grid5x5-4  recognition_horizon=27
+15:32:20 size    settled  5x5  
+15:33:22 eval    ok       grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p5-5 261.44s horizon=20 cost=32.0 actions=19
+15:35:19 eval    ok       grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p6-5 366.48s horizon=21 cost=34.0 actions=20
+15:43:03 eval    ok       grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p5-5 709.43s horizon=23 cost=38.0 actions=22
+15:44:05 tt      ok       grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p6-5 1035.42s horizon=27 cost=46.0 actions=26
+15:48:43 tt      ok       grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p6-5 1270.25s horizon=25 cost=42.0 actions=24
+15:49:39 tt      ok       grid6x6-3-pkg1-p3-3-pkg2-p4-1-pkg3-p4-3 973.91s horizon=32 cost=56.0 actions=31
+15:53:17 tt      ok       grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p5-5 1596.42s horizon=25 cost=42.0 actions=24
+15:59:16 tt      ok       grid6x6-2-pkg1-p2-5-pkg2-p1-2-pkg3-p5-5 1885.69s horizon=27 cost=46.0 actions=26
+16:01:48 tt      timeout  grid6x6-2-pkg1-p2-5-pkg2-p1-2-pkg3-p6-5 1993.76s 
+16:01:48     tt stopped at 6x6: killing 6 run(s) at that size or larger
+16:01:51 tt      killed   grid6x6-3-pkg1-p6-5-pkg2-p4-1-pkg3-p4-3 1912.81s 
+16:01:54 tt      killed   grid6x6-3-pkg1-p6-5-pkg2-p4-1-pkg3-p6-2 1879.65s 
+16:01:57 tt      killed   grid6x6-3-pkg1-p6-5-pkg2-p3-1-pkg3-p4-3 1876.64s 
+16:02:00 tt      killed   grid6x6-3-pkg1-p6-5-pkg2-p3-1-pkg3-p6-2 1776.73s 
+16:02:03 tt      killed   grid6x6-3-pkg1-p3-3-pkg2-p4-1-pkg3-p6-2 1601.46s 
+16:02:06 tt      killed   grid6x6-3-pkg1-p3-3-pkg2-p3-1-pkg3-p4-3 1140.07s 
+16:02:06 problem incomplete grid6x6-4  
+16:02:06 problem incomplete grid7x7-1  
+16:02:06 problem incomplete grid7x7-2  
+16:02:06 problem incomplete grid7x7-3  
+16:02:06 problem incomplete grid7x7-4  
+16:02:06 size    settled  7x7  
+16:14:31 eval    ok       grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p6-5 1547.1s horizon=25 cost=42.0 actions=24
+16:15:11 eval    timeout  grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p6-5 1866.0s horizon=27 cost=46.0 actions=26
+16:15:11     eval stopped at 6x6: killing 3 run(s) at that size or larger
+16:15:14 eval    killed   grid6x6-3-pkg1-p3-3-pkg2-p4-1-pkg3-p4-3 1532.18s 
+16:15:17 eval    killed   grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p5-5 1317.65s 
+16:15:21 eval    killed   grid6x6-2-pkg1-p2-5-pkg2-p1-2-pkg3-p5-5 962.05s 
+16:15:21 goal             grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p5-5  horizon=20 cost=32.0 actions=19 plan_from=eval
+16:15:21 goal             grid6x6-2-pkg1-p4-3-pkg2-p4-4-pkg3-p6-5  horizon=21 cost=34.0 actions=20 plan_from=eval
+16:15:21 goal             grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p5-5  horizon=25 cost=42.0 actions=24 plan_from=tt
+16:15:21 goal             grid6x6-2-pkg1-p4-3-pkg2-p1-2-pkg3-p6-5  horizon=27 cost=46.0 actions=26 plan_from=tt
+16:15:21 goal             grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p5-5  horizon=23 cost=38.0 actions=22 plan_from=eval
+16:15:21 goal             grid6x6-2-pkg1-p2-5-pkg2-p4-4-pkg3-p6-5  horizon=25 cost=42.0 actions=24 plan_from=eval
+16:15:21 goal             grid6x6-2-pkg1-p2-5-pkg2-p1-2-pkg3-p5-5  horizon=27 cost=46.0 actions=26 plan_from=tt
+16:15:21 problem incomplete grid6x6-2  
+16:15:21 goal             grid6x6-3-pkg1-p3-3-pkg2-p4-1-pkg3-p4-3  horizon=32 cost=56.0 actions=31 plan_from=tt
+16:15:21 problem incomplete grid6x6-3  
+16:15:21 size    settled  6x6  
+16:15:21 end              ThreePackage  

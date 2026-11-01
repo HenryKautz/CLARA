@@ -1,0 +1,9 @@
+;; grid3x3-1-pkg1-p2-1: the first 2 of the 6 actions of goals/grid3x3-1-pkg1-p2-1.answer
+;; (25%, rounded up), a plan for (at pkg1 p2-1) by EvalMaxSAT_bin.
+;; True hypothesis: at-pkg1-p2-1.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck1 p2-3 p3-3) 1)
+  (occurs (load pkg1 truck1 p3-3) 2))

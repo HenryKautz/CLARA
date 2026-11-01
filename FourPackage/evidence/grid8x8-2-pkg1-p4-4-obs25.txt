@@ -1,0 +1,11 @@
+;; grid8x8-2-pkg1-p4-4: the first 4 of the 14 actions of goals/grid8x8-2-pkg1-p4-4.answer
+;; (25%, rounded up), a plan for (at pkg1 p4-4) by EvalMaxSAT_bin.
+;; True hypothesis: at-pkg1-p4-4.  Each action is pinned to its time step;
+;; ONE (and ...) form, for recognize.sh --evidence-kind fifo.
+;; Written by scripts/plan-goals.py.
+
+(and
+  (occurs (drive truck2 p2-8 p3-8) 1)
+  (occurs (drive truck2 p3-8 p4-8) 2)
+  (occurs (drive truck2 p4-8 p4-7) 3)
+  (occurs (drive truck2 p4-7 p5-7) 4))

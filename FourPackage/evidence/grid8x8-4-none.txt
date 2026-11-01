@@ -1,0 +1,3 @@
+;; grid8x8-4: no observations.  Written by scripts/plan-goals.py.
+
+(and)

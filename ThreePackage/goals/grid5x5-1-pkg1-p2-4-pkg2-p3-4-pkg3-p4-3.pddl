@@ -1,10 +1,10 @@
 ;; grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3
-;; Single-goal variant of grid5x5-1.pddl: the goal is the combination
-;; (and (at pkg1 p2-4) (at pkg2 p3-4) (at pkg3 p4-3)).
-;; Written by scripts/plan-goals.py.
+;; Single-goal variant of ThreePackage/grid5x5-1.pddl: the hard goal is
+;; (and (at pkg1 p2-4) (at pkg2 p3-4) (at pkg3 p4-3)) -- hypothesis rechyp0 of the recognition problem.
+;; No preferences or weights.  Written by scripts/make-problems.py.
 
 (define (problem grid5x5-1-pkg1-p2-4-pkg2-p3-4-pkg3-p4-3)
-  (:domain clara-logistics-handling)
+  (:domain clara-logistics)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p1-5 p2-1 p2-2 p2-3 p2-4 p2-5 p3-1 p3-2 p3-3 p3-4 p3-5 p4-1 p4-2 p4-3 p4-4 p4-5 p5-1 p5-2 p5-3 p5-4 p5-5 - place
@@ -86,10 +86,12 @@
         (road p5-4 p5-5)
 
 
-        ;; travel prices: one value for every drive, one for every flight
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 2)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
   (:goal (and
         (at pkg1 p2-4)

@@ -1,21 +1,20 @@
 ;; grid5x5-4: the recognition problem
-;; grid5x5-4.pddl with its goal -- one destination for each package -- written
-;; as the disjunction of its 8 combinations (the same set of plans).
-;; recognize.sh scores disjunct I through the derived atom rechypI:
-;;   rechyp0  (at pkg1 p3-2) (at pkg2 p3-1) (at pkg3 p5-2)   shortest horizon 27
-;;   rechyp1  (at pkg1 p3-2) (at pkg2 p3-1) (at pkg3 p1-3)   shortest horizon 25
-;;   rechyp2  (at pkg1 p3-2) (at pkg2 p2-2) (at pkg3 p5-2)   shortest horizon 26
-;;   rechyp3  (at pkg1 p3-2) (at pkg2 p2-2) (at pkg3 p1-3)   shortest horizon 25
-;;   rechyp4  (at pkg1 p5-2) (at pkg2 p3-1) (at pkg3 p5-2)   shortest horizon 26
-;;   rechyp5  (at pkg1 p5-2) (at pkg2 p3-1) (at pkg3 p1-3)   shortest horizon 27
-;;   rechyp6  (at pkg1 p5-2) (at pkg2 p2-2) (at pkg3 p5-2)   shortest horizon 23
-;;   rechyp7  (at pkg1 p5-2) (at pkg2 p2-2) (at pkg3 p1-3)   shortest horizon 25
+;; ThreePackage/grid5x5-4.pddl with its goal written as ONE disjunction of its
+;; 8 hypotheses (the same set of plans).  recognize.sh's names:
+;;   rechyp0          (and (at pkg1 p3-2) (at pkg2 p3-1) (at pkg3 p5-2))   shortest horizon 27
+;;   rechyp1          (and (at pkg1 p3-2) (at pkg2 p3-1) (at pkg3 p1-3))   shortest horizon 25
+;;   rechyp2          (and (at pkg1 p3-2) (at pkg2 p2-2) (at pkg3 p5-2))   shortest horizon 26
+;;   rechyp3          (and (at pkg1 p3-2) (at pkg2 p2-2) (at pkg3 p1-3))   shortest horizon 25
+;;   rechyp4          (and (at pkg1 p5-2) (at pkg2 p3-1) (at pkg3 p5-2))   shortest horizon 26
+;;   rechyp5          (and (at pkg1 p5-2) (at pkg2 p3-1) (at pkg3 p1-3))   shortest horizon 27
+;;   rechyp6          (and (at pkg1 p5-2) (at pkg2 p2-2) (at pkg3 p5-2))   shortest horizon 23
+;;   rechyp7          (and (at pkg1 p5-2) (at pkg2 p2-2) (at pkg3 p1-3))   shortest horizon 25
 ;; Recognition horizon: 27
-;;   (the largest shortest horizon: every combination is achievable at it)
+;;   (the largest shortest horizon: every hypothesis is achievable at it)
 ;; Written by scripts/plan-goals.py.
 
 (define (problem grid5x5-4)
-  (:domain clara-logistics-handling)
+  (:domain clara-logistics)
 
   (:objects
         p1-1 p1-2 p1-3 p1-4 p1-5 p2-1 p2-2 p2-3 p2-4 p2-5 p3-1 p3-2 p3-3 p3-4 p3-5 p4-1 p4-2 p4-3 p4-4 p4-5 p5-1 p5-2 p5-3 p5-4 p5-5 - place
@@ -97,10 +96,12 @@
         (road p5-4 p5-5)
 
 
-        ;; travel prices: one value for every drive, one for every flight
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 2)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
   (:goal (or
         (and (at pkg1 p3-2) (at pkg2 p3-1) (at pkg3 p5-2))

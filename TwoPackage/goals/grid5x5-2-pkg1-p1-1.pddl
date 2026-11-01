@@ -1,11 +1,7 @@
 ;; grid5x5-2-pkg1-p1-1
-;; Single-goal variant of grid5x5-2.pddl: the goal is (at pkg1 p1-1) only.
-;; 5 x 5 grid of places, roads between adjacent cells;
-;; no airports;
-;; 1 truck and 2 packages placed at random, 0 airplanes over the airports.
-;; 2 destinations per package; reaching any one of them counts.
-;; At least one of the 2 packages must reach a destination.
-;;
+;; Single-goal variant of TwoPackage/grid5x5-2.pddl: the hard goal is
+;; (at pkg1 p1-1) -- hypothesis at-pkg1-p1-1 of the recognition problem.
+;; No preferences or weights.  Written by scripts/make-problems.py.
 
 (define (problem grid5x5-2-pkg1-p1-1)
   (:domain clara-logistics)
@@ -105,12 +101,13 @@
         (road p5-4 p5-5)
 
 
-        ;; travel prices: one value for every drive, one for every flight
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 1)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
-  (:goal (and
-        (at pkg1 p1-1)))
+  (:goal (at pkg1 p1-1))
 
   (:metric minimize (total-cost)))

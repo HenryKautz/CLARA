@@ -1,6 +1,40 @@
 .DS_Store
 __pycache__/
-# Circuits over GitHub's 100 MB limit are committed as split parts (see SimpleGrid/circuits/README.md)
+# Circuits over GitHub's 100 MB limit are committed as split parts (see OldVersions/SimpleGrid/circuits/README.md)
+OldVersions/SimpleGrid/circuits/grid8x8-2.dnnf
+OldVersions/SimpleGrid/circuits/grid8x8-3.dnnf
+OldVersions/SimpleGrid/circuits/grid8x8-4.dnnf
+OldVersions/SimpleGrid/circuits/grid9x9-1.dnnf
+OldVersions/SimpleGrid/circuits/grid9x9-2.dnnf
+OldVersions/SimpleGrid/circuits/grid9x9-3.dnnf
+OldVersions/SimpleGrid/circuits/grid9x9-4.dnnf
+# Circuits over GitHub's 100 MB limit are committed as split parts (see OldVersions/TwoPackage/circuits/README.md)
+OldVersions/TwoPackage/circuits/grid6x6-1.dnnf
+OldVersions/TwoPackage/circuits/grid6x6-3.dnnf
+OldVersions/TwoPackage/circuits/grid7x7-2.dnnf
+# ThreePackage likewise (see ThreePackage/README.md)
+OldVersions/ThreePackage/circuits/grid5x5-3.dnnf
+# make-fifo-files.py's scratch
+work-fifo-files/
+# run-benchmarks.py's scratch, and the binary circuits (the text .dnnf is kept)
+AAAI-2010-Benchmarks/work/
+AAAI-2010-Benchmarks/circuits/*.dnnfb
+# planner scratch files left beside the goal variants
+OldVersions/TwoPackage/goals/*.scnf
+OldVersions/TwoPackage/goals/*.cnf
+OldVersions/TwoPackage/goals/*.map
+OldVersions/TwoPackage/goals/*.satout
+OldVersions/TwoPackage/goals/*.log
+# FourPackage: regenerable and far too large (scnf 7 GB, wcnf 2.5 GB with files
+# over GitHub's 100 MB limit): make-formats.py writes wcnf/ from wff/, and
+# run-plans.py --stage general rewrites general/*.{wcnf,map}
+OldVersions/FourPackage/scnf/
+OldVersions/FourPackage/wcnf/
+OldVersions/FourPackage/general/*.wcnf
+OldVersions/FourPackage/general/*.map
+# The 2026-10-31 regeneration: circuits over GitHub's 100 MB limit are
+# committed as 90 MB parts (split -b 90m); rejoin with
+# cat F.dnnf.part-* > F.dnnf
 SimpleGrid/circuits/grid8x8-2.dnnf
 SimpleGrid/circuits/grid8x8-3.dnnf
 SimpleGrid/circuits/grid8x8-4.dnnf
@@ -8,27 +42,11 @@ SimpleGrid/circuits/grid9x9-1.dnnf
 SimpleGrid/circuits/grid9x9-2.dnnf
 SimpleGrid/circuits/grid9x9-3.dnnf
 SimpleGrid/circuits/grid9x9-4.dnnf
-# Circuits over GitHub's 100 MB limit are committed as split parts (see TwoPackage/circuits/README.md)
+SimpleGrid/circuits/grid10x10-3.dnnf
 TwoPackage/circuits/grid6x6-1.dnnf
 TwoPackage/circuits/grid6x6-3.dnnf
+TwoPackage/circuits/grid7x7-1.dnnf
 TwoPackage/circuits/grid7x7-2.dnnf
-# ThreePackage likewise (see ThreePackage/README.md)
+TwoPackage/circuits/grid7x7-4.dnnf
 ThreePackage/circuits/grid5x5-3.dnnf
-# make-fifo-files.py's scratch
-work-fifo-files/
-# run-benchmarks.py's scratch, and the binary circuits (the text .dnnf is kept)
-AAAI-2010-Benchmarks/work/
-AAAI-2010-Benchmarks/circuits/*.dnnfb
-# planner scratch files left beside the goal variants
-TwoPackage/goals/*.scnf
-TwoPackage/goals/*.cnf
-TwoPackage/goals/*.map
-TwoPackage/goals/*.satout
-TwoPackage/goals/*.log
-# FourPackage: regenerable and far too large (scnf 7 GB, wcnf 2.5 GB with files
-# over GitHub's 100 MB limit): make-formats.py writes wcnf/ from wff/, and
-# run-plans.py --stage general rewrites general/*.{wcnf,map}
-FourPackage/scnf/
-FourPackage/wcnf/
-FourPackage/general/*.wcnf
-FourPackage/general/*.map
+ThreePackage/circuits/grid6x6-1.dnnf

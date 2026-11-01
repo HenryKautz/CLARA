@@ -1,11 +1,7 @@
 ;; grid4x4-2-pkg1-p3-2
-;; Single-goal variant of grid4x4-2.pddl: the goal is (at pkg1 p3-2) only.
-;; 4 x 4 grid of places, roads between adjacent cells;
-;; no airports;
-;; 1 truck and 2 packages placed at random, 0 airplanes over the airports.
-;; 2 destinations per package; reaching any one of them counts.
-;; At least one of the 2 packages must reach a destination.
-;;
+;; Single-goal variant of TwoPackage/grid4x4-2.pddl: the hard goal is
+;; (at pkg1 p3-2) -- hypothesis at-pkg1-p3-2 of the recognition problem.
+;; No preferences or weights.  Written by scripts/make-problems.py.
 
 (define (problem grid4x4-2-pkg1-p3-2)
   (:domain clara-logistics)
@@ -73,12 +69,13 @@
         (road p4-3 p4-4)
 
 
-        ;; travel prices: one value for every drive, one for every flight
+        ;; prices: one value for every drive, one for every flight, one for
+        ;; every load or unload
         (= (total-cost) 0)
         (= (drive-cost) 1)
-        (= (fly-cost) 3))
+        (= (fly-cost) 3)
+        (= (handle-cost) 1))
 
-  (:goal (and
-        (at pkg1 p3-2)))
+  (:goal (at pkg1 p3-2))
 
   (:metric minimize (total-cost)))

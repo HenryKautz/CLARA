@@ -1,0 +1,697 @@
+15:14:36 SimpleGrid: methods ['max-term', 'sharpsat-td', 'mc-sat'], limit 1800s, 8 jobs; stopped: {}
+15:15:36 size 3x3: 60 runs queued
+15:15:43 ok           6.0s max-term    grid3x3-1-none.txt
+15:15:45 ok           6.2s max-term    grid3x3-2-none.txt
+15:15:48 ok           5.9s max-term    grid3x3-3-none.txt
+15:15:50 ok          12.5s mc-sat      grid3x3-1-none.txt
+15:15:50 ok          10.2s sharpsat-td grid3x3-1-none.txt
+15:15:50 ok           9.8s sharpsat-td grid3x3-2-none.txt
+15:15:54 ok          12.5s mc-sat      grid3x3-2-none.txt
+15:15:54 ok          12.4s mc-sat      grid3x3-3-none.txt
+15:15:54 ok           9.6s sharpsat-td grid3x3-3-none.txt
+15:15:54 ok           5.8s max-term    grid3x3-4-none.txt
+15:15:58 ok           5.8s max-term    grid3x3-1-truck1-p3-2-obs25.txt  score=0.50
+15:16:00 ok          12.2s mc-sat      grid3x3-4-none.txt
+15:16:00 ok           9.7s sharpsat-td grid3x3-4-none.txt
+15:16:00 ok           5.8s max-term    grid3x3-1-truck1-p3-3-obs25.txt  score=0.50
+15:16:04 ok          12.6s mc-sat      grid3x3-1-truck1-p3-2-obs25.txt  score=1.00
+15:16:04 ok           5.7s max-term    grid3x3-2-truck1-p2-3-obs25.txt  score=0.50
+15:16:07 ok          10.2s sharpsat-td grid3x3-1-truck1-p3-2-obs25.txt  score=0.50
+15:16:07 ok           9.7s sharpsat-td grid3x3-1-truck1-p3-3-obs25.txt  score=0.50
+15:16:10 ok          12.5s mc-sat      grid3x3-1-truck1-p3-3-obs25.txt  score=0.00
+15:16:10 ok           5.7s max-term    grid3x3-2-truck1-p3-3-obs25.txt  score=0.50
+15:16:13 ok          12.3s mc-sat      grid3x3-2-truck1-p2-3-obs25.txt  score=0.00
+15:16:13 ok           9.7s sharpsat-td grid3x3-2-truck1-p2-3-obs25.txt  score=0.50
+15:16:13 ok           5.9s max-term    grid3x3-3-truck1-p2-3-obs25.txt  score=0.50
+15:16:17 ok          12.4s mc-sat      grid3x3-2-truck1-p3-3-obs25.txt  score=1.00
+15:16:17 ok           9.7s sharpsat-td grid3x3-2-truck1-p3-3-obs25.txt  score=1.00
+15:16:17 ok           5.8s max-term    grid3x3-3-truck1-p3-3-obs25.txt  score=0.50
+15:16:20 ok          12.4s mc-sat      grid3x3-3-truck1-p2-3-obs25.txt  score=1.00
+15:16:20 ok           9.9s sharpsat-td grid3x3-3-truck1-p2-3-obs25.txt  score=0.50
+15:16:20 ok           5.9s max-term    grid3x3-4-truck1-p2-3-obs25.txt  score=0.50
+15:16:24 ok           9.7s sharpsat-td grid3x3-3-truck1-p3-3-obs25.txt  score=1.00
+15:16:24 ok           5.7s max-term    grid3x3-4-truck1-p3-3-obs25.txt  score=0.50
+15:16:27 ok          12.2s mc-sat      grid3x3-3-truck1-p3-3-obs25.txt  score=1.00
+15:16:29 ok          12.5s mc-sat      grid3x3-4-truck1-p2-3-obs25.txt  score=1.00
+15:16:29 ok           9.7s sharpsat-td grid3x3-4-truck1-p2-3-obs25.txt  score=0.50
+15:16:29 ok           6.0s max-term    grid3x3-1-truck1-p3-2-obs100.txt  score=0.50
+15:16:33 ok          12.5s mc-sat      grid3x3-4-truck1-p3-3-obs25.txt  score=1.00
+15:16:33 ok           9.7s sharpsat-td grid3x3-4-truck1-p3-3-obs25.txt  score=1.00
+15:16:36 ok           8.6s sharpsat-td grid3x3-1-truck1-p3-2-obs100.txt  score=0.00
+15:16:36 ok           6.4s max-term    grid3x3-1-truck1-p3-3-obs100.txt  score=1.00
+15:16:39 ok          12.2s mc-sat      grid3x3-1-truck1-p3-2-obs100.txt  score=0.00
+15:16:39 ok           7.7s sharpsat-td grid3x3-1-truck1-p3-3-obs100.txt  score=1.00
+15:16:39 ok           5.8s max-term    grid3x3-2-truck1-p2-3-obs100.txt  score=0.50
+15:16:39 size 4x4: 84 runs queued
+15:16:39 size 5x5: 108 runs queued
+15:16:42 ok          12.2s mc-sat      grid3x3-1-truck1-p3-3-obs100.txt  score=1.00
+15:16:42 ok           8.6s sharpsat-td grid3x3-2-truck1-p2-3-obs100.txt  score=0.00
+15:16:42 ok           5.8s max-term    grid3x3-2-truck1-p3-3-obs100.txt  score=1.00
+15:16:46 ok          11.9s mc-sat      grid3x3-2-truck1-p2-3-obs100.txt  score=0.00
+15:16:48 ok           7.7s sharpsat-td grid3x3-2-truck1-p3-3-obs100.txt  score=1.00
+15:16:48 ok           6.7s max-term    grid3x3-3-truck1-p2-3-obs100.txt  score=0.50
+15:16:51 ok          12.2s mc-sat      grid3x3-2-truck1-p3-3-obs100.txt  score=1.00
+15:16:51 ok           8.9s sharpsat-td grid3x3-3-truck1-p2-3-obs100.txt  score=0.00
+15:16:51 ok           6.8s max-term    grid3x3-3-truck1-p3-3-obs100.txt  score=1.00
+15:16:55 ok          13.2s mc-sat      grid3x3-3-truck1-p2-3-obs100.txt  score=1.00
+15:16:55 ok           9.0s sharpsat-td grid3x3-3-truck1-p3-3-obs100.txt  score=1.00
+15:16:55 ok           5.9s max-term    grid3x3-4-truck1-p2-3-obs100.txt  score=0.50
+15:16:59 ok          13.5s mc-sat      grid3x3-3-truck1-p3-3-obs100.txt  score=1.00
+15:16:59 ok           5.8s max-term    grid3x3-4-truck1-p3-3-obs100.txt  score=1.00
+15:17:02 ok          12.0s mc-sat      grid3x3-4-truck1-p2-3-obs100.txt  score=0.00
+15:17:02 ok           8.6s sharpsat-td grid3x3-4-truck1-p2-3-obs100.txt  score=0.00
+15:17:05 ok          12.0s mc-sat      grid3x3-4-truck1-p3-3-obs100.txt  score=1.00
+15:17:05 ok           7.7s sharpsat-td grid3x3-4-truck1-p3-3-obs100.txt  score=1.00
+15:17:08 ok           9.6s max-term    grid4x4-1-none.txt
+15:17:10 ok          10.0s sharpsat-td grid4x4-1-none.txt
+15:17:10 ok           9.4s max-term    grid4x4-2-none.txt
+15:17:13 ok           9.9s sharpsat-td grid4x4-2-none.txt
+15:17:16 ok           9.4s max-term    grid4x4-3-none.txt
+15:17:18 ok           9.7s sharpsat-td grid4x4-3-none.txt
+15:17:21 ok           9.8s max-term    grid4x4-4-none.txt
+15:17:25 ok          10.3s sharpsat-td grid4x4-4-none.txt
+15:17:28 ok          11.3s max-term    grid4x4-1-truck1-p3-4-obs25.txt  score=0.33
+15:17:31 ok           9.6s sharpsat-td grid4x4-1-truck1-p3-4-obs25.txt  score=0.00
+15:17:37 ok          10.8s max-term    grid4x4-1-truck1-p4-3-obs25.txt  score=0.33
+15:17:44 ok          11.7s sharpsat-td grid4x4-1-truck1-p4-3-obs25.txt  score=0.00
+15:17:48 ok          10.0s max-term    grid4x4-1-truck1-p4-4-obs25.txt  score=0.33
+15:18:01 ok          10.8s sharpsat-td grid4x4-1-truck1-p4-4-obs25.txt  score=1.00
+15:18:14 ok          12.4s max-term    grid4x4-2-truck1-p3-4-obs25.txt  score=0.33
+15:18:20 ok          82.8s mc-sat      grid4x4-1-none.txt
+15:18:25 ok          82.0s mc-sat      grid4x4-2-none.txt
+15:18:27 ok          81.3s mc-sat      grid4x4-3-none.txt
+15:18:34 ok          12.2s sharpsat-td grid4x4-2-truck1-p3-4-obs25.txt  score=0.00
+15:18:36 ok          85.5s mc-sat      grid4x4-4-none.txt
+15:18:39 ok          78.8s mc-sat      grid4x4-1-truck1-p3-4-obs25.txt  score=0.00
+15:18:39 ok          12.4s max-term    grid4x4-2-truck1-p4-3-obs25.txt  score=0.33
+15:18:42 size 6x6: 132 runs queued
+15:18:44 ok           9.8s sharpsat-td grid4x4-2-truck1-p4-3-obs25.txt  score=0.00
+15:18:47 ok          76.8s mc-sat      grid4x4-1-truck1-p4-3-obs25.txt  score=0.00
+15:18:51 ok          12.8s max-term    grid4x4-2-truck1-p4-4-obs25.txt  score=0.33
+15:18:51 ok          11.3s sharpsat-td grid4x4-2-truck1-p4-4-obs25.txt  score=1.00
+15:18:56 ok          10.5s max-term    grid4x4-3-truck1-p3-4-obs25.txt  score=0.33
+15:19:05 ok          12.4s sharpsat-td grid4x4-3-truck1-p3-4-obs25.txt  score=0.00
+15:19:07 ok          13.6s max-term    grid4x4-3-truck1-p4-3-obs25.txt  score=0.33
+15:19:12 ok          86.5s mc-sat      grid4x4-1-truck1-p4-4-obs25.txt  score=1.00
+15:19:17 ok          10.6s sharpsat-td grid4x4-3-truck1-p4-3-obs25.txt  score=0.00
+15:19:21 ok          13.0s max-term    grid4x4-3-truck1-p4-4-obs25.txt  score=0.33
+15:19:30 ok          11.2s sharpsat-td grid4x4-3-truck1-p4-4-obs25.txt  score=1.00
+15:19:34 ok          11.4s max-term    grid4x4-4-truck1-p3-4-obs25.txt  score=0.33
+15:19:39 ok          84.1s mc-sat      grid4x4-2-truck1-p3-4-obs25.txt  score=0.00
+15:19:43 size 7x7: 156 runs queued
+15:19:48 ok          11.3s sharpsat-td grid4x4-4-truck1-p3-4-obs25.txt  score=0.00
+15:19:50 ok          82.7s mc-sat      grid4x4-2-truck1-p4-3-obs25.txt  score=0.00
+15:19:55 ok          14.1s max-term    grid4x4-4-truck1-p4-3-obs25.txt  score=0.33
+15:20:03 ok          12.2s sharpsat-td grid4x4-4-truck1-p4-3-obs25.txt  score=0.00
+15:20:06 ok          84.8s mc-sat      grid4x4-2-truck1-p4-4-obs25.txt  score=0.00
+15:20:08 ok          12.8s max-term    grid4x4-4-truck1-p4-4-obs25.txt  score=0.33
+15:20:13 ok          85.2s mc-sat      grid4x4-3-truck1-p3-4-obs25.txt  score=0.00
+15:20:17 ok          10.5s sharpsat-td grid4x4-4-truck1-p4-4-obs25.txt  score=1.00
+15:20:22 ok          12.4s max-term    grid4x4-1-truck1-p3-4-obs100.txt  score=0.50
+15:20:29 ok          90.7s mc-sat      grid4x4-3-truck1-p4-3-obs25.txt  score=0.00
+15:20:29 ok           9.8s sharpsat-td grid4x4-1-truck1-p3-4-obs100.txt  score=0.00
+15:20:36 ok          13.1s max-term    grid4x4-1-truck1-p4-3-obs100.txt  score=0.50
+15:20:39 ok          83.8s mc-sat      grid4x4-3-truck1-p4-4-obs25.txt  score=1.00
+15:20:41 ok          10.1s sharpsat-td grid4x4-1-truck1-p4-3-obs100.txt  score=0.00
+15:20:44 size 8x8: 180 runs queued
+15:20:50 ok          12.4s max-term    grid4x4-1-truck1-p4-4-obs100.txt  score=1.00
+15:20:52 ok          10.1s sharpsat-td grid4x4-1-truck1-p4-4-obs100.txt  score=1.00
+15:20:57 ok          85.9s mc-sat      grid4x4-4-truck1-p3-4-obs25.txt  score=0.00
+15:21:03 ok          13.5s max-term    grid4x4-2-truck1-p3-4-obs100.txt  score=0.50
+15:21:10 ok          11.2s sharpsat-td grid4x4-2-truck1-p3-4-obs100.txt  score=0.00
+15:21:17 ok          13.0s max-term    grid4x4-2-truck1-p4-3-obs100.txt  score=0.50
+15:21:19 ok          91.3s mc-sat      grid4x4-4-truck1-p4-3-obs25.txt  score=0.00
+15:21:28 ok          83.2s mc-sat      grid4x4-4-truck1-p4-4-obs25.txt  score=1.00
+15:21:30 ok          11.2s sharpsat-td grid4x4-2-truck1-p4-3-obs100.txt  score=0.00
+15:21:33 ok          11.4s max-term    grid4x4-2-truck1-p4-4-obs100.txt  score=1.00
+15:21:35 ok          80.0s mc-sat      grid4x4-1-truck1-p3-4-obs100.txt  score=1.00
+15:21:40 ok           8.8s sharpsat-td grid4x4-2-truck1-p4-4-obs100.txt  score=1.00
+15:21:47 ok          12.4s max-term    grid4x4-3-truck1-p3-4-obs100.txt  score=0.50
+15:21:51 ok          10.9s sharpsat-td grid4x4-3-truck1-p3-4-obs100.txt  score=0.00
+15:21:56 ok          85.3s mc-sat      grid4x4-1-truck1-p4-3-obs100.txt  score=0.00
+15:22:00 ok          80.2s mc-sat      grid4x4-1-truck1-p4-4-obs100.txt  score=1.00
+15:22:00 ok          12.9s max-term    grid4x4-3-truck1-p4-3-obs100.txt  score=0.50
+15:22:07 ok          10.7s sharpsat-td grid4x4-3-truck1-p4-3-obs100.txt  score=0.00
+15:22:10 ok          77.0s mc-sat      grid4x4-2-truck1-p3-4-obs100.txt  score=0.00
+15:22:13 ok          10.7s max-term    grid4x4-3-truck1-p4-4-obs100.txt  score=1.00
+15:22:19 ok          10.2s sharpsat-td grid4x4-3-truck1-p4-4-obs100.txt  score=1.00
+15:22:24 ok          12.0s max-term    grid4x4-4-truck1-p3-4-obs100.txt  score=0.50
+15:22:30 ok          10.5s sharpsat-td grid4x4-4-truck1-p3-4-obs100.txt  score=0.00
+15:22:33 ok          82.5s mc-sat      grid4x4-2-truck1-p4-3-obs100.txt  score=0.00
+15:22:37 ok          13.1s max-term    grid4x4-4-truck1-p4-3-obs100.txt  score=0.50
+15:22:44 ok          10.7s sharpsat-td grid4x4-4-truck1-p4-3-obs100.txt  score=0.00
+15:22:47 size 9x9: 204 runs queued
+15:22:53 ok          13.8s max-term    grid4x4-4-truck1-p4-4-obs100.txt  score=1.00
+15:22:55 ok          86.7s mc-sat      grid4x4-2-truck1-p4-4-obs100.txt  score=1.00
+15:23:02 ok          86.0s mc-sat      grid4x4-3-truck1-p3-4-obs100.txt  score=0.00
+15:23:04 ok           9.6s sharpsat-td grid4x4-4-truck1-p4-4-obs100.txt  score=1.00
+15:23:11 ok          78.9s mc-sat      grid4x4-3-truck1-p4-3-obs100.txt  score=0.00
+15:23:20 ok          15.4s sharpsat-td grid5x5-1-none.txt
+15:23:25 ok          28.8s max-term    grid5x5-1-none.txt
+15:23:27 ok          85.3s mc-sat      grid4x4-3-truck1-p4-4-obs100.txt  score=1.00
+15:23:34 ok          22.2s max-term    grid5x5-2-none.txt
+15:23:36 ok          83.1s mc-sat      grid4x4-4-truck1-p3-4-obs100.txt  score=0.00
+15:23:39 ok          12.9s sharpsat-td grid5x5-2-none.txt
+15:23:49 ok          12.3s sharpsat-td grid5x5-3-none.txt
+15:24:00 ok          31.6s max-term    grid5x5-3-none.txt
+15:24:00 ok          21.0s max-term    grid5x5-4-none.txt
+15:24:03 ok          91.2s mc-sat      grid4x4-4-truck1-p4-3-obs100.txt  score=0.00
+15:24:08 ok          83.6s mc-sat      grid4x4-4-truck1-p4-4-obs100.txt  score=1.00
+15:24:14 ok          13.0s sharpsat-td grid5x5-4-none.txt
+15:24:23 ok          13.6s sharpsat-td grid5x5-1-truck1-p3-5-obs25.txt  score=1.00
+15:24:40 ok          38.5s max-term    grid5x5-1-truck1-p3-5-obs25.txt  score=0.25
+15:24:55 ok          13.1s sharpsat-td grid5x5-1-truck1-p4-4-obs25.txt  score=0.00
+15:24:57 ok          41.0s max-term    grid5x5-1-truck1-p4-4-obs25.txt  score=0.25
+15:25:30 ok          35.5s max-term    grid5x5-1-truck1-p4-5-obs25.txt  score=0.25
+15:25:41 ok          10.4s sharpsat-td grid5x5-1-truck1-p4-5-obs25.txt  score=0.00
+15:25:50 size 10x10: 228 runs queued
+15:26:18 ok          35.5s max-term    grid5x5-1-truck1-p5-5-obs25.txt  score=0.25
+15:30:14 ok         413.8s mc-sat      grid5x5-2-none.txt
+15:30:25 ok          10.4s sharpsat-td grid5x5-1-truck1-p5-5-obs25.txt  score=0.00
+15:30:31 ok         401.8s mc-sat      grid5x5-4-none.txt
+15:30:42 ok          17.0s max-term    grid5x5-2-truck1-p4-4-obs25.txt  score=0.25
+15:30:53 ok          10.0s sharpsat-td grid5x5-2-truck1-p4-4-obs25.txt  score=0.00
+15:31:12 ok          17.1s max-term    grid5x5-2-truck1-p4-5-obs25.txt  score=0.25
+15:32:03 ok         539.9s mc-sat      grid5x5-1-none.txt
+15:32:13 ok           9.9s sharpsat-td grid5x5-2-truck1-p4-5-obs25.txt  score=1.00
+15:32:34 ok         540.0s mc-sat      grid5x5-3-none.txt
+15:32:34 ok          19.9s max-term    grid5x5-2-truck1-p5-3-obs25.txt  score=0.25
+15:32:37 ok         512.4s mc-sat      grid5x5-1-truck1-p3-5-obs25.txt  score=0.00
+15:32:46 ok          10.1s sharpsat-td grid5x5-2-truck1-p5-3-obs25.txt  score=0.00
+15:32:57 ok          17.6s max-term    grid5x5-2-truck1-p5-4-obs25.txt  score=0.25
+15:32:59 nomix      515.3s mc-sat      grid5x5-1-truck1-p4-4-obs25.txt
+15:33:08 ok          10.0s sharpsat-td grid5x5-2-truck1-p5-4-obs25.txt  score=0.50
+15:33:29 ok         510.4s mc-sat      grid5x5-1-truck1-p4-5-obs25.txt  score=0.00
+15:33:33 ok          32.2s max-term    grid5x5-3-truck1-p4-5-obs25.txt  score=0.25
+15:33:40 ok          10.2s sharpsat-td grid5x5-3-truck1-p4-5-obs25.txt  score=0.50
+15:34:13 ok          38.0s max-term    grid5x5-3-truck1-p5-3-obs25.txt  score=0.25
+15:34:24 ok          10.2s sharpsat-td grid5x5-3-truck1-p5-3-obs25.txt  score=0.00
+15:34:52 ok         512.2s mc-sat      grid5x5-1-truck1-p5-5-obs25.txt  score=1.00
+15:34:59 ok          34.0s max-term    grid5x5-3-truck1-p5-4-obs25.txt  score=0.25
+15:35:10 ok          10.3s sharpsat-td grid5x5-3-truck1-p5-4-obs25.txt  score=0.00
+15:35:43 ok          32.0s max-term    grid5x5-3-truck1-p5-5-obs25.txt  score=0.25
+15:36:50 ok         377.8s mc-sat      grid5x5-2-truck1-p4-4-obs25.txt  score=0.00
+15:37:01 ok          10.3s sharpsat-td grid5x5-3-truck1-p5-5-obs25.txt  score=0.50
+15:37:18 ok          16.2s max-term    grid5x5-4-truck1-p3-5-obs25.txt  score=0.25
+15:37:41 ok         387.6s mc-sat      grid5x5-2-truck1-p4-5-obs25.txt  score=0.00
+15:37:51 ok           9.9s sharpsat-td grid5x5-4-truck1-p3-5-obs25.txt  score=0.50
+15:38:08 ok          16.2s max-term    grid5x5-4-truck1-p4-5-obs25.txt  score=0.25
+15:38:55 nomix      379.1s mc-sat      grid5x5-2-truck1-p5-3-obs25.txt
+15:39:06 ok           9.9s sharpsat-td grid5x5-4-truck1-p4-5-obs25.txt  score=0.50
+15:39:08 nomix      381.1s mc-sat      grid5x5-2-truck1-p5-4-obs25.txt
+15:39:25 ok          19.0s max-term    grid5x5-4-truck1-p5-3-obs25.txt  score=0.25
+15:39:36 ok           9.9s sharpsat-td grid5x5-4-truck1-p5-3-obs25.txt  score=0.00
+15:39:53 ok          16.0s max-term    grid5x5-4-truck1-p5-4-obs25.txt  score=0.25
+15:41:37 ok         508.5s mc-sat      grid5x5-3-truck1-p4-5-obs25.txt  score=1.00
+15:41:47 ok          10.0s sharpsat-td grid5x5-4-truck1-p5-4-obs25.txt  score=0.50
+15:42:14 ok          26.9s max-term    grid5x5-1-truck1-p3-5-obs100.txt  score=0.33
+15:42:17 ok         516.9s mc-sat      grid5x5-3-truck1-p5-3-obs25.txt  score=1.00
+15:42:27 ok          10.2s sharpsat-td grid5x5-1-truck1-p3-5-obs100.txt  score=0.00
+15:42:54 ok          26.8s max-term    grid5x5-1-truck1-p4-4-obs100.txt  score=0.33
+15:43:31 nomix      517.4s mc-sat      grid5x5-3-truck1-p5-4-obs25.txt
+15:43:42 ok          10.2s sharpsat-td grid5x5-1-truck1-p4-4-obs100.txt  score=0.00
+15:43:49 ok         389.0s mc-sat      grid5x5-4-truck1-p3-5-obs25.txt  score=1.00
+15:44:10 ok          26.9s max-term    grid5x5-1-truck1-p4-5-obs100.txt  score=0.50
+15:44:20 ok           9.3s sharpsat-td grid5x5-1-truck1-p4-5-obs100.txt  score=0.00
+15:44:23 ok         518.1s mc-sat      grid5x5-3-truck1-p5-5-obs25.txt  score=0.00
+15:44:46 ok         395.9s mc-sat      grid5x5-4-truck1-p4-5-obs25.txt  score=0.00
+15:44:48 ok          26.6s max-term    grid5x5-1-truck1-p5-5-obs100.txt  score=1.00
+15:44:55 ok           8.3s sharpsat-td grid5x5-1-truck1-p5-5-obs100.txt  score=1.00
+15:45:05 ok          16.6s max-term    grid5x5-2-truck1-p4-4-obs100.txt  score=0.33
+15:45:16 ok           8.8s sharpsat-td grid5x5-2-truck1-p4-4-obs100.txt  score=0.00
+15:45:31 nomix      382.0s mc-sat      grid5x5-4-truck1-p5-3-obs25.txt
+15:45:33 ok          16.6s max-term    grid5x5-2-truck1-p4-5-obs100.txt  score=1.00
+15:45:42 ok           7.8s sharpsat-td grid5x5-2-truck1-p4-5-obs100.txt  score=1.00
+15:45:59 ok          16.4s max-term    grid5x5-2-truck1-p5-3-obs100.txt  score=0.50
+15:46:30 ok         395.2s mc-sat      grid5x5-4-truck1-p5-4-obs25.txt  score=0.00
+15:46:40 ok           8.8s sharpsat-td grid5x5-2-truck1-p5-3-obs100.txt  score=0.00
+15:46:57 ok          16.4s max-term    grid5x5-2-truck1-p5-4-obs100.txt  score=1.00
+15:50:43 ok         347.3s mc-sat      grid5x5-2-truck1-p4-4-obs100.txt  score=0.00
+15:50:48 nomix      511.4s mc-sat      grid5x5-1-truck1-p3-5-obs100.txt
+15:50:52 ok           7.8s sharpsat-td grid5x5-2-truck1-p5-4-obs100.txt  score=1.00
+15:51:09 nomix      493.7s mc-sat      grid5x5-1-truck1-p4-4-obs100.txt
+15:51:16 ok          27.2s max-term    grid5x5-3-truck1-p4-5-obs100.txt  score=0.50
+15:51:20 ok           9.2s sharpsat-td grid5x5-3-truck1-p4-5-obs100.txt  score=0.00
+15:51:25 ok         352.8s mc-sat      grid5x5-2-truck1-p4-5-obs100.txt  score=1.00
+15:51:35 ok          10.0s sharpsat-td grid5x5-3-truck1-p5-3-obs100.txt  score=0.00
+15:51:44 ok          27.4s max-term    grid5x5-3-truck1-p5-3-obs100.txt  score=0.33
+15:51:55 nomix      484.5s mc-sat      grid5x5-1-truck1-p4-5-obs100.txt
+15:52:01 ok         362.2s mc-sat      grid5x5-2-truck1-p5-3-obs100.txt  score=1.00
+15:52:04 ok          26.9s max-term    grid5x5-3-truck1-p5-4-obs100.txt  score=0.50
+15:52:04 ok           9.1s sharpsat-td grid5x5-3-truck1-p5-4-obs100.txt  score=0.00
+15:52:13 ok           8.1s sharpsat-td grid5x5-3-truck1-p5-5-obs100.txt  score=1.00
+15:52:30 ok          27.0s max-term    grid5x5-3-truck1-p5-5-obs100.txt  score=1.00
+15:52:30 ok          15.7s max-term    grid5x5-4-truck1-p3-5-obs100.txt  score=0.50
+15:52:41 ok           8.9s sharpsat-td grid5x5-4-truck1-p3-5-obs100.txt  score=0.00
+15:52:54 nomix      510.4s mc-sat      grid5x5-1-truck1-p5-5-obs100.txt
+15:52:58 ok          15.8s max-term    grid5x5-4-truck1-p4-5-obs100.txt  score=1.00
+15:53:07 ok           7.8s sharpsat-td grid5x5-4-truck1-p4-5-obs100.txt  score=1.00
+15:53:24 ok          15.8s max-term    grid5x5-4-truck1-p5-3-obs100.txt  score=0.50
+15:53:30 ok         391.4s mc-sat      grid5x5-2-truck1-p5-4-obs100.txt  score=1.00
+15:53:41 ok           8.8s sharpsat-td grid5x5-4-truck1-p5-3-obs100.txt  score=0.00
+15:53:58 ok          15.6s max-term    grid5x5-4-truck1-p5-4-obs100.txt  score=1.00
+15:58:55 ok         360.9s mc-sat      grid5x5-4-truck1-p4-5-obs100.txt  score=1.00
+15:58:57 ok         484.9s mc-sat      grid5x5-3-truck1-p4-5-obs100.txt  score=0.00
+15:59:00 ok         388.5s mc-sat      grid5x5-4-truck1-p3-5-obs100.txt  score=0.00
+15:59:04 ok           7.8s sharpsat-td grid5x5-4-truck1-p5-4-obs100.txt  score=1.00
+15:59:27 ok         362.0s mc-sat      grid5x5-4-truck1-p5-3-obs100.txt  score=1.00
+15:59:30 ok         488.9s mc-sat      grid5x5-3-truck1-p5-3-obs100.txt  score=1.00
+15:59:42 ok          37.4s sharpsat-td grid6x6-1-none.txt
+15:59:47 ok          48.2s max-term    grid6x6-1-none.txt
+16:00:12 ok          27.8s sharpsat-td grid6x6-2-none.txt
+16:00:16 ok          48.8s max-term    grid6x6-2-none.txt
+16:00:19 ok         514.3s mc-sat      grid5x5-3-truck1-p5-4-obs100.txt  score=1.00
+16:00:28 ok          40.1s max-term    grid6x6-3-none.txt
+16:00:32 ok         508.2s mc-sat      grid5x5-3-truck1-p5-5-obs100.txt  score=1.00
+16:00:32 ok         393.5s mc-sat      grid5x5-4-truck1-p5-4-obs100.txt  score=1.00
+16:00:32 ok          13.7s sharpsat-td grid6x6-3-none.txt
+16:00:58 ok          24.1s sharpsat-td grid6x6-4-none.txt
+16:01:07 ok          46.1s max-term    grid6x6-4-none.txt
+16:01:25 ok          27.4s sharpsat-td grid6x6-1-truck1-p4-5-obs25.txt  score=0.00
+16:01:48 ok          75.4s max-term    grid6x6-1-truck1-p4-5-obs25.txt  score=0.20
+16:02:29 ok          81.0s max-term    grid6x6-1-truck1-p4-6-obs25.txt  score=0.20
+16:02:38 ok          49.2s sharpsat-td grid6x6-1-truck1-p4-6-obs25.txt  score=0.00
+16:03:46 ok          75.4s max-term    grid6x6-1-truck1-p5-4-obs25.txt  score=0.20
+16:04:15 ok          27.1s sharpsat-td grid6x6-1-truck1-p5-4-obs25.txt  score=0.00
+16:05:30 ok          74.2s max-term    grid6x6-1-truck1-p5-5-obs25.txt  score=0.20
+16:23:10 ok        1376.9s mc-sat      grid6x6-3-none.txt
+16:23:39 ok          27.0s sharpsat-td grid6x6-1-truck1-p5-5-obs25.txt  score=0.00
+16:24:59 ok          78.2s max-term    grid6x6-1-truck1-p6-6-obs25.txt  score=0.20
+16:26:00 nomix     1618.9s mc-sat      grid6x6-1-none.txt
+16:26:21 ok        1610.8s mc-sat      grid6x6-2-none.txt
+16:26:28 ok          26.0s sharpsat-td grid6x6-1-truck1-p6-6-obs25.txt  score=1.00
+16:27:23 ok        1613.7s mc-sat      grid6x6-4-none.txt
+16:27:25 ok        1611.4s mc-sat      grid6x6-1-truck1-p4-5-obs25.txt  score=0.00
+16:27:42 ok          80.0s max-term    grid6x6-2-truck1-p3-6-obs25.txt  score=0.20
+16:27:45 ok          21.3s sharpsat-td grid6x6-2-truck1-p3-6-obs25.txt  score=1.00
+16:28:08 ok          21.4s sharpsat-td grid6x6-2-truck1-p4-5-obs25.txt  score=0.00
+16:28:33 nomix     1626.5s mc-sat      grid6x6-1-truck1-p4-6-obs25.txt
+16:28:43 ok          75.9s max-term    grid6x6-2-truck1-p4-5-obs25.txt  score=0.20
+16:29:06 ok          21.2s sharpsat-td grid6x6-2-truck1-p5-5-obs25.txt  score=0.00
+16:29:23 ok        1603.2s mc-sat      grid6x6-1-truck1-p5-4-obs25.txt  score=0.00
+16:29:23 ok          74.1s max-term    grid6x6-2-truck1-p5-5-obs25.txt  score=0.20
+16:29:44 ok          20.8s sharpsat-td grid6x6-2-truck1-p5-6-obs25.txt  score=0.00
+16:30:19 ok          72.0s max-term    grid6x6-2-truck1-p5-6-obs25.txt  score=0.20
+16:30:48 ok          63.4s max-term    grid6x6-2-truck1-p6-6-obs25.txt  score=0.25
+16:31:09 ok          20.2s sharpsat-td grid6x6-2-truck1-p6-6-obs25.txt  score=1.00
+16:32:07 ok          57.1s max-term    grid6x6-3-truck1-p4-5-obs25.txt  score=0.20
+16:32:17 nomix     1606.9s mc-sat      grid6x6-1-truck1-p5-5-obs25.txt
+16:32:32 ok          13.2s sharpsat-td grid6x6-3-truck1-p4-5-obs25.txt  score=0.00
+16:33:33 ok          59.4s max-term    grid6x6-3-truck1-p4-6-obs25.txt  score=0.20
+16:51:52 ok        1612.2s mc-sat      grid6x6-1-truck1-p6-6-obs25.txt  score=0.00
+16:52:07 ok          13.3s sharpsat-td grid6x6-3-truck1-p4-6-obs25.txt  score=0.00
+16:53:04 ok          57.1s max-term    grid6x6-3-truck1-p5-5-obs25.txt  score=0.20
+16:53:19 ok        1611.1s mc-sat      grid6x6-2-truck1-p3-6-obs25.txt  score=1.00
+16:53:34 ok          13.1s sharpsat-td grid6x6-3-truck1-p5-5-obs25.txt  score=0.00
+16:54:29 ok          54.5s max-term    grid6x6-3-truck1-p5-6-obs25.txt  score=0.20
+16:54:40 nomix     1615.8s mc-sat      grid6x6-2-truck1-p4-5-obs25.txt
+16:54:55 ok          13.2s sharpsat-td grid6x6-3-truck1-p5-6-obs25.txt  score=1.00
+16:55:01 nomix     1372.9s mc-sat      grid6x6-3-truck1-p4-5-obs25.txt
+16:55:26 nomix     1612.5s mc-sat      grid6x6-2-truck1-p5-5-obs25.txt
+16:55:39 ok          44.1s max-term    grid6x6-3-truck1-p6-5-obs25.txt  score=0.20
+16:55:41 ok          13.1s sharpsat-td grid6x6-3-truck1-p6-5-obs25.txt  score=1.00
+16:56:06 ok        1602.8s mc-sat      grid6x6-2-truck1-p5-6-obs25.txt  score=0.00
+16:56:27 ok          19.1s sharpsat-td grid6x6-4-truck1-p5-4-obs25.txt  score=0.00
+16:56:34 ok        1378.5s mc-sat      grid6x6-3-truck1-p4-6-obs25.txt  score=1.00
+16:56:54 ok          75.1s max-term    grid6x6-4-truck1-p5-4-obs25.txt  score=0.20
+16:57:11 nomix     1611.4s mc-sat      grid6x6-2-truck1-p6-6-obs25.txt
+16:57:16 ok          19.3s sharpsat-td grid6x6-4-truck1-p5-5-obs25.txt  score=0.00
+16:57:41 ok          73.1s max-term    grid6x6-4-truck1-p5-5-obs25.txt  score=0.20
+16:58:01 ok          18.8s sharpsat-td grid6x6-4-truck1-p5-6-obs25.txt  score=0.00
+16:58:26 ok          73.9s max-term    grid6x6-4-truck1-p5-6-obs25.txt  score=0.20
+16:59:16 ok          74.0s max-term    grid6x6-4-truck1-p6-3-obs25.txt  score=0.20
+16:59:38 ok          21.1s sharpsat-td grid6x6-4-truck1-p6-3-obs25.txt  score=1.00
+17:00:50 ok          69.7s max-term    grid6x6-4-truck1-p6-6-obs25.txt  score=0.20
+17:15:58 nomix     1372.7s mc-sat      grid6x6-3-truck1-p5-5-obs25.txt
+17:16:19 ok          19.0s sharpsat-td grid6x6-4-truck1-p6-6-obs25.txt  score=1.00
+17:17:11 ok        1361.1s mc-sat      grid6x6-3-truck1-p5-6-obs25.txt  score=0.00
+17:17:13 ok          51.8s max-term    grid6x6-1-truck1-p4-5-obs100.txt  score=0.25
+17:17:40 ok          25.7s sharpsat-td grid6x6-1-truck1-p4-5-obs100.txt  score=0.00
+17:18:01 nomix     1378.1s mc-sat      grid6x6-3-truck1-p6-5-obs25.txt
+17:18:30 ok          48.1s max-term    grid6x6-1-truck1-p4-6-obs100.txt  score=0.50
+17:18:55 ok          23.6s sharpsat-td grid6x6-1-truck1-p4-6-obs100.txt  score=0.00
+17:19:48 ok          51.5s max-term    grid6x6-1-truck1-p5-4-obs100.txt  score=0.33
+17:22:43 ok        1621.7s mc-sat      grid6x6-4-truck1-p5-4-obs25.txt  score=0.00
+17:23:08 ok          24.7s sharpsat-td grid6x6-1-truck1-p5-4-obs100.txt  score=0.00
+17:23:33 ok        1619.2s mc-sat      grid6x6-4-truck1-p5-5-obs25.txt  score=0.00
+17:23:54 ok          45.0s max-term    grid6x6-1-truck1-p5-5-obs100.txt  score=0.50
+17:23:58 ok        1602.1s mc-sat      grid6x6-4-truck1-p5-6-obs25.txt  score=0.00
+17:24:19 ok          24.8s sharpsat-td grid6x6-1-truck1-p5-5-obs100.txt  score=0.00
+17:24:56 ok          56.4s max-term    grid6x6-1-truck1-p6-6-obs100.txt  score=1.00
+17:25:15 nomix     1607.9s mc-sat      grid6x6-4-truck1-p6-3-obs25.txt
+17:25:20 ok          21.6s sharpsat-td grid6x6-1-truck1-p6-6-obs100.txt  score=1.00
+17:26:05 ok          48.5s max-term    grid6x6-2-truck1-p3-6-obs100.txt  score=0.33
+17:26:26 ok          18.9s sharpsat-td grid6x6-2-truck1-p3-6-obs100.txt  score=0.00
+17:27:19 ok          53.3s max-term    grid6x6-2-truck1-p4-5-obs100.txt  score=0.25
+17:28:02 nomix     1630.5s mc-sat      grid6x6-4-truck1-p6-6-obs25.txt
+17:28:23 ok          20.0s sharpsat-td grid6x6-2-truck1-p4-5-obs100.txt  score=0.00
+17:29:10 ok          46.4s max-term    grid6x6-2-truck1-p5-5-obs100.txt  score=0.33
+17:43:47 ok        1595.8s mc-sat      grid6x6-1-truck1-p4-5-obs100.txt  score=0.00
+17:44:08 ok          18.9s sharpsat-td grid6x6-2-truck1-p5-5-obs100.txt  score=0.00
+17:44:45 nomix     1604.3s mc-sat      grid6x6-1-truck1-p4-6-obs100.txt
+17:44:58 ok          49.7s max-term    grid6x6-2-truck1-p5-6-obs100.txt  score=0.50
+17:45:17 ok          17.7s sharpsat-td grid6x6-2-truck1-p5-6-obs100.txt  score=0.00
+17:46:10 ok          51.5s max-term    grid6x6-2-truck1-p6-6-obs100.txt  score=1.00
+17:46:25 nomix     1596.8s mc-sat      grid6x6-1-truck1-p5-4-obs100.txt
+17:46:41 ok          16.6s sharpsat-td grid6x6-2-truck1-p6-6-obs100.txt  score=1.00
+17:47:23 ok          40.4s max-term    grid6x6-3-truck1-p4-5-obs100.txt  score=0.20
+17:50:20 nomix     1605.1s mc-sat      grid6x6-1-truck1-p5-5-obs100.txt
+17:50:33 ok          11.9s sharpsat-td grid6x6-3-truck1-p4-5-obs100.txt  score=0.00
+17:50:51 ok        1591.2s mc-sat      grid6x6-1-truck1-p6-6-obs100.txt  score=1.00
+17:51:12 ok          39.3s max-term    grid6x6-3-truck1-p4-6-obs100.txt  score=0.50
+17:51:25 ok          11.9s sharpsat-td grid6x6-3-truck1-p4-6-obs100.txt  score=0.00
+17:52:04 ok          39.1s max-term    grid6x6-3-truck1-p5-5-obs100.txt  score=0.33
+17:52:07 nomix     1605.4s mc-sat      grid6x6-2-truck1-p3-6-obs100.txt
+17:52:19 ok          10.7s sharpsat-td grid6x6-3-truck1-p5-5-obs100.txt  score=0.00
+17:53:00 ok          39.6s max-term    grid6x6-3-truck1-p5-6-obs100.txt  score=1.00
+17:53:54 ok        1594.7s mc-sat      grid6x6-2-truck1-p4-5-obs100.txt  score=1.00
+17:54:04 ok           9.8s sharpsat-td grid6x6-3-truck1-p5-6-obs100.txt  score=1.00
+17:54:48 ok          41.6s max-term    grid6x6-3-truck1-p6-5-obs100.txt  score=1.00
+17:55:51 nomix     1600.4s mc-sat      grid6x6-2-truck1-p5-5-obs100.txt
+17:56:02 ok           9.8s sharpsat-td grid6x6-3-truck1-p6-5-obs100.txt  score=1.00
+17:56:51 ok          48.3s max-term    grid6x6-4-truck1-p5-4-obs100.txt  score=0.25
+18:10:00 nomix     1356.7s mc-sat      grid6x6-3-truck1-p4-5-obs100.txt
+18:10:19 ok          18.1s sharpsat-td grid6x6-4-truck1-p5-4-obs100.txt  score=0.00
+18:11:08 ok          48.7s max-term    grid6x6-4-truck1-p5-5-obs100.txt  score=0.33
+18:11:21 nomix     1594.8s mc-sat      grid6x6-2-truck1-p5-6-obs100.txt
+18:11:39 ok          17.1s sharpsat-td grid6x6-4-truck1-p5-5-obs100.txt  score=0.00
+18:12:29 ok          47.6s max-term    grid6x6-4-truck1-p5-6-obs100.txt  score=0.50
+18:12:56 nomix     1605.6s mc-sat      grid6x6-2-truck1-p6-6-obs100.txt
+18:13:12 ok          16.1s sharpsat-td grid6x6-4-truck1-p5-6-obs100.txt  score=0.00
+18:13:17 ok        1345.0s mc-sat      grid6x6-3-truck1-p4-6-obs100.txt  score=0.00
+18:14:02 ok          48.1s max-term    grid6x6-4-truck1-p6-3-obs100.txt  score=0.50
+18:14:21 ok          17.0s sharpsat-td grid6x6-4-truck1-p6-3-obs100.txt  score=0.00
+18:14:40 ok        1354.6s mc-sat      grid6x6-3-truck1-p5-5-obs100.txt  score=0.00
+18:15:11 ok          47.9s max-term    grid6x6-4-truck1-p6-6-obs100.txt  score=1.00
+18:15:27 ok          15.1s sharpsat-td grid6x6-4-truck1-p6-6-obs100.txt  score=1.00
+18:15:36 nomix     1353.9s mc-sat      grid6x6-3-truck1-p5-6-obs100.txt
+18:16:46 ok          77.7s max-term    grid7x7-1-none.txt
+18:17:33 nomix     1364.5s mc-sat      grid6x6-3-truck1-p6-5-obs100.txt
+18:18:47 ok          73.1s max-term    grid7x7-2-none.txt
+18:23:46 nomix     1612.3s mc-sat      grid6x6-4-truck1-p5-4-obs100.txt
+18:37:53 nomix     1604.6s mc-sat      grid6x6-4-truck1-p5-5-obs100.txt
+18:39:05 ok          70.0s max-term    grid7x7-3-none.txt
+18:39:18 ok        1607.6s mc-sat      grid6x6-4-truck1-p5-6-obs100.txt  score=0.00
+18:40:17 nomix     1619.0s mc-sat      grid6x6-4-truck1-p6-3-obs100.txt
+18:40:56 ok        1028.9s sharpsat-td grid7x7-2-none.txt
+18:41:11 ok        1591.1s mc-sat      grid6x6-4-truck1-p6-6-obs100.txt  score=1.00
+18:41:28 ok          68.6s max-term    grid7x7-4-none.txt
+18:43:04 ok          95.7s max-term    grid7x7-1-truck1-p4-7-obs25.txt  score=0.17
+18:43:51 ok        1624.0s sharpsat-td grid7x7-1-none.txt
+18:45:40 timeout   1800.9s mc-sat      grid7x7-1-none.txt
+18:45:40     mc-sat stopped at 7x7: killing its 4 other run(s) there or larger
+18:45:43 killed    1613.6s mc-sat      grid7x7-2-none.txt
+18:45:46 killed     398.3s mc-sat      grid7x7-3-none.txt
+18:45:49 killed     290.1s mc-sat      grid7x7-4-none.txt
+18:45:52 killed     165.8s mc-sat      grid7x7-1-truck1-p4-7-obs25.txt
+18:47:37 ok         100.8s max-term    grid7x7-1-truck1-p6-5-obs25.txt  score=0.17
+18:47:53 ok         119.6s max-term    grid7x7-1-truck1-p5-5-obs25.txt  score=0.17
+18:48:00 ok         125.2s max-term    grid7x7-1-truck1-p6-4-obs25.txt  score=0.17
+18:49:28 ok         609.5s sharpsat-td grid7x7-3-none.txt
+18:49:44 ok         109.8s max-term    grid7x7-1-truck1-p7-3-obs25.txt  score=0.17
+18:51:20 ok         111.0s max-term    grid7x7-1-truck1-p7-6-obs25.txt  score=0.17
+18:53:23 ok         121.2s max-term    grid7x7-2-truck1-p3-7-obs25.txt  score=0.17
+18:57:45 ok         832.8s sharpsat-td grid7x7-1-truck1-p4-7-obs25.txt  score=0.00
+18:59:42 ok         115.5s max-term    grid7x7-2-truck1-p5-5-obs25.txt  score=0.17
+18:59:46 ok         831.5s sharpsat-td grid7x7-1-truck1-p5-5-obs25.txt  score=0.00
+18:59:51 ok         835.8s sharpsat-td grid7x7-1-truck1-p6-4-obs25.txt  score=0.00
+19:01:27 ok         829.6s sharpsat-td grid7x7-1-truck1-p6-5-obs25.txt  score=0.00
+19:01:31 ok         104.7s max-term    grid7x7-2-truck1-p5-6-obs25.txt  score=0.20
+19:02:19 ok         858.7s sharpsat-td grid7x7-1-truck1-p7-3-obs25.txt  score=0.00
+19:03:14 ok         106.3s max-term    grid7x7-2-truck1-p5-7-obs25.txt  score=0.17
+19:03:49 ok         843.1s sharpsat-td grid7x7-1-truck1-p7-6-obs25.txt  score=1.00
+19:04:16 ok         651.3s sharpsat-td grid7x7-2-truck1-p3-7-obs25.txt  score=0.00
+19:04:16 ok         115.4s max-term    grid7x7-2-truck1-p6-7-obs25.txt  score=0.17
+19:05:26 ok          96.8s max-term    grid7x7-2-truck1-p7-5-obs25.txt  score=0.20
+19:06:19 ok         122.9s max-term    grid7x7-3-truck1-p4-6-obs25.txt  score=0.17
+19:08:14 ok         112.3s max-term    grid7x7-3-truck1-p4-7-obs25.txt  score=0.17
+19:08:39 ok         535.4s sharpsat-td grid7x7-2-truck1-p5-5-obs25.txt  score=0.00
+19:08:39 ok         527.1s sharpsat-td grid7x7-2-truck1-p5-6-obs25.txt  score=0.00
+19:10:23 ok         530.8s sharpsat-td grid7x7-2-truck1-p5-7-obs25.txt  score=0.00
+19:10:34 ok         114.9s max-term    grid7x7-3-truck1-p5-6-obs25.txt  score=0.17
+19:10:38 ok        1766.7s sharpsat-td grid7x7-4-none.txt
+19:10:51 ok         323.7s sharpsat-td grid7x7-3-truck1-p4-6-obs25.txt  score=0.00
+19:12:05 ok         530.4s sharpsat-td grid7x7-2-truck1-p6-7-obs25.txt  score=0.50
+19:12:24 ok         118.5s max-term    grid7x7-3-truck1-p6-4-obs25.txt  score=0.17
+19:12:30 ok         110.5s max-term    grid7x7-3-truck1-p6-5-obs25.txt  score=0.17
+19:13:05 ok         528.9s sharpsat-td grid7x7-2-truck1-p7-5-obs25.txt  score=1.00
+19:13:30 ok         315.6s sharpsat-td grid7x7-3-truck1-p4-7-obs25.txt  score=0.00
+19:13:49 ok         104.0s max-term    grid7x7-3-truck1-p7-6-obs25.txt  score=0.17
+19:13:57 ok         317.2s sharpsat-td grid7x7-3-truck1-p5-6-obs25.txt  score=0.00
+19:14:28 ok         118.1s max-term    grid7x7-4-truck1-p3-7-obs25.txt  score=0.17
+19:15:24 ok         112.1s max-term    grid7x7-4-truck1-p5-5-obs25.txt  score=0.17
+19:15:43 ok         103.3s max-term    grid7x7-4-truck1-p5-6-obs25.txt  score=0.20
+19:15:51 ok         317.0s sharpsat-td grid7x7-3-truck1-p6-4-obs25.txt  score=0.00
+19:16:06 ok         314.2s sharpsat-td grid7x7-3-truck1-p6-5-obs25.txt  score=0.00
+19:17:11 ok         107.4s max-term    grid7x7-4-truck1-p6-4-obs25.txt  score=0.17
+19:17:38 ok         314.2s sharpsat-td grid7x7-3-truck1-p7-6-obs25.txt  score=0.00
+19:17:47 ok         114.0s max-term    grid7x7-4-truck1-p7-3-obs25.txt  score=0.17
+19:18:55 ok         101.3s max-term    grid7x7-4-truck1-p7-6-obs25.txt  score=0.20
+19:18:59 ok          71.8s max-term    grid7x7-1-truck1-p4-7-obs100.txt  score=1.00
+19:20:11 ok          71.2s max-term    grid7x7-1-truck1-p5-5-obs100.txt  score=0.33
+19:29:22 ok         891.9s sharpsat-td grid7x7-4-truck1-p5-6-obs25.txt  score=0.00
+19:30:33 ok          70.0s max-term    grid7x7-1-truck1-p6-4-obs100.txt  score=0.33
+19:31:06 ok         923.4s sharpsat-td grid7x7-4-truck1-p6-4-obs25.txt  score=0.00
+19:31:31 ok        1062.5s sharpsat-td grid7x7-4-truck1-p5-5-obs25.txt  score=0.00
+19:32:19 ok          70.9s max-term    grid7x7-1-truck1-p6-5-obs100.txt  score=0.50
+19:32:30 ok         890.0s sharpsat-td grid7x7-4-truck1-p7-6-obs25.txt  score=0.00
+19:32:39 ok         824.1s sharpsat-td grid7x7-1-truck1-p4-7-obs100.txt  score=1.00
+19:33:22 ok        1215.0s sharpsat-td grid7x7-4-truck1-p3-7-obs25.txt  score=0.00
+19:33:29 ok          68.4s max-term    grid7x7-1-truck1-p7-3-obs100.txt  score=0.50
+19:33:45 ok          65.6s max-term    grid7x7-1-truck1-p7-6-obs100.txt  score=1.00
+19:33:58 ok         826.5s sharpsat-td grid7x7-1-truck1-p5-5-obs100.txt  score=0.00
+19:34:39 ok          69.8s max-term    grid7x7-2-truck1-p3-7-obs100.txt  score=0.33
+19:35:10 ok          72.0s max-term    grid7x7-2-truck1-p5-5-obs100.txt  score=0.20
+19:36:20 ok          69.5s max-term    grid7x7-2-truck1-p5-6-obs100.txt  score=0.33
+19:42:30 ok         524.6s sharpsat-td grid7x7-2-truck1-p3-7-obs100.txt  score=0.00
+19:43:23 ok         524.2s sharpsat-td grid7x7-2-truck1-p5-5-obs100.txt  score=0.00
+19:43:46 ok          74.1s max-term    grid7x7-2-truck1-p5-7-obs100.txt  score=0.50
+19:44:23 ok         829.5s sharpsat-td grid7x7-1-truck1-p6-4-obs100.txt  score=0.00
+19:44:56 ok          68.8s max-term    grid7x7-2-truck1-p6-7-obs100.txt  score=1.00
+19:45:05 ok         524.7s sharpsat-td grid7x7-2-truck1-p5-6-obs100.txt  score=0.00
+19:45:18 ok         825.4s sharpsat-td grid7x7-1-truck1-p6-5-obs100.txt  score=0.00
+19:46:10 timeout   1801.0s sharpsat-td grid7x7-4-truck1-p7-3-obs25.txt
+19:46:10     sharpsat-td stopped at 7x7: killing its 5 other run(s) there or larger
+19:46:13 killed     819.8s sharpsat-td grid7x7-1-truck1-p7-3-obs100.txt
+19:46:16 killed     771.0s sharpsat-td grid7x7-1-truck1-p7-6-obs100.txt
+19:46:19 killed     172.7s sharpsat-td grid7x7-2-truck1-p5-7-obs100.txt
+19:46:22 killed     115.9s sharpsat-td grid7x7-2-truck1-p6-7-obs100.txt
+19:46:25 killed      77.4s sharpsat-td grid7x7-2-truck1-p7-5-obs100.txt
+19:46:25 ok          69.8s max-term    grid7x7-2-truck1-p7-5-obs100.txt  score=1.00
+19:46:35 ok          75.6s max-term    grid7x7-3-truck1-p4-6-obs100.txt  score=0.25
+19:47:36 ok          69.7s max-term    grid7x7-3-truck1-p5-6-obs100.txt  score=0.50
+19:47:39 ok          71.5s max-term    grid7x7-3-truck1-p6-4-obs100.txt  score=0.33
+19:47:39 ok          71.2s max-term    grid7x7-3-truck1-p6-5-obs100.txt  score=0.50
+19:47:42 ok          76.5s max-term    grid7x7-3-truck1-p4-7-obs100.txt  score=1.00
+19:47:45 ok          75.1s max-term    grid7x7-3-truck1-p7-6-obs100.txt  score=1.00
+19:47:47 ok          77.4s max-term    grid7x7-4-truck1-p3-7-obs100.txt  score=1.00
+19:47:47 ok          71.9s max-term    grid7x7-4-truck1-p5-6-obs100.txt  score=0.50
+19:47:58 ok          88.0s max-term    grid7x7-4-truck1-p5-5-obs100.txt  score=0.33
+19:48:50 ok          72.8s max-term    grid7x7-4-truck1-p6-4-obs100.txt  score=0.50
+19:48:50 ok          68.7s max-term    grid7x7-4-truck1-p7-6-obs100.txt  score=1.00
+19:48:53 ok          70.8s max-term    grid7x7-4-truck1-p7-3-obs100.txt  score=0.50
+19:50:16 ok         152.4s max-term    grid8x8-1-none.txt
+19:51:10 ok         203.9s max-term    grid8x8-2-none.txt
+19:51:10 ok         201.3s max-term    grid8x8-3-none.txt
+19:51:19 ok         199.1s max-term    grid8x8-1-truck1-p5-6-obs25.txt  score=0.14
+19:51:32 ok         223.8s max-term    grid8x8-4-none.txt
+19:52:13 ok         201.8s max-term    grid8x8-1-truck1-p7-4-obs25.txt  score=0.14
+19:52:17 ok         205.8s max-term    grid8x8-1-truck1-p7-7-obs25.txt  score=0.17
+19:52:22 ok         207.3s max-term    grid8x8-1-truck1-p8-3-obs25.txt  score=0.14
+19:53:58 ok         221.1s max-term    grid8x8-1-truck1-p8-4-obs25.txt  score=0.14
+19:54:21 ok         190.9s max-term    grid8x8-1-truck1-p8-6-obs25.txt  score=0.14
+19:54:58 ok         225.9s max-term    grid8x8-1-truck1-p8-7-obs25.txt  score=0.14
+19:56:30 ok         297.1s max-term    grid8x8-2-truck1-p5-6-obs25.txt  score=0.17
+19:56:50 ok         331.5s max-term    grid8x8-2-truck1-p3-8-obs25.txt  score=0.14
+19:57:09 ok         294.8s max-term    grid8x8-2-truck1-p6-5-obs25.txt  score=0.17
+19:57:12 ok         292.0s max-term    grid8x8-2-truck1-p7-6-obs25.txt  score=0.14
+19:57:18 ok         295.2s max-term    grid8x8-2-truck1-p7-8-obs25.txt  score=0.14
+19:58:10 ok         250.5s max-term    grid8x8-2-truck1-p8-7-obs25.txt  score=0.14
+19:59:15 ok         293.2s max-term    grid8x8-2-truck1-p8-8-obs25.txt  score=0.14
+20:00:04 ok         304.8s max-term    grid8x8-3-truck1-p4-7-obs25.txt  score=0.14
+20:01:24 ok         294.0s max-term    grid8x8-3-truck1-p4-8-obs25.txt  score=0.14
+20:01:27 ok         255.7s max-term    grid8x8-3-truck1-p7-7-obs25.txt  score=0.14
+20:01:39 ok         288.6s max-term    grid8x8-3-truck1-p7-6-obs25.txt  score=0.14
+20:01:54 ok         274.0s max-term    grid8x8-3-truck1-p8-4-obs25.txt  score=0.14
+20:02:21 ok         308.9s max-term    grid8x8-3-truck1-p7-8-obs25.txt  score=0.14
+20:02:26 ok         254.7s max-term    grid8x8-3-truck1-p8-8-obs25.txt  score=0.17
+20:04:40 ok         324.2s max-term    grid8x8-4-truck1-p3-8-obs25.txt  score=0.14
+20:05:07 ok         302.4s max-term    grid8x8-4-truck1-p5-6-obs25.txt  score=0.14
+20:05:14 ok         166.3s max-term    grid8x8-1-truck1-p5-6-obs100.txt  score=0.25
+20:06:23 ok         282.9s max-term    grid8x8-4-truck1-p8-6-obs25.txt  score=0.17
+20:06:38 ok         312.8s max-term    grid8x8-4-truck1-p6-5-obs25.txt  score=0.14
+20:06:40 ok         313.2s max-term    grid8x8-4-truck1-p8-3-obs25.txt  score=0.14
+20:06:47 ok         292.0s max-term    grid8x8-4-truck1-p8-7-obs25.txt  score=0.17
+20:07:12 ok         150.8s max-term    grid8x8-1-truck1-p7-4-obs100.txt  score=0.20
+20:07:23 ok         135.4s max-term    grid8x8-1-truck1-p7-7-obs100.txt  score=0.50
+20:07:50 ok         326.4s max-term    grid8x8-4-truck1-p8-8-obs25.txt  score=0.17
+20:07:54 ok         160.1s max-term    grid8x8-1-truck1-p8-3-obs100.txt  score=0.25
+20:08:47 ok         142.6s max-term    grid8x8-1-truck1-p8-4-obs100.txt  score=0.33
+20:08:50 ok         129.0s max-term    grid8x8-1-truck1-p8-7-obs100.txt  score=1.00
+20:08:57 ok         136.9s max-term    grid8x8-1-truck1-p8-6-obs100.txt  score=0.50
+20:10:00 ok         191.7s max-term    grid8x8-2-truck1-p3-8-obs100.txt  score=0.33
+20:10:51 ok         217.4s max-term    grid8x8-2-truck1-p5-6-obs100.txt  score=0.20
+20:10:56 ok         212.7s max-term    grid8x8-2-truck1-p6-5-obs100.txt  score=0.20
+20:11:11 ok         200.3s max-term    grid8x8-2-truck1-p7-6-obs100.txt  score=0.25
+20:11:13 ok         198.8s max-term    grid8x8-2-truck1-p7-8-obs100.txt  score=0.50
+20:12:12 ok         203.7s max-term    grid8x8-2-truck1-p8-7-obs100.txt  score=0.50
+20:12:27 ok         216.9s max-term    grid8x8-2-truck1-p8-8-obs100.txt  score=1.00
+20:12:44 ok         226.2s max-term    grid8x8-3-truck1-p4-7-obs100.txt  score=0.20
+20:13:07 ok         186.6s max-term    grid8x8-3-truck1-p4-8-obs100.txt  score=0.33
+20:14:31 ok         198.6s max-term    grid8x8-3-truck1-p7-8-obs100.txt  score=0.50
+20:14:39 ok         226.2s max-term    grid8x8-3-truck1-p7-6-obs100.txt  score=0.25
+20:14:52 ok         235.4s max-term    grid8x8-3-truck1-p7-7-obs100.txt  score=0.33
+20:14:59 ok         224.9s max-term    grid8x8-3-truck1-p8-4-obs100.txt  score=0.50
+20:15:34 ok         199.8s max-term    grid8x8-3-truck1-p8-8-obs100.txt  score=1.00
+20:16:37 ok         209.1s max-term    grid8x8-4-truck1-p6-5-obs100.txt  score=0.25
+20:16:44 ok         254.4s max-term    grid8x8-4-truck1-p3-8-obs100.txt  score=0.50
+20:16:54 ok         249.3s max-term    grid8x8-4-truck1-p5-6-obs100.txt  score=0.25
+20:17:52 ok         200.4s max-term    grid8x8-4-truck1-p8-3-obs100.txt  score=0.25
+20:18:17 ok         197.7s max-term    grid8x8-4-truck1-p8-8-obs100.txt  score=1.00
+20:18:29 ok         229.9s max-term    grid8x8-4-truck1-p8-6-obs100.txt  score=0.33
+20:18:29 ok         216.6s max-term    grid8x8-4-truck1-p8-7-obs100.txt  score=0.50
+20:19:39 ok         244.2s max-term    grid9x9-1-none.txt
+20:21:03 ok         264.4s max-term    grid9x9-2-none.txt
+20:21:22 ok         276.2s max-term    grid9x9-3-none.txt
+20:21:49 ok         294.4s max-term    grid9x9-4-none.txt
+20:23:53 ok         323.7s max-term    grid9x9-1-truck1-p7-9-obs25.txt  score=0.14
+20:24:28 ok         356.6s max-term    grid9x9-1-truck1-p8-7-obs25.txt  score=0.14
+20:24:41 ok         409.0s max-term    grid9x9-1-truck1-p5-7-obs25.txt  score=0.12
+20:24:48 ok         391.0s max-term    grid9x9-1-truck1-p7-5-obs25.txt  score=0.12
+20:25:37 ok         355.4s max-term    grid9x9-1-truck1-p8-8-obs25.txt  score=0.14
+20:26:53 ok         347.6s max-term    grid9x9-1-truck1-p8-9-obs25.txt  score=0.14
+20:27:34 ok         371.1s max-term    grid9x9-1-truck1-p9-3-obs25.txt  score=0.12
+20:27:38 ok         348.4s max-term    grid9x9-1-truck1-p9-7-obs25.txt  score=0.14
+20:30:48 ok         360.0s max-term    grid9x9-2-truck1-p6-9-obs25.txt  score=0.12
+20:31:45 ok         470.3s max-term    grid9x9-2-truck1-p3-9-obs25.txt  score=0.12
+20:32:02 ok         384.8s max-term    grid9x9-2-truck1-p7-9-obs25.txt  score=0.12
+20:32:43 ok         494.4s max-term    grid9x9-2-truck1-p4-8-obs25.txt  score=0.12
+20:33:08 ok         506.1s max-term    grid9x9-2-truck1-p6-6-obs25.txt  score=0.12
+20:33:47 ok         412.5s max-term    grid9x9-2-truck1-p8-5-obs25.txt  score=0.14
+20:34:34 ok         420.1s max-term    grid9x9-2-truck1-p8-9-obs25.txt  score=0.12
+20:34:43 ok         423.2s max-term    grid9x9-2-truck1-p9-6-obs25.txt  score=0.12
+20:37:54 ok         425.3s max-term    grid9x9-3-truck1-p4-9-obs25.txt  score=0.12
+20:38:19 ok         375.4s max-term    grid9x9-3-truck1-p7-8-obs25.txt  score=0.12
+20:38:50 ok         425.0s max-term    grid9x9-3-truck1-p5-9-obs25.txt  score=0.12
+20:39:13 ok         388.3s max-term    grid9x9-3-truck1-p7-9-obs25.txt  score=0.12
+20:40:10 ok         382.2s max-term    grid9x9-3-truck1-p8-7-obs25.txt  score=0.12
+20:40:13 ok         423.6s max-term    grid9x9-3-truck1-p8-4-obs25.txt  score=0.12
+20:41:14 ok         399.0s max-term    grid9x9-3-truck1-p9-4-obs25.txt  score=0.12
+20:41:25 ok         400.7s max-term    grid9x9-3-truck1-p9-8-obs25.txt  score=0.12
+20:44:08 ok         372.2s max-term    grid9x9-4-truck1-p7-6-obs25.txt  score=0.14
+20:44:13 ok         353.3s max-term    grid9x9-4-truck1-p7-9-obs25.txt  score=0.14
+20:45:26 ok         395.0s max-term    grid9x9-4-truck1-p8-4-obs25.txt  score=0.12
+20:45:53 ok         399.4s max-term    grid9x9-4-truck1-p8-6-obs25.txt  score=0.12
+20:46:14 ok         361.6s max-term    grid9x9-4-truck1-p8-9-obs25.txt  score=0.17
+20:46:37 ok         320.7s max-term    grid9x9-4-truck1-p9-7-obs25.txt  score=0.17
+20:46:52 ok         397.6s max-term    grid9x9-4-truck1-p9-3-obs25.txt  score=0.12
+20:47:37 ok         370.6s max-term    grid9x9-4-truck1-p9-8-obs25.txt  score=0.17
+20:48:48 ok         279.0s max-term    grid9x9-1-truck1-p5-7-obs100.txt  score=0.17
+20:48:59 ok         284.8s max-term    grid9x9-1-truck1-p7-5-obs100.txt  score=0.17
+20:49:40 ok         253.7s max-term    grid9x9-1-truck1-p7-9-obs100.txt  score=0.50
+20:49:59 ok         223.0s max-term    grid9x9-1-truck1-p8-8-obs100.txt  score=0.50
+20:50:18 ok         262.6s max-term    grid9x9-1-truck1-p8-7-obs100.txt  score=0.25
+20:50:37 ok         239.3s max-term    grid9x9-1-truck1-p8-9-obs100.txt  score=1.00
+20:51:16 ok         263.2s max-term    grid9x9-1-truck1-p9-3-obs100.txt  score=0.50
+20:52:03 ok         265.1s max-term    grid9x9-1-truck1-p9-7-obs100.txt  score=1.00
+20:53:51 ok         290.2s max-term    grid9x9-2-truck1-p4-8-obs100.txt  score=0.25
+20:54:00 ok         311.1s max-term    grid9x9-2-truck1-p3-9-obs100.txt  score=0.25
+20:54:57 ok         258.8s max-term    grid9x9-2-truck1-p8-5-obs100.txt  score=0.33
+20:55:06 ok         324.2s max-term    grid9x9-2-truck1-p6-6-obs100.txt  score=0.20
+20:55:06 ok         287.7s max-term    grid9x9-2-truck1-p7-9-obs100.txt  score=0.50
+20:55:17 ok         317.1s max-term    grid9x9-2-truck1-p6-9-obs100.txt  score=0.33
+20:56:26 ok         309.5s max-term    grid9x9-2-truck1-p8-9-obs100.txt  score=1.00
+20:56:59 ok         296.0s max-term    grid9x9-2-truck1-p9-6-obs100.txt  score=1.00
+20:58:37 ok         285.2s max-term    grid9x9-3-truck1-p4-9-obs100.txt  score=0.33
+20:58:44 ok         284.2s max-term    grid9x9-3-truck1-p5-9-obs100.txt  score=0.50
+20:59:31 ok         273.7s max-term    grid9x9-3-truck1-p7-8-obs100.txt  score=0.33
+20:59:48 ok         280.7s max-term    grid9x9-3-truck1-p8-4-obs100.txt  score=0.25
+21:00:11 ok         293.5s max-term    grid9x9-3-truck1-p8-7-obs100.txt  score=0.50
+21:00:17 ok         310.3s max-term    grid9x9-3-truck1-p7-9-obs100.txt  score=1.00
+21:01:05 ok         277.4s max-term    grid9x9-3-truck1-p9-4-obs100.txt  score=0.50
+21:01:40 ok         278.5s max-term    grid9x9-3-truck1-p9-8-obs100.txt  score=1.00
+21:03:10 ok         264.0s max-term    grid9x9-4-truck1-p7-9-obs100.txt  score=0.50
+21:03:26 ok         287.7s max-term    grid9x9-4-truck1-p7-6-obs100.txt  score=0.17
+21:04:32 ok         299.5s max-term    grid9x9-4-truck1-p8-4-obs100.txt  score=0.20
+21:04:38 ok         289.0s max-term    grid9x9-4-truck1-p8-6-obs100.txt  score=0.25
+21:05:09 ok         298.4s max-term    grid9x9-4-truck1-p8-9-obs100.txt  score=1.00
+21:05:22 ok         304.1s max-term    grid9x9-4-truck1-p9-3-obs100.txt  score=0.33
+21:05:39 ok         273.2s max-term    grid9x9-4-truck1-p9-7-obs100.txt  score=0.50
+21:06:16 ok         275.0s max-term    grid9x9-4-truck1-p9-8-obs100.txt  score=1.00
+21:12:59 ok         505.8s max-term    grid10x10-3-none.txt
+21:13:14 ok         586.8s max-term    grid10x10-2-none.txt
+21:18:05 ok         893.7s max-term    grid10x10-1-none.txt
+21:19:26 ok         886.0s max-term    grid10x10-4-none.txt
+21:22:17 ok         997.5s max-term    grid10x10-1-truck1-p10-5-obs25.txt  score=0.11
+21:24:20 ok        1083.2s max-term    grid10x10-1-truck1-p10-9-obs25.txt  score=0.12
+21:24:34 ok        1152.1s max-term    grid10x10-1-truck1-p10-4-obs25.txt  score=0.11
+21:25:22 ok        1212.0s max-term    grid10x10-1-truck1-p10-3-obs25.txt  score=0.11
+21:32:22 ok        1162.2s max-term    grid10x10-1-truck1-p5-8-obs25.txt  score=0.12
+21:32:27 ok        1151.6s max-term    grid10x10-1-truck1-p8-7-obs25.txt  score=0.12
+21:35:08 ok        1022.0s max-term    grid10x10-1-truck1-p8-9-obs25.txt  score=0.17
+21:39:30 ok         894.8s max-term    grid10x10-2-truck1-p10-5-obs25.txt  score=0.11
+21:39:53 ok        1226.7s max-term    grid10x10-1-truck1-p9-4-obs25.txt  score=0.11
+21:40:10 ok        1071.6s max-term    grid10x10-1-truck1-p9-6-obs25.txt  score=0.12
+21:40:39 ok         979.0s max-term    grid10x10-2-truck1-p10-3-obs25.txt  score=0.12
+21:41:40 ok         978.1s max-term    grid10x10-2-truck1-p3-10-obs25.txt  score=0.11
+21:47:14 ok         885.4s max-term    grid10x10-2-truck1-p7-8-obs25.txt  score=0.12
+21:48:38 ok         973.8s max-term    grid10x10-2-truck1-p6-10-obs25.txt  score=0.11
+21:51:02 ok         953.6s max-term    grid10x10-2-truck1-p7-9-obs25.txt  score=0.12
+21:51:02 ok         689.9s max-term    grid10x10-2-truck1-p9-10-obs25.txt  score=0.12
+21:51:44 ok         664.4s max-term    grid10x10-3-truck1-p10-3-obs25.txt  score=0.11
+21:54:21 ok         850.0s max-term    grid10x10-2-truck1-p9-8-obs25.txt  score=0.12
+21:55:00 ok         799.1s max-term    grid10x10-3-truck1-p5-9-obs25.txt  score=0.11
+21:55:55 ok         960.7s max-term    grid10x10-2-truck1-p9-7-obs25.txt  score=0.12
+21:58:18 ok         663.5s max-term    grid10x10-3-truck1-p7-9-obs25.txt  score=0.12
+22:01:09 ok         750.6s max-term    grid10x10-3-truck1-p8-5-obs25.txt  score=0.11
+22:02:02 ok         658.3s max-term    grid10x10-3-truck1-p8-8-obs25.txt  score=0.12
+22:03:06 ok         681.4s max-term    grid10x10-3-truck1-p9-5-obs25.txt  score=0.11
+22:03:29 ok         745.0s max-term    grid10x10-3-truck1-p8-7-obs25.txt  score=0.12
+22:06:04 ok         701.8s max-term    grid10x10-3-truck1-p9-7-obs25.txt  score=0.12
+22:06:10 ok         668.9s max-term    grid10x10-3-truck1-p9-9-obs25.txt  score=0.12
+22:12:59 ok         880.7s max-term    grid10x10-4-truck1-p10-9-obs25.txt  score=0.12
+22:17:11 ok        1275.3s max-term    grid10x10-4-truck1-p10-4-obs25.txt  score=0.11
+22:21:05 ok        1141.7s max-term    grid10x10-4-truck1-p8-10-obs25.txt  score=0.11
+22:21:12 ok        1201.6s max-term    grid10x10-4-truck1-p4-10-obs25.txt  score=0.11
+22:21:41 ok        1114.0s max-term    grid10x10-4-truck1-p8-5-obs25.txt  score=0.11
+22:22:22 ok        1132.7s max-term    grid10x10-4-truck1-p8-6-obs25.txt  score=0.11
+22:22:22 ok         978.3s max-term    grid10x10-4-truck1-p8-7-obs25.txt  score=0.11
+22:26:57 ok        1245.9s max-term    grid10x10-4-truck1-p9-4-obs25.txt  score=0.11
+22:30:56 ok         823.5s max-term    grid10x10-1-truck1-p10-3-obs100.txt  score=0.25
+22:34:19 ok         791.8s max-term    grid10x10-1-truck1-p10-4-obs100.txt  score=0.33
+22:34:38 ok        1297.4s max-term    grid10x10-4-truck1-p9-5-obs25.txt  score=0.11
+22:35:15 ok         814.0s max-term    grid10x10-1-truck1-p10-9-obs100.txt  score=1.00
+22:36:10 ok         826.9s max-term    grid10x10-1-truck1-p5-8-obs100.txt  score=0.33
+22:36:54 ok         941.2s max-term    grid10x10-1-truck1-p10-5-obs100.txt  score=0.50
+22:36:58 ok         874.6s max-term    grid10x10-1-truck1-p8-7-obs100.txt  score=0.33
+22:39:49 ok         770.4s max-term    grid10x10-1-truck1-p8-9-obs100.txt  score=0.50
+22:45:31 ok         651.9s max-term    grid10x10-2-truck1-p10-3-obs100.txt  score=0.50
+22:45:54 ok         897.2s max-term    grid10x10-1-truck1-p9-4-obs100.txt  score=0.20
+22:46:31 ok         673.8s max-term    grid10x10-2-truck1-p10-5-obs100.txt  score=1.00
+22:47:30 ok         679.3s max-term    grid10x10-2-truck1-p3-10-obs100.txt  score=0.33
+22:47:43 ok         802.5s max-term    grid10x10-1-truck1-p9-6-obs100.txt  score=0.50
+22:48:00 ok         660.8s max-term    grid10x10-2-truck1-p7-8-obs100.txt  score=0.25
+22:48:27 ok         691.9s max-term    grid10x10-2-truck1-p6-10-obs100.txt  score=0.50
+22:51:30 ok         698.8s max-term    grid10x10-2-truck1-p7-9-obs100.txt  score=0.50
+22:55:16 ok         465.5s max-term    grid10x10-3-truck1-p10-3-obs100.txt  score=1.00
+22:55:33 ok         600.8s max-term    grid10x10-2-truck1-p9-10-obs100.txt  score=1.00
+22:55:58 ok         476.9s max-term    grid10x10-3-truck1-p7-9-obs100.txt  score=0.50
+22:56:02 ok         498.0s max-term    grid10x10-3-truck1-p5-9-obs100.txt  score=0.33
+22:56:33 ok         637.8s max-term    grid10x10-2-truck1-p9-7-obs100.txt  score=0.33
+22:56:42 ok         493.6s max-term    grid10x10-3-truck1-p8-5-obs100.txt  score=0.17
+22:58:44 ok         733.1s max-term    grid10x10-2-truck1-p9-8-obs100.txt  score=0.50
+22:59:27 ok         475.6s max-term    grid10x10-3-truck1-p8-7-obs100.txt  score=0.25
+23:03:09 ok         472.1s max-term    grid10x10-3-truck1-p8-8-obs100.txt  score=0.50
+23:03:12 ok         457.3s max-term    grid10x10-3-truck1-p9-5-obs100.txt  score=0.33
+23:03:43 ok         465.2s max-term    grid10x10-3-truck1-p9-7-obs100.txt  score=0.50
+23:04:14 ok         490.6s max-term    grid10x10-3-truck1-p9-9-obs100.txt  score=1.00
+23:10:32 ok         837.4s max-term    grid10x10-4-truck1-p10-4-obs100.txt  score=0.50
+23:11:36 ok         892.0s max-term    grid10x10-4-truck1-p10-9-obs100.txt  score=1.00
+23:12:33 ok         828.1s max-term    grid10x10-4-truck1-p4-10-obs100.txt  score=0.50
+23:13:21 ok         833.1s max-term    grid10x10-4-truck1-p8-10-obs100.txt  score=1.00
+23:16:20 ok         756.7s max-term    grid10x10-4-truck1-p8-7-obs100.txt  score=0.33
+23:16:28 ok         794.6s max-term    grid10x10-4-truck1-p8-6-obs100.txt  score=0.25
+23:16:38 ok         807.3s max-term    grid10x10-4-truck1-p8-5-obs100.txt  score=0.17
+23:19:39 ok         923.1s max-term    grid10x10-4-truck1-p9-4-obs100.txt  score=0.25
+23:23:48 ok         794.8s max-term    grid10x10-4-truck1-p9-5-obs100.txt  score=0.50
+23:23:48 done; stopped: {'mc-sat': 7, 'sharpsat-td': 7}

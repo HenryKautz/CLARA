@@ -1,0 +1,570 @@
+15:14:38 SimpleGrid: 32 problems, 176 goals, 176 runs to do, 12 at a time; stopped: {}
+15:14:55 tt      ok       grid3x3-1-truck1-p3-2 5.02s horizon=4 cost=3.0 actions=3
+15:14:55 tt      ok       grid3x3-1-truck1-p3-3 4.06s horizon=5 cost=4.0 actions=4
+15:14:55 tt      ok       grid3x3-2-truck1-p3-3 3.44s horizon=5 cost=4.0 actions=4
+15:14:55 tt      ok       grid3x3-2-truck1-p2-3 3.33s horizon=4 cost=3.0 actions=3
+15:14:55 tt      ok       grid3x3-3-truck1-p2-3 3.33s horizon=4 cost=3.0 actions=3
+15:14:55 tt      ok       grid3x3-3-truck1-p3-3 3.38s horizon=5 cost=4.0 actions=4
+15:14:55 tt      ok       grid3x3-4-truck1-p2-3 3.33s horizon=4 cost=3.0 actions=3
+15:14:55 tt      ok       grid3x3-4-truck1-p3-3 3.44s horizon=5 cost=4.0 actions=4
+15:14:55 tt      ok       grid4x4-1-truck1-p4-3 3.43s horizon=6 cost=5.0 actions=5
+15:14:55 tt      ok       grid4x4-1-truck1-p4-4 3.46s horizon=7 cost=6.0 actions=6
+15:14:55 tt      ok       grid4x4-1-truck1-p3-4 3.35s horizon=6 cost=5.0 actions=5
+15:14:55 tt      ok       grid4x4-2-truck1-p4-4 3.35s horizon=7 cost=6.0 actions=6
+15:15:12 eval    ok       grid3x3-1-truck1-p3-2 1.77s horizon=4 cost=3.0 actions=3
+15:15:12 eval    ok       grid3x3-1-truck1-p3-3 1.83s horizon=5 cost=4.0 actions=4
+15:15:12 eval    ok       grid3x3-2-truck1-p3-3 1.84s horizon=5 cost=4.0 actions=4
+15:15:12 eval    ok       grid3x3-2-truck1-p2-3 1.78s horizon=4 cost=3.0 actions=3
+15:15:12 eval    ok       grid3x3-3-truck1-p2-3 1.78s horizon=4 cost=3.0 actions=3
+15:15:12 eval    ok       grid3x3-3-truck1-p3-3 1.86s horizon=5 cost=4.0 actions=4
+15:15:12 eval    ok       grid3x3-4-truck1-p2-3 1.8s horizon=4 cost=3.0 actions=3
+15:15:12 eval    ok       grid3x3-4-truck1-p3-3 1.84s horizon=5 cost=4.0 actions=4
+15:15:12 eval    ok       grid4x4-1-truck1-p4-3 2.11s horizon=6 cost=5.0 actions=5
+15:15:12 eval    ok       grid4x4-1-truck1-p4-4 2.53s horizon=7 cost=6.0 actions=6
+15:15:12 eval    ok       grid4x4-1-truck1-p3-4 2.17s horizon=6 cost=5.0 actions=5
+15:15:12 eval    ok       grid4x4-2-truck1-p4-4 2.39s horizon=7 cost=6.0 actions=6
+15:15:12 goal             grid3x3-1-truck1-p3-2  horizon=4 cost=3.0 actions=3 plan_from=eval
+15:15:12 goal             grid3x3-1-truck1-p3-3  horizon=5 cost=4.0 actions=4 plan_from=eval
+15:15:12 problem ok       grid3x3-1  recognition_horizon=5
+15:15:12 goal             grid3x3-2-truck1-p3-3  horizon=5 cost=4.0 actions=4 plan_from=eval
+15:15:12 goal             grid3x3-2-truck1-p2-3  horizon=4 cost=3.0 actions=3 plan_from=eval
+15:15:12 problem ok       grid3x3-2  recognition_horizon=5
+15:15:12 goal             grid3x3-3-truck1-p2-3  horizon=4 cost=3.0 actions=3 plan_from=eval
+15:15:12 goal             grid3x3-3-truck1-p3-3  horizon=5 cost=4.0 actions=4 plan_from=eval
+15:15:12 problem ok       grid3x3-3  recognition_horizon=5
+15:15:12 goal             grid3x3-4-truck1-p2-3  horizon=4 cost=3.0 actions=3 plan_from=eval
+15:15:12 goal             grid3x3-4-truck1-p3-3  horizon=5 cost=4.0 actions=4 plan_from=eval
+15:15:12 problem ok       grid3x3-4  recognition_horizon=5
+15:15:12 goal             grid4x4-1-truck1-p4-3  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:12 goal             grid4x4-1-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:12 goal             grid4x4-1-truck1-p3-4  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:12 problem ok       grid4x4-1  recognition_horizon=7
+15:15:12 size    settled  3x3  
+15:15:30 tt      ok       grid4x4-2-truck1-p3-4 3.33s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-2-truck1-p4-3 3.4s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-3-truck1-p4-4 3.46s horizon=7 cost=6.0 actions=6
+15:15:30 tt      ok       grid4x4-3-truck1-p4-3 3.45s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-3-truck1-p3-4 3.39s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-4-truck1-p3-4 3.42s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-4-truck1-p4-3 3.47s horizon=6 cost=5.0 actions=5
+15:15:30 tt      ok       grid4x4-4-truck1-p4-4 3.52s horizon=7 cost=6.0 actions=6
+15:15:30 tt      ok       grid5x5-1-truck1-p5-5 3.73s horizon=9 cost=8.0 actions=8
+15:15:30 tt      ok       grid5x5-1-truck1-p4-5 3.57s horizon=8 cost=7.0 actions=7
+15:15:30 tt      ok       grid5x5-1-truck1-p4-4 3.45s horizon=7 cost=6.0 actions=6
+15:15:30 tt      ok       grid5x5-1-truck1-p3-5 3.36s horizon=7 cost=6.0 actions=6
+15:15:47 eval    ok       grid4x4-2-truck1-p3-4 2.09s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-2-truck1-p4-3 2.11s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-3-truck1-p4-4 2.44s horizon=7 cost=6.0 actions=6
+15:15:47 eval    ok       grid4x4-3-truck1-p4-3 2.13s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-3-truck1-p3-4 2.14s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-4-truck1-p3-4 2.16s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-4-truck1-p4-3 2.24s horizon=6 cost=5.0 actions=5
+15:15:47 eval    ok       grid4x4-4-truck1-p4-4 2.66s horizon=7 cost=6.0 actions=6
+15:15:47 eval    ok       grid5x5-1-truck1-p5-5 5.17s horizon=9 cost=8.0 actions=8
+15:15:47 eval    ok       grid5x5-1-truck1-p4-5 3.76s horizon=8 cost=7.0 actions=7
+15:15:47 eval    ok       grid5x5-1-truck1-p4-4 3.42s horizon=7 cost=6.0 actions=6
+15:15:47 eval    ok       grid5x5-1-truck1-p3-5 3.01s horizon=7 cost=6.0 actions=6
+15:15:47 goal             grid4x4-2-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:47 goal             grid4x4-2-truck1-p3-4  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 goal             grid4x4-2-truck1-p4-3  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 problem ok       grid4x4-2  recognition_horizon=7
+15:15:47 goal             grid4x4-3-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:47 goal             grid4x4-3-truck1-p4-3  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 goal             grid4x4-3-truck1-p3-4  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 problem ok       grid4x4-3  recognition_horizon=7
+15:15:47 goal             grid4x4-4-truck1-p3-4  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 goal             grid4x4-4-truck1-p4-3  horizon=6 cost=5.0 actions=5 plan_from=eval
+15:15:47 goal             grid4x4-4-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:47 problem ok       grid4x4-4  recognition_horizon=7
+15:15:47 goal             grid5x5-1-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:15:47 goal             grid5x5-1-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:15:47 goal             grid5x5-1-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:47 goal             grid5x5-1-truck1-p3-5  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:15:47 problem ok       grid5x5-1  recognition_horizon=9
+15:15:47 size    settled  4x4  
+15:16:04 tt      ok       grid5x5-2-truck1-p5-4 3.85s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-2-truck1-p4-4 3.83s horizon=7 cost=6.0 actions=6
+15:16:04 tt      ok       grid5x5-2-truck1-p5-3 3.81s horizon=7 cost=6.0 actions=6
+15:16:04 tt      ok       grid5x5-2-truck1-p4-5 3.79s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-3-truck1-p5-4 3.89s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-3-truck1-p4-5 3.79s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-3-truck1-p5-5 4.05s horizon=9 cost=8.0 actions=8
+15:16:04 tt      ok       grid5x5-3-truck1-p5-3 4.01s horizon=7 cost=6.0 actions=6
+15:16:04 tt      ok       grid5x5-4-truck1-p5-4 4.26s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-4-truck1-p4-5 3.9s horizon=8 cost=7.0 actions=7
+15:16:04 tt      ok       grid5x5-4-truck1-p5-3 3.75s horizon=7 cost=6.0 actions=6
+15:16:04 tt      ok       grid5x5-4-truck1-p3-5 3.81s horizon=7 cost=6.0 actions=6
+15:16:21 eval    ok       grid5x5-2-truck1-p5-4 3.83s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-2-truck1-p4-4 2.97s horizon=7 cost=6.0 actions=6
+15:16:21 eval    ok       grid5x5-2-truck1-p5-3 2.98s horizon=7 cost=6.0 actions=6
+15:16:21 eval    ok       grid5x5-2-truck1-p4-5 3.75s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-3-truck1-p5-4 3.73s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-3-truck1-p4-5 3.81s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-3-truck1-p5-5 5.21s horizon=9 cost=8.0 actions=8
+15:16:21 eval    ok       grid5x5-3-truck1-p5-3 3.0s horizon=7 cost=6.0 actions=6
+15:16:21 eval    ok       grid5x5-4-truck1-p5-4 3.82s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-4-truck1-p4-5 3.73s horizon=8 cost=7.0 actions=7
+15:16:21 eval    ok       grid5x5-4-truck1-p5-3 3.11s horizon=7 cost=6.0 actions=6
+15:16:21 eval    ok       grid5x5-4-truck1-p3-5 3.04s horizon=7 cost=6.0 actions=6
+15:16:21 goal             grid5x5-2-truck1-p5-4  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 goal             grid5x5-2-truck1-p4-4  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:16:21 goal             grid5x5-2-truck1-p5-3  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:16:21 goal             grid5x5-2-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 problem ok       grid5x5-2  recognition_horizon=8
+15:16:21 goal             grid5x5-3-truck1-p5-4  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 goal             grid5x5-3-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 goal             grid5x5-3-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:16:21 goal             grid5x5-3-truck1-p5-3  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:16:21 problem ok       grid5x5-3  recognition_horizon=9
+15:16:21 goal             grid5x5-4-truck1-p5-4  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 goal             grid5x5-4-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:21 goal             grid5x5-4-truck1-p5-3  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:16:21 goal             grid5x5-4-truck1-p3-5  horizon=7 cost=6.0 actions=6 plan_from=eval
+15:16:21 problem ok       grid5x5-4  recognition_horizon=8
+15:16:21 size    settled  5x5  
+15:16:38 tt      ok       grid6x6-1-truck1-p4-6 4.22s horizon=9 cost=8.0 actions=8
+15:16:38 tt      ok       grid6x6-1-truck1-p5-4 4.25s horizon=8 cost=7.0 actions=7
+15:16:38 tt      ok       grid6x6-1-truck1-p5-5 4.42s horizon=9 cost=8.0 actions=8
+15:16:38 tt      ok       grid6x6-1-truck1-p6-6 4.48s horizon=11 cost=10.0 actions=10
+15:16:38 tt      ok       grid6x6-1-truck1-p4-5 4.04s horizon=8 cost=7.0 actions=7
+15:16:38 tt      ok       grid6x6-2-truck1-p5-5 4.68s horizon=9 cost=8.0 actions=8
+15:16:38 tt      ok       grid6x6-2-truck1-p4-5 4.32s horizon=8 cost=7.0 actions=7
+15:16:38 tt      ok       grid6x6-2-truck1-p6-6 4.83s horizon=11 cost=10.0 actions=10
+15:16:38 tt      ok       grid6x6-2-truck1-p5-6 4.83s horizon=10 cost=9.0 actions=9
+15:16:38 tt      ok       grid6x6-2-truck1-p3-6 4.63s horizon=8 cost=7.0 actions=7
+15:16:38 tt      ok       grid6x6-3-truck1-p5-6 4.39s horizon=10 cost=9.0 actions=9
+15:16:38 tt      ok       grid6x6-3-truck1-p5-5 4.25s horizon=9 cost=8.0 actions=8
+15:16:56 eval    ok       grid6x6-1-truck1-p4-6 5.68s horizon=9 cost=8.0 actions=8
+15:16:56 eval    ok       grid6x6-1-truck1-p5-4 4.63s horizon=8 cost=7.0 actions=7
+15:16:56 eval    ok       grid6x6-1-truck1-p5-5 6.39s horizon=9 cost=8.0 actions=8
+15:16:56 eval    ok       grid6x6-1-truck1-p6-6 10.65s horizon=11 cost=10.0 actions=10
+15:16:56 eval    ok       grid6x6-1-truck1-p4-5 4.69s horizon=8 cost=7.0 actions=7
+15:16:56 eval    ok       grid6x6-2-truck1-p5-5 5.96s horizon=9 cost=8.0 actions=8
+15:16:56 eval    ok       grid6x6-2-truck1-p4-5 4.43s horizon=8 cost=7.0 actions=7
+15:16:56 eval    ok       grid6x6-2-truck1-p5-6 7.73s horizon=10 cost=9.0 actions=9
+15:16:56 eval    ok       grid6x6-2-truck1-p3-6 4.68s horizon=8 cost=7.0 actions=7
+15:16:56 eval    ok       grid6x6-3-truck1-p5-5 5.8s horizon=9 cost=8.0 actions=8
+15:16:56 goal             grid6x6-1-truck1-p4-6  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:16:56 goal             grid6x6-1-truck1-p5-4  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:56 goal             grid6x6-1-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:16:56 goal             grid6x6-1-truck1-p6-6  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:16:56 goal             grid6x6-1-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:16:56 problem ok       grid6x6-1  recognition_horizon=11
+15:17:11 eval    ok       grid6x6-2-truck1-p6-6 10.59s horizon=11 cost=10.0 actions=10
+15:17:11 eval    ok       grid6x6-3-truck1-p5-6 8.13s horizon=10 cost=9.0 actions=9
+15:17:11 tt      ok       grid6x6-3-truck1-p4-5 4.01s horizon=8 cost=7.0 actions=7
+15:17:11 tt      ok       grid6x6-3-truck1-p4-6 4.37s horizon=9 cost=8.0 actions=8
+15:17:11 tt      ok       grid6x6-3-truck1-p6-5 4.4s horizon=10 cost=9.0 actions=9
+15:17:11 tt      ok       grid6x6-4-truck1-p5-4 4.06s horizon=8 cost=7.0 actions=7
+15:17:11 tt      ok       grid6x6-4-truck1-p5-5 4.18s horizon=9 cost=8.0 actions=8
+15:17:11 tt      ok       grid6x6-4-truck1-p6-3 4.14s horizon=8 cost=7.0 actions=7
+15:17:11 tt      ok       grid6x6-4-truck1-p5-6 4.59s horizon=10 cost=9.0 actions=9
+15:17:11 tt      ok       grid6x6-4-truck1-p6-6 4.54s horizon=11 cost=10.0 actions=10
+15:17:11 tt      ok       grid7x7-1-truck1-p5-5 4.57s horizon=9 cost=8.0 actions=8
+15:17:11 tt      ok       grid7x7-1-truck1-p7-6 5.28s horizon=12 cost=11.0 actions=11
+15:17:11 goal             grid6x6-2-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:17:11 goal             grid6x6-2-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:17:11 goal             grid6x6-2-truck1-p6-6  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:17:11 goal             grid6x6-2-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:17:11 goal             grid6x6-2-truck1-p3-6  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:17:11 problem ok       grid6x6-2  recognition_horizon=11
+15:17:28 eval    ok       grid6x6-3-truck1-p4-5 4.63s horizon=8 cost=7.0 actions=7
+15:17:28 eval    ok       grid6x6-3-truck1-p4-6 5.75s horizon=9 cost=8.0 actions=8
+15:17:28 eval    ok       grid6x6-3-truck1-p6-5 7.86s horizon=10 cost=9.0 actions=9
+15:17:28 eval    ok       grid6x6-4-truck1-p5-4 4.56s horizon=8 cost=7.0 actions=7
+15:17:28 eval    ok       grid6x6-4-truck1-p5-5 6.3s horizon=9 cost=8.0 actions=8
+15:17:28 eval    ok       grid6x6-4-truck1-p6-3 4.39s horizon=8 cost=7.0 actions=7
+15:17:28 eval    ok       grid6x6-4-truck1-p5-6 8.19s horizon=10 cost=9.0 actions=9
+15:17:28 eval    ok       grid7x7-1-truck1-p5-5 6.97s horizon=9 cost=8.0 actions=8
+15:17:28 tt      ok       grid7x7-1-truck1-p6-5 5.13s horizon=10 cost=9.0 actions=9
+15:17:28 tt      ok       grid7x7-1-truck1-p4-7 5.09s horizon=10 cost=9.0 actions=9
+15:17:28 goal             grid6x6-3-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:17:28 goal             grid6x6-3-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:17:28 goal             grid6x6-3-truck1-p4-5  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:17:28 goal             grid6x6-3-truck1-p4-6  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:17:28 goal             grid6x6-3-truck1-p6-5  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:17:28 problem ok       grid6x6-3  recognition_horizon=10
+15:17:43 eval    ok       grid6x6-4-truck1-p6-6 10.26s horizon=11 cost=10.0 actions=10
+15:17:43 eval    ok       grid7x7-1-truck1-p7-6 12.86s horizon=12 cost=11.0 actions=11
+15:17:43 eval    ok       grid7x7-1-truck1-p6-5 9.05s horizon=10 cost=9.0 actions=9
+15:17:43 eval    ok       grid7x7-1-truck1-p4-7 8.87s horizon=10 cost=9.0 actions=9
+15:17:43 tt      ok       grid7x7-1-truck1-p6-4 4.7s horizon=9 cost=8.0 actions=8
+15:17:43 tt      ok       grid7x7-1-truck1-p7-3 5.98s horizon=9 cost=8.0 actions=8
+15:17:43 tt      ok       grid7x7-2-truck1-p7-5 6.46s horizon=11 cost=10.0 actions=10
+15:17:43 tt      ok       grid7x7-2-truck1-p5-6 4.88s horizon=10 cost=9.0 actions=9
+15:17:43 tt      ok       grid7x7-2-truck1-p5-7 6.13s horizon=11 cost=10.0 actions=10
+15:17:43 tt      ok       grid7x7-2-truck1-p3-7 5.29s horizon=9 cost=8.0 actions=8
+15:17:43 tt      ok       grid7x7-2-truck1-p6-7 5.76s horizon=12 cost=11.0 actions=11
+15:17:43 tt      ok       grid7x7-2-truck1-p5-5 4.97s horizon=9 cost=8.0 actions=8
+15:17:43 goal             grid6x6-4-truck1-p5-4  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:17:43 goal             grid6x6-4-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:17:43 goal             grid6x6-4-truck1-p6-3  horizon=8 cost=7.0 actions=7 plan_from=eval
+15:17:43 goal             grid6x6-4-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:17:43 goal             grid6x6-4-truck1-p6-6  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:17:43 problem ok       grid6x6-4  recognition_horizon=11
+15:17:43 size    settled  6x6  
+15:18:00 eval    ok       grid7x7-1-truck1-p6-4 6.69s horizon=9 cost=8.0 actions=8
+15:18:00 eval    ok       grid7x7-1-truck1-p7-3 6.21s horizon=9 cost=8.0 actions=8
+15:18:00 eval    ok       grid7x7-2-truck1-p7-5 10.66s horizon=11 cost=10.0 actions=10
+15:18:00 eval    ok       grid7x7-2-truck1-p5-6 9.83s horizon=10 cost=9.0 actions=9
+15:18:00 eval    ok       grid7x7-2-truck1-p5-7 10.71s horizon=11 cost=10.0 actions=10
+15:18:00 eval    ok       grid7x7-2-truck1-p3-7 7.52s horizon=9 cost=8.0 actions=8
+15:18:00 eval    ok       grid7x7-2-truck1-p5-5 8.24s horizon=9 cost=8.0 actions=8
+15:18:00 tt      ok       grid7x7-3-truck1-p6-5 6.55s horizon=10 cost=9.0 actions=9
+15:18:00 tt      ok       grid7x7-3-truck1-p5-6 6.47s horizon=10 cost=9.0 actions=9
+15:18:00 tt      ok       grid7x7-3-truck1-p4-6 5.97s horizon=9 cost=8.0 actions=8
+15:18:00 goal             grid7x7-1-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:00 goal             grid7x7-1-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:18:00 goal             grid7x7-1-truck1-p6-5  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:00 goal             grid7x7-1-truck1-p4-7  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:00 goal             grid7x7-1-truck1-p6-4  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:00 goal             grid7x7-1-truck1-p7-3  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:00 problem ok       grid7x7-1  recognition_horizon=12
+15:18:15 eval    ok       grid7x7-2-truck1-p6-7 13.54s horizon=12 cost=11.0 actions=11
+15:18:15 tt      ok       grid7x7-3-truck1-p7-6 8.2s horizon=12 cost=11.0 actions=11
+15:18:15 eval    ok       grid7x7-3-truck1-p6-5 9.27s horizon=10 cost=9.0 actions=9
+15:18:15 eval    ok       grid7x7-3-truck1-p5-6 11.17s horizon=10 cost=9.0 actions=9
+15:18:15 eval    ok       grid7x7-3-truck1-p4-6 7.1s horizon=9 cost=8.0 actions=8
+15:18:15 tt      ok       grid7x7-3-truck1-p6-4 6.39s horizon=9 cost=8.0 actions=8
+15:18:15 tt      ok       grid7x7-3-truck1-p4-7 5.97s horizon=10 cost=9.0 actions=9
+15:18:15 tt      ok       grid7x7-4-truck1-p7-6 8.23s horizon=12 cost=11.0 actions=11
+15:18:15 tt      ok       grid7x7-4-truck1-p6-4 5.11s horizon=9 cost=8.0 actions=8
+15:18:15 tt      ok       grid7x7-4-truck1-p5-5 5.44s horizon=9 cost=8.0 actions=8
+15:18:15 tt      ok       grid7x7-4-truck1-p3-7 6.22s horizon=9 cost=8.0 actions=8
+15:18:15 tt      ok       grid7x7-4-truck1-p7-3 4.89s horizon=9 cost=8.0 actions=8
+15:18:15 goal             grid7x7-2-truck1-p7-5  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:18:15 goal             grid7x7-2-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:15 goal             grid7x7-2-truck1-p5-7  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:18:15 goal             grid7x7-2-truck1-p3-7  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:15 goal             grid7x7-2-truck1-p6-7  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:18:15 goal             grid7x7-2-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:16 problem ok       grid7x7-2  recognition_horizon=12
+15:18:33 eval    ok       grid7x7-3-truck1-p7-6 12.04s horizon=12 cost=11.0 actions=11
+15:18:33 eval    ok       grid7x7-3-truck1-p6-4 6.74s horizon=9 cost=8.0 actions=8
+15:18:33 eval    ok       grid7x7-3-truck1-p4-7 10.25s horizon=10 cost=9.0 actions=9
+15:18:33 eval    ok       grid7x7-4-truck1-p7-6 12.69s horizon=12 cost=11.0 actions=11
+15:18:33 eval    ok       grid7x7-4-truck1-p6-4 8.79s horizon=9 cost=8.0 actions=8
+15:18:33 eval    ok       grid7x7-4-truck1-p5-5 9.81s horizon=9 cost=8.0 actions=8
+15:18:33 eval    ok       grid7x7-4-truck1-p3-7 6.41s horizon=9 cost=8.0 actions=8
+15:18:33 eval    ok       grid7x7-4-truck1-p7-3 8.97s horizon=9 cost=8.0 actions=8
+15:18:33 tt      ok       grid7x7-4-truck1-p5-6 6.58s horizon=10 cost=9.0 actions=9
+15:18:33 goal             grid7x7-3-truck1-p6-5  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:33 goal             grid7x7-3-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:18:33 goal             grid7x7-3-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:33 goal             grid7x7-3-truck1-p4-6  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:33 goal             grid7x7-3-truck1-p6-4  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:33 goal             grid7x7-3-truck1-p4-7  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:33 problem ok       grid7x7-3  recognition_horizon=12
+15:18:47 tt      ok       grid8x8-1-truck1-p8-7 8.4s horizon=14 cost=13.0 actions=13
+15:18:47 tt      ok       grid8x8-1-truck1-p8-4 8.13s horizon=11 cost=10.0 actions=10
+15:18:47 tt      ok       grid8x8-1-truck1-p5-6 7.5s horizon=10 cost=9.0 actions=9
+15:18:47 eval    ok       grid7x7-4-truck1-p5-6 9.35s horizon=10 cost=9.0 actions=9
+15:18:47 tt      ok       grid8x8-1-truck1-p7-7 7.01s horizon=13 cost=12.0 actions=12
+15:18:47 tt      ok       grid8x8-1-truck1-p8-6 9.03s horizon=13 cost=12.0 actions=12
+15:18:47 tt      ok       grid8x8-1-truck1-p8-3 6.63s horizon=10 cost=9.0 actions=9
+15:18:47 tt      ok       grid8x8-1-truck1-p7-4 7.48s horizon=10 cost=9.0 actions=9
+15:18:47 tt      ok       grid8x8-2-truck1-p7-6 6.67s horizon=12 cost=11.0 actions=11
+15:18:47 tt      ok       grid8x8-2-truck1-p3-8 7.12s horizon=10 cost=9.0 actions=9
+15:18:47 tt      ok       grid8x8-2-truck1-p6-5 5.86s horizon=10 cost=9.0 actions=9
+15:18:47 goal             grid7x7-4-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:18:47 goal             grid7x7-4-truck1-p6-4  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:47 goal             grid7x7-4-truck1-p5-5  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:47 goal             grid7x7-4-truck1-p3-7  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:47 goal             grid7x7-4-truck1-p7-3  horizon=9 cost=8.0 actions=8 plan_from=eval
+15:18:47 goal             grid7x7-4-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:18:47 problem ok       grid7x7-4  recognition_horizon=12
+15:18:47 size    settled  7x7  
+15:19:03 tt      ok       grid8x8-2-truck1-p7-8 8.7s horizon=14 cost=13.0 actions=13
+15:19:03 eval    ok       grid8x8-1-truck1-p8-7 15.21s horizon=14 cost=13.0 actions=13
+15:19:03 eval    ok       grid8x8-1-truck1-p8-4 11.74s horizon=11 cost=10.0 actions=10
+15:19:03 eval    ok       grid8x8-1-truck1-p5-6 11.32s horizon=10 cost=9.0 actions=9
+15:19:12 eval    ok       grid8x8-1-truck1-p7-7 15.08s horizon=13 cost=12.0 actions=12
+15:19:12 eval    ok       grid8x8-1-truck1-p8-6 16.32s horizon=13 cost=12.0 actions=12
+15:19:12 eval    ok       grid8x8-1-truck1-p8-3 12.0s horizon=10 cost=9.0 actions=9
+15:19:12 eval    ok       grid8x8-1-truck1-p7-4 12.5s horizon=10 cost=9.0 actions=9
+15:19:12 eval    ok       grid8x8-2-truck1-p7-6 15.04s horizon=12 cost=11.0 actions=11
+15:19:12 eval    ok       grid8x8-2-truck1-p3-8 10.93s horizon=10 cost=9.0 actions=9
+15:19:12 eval    ok       grid8x8-2-truck1-p6-5 12.32s horizon=10 cost=9.0 actions=9
+15:19:12 tt      ok       grid8x8-2-truck1-p8-7 11.25s horizon=14 cost=13.0 actions=13
+15:19:12 tt      ok       grid8x8-2-truck1-p5-6 5.57s horizon=10 cost=9.0 actions=9
+15:19:12 goal             grid8x8-1-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p8-4  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p7-7  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p8-6  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p8-3  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:12 goal             grid8x8-1-truck1-p7-4  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:12 problem ok       grid8x8-1  recognition_horizon=14
+15:19:26 eval    ok       grid8x8-2-truck1-p7-8 17.14s horizon=14 cost=13.0 actions=13
+15:19:26 tt      ok       grid8x8-2-truck1-p8-8 9.12s horizon=15 cost=14.0 actions=14
+15:19:26 tt      ok       grid8x8-3-truck1-p8-8 8.3s horizon=15 cost=14.0 actions=14
+15:19:26 eval    ok       grid8x8-2-truck1-p5-6 10.84s horizon=10 cost=9.0 actions=9
+15:19:26 tt      ok       grid8x8-3-truck1-p7-7 8.14s horizon=13 cost=12.0 actions=12
+15:19:26 tt      ok       grid8x8-3-truck1-p8-4 6.0s horizon=11 cost=10.0 actions=10
+15:19:26 tt      ok       grid8x8-3-truck1-p4-7 7.09s horizon=10 cost=9.0 actions=9
+15:19:26 tt      ok       grid8x8-3-truck1-p4-8 8.01s horizon=11 cost=10.0 actions=10
+15:19:39 eval    ok       grid8x8-2-truck1-p8-7 17.03s horizon=14 cost=13.0 actions=13
+15:19:39 tt      ok       grid8x8-3-truck1-p7-8 9.59s horizon=14 cost=13.0 actions=13
+15:19:39 tt      ok       grid8x8-3-truck1-p7-6 8.08s horizon=12 cost=11.0 actions=11
+15:19:39 tt      ok       grid8x8-4-truck1-p8-7 8.29s horizon=14 cost=13.0 actions=13
+15:19:48 eval    ok       grid8x8-2-truck1-p8-8 16.54s horizon=15 cost=14.0 actions=14
+15:19:48 eval    ok       grid8x8-3-truck1-p8-8 17.27s horizon=15 cost=14.0 actions=14
+15:19:48 eval    ok       grid8x8-3-truck1-p7-7 14.14s horizon=13 cost=12.0 actions=12
+15:19:48 eval    ok       grid8x8-3-truck1-p8-4 13.04s horizon=11 cost=10.0 actions=10
+15:19:48 eval    ok       grid8x8-3-truck1-p4-7 11.91s horizon=10 cost=9.0 actions=9
+15:19:48 eval    ok       grid8x8-3-truck1-p4-8 12.31s horizon=11 cost=10.0 actions=10
+15:19:48 tt      ok       grid8x8-4-truck1-p8-6 9.2s horizon=13 cost=12.0 actions=12
+15:19:48 tt      ok       grid8x8-4-truck1-p5-6 6.09s horizon=10 cost=9.0 actions=9
+15:19:48 goal             grid8x8-2-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p3-8  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p7-8  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p6-5  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p8-8  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:19:48 goal             grid8x8-2-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:19:48 problem ok       grid8x8-2  recognition_horizon=15
+15:20:02 eval    ok       grid8x8-3-truck1-p7-8 16.82s horizon=14 cost=13.0 actions=13
+15:20:02 eval    ok       grid8x8-3-truck1-p7-6 14.76s horizon=12 cost=11.0 actions=11
+15:20:02 eval    ok       grid8x8-4-truck1-p8-7 17.84s horizon=14 cost=13.0 actions=13
+15:20:02 tt      ok       grid8x8-4-truck1-p3-8 7.73s horizon=10 cost=9.0 actions=9
+15:20:02 eval    ok       grid8x8-4-truck1-p5-6 11.77s horizon=10 cost=9.0 actions=9
+15:20:02 tt      ok       grid8x8-4-truck1-p6-5 7.3s horizon=10 cost=9.0 actions=9
+15:20:02 tt      ok       grid8x8-4-truck1-p8-8 9.82s horizon=15 cost=14.0 actions=14
+15:20:02 tt      ok       grid8x8-4-truck1-p8-3 9.07s horizon=10 cost=9.0 actions=9
+15:20:02 goal             grid8x8-3-truck1-p8-8  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p7-7  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p8-4  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p4-7  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p4-8  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p7-8  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:20:02 goal             grid8x8-3-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:20:02 problem ok       grid8x8-3  recognition_horizon=15
+15:20:15 eval    ok       grid8x8-4-truck1-p8-6 16.34s horizon=13 cost=12.0 actions=12
+15:20:15 tt      ok       grid9x9-1-truck1-p7-9 9.7s horizon=15 cost=14.0 actions=14
+15:20:15 tt      ok       grid9x9-1-truck1-p9-3 9.51s horizon=11 cost=10.0 actions=10
+15:20:15 tt      ok       grid9x9-1-truck1-p8-7 9.7s horizon=14 cost=13.0 actions=13
+15:20:15 eval    ok       grid8x8-4-truck1-p3-8 9.04s horizon=10 cost=9.0 actions=9
+15:20:15 eval    ok       grid8x8-4-truck1-p6-5 11.85s horizon=10 cost=9.0 actions=9
+15:20:26 eval    ok       grid8x8-4-truck1-p8-8 17.52s horizon=15 cost=14.0 actions=14
+15:20:26 eval    ok       grid8x8-4-truck1-p8-3 10.53s horizon=10 cost=9.0 actions=9
+15:20:26 tt      ok       grid9x9-1-truck1-p8-9 12.6s horizon=16 cost=15.0 actions=15
+15:20:26 tt      ok       grid9x9-1-truck1-p9-7 12.89s horizon=15 cost=14.0 actions=14
+15:20:26 tt      ok       grid9x9-1-truck1-p8-8 10.87s horizon=15 cost=14.0 actions=14
+15:20:26 tt      ok       grid9x9-1-truck1-p5-7 7.85s horizon=11 cost=10.0 actions=10
+15:20:26 goal             grid8x8-4-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p8-6  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p5-6  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p3-8  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p6-5  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p8-8  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:20:26 goal             grid8x8-4-truck1-p8-3  horizon=10 cost=9.0 actions=9 plan_from=eval
+15:20:26 problem ok       grid8x8-4  recognition_horizon=15
+15:20:26 size    settled  8x8  
+15:20:37 eval    ok       grid9x9-1-truck1-p7-9 19.16s horizon=15 cost=14.0 actions=14
+15:20:37 eval    ok       grid9x9-1-truck1-p9-3 14.14s horizon=11 cost=10.0 actions=10
+15:20:37 eval    ok       grid9x9-1-truck1-p8-7 17.35s horizon=14 cost=13.0 actions=13
+15:20:37 tt      ok       grid9x9-1-truck1-p7-5 10.59s horizon=11 cost=10.0 actions=10
+15:20:37 tt      ok       grid9x9-2-truck1-p4-8 7.95s horizon=11 cost=10.0 actions=10
+15:20:37 tt      ok       grid9x9-2-truck1-p3-9 8.69s horizon=11 cost=10.0 actions=10
+15:20:48 eval    ok       grid9x9-1-truck1-p8-9 21.57s horizon=16 cost=15.0 actions=15
+15:20:48 eval    ok       grid9x9-1-truck1-p9-7 20.44s horizon=15 cost=14.0 actions=14
+15:20:48 eval    ok       grid9x9-1-truck1-p5-7 14.03s horizon=11 cost=10.0 actions=10
+15:20:48 tt      ok       grid9x9-2-truck1-p7-9 13.95s horizon=15 cost=14.0 actions=14
+15:20:48 tt      ok       grid9x9-2-truck1-p6-9 8.72s horizon=14 cost=13.0 actions=13
+15:20:58 eval    ok       grid9x9-1-truck1-p8-8 20.51s horizon=15 cost=14.0 actions=14
+15:20:58 eval    ok       grid9x9-1-truck1-p7-5 15.37s horizon=11 cost=10.0 actions=10
+15:20:58 eval    ok       grid9x9-2-truck1-p4-8 14.09s horizon=11 cost=10.0 actions=10
+15:20:58 eval    ok       grid9x9-2-truck1-p3-9 14.53s horizon=11 cost=10.0 actions=10
+15:20:58 tt      ok       grid9x9-2-truck1-p8-9 13.98s horizon=16 cost=15.0 actions=15
+15:20:58 tt      ok       grid9x9-2-truck1-p9-6 11.98s horizon=14 cost=13.0 actions=13
+15:20:58 tt      ok       grid9x9-2-truck1-p8-5 10.9s horizon=12 cost=11.0 actions=11
+15:20:58 tt      ok       grid9x9-2-truck1-p6-6 7.96s horizon=11 cost=10.0 actions=10
+15:20:58 goal             grid9x9-1-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p9-3  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p8-9  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p9-7  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p8-8  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p5-7  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:20:58 goal             grid9x9-1-truck1-p7-5  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:20:58 problem ok       grid9x9-1  recognition_horizon=16
+15:21:11 eval    ok       grid9x9-2-truck1-p7-9 19.62s horizon=15 cost=14.0 actions=14
+15:21:11 eval    ok       grid9x9-2-truck1-p6-9 18.6s horizon=14 cost=13.0 actions=13
+15:21:11 tt      ok       grid9x9-3-truck1-p8-4 8.1s horizon=11 cost=10.0 actions=10
+15:21:11 tt      ok       grid9x9-3-truck1-p5-9 12.84s horizon=13 cost=12.0 actions=12
+15:21:21 eval    ok       grid9x9-2-truck1-p8-9 21.2s horizon=16 cost=15.0 actions=15
+15:21:21 eval    ok       grid9x9-2-truck1-p9-6 19.86s horizon=14 cost=13.0 actions=13
+15:21:21 eval    ok       grid9x9-2-truck1-p8-5 16.6s horizon=12 cost=11.0 actions=11
+15:21:21 eval    ok       grid9x9-2-truck1-p6-6 15.2s horizon=11 cost=10.0 actions=10
+15:21:21 tt      ok       grid9x9-3-truck1-p9-4 12.4s horizon=12 cost=11.0 actions=11
+15:21:21 tt      ok       grid9x9-3-truck1-p9-8 14.45s horizon=16 cost=15.0 actions=15
+15:21:21 tt      ok       grid9x9-3-truck1-p8-7 12.1s horizon=14 cost=13.0 actions=13
+15:21:21 tt      ok       grid9x9-3-truck1-p7-9 14.31s horizon=15 cost=14.0 actions=14
+15:21:21 goal             grid9x9-2-truck1-p4-8  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p3-9  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p6-9  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p8-9  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p9-6  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p8-5  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:21:21 goal             grid9x9-2-truck1-p6-6  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:21:21 problem ok       grid9x9-2  recognition_horizon=16
+15:21:34 eval    ok       grid9x9-3-truck1-p8-4 14.75s horizon=11 cost=10.0 actions=10
+15:21:34 eval    ok       grid9x9-3-truck1-p5-9 16.7s horizon=13 cost=12.0 actions=12
+15:21:34 tt      ok       grid9x9-3-truck1-p7-8 13.97s horizon=14 cost=13.0 actions=13
+15:21:34 tt      ok       grid9x9-3-truck1-p4-9 9.33s horizon=12 cost=11.0 actions=11
+15:21:43 eval    ok       grid9x9-3-truck1-p9-4 15.81s horizon=12 cost=11.0 actions=11
+15:21:43 eval    ok       grid9x9-3-truck1-p9-8 21.0s horizon=16 cost=15.0 actions=15
+15:21:43 eval    ok       grid9x9-3-truck1-p8-7 19.24s horizon=14 cost=13.0 actions=13
+15:21:43 tt      ok       grid9x9-4-truck1-p7-6 10.52s horizon=12 cost=11.0 actions=11
+15:21:43 tt      ok       grid9x9-4-truck1-p9-3 10.12s horizon=11 cost=10.0 actions=10
+15:21:43 tt      ok       grid9x9-4-truck1-p7-9 14.49s horizon=15 cost=14.0 actions=14
+15:21:43 tt      ok       grid9x9-4-truck1-p8-4 9.77s horizon=11 cost=10.0 actions=10
+15:21:55 eval    ok       grid9x9-3-truck1-p7-9 21.21s horizon=15 cost=14.0 actions=14
+15:21:55 eval    ok       grid9x9-3-truck1-p7-8 20.67s horizon=14 cost=13.0 actions=13
+15:21:55 eval    ok       grid9x9-3-truck1-p4-9 15.99s horizon=12 cost=11.0 actions=11
+15:21:55 tt      ok       grid9x9-4-truck1-p8-9 11.7s horizon=16 cost=15.0 actions=15
+15:21:55 tt      ok       grid9x9-4-truck1-p9-7 14.5s horizon=15 cost=14.0 actions=14
+15:21:55 goal             grid9x9-3-truck1-p8-4  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p5-9  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p9-4  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p9-8  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p7-8  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:21:55 goal             grid9x9-3-truck1-p4-9  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:21:55 problem ok       grid9x9-3  recognition_horizon=16
+15:22:05 eval    ok       grid9x9-4-truck1-p7-6 14.29s horizon=12 cost=11.0 actions=11
+15:22:05 eval    ok       grid9x9-4-truck1-p9-3 11.85s horizon=11 cost=10.0 actions=10
+15:22:05 eval    ok       grid9x9-4-truck1-p8-4 15.42s horizon=11 cost=10.0 actions=10
+15:22:05 tt      ok       grid9x9-4-truck1-p8-6 10.16s horizon=13 cost=12.0 actions=12
+15:22:05 tt      ok       grid9x9-4-truck1-p9-8 13.17s horizon=16 cost=15.0 actions=15
+15:22:05 tt      ok       grid10x10-1-truck1-p10-5 12.21s horizon=14 cost=13.0 actions=13
+15:22:16 eval    ok       grid9x9-4-truck1-p7-9 22.69s horizon=15 cost=14.0 actions=14
+15:22:16 eval    ok       grid9x9-4-truck1-p8-9 21.25s horizon=16 cost=15.0 actions=15
+15:22:16 tt      ok       grid10x10-1-truck1-p10-9 17.59s horizon=18 cost=17.0 actions=17
+15:22:16 tt      ok       grid10x10-1-truck1-p10-3 14.7s horizon=12 cost=11.0 actions=11
+15:22:16 tt      ok       grid10x10-1-truck1-p5-8 15.77s horizon=12 cost=11.0 actions=11
+15:22:26 eval    ok       grid9x9-4-truck1-p9-7 21.04s horizon=15 cost=14.0 actions=14
+15:22:26 eval    ok       grid9x9-4-truck1-p8-6 15.37s horizon=13 cost=12.0 actions=12
+15:22:26 tt      ok       grid10x10-1-truck1-p8-9 15.54s horizon=16 cost=15.0 actions=15
+15:22:26 tt      ok       grid10x10-1-truck1-p8-7 10.48s horizon=14 cost=13.0 actions=13
+15:22:26 tt      ok       grid10x10-1-truck1-p9-4 15.54s horizon=12 cost=11.0 actions=11
+15:22:37 eval    ok       grid9x9-4-truck1-p9-8 21.92s horizon=16 cost=15.0 actions=15
+15:22:37 eval    ok       grid10x10-1-truck1-p10-5 23.0s horizon=14 cost=13.0 actions=13
+15:22:37 eval    ok       grid10x10-1-truck1-p10-3 18.55s horizon=12 cost=11.0 actions=11
+15:22:37 tt      ok       grid10x10-1-truck1-p9-6 17.06s horizon=14 cost=13.0 actions=13
+15:22:37 tt      ok       grid10x10-1-truck1-p10-4 15.06s horizon=13 cost=12.0 actions=12
+15:22:37 goal             grid9x9-4-truck1-p7-6  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p9-3  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p8-4  horizon=11 cost=10.0 actions=10 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p8-9  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p9-7  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p8-6  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:22:37 goal             grid9x9-4-truck1-p9-8  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:22:37 problem ok       grid9x9-4  recognition_horizon=16
+15:22:37 size    settled  9x9  
+15:22:47 eval    ok       grid10x10-1-truck1-p5-8 19.66s horizon=12 cost=11.0 actions=11
+15:22:47 tt      ok       grid10x10-2-truck1-p7-8 16.4s horizon=14 cost=13.0 actions=13
+15:22:54 eval    ok       grid10x10-1-truck1-p10-9 30.76s horizon=18 cost=17.0 actions=17
+15:22:54 eval    ok       grid10x10-1-truck1-p8-7 21.96s horizon=14 cost=13.0 actions=13
+15:22:54 eval    ok       grid10x10-1-truck1-p9-4 18.88s horizon=12 cost=11.0 actions=11
+15:22:54 tt      ok       grid10x10-2-truck1-p7-9 17.81s horizon=15 cost=14.0 actions=14
+15:22:54 tt      ok       grid10x10-2-truck1-p10-3 13.02s horizon=12 cost=11.0 actions=11
+15:23:04 eval    ok       grid10x10-1-truck1-p8-9 27.75s horizon=16 cost=15.0 actions=15
+15:23:04 eval    ok       grid10x10-1-truck1-p9-6 22.89s horizon=14 cost=13.0 actions=13
+15:23:04 eval    ok       grid10x10-1-truck1-p10-4 18.99s horizon=13 cost=12.0 actions=12
+15:23:04 tt      ok       grid10x10-2-truck1-p10-5 17.36s horizon=14 cost=13.0 actions=13
+15:23:04 tt      ok       grid10x10-2-truck1-p9-7 15.49s horizon=15 cost=14.0 actions=14
+15:23:04 goal             grid10x10-1-truck1-p10-5  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p10-9  horizon=18 cost=17.0 actions=17 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p10-3  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p5-8  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p8-9  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p9-4  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p9-6  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:23:04 goal             grid10x10-1-truck1-p10-4  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:23:04 problem ok       grid10x10-1  recognition_horizon=18
+15:23:14 eval    ok       grid10x10-2-truck1-p7-8 19.57s horizon=14 cost=13.0 actions=13
+15:23:14 tt      ok       grid10x10-2-truck1-p6-10 17.84s horizon=15 cost=14.0 actions=14
+15:23:14 eval    ok       grid10x10-2-truck1-p7-9 20.1s horizon=15 cost=14.0 actions=14
+15:23:14 eval    ok       grid10x10-2-truck1-p10-3 15.32s horizon=12 cost=11.0 actions=11
+15:23:14 tt      ok       grid10x10-2-truck1-p3-10 13.73s horizon=12 cost=11.0 actions=11
+15:23:24 tt      ok       grid10x10-2-truck1-p9-10 19.57s horizon=18 cost=17.0 actions=17
+15:23:24 tt      ok       grid10x10-2-truck1-p9-8 20.07s horizon=16 cost=15.0 actions=15
+15:23:24 tt      ok       grid10x10-3-truck1-p5-9 12.26s horizon=13 cost=12.0 actions=12
+15:23:32 eval    ok       grid10x10-2-truck1-p10-5 21.59s horizon=14 cost=13.0 actions=13
+15:23:32 eval    ok       grid10x10-2-truck1-p9-7 24.61s horizon=15 cost=14.0 actions=14
+15:23:32 tt      ok       grid10x10-3-truck1-p9-9 20.0s horizon=17 cost=16.0 actions=16
+15:23:32 tt      ok       grid10x10-3-truck1-p8-8 17.26s horizon=15 cost=14.0 actions=14
+15:23:32 tt      ok       grid10x10-3-truck1-p9-5 13.08s horizon=13 cost=12.0 actions=12
+15:23:32 tt      ok       grid10x10-3-truck1-p8-7 14.98s horizon=14 cost=13.0 actions=13
+15:23:44 eval    ok       grid10x10-2-truck1-p6-10 23.88s horizon=15 cost=14.0 actions=14
+15:23:44 eval    ok       grid10x10-2-truck1-p3-10 18.74s horizon=12 cost=11.0 actions=11
+15:23:44 tt      ok       grid10x10-3-truck1-p9-7 15.58s horizon=15 cost=14.0 actions=14
+15:23:52 eval    ok       grid10x10-2-truck1-p9-8 23.51s horizon=16 cost=15.0 actions=15
+15:23:52 eval    ok       grid10x10-3-truck1-p5-9 19.91s horizon=13 cost=12.0 actions=12
+15:23:52 tt      ok       grid10x10-3-truck1-p8-5 13.7s horizon=12 cost=11.0 actions=11
+15:23:52 tt      ok       grid10x10-3-truck1-p10-3 13.61s horizon=12 cost=11.0 actions=11
+15:24:01 eval    ok       grid10x10-2-truck1-p9-10 28.68s horizon=18 cost=17.0 actions=17
+15:24:01 eval    ok       grid10x10-3-truck1-p9-9 25.4s horizon=17 cost=16.0 actions=16
+15:24:01 eval    ok       grid10x10-3-truck1-p8-8 20.56s horizon=15 cost=14.0 actions=14
+15:24:01 eval    ok       grid10x10-3-truck1-p9-5 20.78s horizon=13 cost=12.0 actions=12
+15:24:01 eval    ok       grid10x10-3-truck1-p8-7 21.69s horizon=14 cost=13.0 actions=13
+15:24:01 tt      ok       grid10x10-3-truck1-p7-9 15.3s horizon=15 cost=14.0 actions=14
+15:24:01 tt      ok       grid10x10-4-truck1-p8-5 14.22s horizon=12 cost=11.0 actions=11
+15:24:01 goal             grid10x10-2-truck1-p7-8  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p10-3  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p10-5  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p9-7  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p6-10  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p9-10  horizon=18 cost=17.0 actions=17 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p3-10  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:24:01 goal             grid10x10-2-truck1-p9-8  horizon=16 cost=15.0 actions=15 plan_from=eval
+15:24:01 problem ok       grid10x10-2  recognition_horizon=18
+15:24:13 eval    ok       grid10x10-3-truck1-p9-7 25.53s horizon=15 cost=14.0 actions=14
+15:24:13 eval    ok       grid10x10-3-truck1-p8-5 17.27s horizon=12 cost=11.0 actions=11
+15:24:13 eval    ok       grid10x10-3-truck1-p10-3 16.58s horizon=12 cost=11.0 actions=11
+15:24:13 tt      ok       grid10x10-4-truck1-p9-5 16.31s horizon=13 cost=12.0 actions=12
+15:24:13 tt      ok       grid10x10-4-truck1-p8-7 17.33s horizon=14 cost=13.0 actions=13
+15:24:21 eval    ok       grid10x10-4-truck1-p8-5 19.11s horizon=12 cost=11.0 actions=11
+15:24:21 tt      ok       grid10x10-4-truck1-p8-10 15.71s horizon=17 cost=16.0 actions=16
+15:24:21 tt      ok       grid10x10-4-truck1-p8-6 14.03s horizon=13 cost=12.0 actions=12
+15:24:28 eval    ok       grid10x10-3-truck1-p7-9 25.14s horizon=15 cost=14.0 actions=14
+15:24:28 tt      ok       grid10x10-4-truck1-p10-9 23.45s horizon=18 cost=17.0 actions=17
+15:24:28 tt      ok       grid10x10-4-truck1-p10-4 17.0s horizon=13 cost=12.0 actions=12
+15:24:28 tt      ok       grid10x10-4-truck1-p9-4 15.29s horizon=12 cost=11.0 actions=11
+15:24:28 goal             grid10x10-3-truck1-p5-9  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p9-9  horizon=17 cost=16.0 actions=16 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p8-8  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p9-5  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p9-7  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p8-5  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p10-3  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:24:28 goal             grid10x10-3-truck1-p7-9  horizon=15 cost=14.0 actions=14 plan_from=eval
+15:24:28 problem ok       grid10x10-3  recognition_horizon=17
+15:24:36 eval    ok       grid10x10-4-truck1-p9-5 17.23s horizon=13 cost=12.0 actions=12
+15:24:36 eval    ok       grid10x10-4-truck1-p8-7 21.22s horizon=14 cost=13.0 actions=13
+15:24:36 tt      ok       grid10x10-4-truck1-p4-10 16.56s horizon=13 cost=12.0 actions=12
+15:24:42 eval    ok       grid10x10-4-truck1-p8-6 20.03s horizon=13 cost=12.0 actions=12
+15:24:47 eval    ok       grid10x10-4-truck1-p8-10 23.33s horizon=17 cost=16.0 actions=16
+15:24:47 eval    ok       grid10x10-4-truck1-p9-4 14.8s horizon=12 cost=11.0 actions=11
+15:24:52 eval    ok       grid10x10-4-truck1-p10-4 19.36s horizon=13 cost=12.0 actions=12
+15:24:57 eval    ok       grid10x10-4-truck1-p4-10 19.71s horizon=13 cost=12.0 actions=12
+15:25:02 eval    ok       grid10x10-4-truck1-p10-9 29.66s horizon=18 cost=17.0 actions=17
+15:25:03 goal             grid10x10-4-truck1-p8-5  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p9-5  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p8-7  horizon=14 cost=13.0 actions=13 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p8-10  horizon=17 cost=16.0 actions=16 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p10-9  horizon=18 cost=17.0 actions=17 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p8-6  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p10-4  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p9-4  horizon=12 cost=11.0 actions=11 plan_from=eval
+15:25:03 goal             grid10x10-4-truck1-p4-10  horizon=13 cost=12.0 actions=12 plan_from=eval
+15:25:03 problem ok       grid10x10-4  recognition_horizon=18
+15:25:03 size    settled  10x10  
+15:25:03 end              SimpleGrid  
