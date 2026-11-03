@@ -13,6 +13,8 @@ TwoPackage, TwoPackageOneway, ThreePackage, FourPackage).  Each script takes
 | `compile-d4.py` | d4 circuits of the evidence-free recognition theories, 2 hours each, each checked against SharpSAT-TD's count. |
 | `summarize.py` | Tables of `results/*.jsonl`, written to `F/tables.md`. |
 | `run-family.sh` | The Slurm job: the three stages above side by side, then `summarize.py`. |
+| `plan-originals.py` | Plans each ORIGINAL problem `F/gridNxN-K.pddl` (goal = the disjunction) with tt-open-wbo-inc (shortest horizon H0 by kissat, then the cheapest plan over H0..H0+4, `--longer 4`) and EvalMaxSAT (`--numslices H0 --longer 4`, kept only when it proved the optimum at every horizon); writes `F/gridNxN-K-tt.answer` / `-eval.answer` and `results/originals.jsonl`, and checks each plan against the goal plans of `plans.jsonl` (`--check-only` reruns just the checks). Separate from the pipeline above; touches no goal, evidence or recognition file. |
+| `run-originals.sh` | Its Slurm job, then `summarize.py`: `sbatch -J orig-F -o F/originals-run.log scripts/run-originals.sh F`. |
 | `shims/` | `sbcl` (a larger heap and stack) and `d4` (records d4's time, input and dump), put first on PATH. |
 
 To run a family (FiFO installed in `~/bin`, `~/lib/fifo`):

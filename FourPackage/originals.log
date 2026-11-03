@@ -1,0 +1,122 @@
+15:42:26 FourPackage: 40 problems, 40 runs to do, 12 at a time, --longer 4, solver limit 1800 s, plan limit 86400 s; stopped: {}
+15:43:14 tt     ok        grid6x6-1 46.01s shortest_horizon=5 horizon=5 cost=6.0 actions=4
+15:43:14 tt     ok        grid6x6-2 46.28s shortest_horizon=5 horizon=5 cost=6.0 actions=4
+15:43:26 tt     ok        grid6x6-3 56.1s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+15:43:47 tt     ok        grid6x6-4 75.34s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:43:58 tt     ok        grid7x7-2 83.73s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+15:44:09 eval   ok        grid6x6-1 53.75s shortest_horizon=5 horizon=5 cost=6.0 actions=4
+15:44:15 tt     ok        grid7x7-4 101.64s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:44:21 tt     ok        grid7x7-3 103.11s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:44:37 tt     ok        grid7x7-1 123.75s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:44:48 eval   ok        grid6x6-2 93.07s shortest_horizon=5 horizon=5 cost=6.0 actions=4
+15:45:10 tt     ok        grid8x8-2 151.1s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:45:10 eval   ok        grid6x6-3 102.11s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+15:45:22 tt     ok        grid8x8-3 164.8s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:45:58 tt     ok        grid8x8-4 198.4s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:46:19 eval   ok        grid7x7-2 141.02s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+15:46:25 eval   ok        grid6x6-4 157.98s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:46:31 eval   ok        grid7x7-4 134.19s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:47:23 eval   ok        grid7x7-3 178.02s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:48:04 eval   ok        grid8x8-2 171.21s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:48:20 eval   ok        grid7x7-1 220.62s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:50:02 tt     ok        grid9x9-4 218.42s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:50:08 tt     ok        grid9x9-3 292.04s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:50:24 eval   ok        grid8x8-3 298.05s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:50:30 tt     ok        grid9x9-2 339.28s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:50:42 tt     ok        grid8x8-1 486.89s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+15:51:28 eval   ok        grid8x8-4 326.91s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:54:50 eval   ok        grid9x9-4 286.92s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:56:07 eval   ok        grid9x9-2 332.05s shortest_horizon=7 horizon=7 cost=10.0 actions=6
+15:56:13 eval   ok        grid9x9-3 359.69s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+15:57:55 tt     ok        grid10x10-1 685.08s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:01:12 eval   ok        grid8x8-1 627.87s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:01:33 tt     ok        grid9x9-1 1041.79s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:04:15 tt     ok        grid10x10-2 1063.49s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:06:57 tt     ok        grid11x11-1 1114.06s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:07:18 tt     ok        grid11x11-3 949.31s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:07:40 tt     ok        grid11x11-2 1031.21s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:07:46 tt     ok        grid10x10-3 1217.73s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:09:12 eval   ok        grid10x10-1 673.36s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:09:12 tt     ok        grid12x12-3 478.68s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+16:12:51 tt     ok        grid12x12-2 993.0s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:14:58 eval   ok        grid9x9-1 802.87s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:16:09 eval   ok        grid12x12-3 414.0s shortest_horizon=6 horizon=6 cost=8.0 actions=5
+16:20:07 eval   ok        grid11x11-3 767.72s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:20:18 eval   ok        grid10x10-2 959.3s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:20:24 eval   ok        grid11x11-1 802.28s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:21:46 tt     ok        grid12x12-1 1535.35s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+16:21:46 tt     ok        grid12x12-4 751.84s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+16:22:53 eval   ok        grid11x11-2 909.16s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:24:30 eval   ok        grid10x10-3 999.35s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:26:42 eval   ok        grid12x12-2 827.44s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:32:25 eval   ok        grid12x12-4 638.3s shortest_horizon=8 horizon=8 cost=12.0 actions=7
+16:37:39 eval   ok        grid12x12-1 947.87s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+16:49:49 tt     ok        grid14x14-2 1612.51s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+16:54:02 tt     ok        grid10x10-4 3957.15s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:08:04 tt     ok        grid13x13-4 2862.0s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:08:25 eval   ok        grid14x14-2 1114.61s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+17:13:08 tt     ok        grid14x14-1 3163.15s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+17:16:00 tt     ok        grid14x14-4 2956.22s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:20:38 tt     ok        grid11x11-4 5146.26s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+17:23:55 tt     ok        grid15x15-1 3086.36s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:28:38 eval   ok        grid10x10-4 2074.65s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:35:52 tt     ok        grid15x15-2 3489.0s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+17:41:35 eval   ok        grid13x13-4 2010.57s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:46:42 eval   ok        grid14x14-4 1842.39s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:47:43 eval   ok        grid14x14-1 2071.26s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+17:49:13 tt     ok        grid13x13-2 5583.54s shortest_horizon=13 horizon=13 cost=22.0 actions=12
+17:49:55 tt     ok        grid13x13-1 5695.27s shortest_horizon=12 horizon=12 cost=20.0 actions=11
+17:57:59 tt     ok        grid13x13-3 5869.48s shortest_horizon=12 horizon=12 cost=20.0 actions=11
+17:58:15 eval   ok        grid15x15-1 2055.36s shortest_horizon=10 horizon=10 cost=16.0 actions=9
+17:59:20 eval   ok        grid11x11-4 2319.52s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+18:02:52 tt     ok        grid15x15-4 2050.42s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+18:08:45 eval   ok        grid15x15-2 1972.07s shortest_horizon=11 horizon=11 cost=18.0 actions=10
+18:27:17 eval   ok        grid15x15-4 1461.85s shortest_horizon=9 horizon=9 cost=14.0 actions=8
+18:30:24 eval   ok        grid13x13-2 2469.48s shortest_horizon=13 horizon=13 cost=22.0 actions=12
+18:39:12 tt     ok        grid14x14-3 8079.76s shortest_horizon=13 horizon=13 cost=22.0 actions=12
+18:49:07 eval   ok        grid13x13-1 3547.31s shortest_horizon=12 horizon=12 cost=20.0 actions=11
+19:12:41 eval   ok        grid13x13-3 4477.26s shortest_horizon=12 horizon=12 cost=20.0 actions=11
+20:08:11 eval   timeout   grid14x14-3 5337.99s shortest_horizon=13 horizon=13 cost=22.0 actions=12
+20:08:11     eval stopped at 14x14: killing 0 run(s) at that size or larger
+20:17:30 tt     ok        grid15x15-3 11343.09s shortest_horizon=14 horizon=14 cost=24.0 actions=13
+20:17:35 check  ok        grid6x6-1  shortest_horizon=5
+20:17:35 check  ok        grid6x6-2  shortest_horizon=5
+20:17:35 check  ok        grid6x6-3  shortest_horizon=6
+20:17:35 check  ok        grid6x6-4  shortest_horizon=7
+20:17:35 check  ok        grid7x7-1  shortest_horizon=8
+20:17:35 check  ok        grid7x7-2  shortest_horizon=6
+20:17:35 check  ok        grid7x7-3  shortest_horizon=7
+20:17:35 check  ok        grid7x7-4  shortest_horizon=7
+20:17:35 check  ok        grid8x8-1  shortest_horizon=9
+20:17:35 check  ok        grid8x8-2  shortest_horizon=7
+20:17:35 check  ok        grid8x8-3  shortest_horizon=7
+20:17:35 check  ok        grid8x8-4  shortest_horizon=8
+20:17:35 check  ok        grid9x9-1  shortest_horizon=9
+20:17:35 check  ok        grid9x9-2  shortest_horizon=7
+20:17:35 check  ok        grid9x9-3  shortest_horizon=8
+20:17:35 check  ok        grid9x9-4  shortest_horizon=7
+20:17:35 check  ok        grid10x10-1  shortest_horizon=9
+20:17:35 check  ok        grid10x10-2  shortest_horizon=9
+20:17:35 check  ok        grid10x10-3  shortest_horizon=9
+20:17:35 check  ok        grid10x10-4  shortest_horizon=10
+20:17:35 check  ok        grid11x11-1  shortest_horizon=9
+20:17:35 check  ok        grid11x11-2  shortest_horizon=9
+20:17:35 check  ok        grid11x11-3  shortest_horizon=9
+20:17:35 check  ok        grid11x11-4  shortest_horizon=11
+20:17:35 check  ok        grid12x12-1  shortest_horizon=10
+20:17:35 check  ok        grid12x12-2  shortest_horizon=9
+20:17:35 check  ok        grid12x12-3  shortest_horizon=6
+20:17:35 check  ok        grid12x12-4  shortest_horizon=8
+20:17:35 check  ok        grid13x13-1  shortest_horizon=12
+20:17:35 check  ok        grid13x13-2  shortest_horizon=13
+20:17:35 check  ok        grid13x13-3  shortest_horizon=12
+20:17:35 check  ok        grid13x13-4  shortest_horizon=10
+20:17:35 check  ok        grid14x14-1  shortest_horizon=11
+20:17:35 check  ok        grid14x14-2  shortest_horizon=9
+20:17:35 check  ok        grid14x14-3  shortest_horizon=13
+20:17:35 check  ok        grid14x14-4  shortest_horizon=10
+20:17:35 check  ok        grid15x15-1  shortest_horizon=10
+20:17:35 check  ok        grid15x15-2  shortest_horizon=11
+20:17:35 check  ok        grid15x15-3  shortest_horizon=14
+20:17:35 check  ok        grid15x15-4  shortest_horizon=9
+20:17:35 end              FourPackage  

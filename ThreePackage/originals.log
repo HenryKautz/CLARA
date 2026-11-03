@@ -1,0 +1,32 @@
+15:03:47 ThreePackage: 12 problems, 12 runs to do, 12 at a time, --longer 4, solver limit 1800 s, plan limit 86400 s; stopped: {}
+15:06:00 tt     ok        grid5x5-1 129.25s shortest_horizon=13 horizon=13 cost=22.0 actions=14
+15:07:47 tt     ok        grid5x5-3 236.08s shortest_horizon=16 horizon=16 cost=30.0 actions=18
+15:12:05 eval   ok        grid5x5-1 363.14s shortest_horizon=13 horizon=13 cost=22.0 actions=14
+15:24:58 eval   ok        grid5x5-3 1030.38s shortest_horizon=16 horizon=16 cost=30.0 actions=18
+15:41:43 tt     ok        grid5x5-2 2273.93s shortest_horizon=18 horizon=18 cost=28.0 actions=17
+15:41:55 tt     ok        grid5x5-4 2283.44s shortest_horizon=19 horizon=19 cost=30.0 actions=18
+15:50:13 tt     ok        grid6x6-3 2777.82s shortest_horizon=20 horizon=20 cost=32.0 actions=19
+16:04:53 tt     timeout   grid7x7-1 3657.76s 
+16:04:53     tt stopped at 7x7: killing 3 run(s) at that size or larger
+16:04:57 tt     killed    grid7x7-2 3656.98s 
+16:05:00 tt     killed    grid7x7-3 3659.05s 
+16:05:03 tt     killed    grid7x7-4 3661.13s 
+16:16:11 tt     ok        grid6x6-1 4335.39s shortest_horizon=18 horizon=18 cost=28.0 actions=17
+16:22:24 tt     ok        grid6x6-4 4707.86s shortest_horizon=20 horizon=20 cost=34.0 actions=20
+16:31:38 eval   ok        grid5x5-2 2991.62s shortest_horizon=18 horizon=18 cost=28.0 actions=17
+16:42:26 eval   ok        grid5x5-4 3629.08s shortest_horizon=19 horizon=19 cost=30.0 actions=18
+16:58:10 tt     ok        grid6x6-2 6855.84s shortest_horizon=20 horizon=20 cost=32.0 actions=19
+17:27:54 eval   timeout   grid6x6-1 4301.49s shortest_horizon=18 horizon=18 cost=28.0 actions=17
+17:27:54     eval stopped at 6x6: killing 3 run(s) at that size or larger
+17:27:58 eval   killed    grid6x6-3 5861.63s 
+17:28:01 eval   killed    grid6x6-4 3933.9s 
+17:28:04 eval   killed    grid6x6-2 1790.58s 
+17:28:04 check  ok        grid5x5-1  shortest_horizon=13
+17:28:04 check  ok        grid5x5-2  shortest_horizon=18
+17:28:04 check  ok        grid5x5-3  shortest_horizon=16
+17:28:04 check  ok        grid5x5-4  shortest_horizon=19
+17:28:04 check  ok        grid6x6-1  shortest_horizon=18
+17:28:04 check  ok        grid6x6-2  shortest_horizon=20
+17:28:04 check  ok        grid6x6-3  shortest_horizon=20
+17:28:04 check  ok        grid6x6-4  shortest_horizon=20
+17:28:04 end              ThreePackage  

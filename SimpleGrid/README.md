@@ -23,6 +23,9 @@ The **hypotheses** are the destinations, named `at-truck1-<place>` by
 
 ```
 gridNxN-K.pddl              problems; clara-logistics.pddl, their domain
+gridNxN-K-tt.answer         the problem's own plan (its goal, any one hypothesis) by
+                            tt-open-wbo-inc, cheapest over horizons H0..H0+4
+gridNxN-K-eval.answer       EvalMaxSAT's, where it proved the optimum at all five
 goals/
   <goal>.pddl               the problem with one hypothesis as its hard goal
   <goal>-tt.answer          tt-open-wbo-inc's plan at the goal's shortest horizon
@@ -38,7 +41,8 @@ recognition/<problem>.pddl  the goal as one disjunction of the hypotheses; its h
 scnf/<problem>.scnf         the evidence-free recognition theory (compile-d4.py)
 circuits/<problem>.dnnf     its d4 circuit, where d4 succeeded; one over 100 MB is
                             committed as .part-* pieces: cat <problem>.dnnf.part-* > <problem>.dnnf
-results/                    plans.jsonl, runs.jsonl, compile-d4.jsonl: a record per run
+results/                    plans.jsonl, originals.jsonl, runs.jsonl, compile-d4.jsonl:
+                            a record per run
 tables.md                   scripts/summarize.py's tables
 *.log                       the stages' logs
 ```
@@ -59,6 +63,22 @@ ties with k − 1 others for the highest posterior.
 planned by tt-open-wbo-inc in seconds, and EvalMaxSAT proved every plan
 optimal; tt's plans were all already optimal, so the evidence comes from
 EvalMaxSAT's plans throughout.
+
+**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
+one destination).  tt-open-wbo-inc found the shortest feasible horizon H0
+with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at
+`--numslices H0`, minimised cost at each of H0..H0+4 (`--longer 4`) and kept
+the cheapest plan.  30 minutes per solver call, 24 hours per run; an
+EvalMaxSAT plan counts only when it proved the optimum at all five horizons.
+Both solvers planned all 32 problems and EvalMaxSAT proved every optimum (at
+most 3 minutes per run at 10×10); H0 runs from 4 (3×3) to 12 (10×10), and the
+kept plan's horizon was H0 every time: no longer horizon was cheaper.  tt's
+plans were all optimal.  Checked against the goal plans (any goal plan also
+solves the original): H0 equals the smallest shortest horizon among each
+problem's goals, and every optimum equals the cheapest goal plan within
+H0..H0+4 — all 32 problems pass.  Plans: `gridNxN-K-tt.answer`,
+`gridNxN-K-eval.answer`; records: `results/originals.jsonl`.
 
 **Recognition** (30 minutes per run).
 

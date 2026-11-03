@@ -60,6 +60,36 @@ minutes per solver call; recognition only runs on sizes that were planned):
 MC-SAT also often failed to mix (a frozen chain, status `nomix`) on the sizes
 it did finish; the family READMEs give its counts.
 
+**Original problems** (2026-11-02, `scripts/plan-originals.py`, one Slurm job
+per family via `scripts/run-originals.sh`, no evidence).  Each top-level
+`gridNxN-K.pddl` was also planned as it is, its goal the disjunction of the
+hypotheses.  tt-open-wbo-inc found the shortest feasible horizon H0 with
+kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at
+`--numslices H0`, minimised cost at each of H0..H0+4 (`--longer 4`, since H0
+is set by the quickest hypothesis, which need not be the cheapest) and kept
+the cheapest plan.  30 minutes per solver call, 24 hours per run, the same
+stop rule; an EvalMaxSAT plan counts only when it proved the optimum at all
+five horizons.  Plans are `<F>/gridNxN-K-tt.answer` and `-eval.answer`,
+records `<F>/results/originals.jsonl`.
+
+| Family | tt-open-wbo-inc plans | EvalMaxSAT proved | Stopped at |
+|---|---|---|---|
+| SimpleGrid | 32/32 | 32/32 | — |
+| TwoPackage | 20/20 | 20/20 | — |
+| TwoPackageOneway | 20/20 | 20/20 | — |
+| ThreePackage | 8/12 (5×5, 6×6) | 4/12 (5×5) | tt 7×7, EvalMaxSAT 6×6 |
+| FourPackage | 40/40 | 38/40 (all through 13×13, 3 at 14×14, 3 at 15×15) | EvalMaxSAT 14×14 |
+
+In all 234 plans (120 tt-open-wbo-inc, 114 EvalMaxSAT) the kept horizon was H0: no longer horizon gave a cheaper
+plan.  tt-open-wbo-inc's plans were optimal wherever EvalMaxSAT proved one.
+Every plan was checked against the goal plans (any goal plan also solves the
+original): H0 equals the smallest shortest horizon among the problem's goals
+(no larger, where only some goals were planned), and every proved optimum
+is no more than — in fact equal to — the cheapest goal plan within
+H0..H0+4.  No check failed; FourPackage from grid10x10-2 on, and ThreePackage
+grid6x6-4, have no goal plans to check against.  FourPackage's originals are
+far easier than its goals (the quickest delivery decides H0: 11 at 15×15).
+
 ## The 2026-10-31 regeneration
 
 Every problem of SimpleGrid, TwoPackage, ThreePackage and FourPackage was made

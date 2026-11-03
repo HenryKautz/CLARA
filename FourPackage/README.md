@@ -34,6 +34,9 @@ the two have the same plans.
 
 ```
 gridNxN-K.pddl              problems; clara-logistics.pddl, their domain
+gridNxN-K-tt.answer         the problem's own plan (its goal, any one hypothesis) by
+                            tt-open-wbo-inc, cheapest over horizons H0..H0+4
+gridNxN-K-eval.answer       EvalMaxSAT's, where it proved the optimum at all five
 goals/
   <goal>.pddl               the problem with one hypothesis as its hard goal
   <goal>-tt.answer          tt-open-wbo-inc's plan at the goal's shortest horizon
@@ -48,7 +51,8 @@ recognition/<problem>.pddl  the goal as one disjunction of the hypotheses; its h
                             RECOGNITION HORIZON (the largest), which every run uses
 scnf/<problem>.scnf         the evidence-free recognition theory (compile-d4.py)
 circuits/<problem>.dnnf     its d4 circuit, where d4 succeeded
-results/                    plans.jsonl, runs.jsonl, compile-d4.jsonl: a record per run
+results/                    plans.jsonl, originals.jsonl, runs.jsonl, compile-d4.jsonl:
+                            a record per run
 tables.md                   scripts/summarize.py's tables
 *.log                       the stages' logs
 ```
@@ -81,6 +85,30 @@ Compared with the knockout version (commit d228f28), restoring the roads
 shortened the plans and let EvalMaxSAT go one size further (it stopped at 6×6
 before), but tt stopped one size earlier (at 10×10 before): with more roads
 there are more drive actions per step.
+
+**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
+one package delivered).  tt-open-wbo-inc found the shortest feasible horizon
+H0 with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at
+`--numslices H0`, minimised cost at each of H0..H0+4 (`--longer 4`) and kept
+the cheapest plan.  30 minutes per solver call, 24 hours per run; an
+EvalMaxSAT plan counts only when it proved the optimum at all five horizons.
+The originals are far easier than the single goals, because the quickest
+delivery decides H0: mean H0 is 5.8 at 6×6 and only 11.0 at 15×15.
+tt-open-wbo-inc planned **all 40 problems, 6×6 to 15×15**.  EvalMaxSAT proved
+every optimum through 13×13 and three at 14×14, then timed out on
+grid14x14-3 (H0 13, 89 minutes) and stopped at 14×14; three 15×15 runs had
+already finished with proved optima, and grid15x15-3 was never started — 38
+proved in all.  Runs at 13×13–15×15 take 1–1.5 hours (tt) and 30–50 minutes
+(EvalMaxSAT) on average.  The kept plan's horizon was H0 every time: no
+longer horizon was cheaper.  tt's plans were optimal wherever EvalMaxSAT
+proved one.  Checked against the goal plans (any goal plan also solves the
+original), which exist only up to 10×10: H0 equals the smallest shortest
+horizon among the goals for the 14 problems whose goals were all planned, and
+is no larger than it for the three partly planned (grid9x9-3, -4,
+grid10x10-1); each of the 17 proved optima with goal plans to compare equals
+the cheapest goal plan within H0..H0+4.  The 23 problems from grid10x10-2 on
+have no goal plans to check against.  No check failed.
 
 **Recognition** (30 minutes per run).  Every method stopped at 6×6, the
 smallest size.  With no evidence max-term finished three of the four
