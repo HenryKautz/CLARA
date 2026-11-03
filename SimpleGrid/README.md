@@ -2,7 +2,7 @@
 
 One truck heading for one of several destinations; regenerated 2026-10-31 (the
 version before, with its results, is
-[OldVersions/SimpleGrid](../OldVersions/SimpleGrid/README.md)).  How the
+[OldVersions/SimpleGrid](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/SimpleGrid), deleted from the tree in 7731002).  How the
 problems were made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
@@ -108,5 +108,5 @@ three timed out.  sharpSAT confirmed the circuit's model count for every
 circuit through 6×6 and three of four at 7×7; from 8×8 on every check ran out
 of its 30 minutes, so those circuits are unverified (d4 is known to
 miscompile larger theories; see
-[OldVersions/SimpleGrid/results/compile-d4.md](../OldVersions/SimpleGrid/results/compile-d4.md)).
+[OldVersions/SimpleGrid/results/compile-d4.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/SimpleGrid/results/compile-d4.md)).
 No count check disagreed.

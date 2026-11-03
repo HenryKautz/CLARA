@@ -4,7 +4,7 @@ One truck, three packages, every package delivered; regenerated 2026-11-01
 with every road present (no `--knockout`).  The 2026-10-31 regeneration, which
 kept the old 20% knockout, is in git at commit d228f28; the version before
 that, with its results, is
-[OldVersions/ThreePackage](../OldVersions/ThreePackage/README.md).  How the
+[OldVersions/ThreePackage](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/ThreePackage), deleted from the tree in 7731002.  How the
 problems were made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
@@ -120,6 +120,6 @@ reached.
 confirmed the circuit's model count for three of them; on grid5x5-4 the check
 ran out of its 30 minutes, so that circuit is unverified (d4 is known to
 miscompile larger theories; see
-[OldVersions/SimpleGrid/results/compile-d4.md](../OldVersions/SimpleGrid/results/compile-d4.md)).
+[OldVersions/SimpleGrid/results/compile-d4.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/SimpleGrid/results/compile-d4.md)).
 The one 6×6 theory (grid6x6-1) timed out after 2 hours at 25 GB.  No count
 check disagreed.

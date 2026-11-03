@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """make-problems.py --family F
 
-Regenerate family F's problems from OldVersions/F: each old gridNxN-K.pddl
+Regenerate family F's problems from OldVersions/F (deleted from the tree in
+7731002; restore it first, see common.OLD_COMMIT): each old gridNxN-K.pddl
 records every ppgen.sh setting it was made with; it is made again with those
 settings, except
 
@@ -135,7 +136,7 @@ def main():
                     help="move F's outputs into F/superseded-<date-time>/ first")
     a = ap.parse_args()
     fam = C.Family(a.family)
-    files = sorted(f for f in os.listdir(fam.old)
+    files = sorted(f for f in os.listdir(C.require_old(fam.old))
                    if (m := re.fullmatch(r"grid(\d+)x\1-(\d+)\.pddl", f)) and int(m.group(1)) in fam.sizes)
     with tempfile.TemporaryDirectory(prefix="make-problems-") as tmp:
         made = [(f, make_one(fam, f, tmp)) for f in files]

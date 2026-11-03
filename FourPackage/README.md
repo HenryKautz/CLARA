@@ -4,7 +4,7 @@ Two trucks, four packages, at least one delivered; regenerated 2026-11-01
 with every road present (no `--knockout`).  The 2026-10-31 regeneration, which
 kept the old 40% knockout, is in git at commit d228f28; the version before
 that, with goal preferences, and its results, is
-[OldVersions/FourPackage](../OldVersions/FourPackage/README.md).  How the
+[OldVersions/FourPackage](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/FourPackage), deleted from the tree in 7731002.  How the
 problems were made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 

@@ -10,7 +10,10 @@ The four grid benchmarks were **regenerated on 2026-10-31**, and on
 2026-11-01 ThreePackage and FourPackage were made again without road
 knockout and TwoPackageOneway was added (see
 [The 2026-10-31 regeneration](#the-2026-10-31-regeneration)); the versions
-before 2026-10-31, with their results, are in `OldVersions/`.
+before 2026-10-31, with their results, were in `OldVersions/`, deleted from the
+tree on 2026-11-01 (7731002); they are in git at
+[ac6aa16](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions), and
+`git checkout ac6aa16 -- OldVersions` restores them.
 
 | Directory | What it holds | README |
 |---|---|---|
@@ -22,7 +25,7 @@ before 2026-10-31, with their results, are in `OldVersions/`.
 | `scripts/` | The one pipeline that made and solved all five (below). | [scripts/README.md](scripts/README.md) |
 | `reassemble.sh`, `unassemble.sh` | Files over GitHub's 100 MB limit (large d4 circuits) are committed as 90 MB `F.part-*` pieces, and `F` itself is git-ignored. After cloning or pulling, run `./reassemble.sh` to rebuild every `F` from its pieces. Before committing a new large file, run `./unassemble.sh` to split it and add it to `.gitignore`. Both are safe to run again: they report files that are already done. | |
 | `AAAI-2010-Benchmarks/` | Ramírez & Geffner's BlockWords and IntrusionDetection, original and as recognition instances, with exact posteriors. | [AAAI-2010-Benchmarks/README.md](AAAI-2010-Benchmarks/README.md) |
-| `OldVersions/` | The grid benchmarks as they were before 2026-10-31 (old domain; FourPackage with goal preferences), their results and scripts; `RestrictedPlanning/` (FiFO's experimental `planner.sh --restrict` evaluated on them); and `make-fifo-files.py`/`.lisp`, which wrote the `wff/`, `scnf/` and `wcnf/` files of the old SimpleGrid, TwoPackage and AAAI-2010-Benchmarks (it still has those directories' old paths). | the READMEs inside |
+| `OldVersions/` (deleted; in git at [ac6aa16](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions)) | The grid benchmarks as they were before 2026-10-31 (old domain; FourPackage with goal preferences), their results and scripts; `RestrictedPlanning/` (FiFO's experimental `planner.sh --restrict` evaluated on them); and `make-fifo-files.py`/`.lisp`, which wrote the `wff/`, `scnf/` and `wcnf/` files of the old SimpleGrid, TwoPackage and AAAI-2010-Benchmarks (it still has those directories' old paths). | [OldVersions/README.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/README.md) |
 
 ## The datasets at a glance
 
@@ -185,6 +188,7 @@ The four grid benchmarks share one layout (each family's README lists it):
   rerun supersedes the earlier record.  `scripts/summarize.py` turns them into
   `tables.md`.
 
-`OldVersions/` keeps the old conventions (also `-ordN.txt` ordering evidence,
-and `wff/`/`wcnf/` copies of the theories); see the READMEs there and
-`OldVersions/make-fifo-files.py`.
+`OldVersions/` (in git at ac6aa16) keeps the old conventions (also `-ordN.txt`
+ordering evidence, and `wff/`/`wcnf/` copies of the theories); see the READMEs
+there and
+[OldVersions/make-fifo-files.py](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/make-fifo-files.py).

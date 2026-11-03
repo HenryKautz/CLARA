@@ -20,7 +20,27 @@ import itertools, json, math, os, re, shutil, signal, subprocess, sys, threading
 
 SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 CLARA = os.path.dirname(SCRIPTS)
-OLD = os.path.join(CLARA, "OldVersions")
+# The benchmarks as they were before 2026-10-31.  OldVersions/ was deleted from
+# the tree on 2026-11-01 (7731002); OLD_COMMIT is the last commit that has it.
+# Only make-problems.py needs it (plan-goals.py merely loses its horizon hint):
+# restore it with  git checkout OLD_COMMIT -- OldVersions  or point $CLARA_OLD
+# at a checkout of it.
+OLD_COMMIT = "ac6aa168d6f2de5714fd553bf8c8151d77867c57"
+OLD = os.environ.get("CLARA_OLD") or os.path.join(CLARA, "OldVersions")
+OLD_URL = f"https://github.com/HenryKautz/CLARA/tree/{OLD_COMMIT[:7]}/OldVersions"
+
+
+def require_old(path):
+    """PATH (under OLD), or exit with how to restore OldVersions/.  Checks for
+    OLD's tracked README.md, not PATH: git-ignored leftovers (circuits, wcnf)
+    can keep the directories alive after the deletion."""
+    if not os.path.exists(os.path.join(OLD, "README.md")) or not os.path.exists(path):
+        sys.exit(f"{path} is missing: OldVersions/ was deleted in 7731002; restore it with\n"
+                 f"  git -C {CLARA} checkout {OLD_COMMIT[:7]} -- OldVersions\n"
+                 f"or set CLARA_OLD to a checkout of it ({OLD_URL})")
+    return path
+
+
 SHIMS = os.path.join(SCRIPTS, "shims")
 
 # sizes and how the goal is split into hypotheses, per family.  "literals": the

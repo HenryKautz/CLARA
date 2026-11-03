@@ -231,7 +231,10 @@ plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory:
   `query-h5-circuit.lisp` reproduces that posterior from it without
   recompiling.
 
-`../OldVersions/make-fifo-files.py` (at the top level until 2026-10-31) writes
+`../OldVersions/make-fifo-files.py` (at the top level until 2026-10-31;
+OldVersions/ was deleted on 2026-11-01, so restore it with
+`git checkout ac6aa16 -- OldVersions` or see it
+[on GitHub](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/make-fifo-files.py)) writes
 `wff/`, `scnf/` and `wcnf/`. It regenerates each
 theory with `recognize.sh --stop-after scnf` and requires it to be
 byte-identical to the one the runs used. (Until 2026-10-20 the theories and

@@ -20,7 +20,9 @@ Each goal is planned twice, both by planner.sh (domain F/clara-logistics.pddl):
         hint was wrong and the goal is planned again with the full search.  In
         a family whose roads changed (ThreePackage and FourPackage without
         knockout, TwoPackageOneway) the old horizons are no guide, so there is
-        no hint and the search is the full one from the start.
+        no hint and the search is the full one from the start.  OldVersions/
+        is no longer in the tree (common.OLD_COMMIT): without it there is no
+        hint either -- the same plans, only a longer search.
         -> goals/<goal>-tt.answer
   eval  EvalMaxSAT_bin (exact) at the same H (--numslices H): ok only when it
         PROVES its optimum within the solver limit.  -> goals/<goal>-eval.answer
@@ -84,8 +86,9 @@ def record(rec):
 
 def old_horizon(problem, hyp):
     """The shortest horizon of the same goal in OldVersions, if it was planned
-    and the family's world is the old one (no hint when the roads changed)."""
-    if not FAM.same_world:
+    and the family's world is the old one (no hint when the roads changed, or
+    when OldVersions/ is not restored)."""
+    if not FAM.same_world or not os.path.exists(os.path.join(C.OLD, "README.md")):
         return None
     names = [hyp.goal]
     if FAM.name == "SimpleGrid":            # old name: <problem>-<place>

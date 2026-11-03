@@ -126,7 +126,8 @@ def prepare(inst, k):
     root = theory(inst, k)
     missing = [root + s for s in (".scnf", "-assertion.txt") if not os.path.exists(root + s)]
     if missing:
-        sys.exit(f"missing {missing}: run ../OldVersions/make-fifo-files.py --match {inst}-obs{k} first")
+        sys.exit(f"missing {missing}: run ../OldVersions/make-fifo-files.py --match {inst}-obs{k} first "
+                 f"(OldVersions/ was deleted in 7731002: git checkout ac6aa16 -- OldVersions)")
 
 
 def parse_summary(path):
