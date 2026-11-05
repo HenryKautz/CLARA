@@ -101,9 +101,10 @@ old problem's header, except:
 
 - **domain `clara-logistics`**, FiFO's current one: `load` and `unload` cost
   `(handle-cost)` = 1 each, and there is no `transfer` action.  SimpleGrid and
-  TwoPackage used to be planned with what is now `clara-logistics-old` (free
-  handling, `transfer`); ThreePackage and FourPackage used a local
-  `clara-logistics-handling.pddl`, the same domain under another name.
+  TwoPackage used to be planned with the domain FiFO later kept as
+  `clara-logistics-old` (free handling, `transfer`; deleted from FiFO's
+  library on 2026-11-04, FiFO ffdc377); ThreePackage and FourPackage used a
+  local `clara-logistics-handling.pddl`, the same domain under another name.
 - **no goal weights or preferences**: the goal is only the hard `(or …)` (or,
   in ThreePackage, `(and (or …) …)`) of the problem.  FourPackage's
   `--preferences 8 8` is gone.
