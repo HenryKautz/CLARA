@@ -53,3 +53,13 @@ TwoPackage/circuits/grid7x7-4.dnnf
 ThreePackage/circuits/grid5x5-3.dnnf
 TwoPackageOneway/circuits/grid6x6-3.dnnf
 TwoPackageOneway/circuits/grid7x7-2.dnnf
+# 2026-11-05 intermediates (scripts/make-intermediates.py): the .scnf, .wcnf and
+# .map are committed gzipped (6.0 GB raw, 0.7 GB gzipped); gunzip -k to use them
+/*/intermediates/*.scnf
+/*/intermediates/*.wcnf
+/*/intermediates/*.map
+/*/goals/intermediates/*.scnf
+/*/goals/intermediates/*.wcnf
+/*/goals/intermediates/*.map
+# its Slurm output (each family's intermediates.log has the per-job lines)
+/intermediates-run.log

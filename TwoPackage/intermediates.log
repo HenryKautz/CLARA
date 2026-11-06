@@ -1,0 +1,206 @@
+16:23:15 TwoPackage: 100 planning problems (100 with a plan), 100 horizons to instantiate, 0 recognition theories missing, 2 to verify; stand-ins for 18 names in /u/rmw7my/clara-stubs
+16:23:15   horizons 4..19; no plan: none
+16:23:15   eval and tt at different horizons: 0 
+16:23:17 wff   ok      grid5x5-3 wall_s=1.7 bytes=4885
+16:23:17 wff   ok      grid4x4-2 wall_s=2.0 bytes=4243
+16:23:17 wff   ok      grid3x3-2 wall_s=2.0 bytes=3746
+16:23:17 wff   ok      grid3x3-1 wall_s=2.1 bytes=3746
+16:23:17 wff   ok      grid4x4-1 wall_s=2.1 bytes=4243
+16:23:17 wff   ok      grid3x3-4 wall_s=2.2 bytes=3746
+16:23:17 wff   ok      grid5x5-4 wall_s=2.2 bytes=4885
+16:23:17 wff   ok      grid6x6-3 wall_s=2.3 bytes=5697
+16:23:17 wff   ok      grid5x5-1 wall_s=2.4 bytes=4885
+16:23:17 wff   ok      grid3x3-3 wall_s=2.4 bytes=3746
+16:23:17 wff   ok      grid6x6-2 wall_s=2.4 bytes=5697
+16:23:17 wff   ok      grid4x4-3 wall_s=2.4 bytes=4243
+16:23:17 wff   ok      grid6x6-1 wall_s=2.5 bytes=5697
+16:23:18 wff   ok      grid5x5-2 wall_s=2.5 bytes=4885
+16:23:18 wff   ok      grid4x4-4 wall_s=2.6 bytes=4243
+16:23:18 wff   ok      grid6x6-4 wall_s=2.6 bytes=5697
+16:23:19 wff   ok      grid7x7-1 wall_s=2.5 bytes=6667
+16:23:19 wff   ok      grid7x7-2 wall_s=2.2 bytes=6667
+16:23:19 wff   ok      grid3x3-1-pkg1-p2-1 wall_s=2.1 bytes=3433
+16:23:19 wff   ok      grid7x7-3 wall_s=2.4 bytes=6667
+16:23:19 wff   ok      grid3x3-1-pkg2-p2-1 wall_s=2.2 bytes=3433
+16:23:20 wff   ok      grid3x3-1-pkg2-p1-1 wall_s=2.2 bytes=3433
+16:23:20 wff   ok      grid3x3-2-pkg1-p1-2 wall_s=2.1 bytes=3433
+16:23:20 wff   ok      grid3x3-1-pkg1-p1-3 wall_s=2.5 bytes=3433
+16:23:20 wff   ok      grid7x7-4 wall_s=2.5 bytes=6667
+16:23:20 wff   ok      grid3x3-3-pkg1-p3-2 wall_s=2.2 bytes=3433
+16:23:20 wff   ok      grid3x3-3-pkg2-p2-1 wall_s=2.2 bytes=3433
+16:23:20 wff   ok      grid3x3-2-pkg1-p2-2 wall_s=2.4 bytes=3433
+16:23:20 wff   ok      grid3x3-2-pkg2-p1-2 wall_s=2.5 bytes=3433
+16:23:20 wff   ok      grid3x3-2-pkg2-p2-2 wall_s=2.4 bytes=3433
+16:23:20 wff   ok      grid3x3-3-pkg1-p2-3 wall_s=2.5 bytes=3433
+16:23:20 wff   ok      grid3x3-3-pkg2-p3-2 wall_s=2.5 bytes=3433
+16:23:22 wff   ok      grid3x3-4-pkg2-p2-2 wall_s=2.1 bytes=3433
+16:23:22 wff   ok      grid3x3-4-pkg2-p3-3 wall_s=2.3 bytes=3433
+16:23:22 wff   ok      grid3x3-4-pkg1-p2-2 wall_s=2.4 bytes=3433
+16:23:22 wff   ok      grid4x4-1-pkg2-p3-1 wall_s=2.2 bytes=3930
+16:23:22 wff   ok      grid3x3-4-pkg1-p2-1 wall_s=2.6 bytes=3433
+16:23:22 wff   ok      grid4x4-2-pkg1-p3-2 wall_s=2.2 bytes=3930
+16:23:22 wff   ok      grid4x4-1-pkg1-p2-3 wall_s=2.4 bytes=3930
+16:23:22 wff   ok      grid4x4-1-pkg2-p1-4 wall_s=2.3 bytes=3930
+16:23:22 wff   ok      grid4x4-1-pkg1-p1-4 wall_s=2.5 bytes=3930
+16:23:22 wff   ok      grid4x4-2-pkg1-p2-1 wall_s=2.5 bytes=3930
+16:23:22 wff   ok      grid4x4-2-pkg2-p3-3 wall_s=2.5 bytes=3930
+16:23:22 wff   ok      grid4x4-2-pkg2-p3-2 wall_s=2.6 bytes=3930
+16:23:22 wff   ok      grid4x4-3-pkg1-p3-3 wall_s=2.5 bytes=3930
+16:23:22 wff   ok      grid4x4-3-pkg1-p1-3 wall_s=2.5 bytes=3930
+16:23:23 wff   ok      grid4x4-3-pkg2-p1-1 wall_s=2.6 bytes=3930
+16:23:23 wff   ok      grid4x4-3-pkg2-p3-3 wall_s=2.7 bytes=3930
+16:23:24 wff   ok      grid4x4-4-pkg1-p3-3 wall_s=2.3 bytes=3930
+16:23:24 wff   ok      grid5x5-1-pkg1-p4-4 wall_s=2.2 bytes=4572
+16:23:24 wff   ok      grid4x4-4-pkg1-p1-4 wall_s=2.3 bytes=3930
+16:23:24 wff   ok      grid5x5-1-pkg1-p4-1 wall_s=2.3 bytes=4572
+16:23:24 wff   ok      grid4x4-4-pkg2-p4-2 wall_s=2.5 bytes=3930
+16:23:24 wff   ok      grid4x4-4-pkg2-p4-4 wall_s=2.5 bytes=3930
+16:23:24 wff   ok      grid5x5-1-pkg2-p3-4 wall_s=2.5 bytes=4572
+16:23:25 wff   ok      grid5x5-2-pkg1-p4-2 wall_s=2.5 bytes=4572
+16:23:25 wff   ok      grid5x5-1-pkg2-p2-4 wall_s=2.6 bytes=4572
+16:23:25 wff   ok      grid5x5-2-pkg2-p5-3 wall_s=2.2 bytes=4572
+16:23:25 wff   ok      grid5x5-2-pkg1-p1-1 wall_s=2.4 bytes=4572
+16:23:25 wff   ok      grid5x5-2-pkg2-p5-4 wall_s=2.3 bytes=4572
+16:23:25 wff   ok      grid5x5-3-pkg1-p4-3 wall_s=2.4 bytes=4572
+16:23:25 wff   ok      grid5x5-3-pkg1-p4-4 wall_s=2.5 bytes=4572
+16:23:25 wff   ok      grid5x5-3-pkg2-p4-4 wall_s=2.6 bytes=4572
+16:23:25 wff   ok      grid5x5-3-pkg2-p1-5 wall_s=2.7 bytes=4572
+16:23:26 wff   ok      grid5x5-4-pkg1-p4-5 wall_s=2.5 bytes=4572
+16:23:27 wff   ok      grid5x5-4-pkg1-p4-2 wall_s=2.5 bytes=4572
+16:23:27 wff   ok      grid5x5-4-pkg2-p4-3 wall_s=2.3 bytes=4572
+16:23:27 wff   ok      grid5x5-4-pkg2-p1-5 wall_s=2.5 bytes=4572
+16:23:27 wff   ok      grid6x6-1-pkg1-p1-3 wall_s=2.4 bytes=5384
+16:23:27 wff   ok      grid6x6-2-pkg1-p2-5 wall_s=2.2 bytes=5384
+16:23:27 wff   ok      grid6x6-1-pkg2-p6-1 wall_s=2.4 bytes=5384
+16:23:27 wff   ok      grid6x6-1-pkg1-p6-2 wall_s=2.6 bytes=5384
+16:23:27 wff   ok      grid6x6-1-pkg2-p3-4 wall_s=2.5 bytes=5384
+16:23:27 wff   ok      grid6x6-2-pkg1-p1-1 wall_s=2.5 bytes=5384
+16:23:27 wff   ok      grid6x6-2-pkg2-p1-2 wall_s=2.3 bytes=5384
+16:23:27 wff   ok      grid6x6-2-pkg2-p4-4 wall_s=2.6 bytes=5384
+16:23:27 wff   ok      grid6x6-3-pkg1-p5-6 wall_s=2.5 bytes=5384
+16:23:28 wff   ok      grid6x6-3-pkg2-p3-3 wall_s=2.1 bytes=5384
+16:23:28 wff   ok      grid6x6-3-pkg1-p1-6 wall_s=2.6 bytes=5384
+16:23:28 wff   ok      grid6x6-3-pkg2-p2-6 wall_s=2.4 bytes=5384
+16:23:29 wff   ok      grid6x6-4-pkg1-p5-5 wall_s=2.2 bytes=5384
+16:23:29 wff   ok      grid7x7-1-pkg1-p4-2 wall_s=2.2 bytes=6354
+16:23:29 wff   ok      grid6x6-4-pkg2-p1-2 wall_s=2.4 bytes=5384
+16:23:29 wff   ok      grid6x6-4-pkg1-p4-1 wall_s=2.5 bytes=5384
+16:23:29 wff   ok      grid6x6-4-pkg2-p4-2 wall_s=2.5 bytes=5384
+16:23:29 wff   ok      grid7x7-1-pkg1-p1-3 wall_s=2.4 bytes=6354
+16:23:29 wff   ok      grid7x7-1-pkg2-p5-2 wall_s=2.6 bytes=6354
+16:23:29 wff   ok      grid7x7-1-pkg2-p4-1 wall_s=2.6 bytes=6354
+16:23:30 wff   ok      grid7x7-2-pkg2-p6-2 wall_s=2.3 bytes=6354
+16:23:30 wff   ok      grid7x7-2-pkg1-p2-7 wall_s=2.3 bytes=6354
+16:23:30 wff   ok      grid7x7-2-pkg1-p7-2 wall_s=2.6 bytes=6354
+16:23:30 wff   ok      grid7x7-2-pkg2-p5-1 wall_s=2.5 bytes=6354
+16:23:30 wff   ok      grid7x7-3-pkg1-p2-6 wall_s=2.4 bytes=6354
+16:23:30 wff   ok      grid7x7-3-pkg2-p5-4 wall_s=2.3 bytes=6354
+16:23:30 wff   ok      grid7x7-3-pkg1-p6-7 wall_s=2.6 bytes=6354
+16:23:31 wff   ok      grid7x7-3-pkg2-p4-4 wall_s=2.6 bytes=6354
+16:23:31 wff   ok      grid7x7-4-pkg2-p2-5 wall_s=2.4 bytes=6354
+16:23:31 wff   ok      grid7x7-4-pkg1-p2-1 wall_s=2.5 bytes=6354
+16:23:31 wff   ok      grid7x7-4-pkg1-p5-1 wall_s=2.7 bytes=6354
+16:23:32 wff   ok      grid7x7-4-pkg2-p3-1 wall_s=2.6 bytes=6354
+16:23:33 scnf  ok      grid3x3-3-pkg2-p3-2 horizon=4 wall_s=4.0 bytes=196562
+16:23:33 scnf  ok      grid3x3-3 horizon=4 wall_s=4.2 bytes=196698
+16:23:33 scnf  ok      grid3x3-2-pkg1-p2-2 horizon=5 wall_s=3.8 bytes=261397
+16:23:34 scnf  ok      grid3x3-1 horizon=5 wall_s=4.1 bytes=261533
+16:23:34 scnf  ok      grid3x3-1-pkg2-p1-1 horizon=6 wall_s=3.9 bytes=326249
+16:23:34 scnf  ok      grid3x3-2 horizon=5 wall_s=4.3 bytes=261533
+16:23:34 scnf  ok      grid3x3-1-pkg2-p2-1 horizon=5 wall_s=4.4 bytes=261397
+16:23:34 scnf  ok      grid3x3-1-pkg1-p1-3 horizon=6 wall_s=4.1 bytes=326249
+16:23:34 scnf  ok      grid3x3-2-pkg1-p1-2 horizon=6 wall_s=4.2 bytes=326249
+16:23:34 scnf  ok      grid3x3-4 horizon=6 wall_s=4.6 bytes=326385
+16:23:34 scnf  ok      grid3x3-3-pkg2-p2-1 horizon=6 wall_s=4.2 bytes=326249
+16:23:35 scnf  ok      grid3x3-4-pkg1-p2-2 horizon=6 wall_s=4.5 bytes=326249
+16:23:35 scnf  ok      grid3x3-2-pkg2-p2-2 horizon=7 wall_s=3.9 bytes=391106
+16:23:36 scnf  ok      grid3x3-1-pkg1-p2-1 horizon=7 wall_s=4.1 bytes=391106
+16:23:36 scnf  ok      grid3x3-4-pkg2-p2-2 horizon=6 wall_s=4.1 bytes=326249
+16:23:36 scnf  ok      grid3x3-4-pkg1-p2-1 horizon=7 wall_s=4.1 bytes=391106
+16:23:37 scnf  ok      grid3x3-2-pkg2-p1-2 horizon=8 wall_s=4.2 bytes=455963
+16:23:38 scnf  ok      grid3x3-3-pkg1-p2-3 horizon=8 wall_s=4.1 bytes=455963
+16:23:38 scnf  ok      grid3x3-3-pkg1-p3-2 horizon=8 wall_s=4.4 bytes=455963
+16:23:38 scnf  ok      grid4x4-3 horizon=5 wall_s=3.9 bytes=494668
+16:23:38 verify ok      grid3x3-1 horizon=7 wall_s=4.8
+16:23:38 scnf  ok      grid3x3-4-pkg2-p3-3 horizon=8 wall_s=4.3 bytes=455963
+16:23:38 scnf  ok      grid4x4-4 horizon=5 wall_s=4.2 bytes=494668
+16:23:38 scnf  ok      grid4x4-3-pkg2-p3-3 horizon=5 wall_s=4.2 bytes=494532
+16:23:39 scnf  ok      grid4x4-2 horizon=6 wall_s=4.2 bytes=620367
+16:23:39 verify ok      grid3x3-2 horizon=8 wall_s=5.0
+16:23:39 scnf  ok      grid4x4-4-pkg1-p3-3 horizon=5 wall_s=4.6 bytes=494532
+16:23:40 scnf  ok      grid4x4-2-pkg2-p3-2 horizon=6 wall_s=4.4 bytes=620234
+16:23:40 scnf  ok      grid4x4-1 horizon=7 wall_s=4.3 bytes=745442
+16:23:40 scnf  ok      grid4x4-3-pkg1-p3-3 horizon=7 wall_s=4.1 bytes=745303
+16:23:40 scnf  ok      grid4x4-1-pkg2-p3-1 horizon=7 wall_s=4.7 bytes=745303
+16:23:40 scnf  ok      grid4x4-2-pkg2-p3-3 horizon=7 wall_s=4.6 bytes=745303
+16:23:42 scnf  ok      grid4x4-3-pkg2-p1-1 horizon=7 wall_s=4.1 bytes=745303
+16:23:42 scnf  ok      grid4x4-4-pkg2-p4-4 horizon=7 wall_s=4.3 bytes=745303
+16:23:42 scnf  ok      grid4x4-1-pkg1-p1-4 horizon=8 wall_s=4.4 bytes=870303
+16:23:43 scnf  ok      grid4x4-4-pkg1-p1-4 horizon=8 wall_s=4.4 bytes=870303
+16:23:43 scnf  ok      grid4x4-1-pkg1-p2-3 horizon=8 wall_s=4.8 bytes=870303
+16:23:43 scnf  ok      grid4x4-3-pkg1-p1-3 horizon=9 wall_s=4.5 bytes=995318
+16:23:43 scnf  ok      grid4x4-2-pkg1-p3-2 horizon=10 wall_s=4.3 bytes=1120825
+16:23:43 scnf  ok      grid4x4-4-pkg2-p4-2 horizon=9 wall_s=4.9 bytes=995318
+16:23:43 scnf  ok      grid5x5-2 horizon=6 wall_s=4.8 bytes=1005244
+16:23:44 scnf  ok      grid5x5-2-pkg2-p5-4 horizon=6 wall_s=4.8 bytes=1005105
+16:23:44 scnf  ok      grid5x5-1 horizon=7 wall_s=4.7 bytes=1207153
+16:23:44 scnf  ok      grid5x5-1-pkg1-p4-1 horizon=7 wall_s=4.5 bytes=1207014
+16:23:45 scnf  ok      grid5x5-1-pkg2-p3-4 horizon=7 wall_s=4.7 bytes=1207014
+16:23:45 scnf  ok      grid5x5-2-pkg2-p5-3 horizon=7 wall_s=5.2 bytes=1207014
+16:23:45 scnf  ok      grid4x4-1-pkg2-p1-4 horizon=12 wall_s=5.0 bytes=1376737
+16:23:45 scnf  ok      grid4x4-2-pkg1-p2-1 horizon=12 wall_s=5.0 bytes=1376737
+16:23:47 scnf  ok      grid5x5-4 horizon=8 wall_s=5.2 bytes=1409495
+16:23:47 scnf  ok      grid5x5-1-pkg1-p4-4 horizon=8 wall_s=5.0 bytes=1409356
+16:23:47 scnf  ok      grid5x5-1-pkg2-p2-4 horizon=8 wall_s=4.8 bytes=1409356
+16:23:47 scnf  ok      grid6x6-2-pkg2-p4-4 horizon=6 wall_s=4.5 bytes=1481356
+16:23:48 scnf  ok      grid6x6-2 horizon=6 wall_s=5.0 bytes=1481495
+16:23:48 scnf  ok      grid5x5-4-pkg1-p4-5 horizon=8 wall_s=5.2 bytes=1409356
+16:23:48 scnf  ok      grid5x5-3-pkg2-p1-5 horizon=9 wall_s=4.6 bytes=1611725
+16:23:48 scnf  ok      grid5x5-3 horizon=9 wall_s=5.0 bytes=1611864
+16:23:49 scnf  ok      grid5x5-4-pkg1-p4-2 horizon=9 wall_s=4.9 bytes=1611725
+16:23:49 scnf  ok      grid5x5-2-pkg1-p4-2 horizon=9 wall_s=5.1 bytes=1611725
+16:23:49 scnf  ok      grid6x6-1 horizon=7 wall_s=5.0 bytes=1778125
+16:23:50 scnf  ok      grid6x6-1-pkg1-p1-3 horizon=7 wall_s=5.6 bytes=1777986
+16:23:50 scnf  ok      grid6x6-2-pkg1-p2-5 horizon=7 wall_s=5.3 bytes=1777986
+16:23:50 scnf  ok      grid5x5-2-pkg1-p1-1 horizon=11 wall_s=4.9 bytes=2021375
+16:23:51 scnf  ok      grid5x5-3-pkg1-p4-4 horizon=11 wall_s=5.4 bytes=2021375
+16:23:51 scnf  ok      grid5x5-3-pkg2-p4-4 horizon=11 wall_s=5.7 bytes=2021375
+16:23:52 scnf  ok      grid6x6-1-pkg2-p3-4 horizon=8 wall_s=5.1 bytes=2074696
+16:23:52 scnf  ok      grid5x5-3-pkg1-p4-3 horizon=12 wall_s=5.0 bytes=2227849
+16:23:53 scnf  ok      grid5x5-4-pkg2-p4-3 horizon=12 wall_s=5.4 bytes=2227849
+16:23:53 scnf  ok      grid5x5-4-pkg2-p1-5 horizon=13 wall_s=4.8 bytes=2434320
+16:23:53 scnf  ok      grid6x6-2-pkg1-p1-1 horizon=8 wall_s=5.7 bytes=2074696
+16:23:53 scnf  ok      grid6x6-3 horizon=9 wall_s=5.0 bytes=2371530
+16:23:54 scnf  ok      grid6x6-3-pkg2-p3-3 horizon=9 wall_s=5.6 bytes=2371391
+16:23:54 scnf  ok      grid6x6-4 horizon=10 wall_s=5.8 bytes=2669355
+16:23:55 scnf  ok      grid7x7-1 horizon=8 wall_s=6.0 bytes=2864819
+16:23:55 scnf  ok      grid6x6-4-pkg2-p4-2 horizon=10 wall_s=6.5 bytes=2669213
+16:23:55 scnf  ok      grid7x7-1-pkg1-p4-2 horizon=8 wall_s=6.4 bytes=2864680
+16:23:56 scnf  ok      grid6x6-1-pkg1-p6-2 horizon=11 wall_s=5.5 bytes=2971915
+16:23:57 scnf  ok      grid6x6-2-pkg2-p1-2 horizon=11 wall_s=6.5 bytes=2971915
+16:23:57 scnf  ok      grid6x6-3-pkg2-p2-6 horizon=11 wall_s=6.4 bytes=2971915
+16:23:57 scnf  ok      grid6x6-4-pkg1-p4-1 horizon=11 wall_s=6.0 bytes=2971915
+16:23:58 scnf  ok      grid6x6-3-pkg1-p1-6 horizon=12 wall_s=6.5 bytes=3274672
+16:23:59 scnf  ok      grid7x7-2 horizon=9 wall_s=6.7 bytes=3273562
+16:23:59 scnf  ok      grid7x7-2-pkg2-p6-2 horizon=9 wall_s=6.5 bytes=3273423
+16:24:00 scnf  ok      grid6x6-1-pkg2-p6-1 horizon=14 wall_s=6.2 bytes=3880215
+16:24:00 scnf  ok      grid7x7-2-pkg2-p5-1 horizon=11 wall_s=6.6 bytes=4100805
+16:24:00 scnf  ok      grid6x6-4-pkg2-p1-2 horizon=13 wall_s=7.0 bytes=3577440
+16:24:01 scnf  ok      grid6x6-4-pkg1-p5-5 horizon=14 wall_s=7.6 bytes=3880215
+16:24:01 scnf  ok      grid6x6-3-pkg1-p5-6 horizon=16 wall_s=7.0 bytes=4488756
+16:24:03 scnf  ok      grid7x7-1-pkg1-p1-3 horizon=12 wall_s=8.2 bytes=4526476
+16:24:03 scnf  ok      grid7x7-3-pkg1-p2-6 horizon=13 wall_s=7.4 bytes=4956054
+16:24:04 scnf  ok      grid7x7-3 horizon=13 wall_s=8.6 bytes=4956198
+16:24:04 scnf  ok      grid7x7-3-pkg1-p6-7 horizon=14 wall_s=8.5 bytes=5388784
+16:24:04 scnf  ok      grid7x7-2-pkg1-p7-2 horizon=14 wall_s=8.7 bytes=5388784
+16:24:05 scnf  ok      grid7x7-4 horizon=15 wall_s=8.2 bytes=5816152
+16:24:05 scnf  ok      grid7x7-4-pkg2-p3-1 horizon=15 wall_s=8.1 bytes=5816007
+16:24:07 scnf  ok      grid7x7-2-pkg1-p2-7 horizon=16 wall_s=8.6 bytes=6242840
+16:24:07 scnf  ok      grid7x7-3-pkg2-p4-4 horizon=15 wall_s=9.8 bytes=5816007
+16:24:07 scnf  ok      grid7x7-4-pkg1-p2-1 horizon=16 wall_s=7.6 bytes=6242840
+16:24:08 scnf  ok      grid7x7-1-pkg2-p4-1 horizon=17 wall_s=7.7 bytes=6669731
+16:24:09 scnf  ok      grid7x7-3-pkg2-p5-4 horizon=16 wall_s=9.3 bytes=6242840
+16:24:09 scnf  ok      grid7x7-4-pkg2-p2-5 horizon=16 wall_s=9.2 bytes=6242840
+16:24:09 scnf  ok      grid7x7-1-pkg2-p5-2 horizon=17 wall_s=8.9 bytes=6669731
+16:24:10 scnf  ok      grid7x7-4-pkg1-p5-1 horizon=19 wall_s=8.8 bytes=7523417
+16:24:10 done: 0 failed

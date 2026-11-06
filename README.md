@@ -93,6 +93,37 @@ H0..H0+4.  No check failed; FourPackage from grid10x10-2 on, and ThreePackage
 grid6x6-4, have no goal plans to check against.  FourPackage's originals are
 far easier than its goals (the quickest delivery decides H0: 11 at 15×15).
 
+## Problem sizes: the WCNF translations
+
+There are **124 source problem instances**: the top-level `gridNxN-K.pddl`
+of the five grid families, PDDL without evidence (32 SimpleGrid, 20
+TwoPackage, 20 TwoPackageOneway, 12 ThreePackage, 40 FourPackage).  120 of
+them have a plan; ThreePackage's four 7×7 do not.  Each planned one was
+translated by FiFO and instantiated at its plan's horizon, with no solving.
+These translations, and those of the goal variants, are kept in
+`<F>/intermediates/` (2026-11-05, `scripts/make-intermediates.py`; see
+[File types](#file-types)).
+
+Over the WCNF translations of the 120 planned source instances, counting
+clauses as hard plus soft:
+
+- **smallest:** 126 variables and 622 clauses (550 hard, 72 soft), SimpleGrid
+  `grid3x3-3` at horizon 4.
+- **largest:** 195,760 variables and 832,683 clauses (764,043 hard, 68,640
+  soft), FourPackage `grid15x15-3` at horizon 14.
+
+| Family | Source instances (planned) | Variables | Clauses |
+|---|---|---|---|
+| SimpleGrid | 32 (32) | 126 – 9,384 | 622 – 38,073 |
+| TwoPackage | 20 (20) | 422 – 13,519 | 1,974 – 57,606 |
+| TwoPackageOneway | 20 (20) | 501 – 14,055 | 2,450 – 64,750 |
+| ThreePackage | 12 (8) | 7,123 – 16,962 | 31,858 – 74,022 |
+| FourPackage | 40 (40) | 8,416 – 195,760 | 39,297 – 832,683 |
+
+The 912 single-goal variants (`goals/<goal>.pddl`, 577 of them planned) range
+from 126 variables and 622 clauses to 95,836 variables and 429,363 clauses
+(FourPackage `grid9x9-1-pkg1-p5-9` at horizon 20).
+
 ## The 2026-10-31 regeneration
 
 Every problem of SimpleGrid, TwoPackage, ThreePackage and FourPackage was made
@@ -185,6 +216,16 @@ The four grid benchmarks share one layout (each family's README lists it):
   symbolic CNF) at that horizon, and its d4 circuit where d4 succeeded.  A pinned
   observation is a set of unit literals over the theory's atoms, so one theory
   and one circuit serve every evidence file of a problem.
+- **`intermediates/`, `goals/intermediates/` — the files between a problem's
+  PDDL and its plan** (2026-11-05, translation and instantiation only, no
+  solver run):
+  - `P.wff`: FiFO's translation.
+  - `P-H<h>.scnf.gz`: the translation instantiated at the plan's horizon `h`.
+  - `P-H<h>.wcnf.gz` and `.map.gz`: the weighted CNF a MaxSAT solver
+    minimizes, and its variable-to-atom map.
+
+  These three are committed gzipped (0.7 GB; 6.0 GB raw); `gunzip -k` restores
+  them.  Each family's `intermediates/README.md` gives the commands and checks.
 - **`results/*.jsonl` — one JSON record per run**, appended as runs finish; a
   rerun supersedes the earlier record.  `scripts/summarize.py` turns them into
   `tables.md`.

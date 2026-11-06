@@ -1,0 +1,422 @@
+16:21:23 SimpleGrid: 208 planning problems (208 with a plan), 208 horizons to instantiate, 0 recognition theories missing, 2 to verify; stand-ins for 18 names in /u/rmw7my/clara-stubs
+16:21:23   horizons 4..18; no plan: none
+16:21:23   eval and tt at different horizons: 0 
+16:21:25 wff   ok      grid3x3-4 wall_s=2.2 bytes=3629
+16:21:25 wff   ok      grid4x4-3 wall_s=2.2 bytes=4183
+16:21:25 wff   ok      grid5x5-2 wall_s=2.1 bytes=4878
+16:21:25 wff   ok      grid4x4-4 wall_s=2.2 bytes=4183
+16:21:25 wff   ok      grid4x4-1 wall_s=2.2 bytes=4183
+16:21:26 wff   ok      grid6x6-1 wall_s=2.2 bytes=5752
+16:21:26 wff   ok      grid6x6-4 wall_s=2.2 bytes=5752
+16:21:26 wff   ok      grid3x3-2 wall_s=2.2 bytes=3629
+16:21:26 wff   ok      grid6x6-2 wall_s=2.4 bytes=5752
+16:21:26 wff   ok      grid5x5-1 wall_s=2.5 bytes=4878
+16:21:26 wff   ok      grid5x5-3 wall_s=2.5 bytes=4878
+16:21:26 wff   ok      grid6x6-3 wall_s=2.4 bytes=5752
+16:21:26 wff   ok      grid4x4-2 wall_s=2.5 bytes=4183
+16:21:26 wff   ok      grid5x5-4 wall_s=2.4 bytes=4878
+16:21:26 wff   ok      grid3x3-1 wall_s=2.6 bytes=3629
+16:21:26 wff   ok      grid3x3-3 wall_s=2.6 bytes=3629
+16:21:28 wff   ok      grid7x7-2 wall_s=2.2 bytes=6774
+16:21:28 wff   ok      grid8x8-4 wall_s=2.2 bytes=7958
+16:21:28 wff   ok      grid9x9-3 wall_s=2.1 bytes=9296
+16:21:28 wff   ok      grid9x9-1 wall_s=2.2 bytes=9296
+16:21:28 wff   ok      grid10x10-2 wall_s=2.1 bytes=10980
+16:21:28 wff   ok      grid9x9-2 wall_s=2.2 bytes=9296
+16:21:28 wff   ok      grid7x7-4 wall_s=2.5 bytes=6774
+16:21:28 wff   ok      grid7x7-3 wall_s=2.4 bytes=6774
+16:21:28 wff   ok      grid7x7-1 wall_s=2.5 bytes=6774
+16:21:28 wff   ok      grid8x8-2 wall_s=2.4 bytes=7958
+16:21:28 wff   ok      grid10x10-3 wall_s=2.1 bytes=10972
+16:21:28 wff   ok      grid10x10-1 wall_s=2.2 bytes=10978
+16:21:28 wff   ok      grid8x8-1 wall_s=2.5 bytes=7958
+16:21:28 wff   ok      grid8x8-3 wall_s=2.5 bytes=7958
+16:21:28 wff   ok      grid9x9-4 wall_s=2.5 bytes=9296
+16:21:28 wff   ok      grid10x10-4 wall_s=2.5 bytes=10978
+16:21:30 wff   ok      grid3x3-4-truck1-p2-3 wall_s=2.0 bytes=3415
+16:21:30 wff   ok      grid3x3-3-truck1-p3-3 wall_s=2.0 bytes=3415
+16:21:30 wff   ok      grid3x3-4-truck1-p3-3 wall_s=2.1 bytes=3415
+16:21:30 wff   ok      grid3x3-2-truck1-p2-3 wall_s=2.1 bytes=3415
+16:21:30 wff   ok      grid4x4-1-truck1-p4-4 wall_s=2.1 bytes=3913
+16:21:30 wff   ok      grid4x4-2-truck1-p3-4 wall_s=2.1 bytes=3913
+16:21:30 wff   ok      grid3x3-1-truck1-p3-2 wall_s=2.5 bytes=3415
+16:21:30 wff   ok      grid4x4-2-truck1-p4-4 wall_s=2.2 bytes=3913
+16:21:30 wff   ok      grid3x3-1-truck1-p3-3 wall_s=2.5 bytes=3415
+16:21:30 wff   ok      grid3x3-2-truck1-p3-3 wall_s=2.5 bytes=3415
+16:21:30 wff   ok      grid3x3-3-truck1-p2-3 wall_s=2.4 bytes=3415
+16:21:30 wff   ok      grid4x4-1-truck1-p4-3 wall_s=2.4 bytes=3913
+16:21:31 wff   ok      grid4x4-1-truck1-p3-4 wall_s=2.5 bytes=3913
+16:21:31 wff   ok      grid4x4-3-truck1-p4-3 wall_s=2.1 bytes=3913
+16:21:31 wff   ok      grid4x4-2-truck1-p4-3 wall_s=2.5 bytes=3913
+16:21:31 wff   ok      grid4x4-3-truck1-p4-4 wall_s=2.5 bytes=3913
+16:21:32 wff   ok      grid4x4-4-truck1-p3-4 wall_s=2.1 bytes=3913
+16:21:32 wff   ok      grid4x4-4-truck1-p4-3 wall_s=2.2 bytes=3913
+16:21:32 wff   ok      grid4x4-3-truck1-p3-4 wall_s=2.3 bytes=3913
+16:21:32 wff   ok      grid5x5-2-truck1-p5-4 wall_s=2.1 bytes=4555
+16:21:32 wff   ok      grid5x5-1-truck1-p3-5 wall_s=2.2 bytes=4555
+16:21:33 wff   ok      grid5x5-1-truck1-p4-4 wall_s=2.3 bytes=4555
+16:21:33 wff   ok      grid4x4-4-truck1-p4-4 wall_s=2.5 bytes=3913
+16:21:33 wff   ok      grid5x5-1-truck1-p5-5 wall_s=2.5 bytes=4555
+16:21:33 wff   ok      grid5x5-1-truck1-p4-5 wall_s=2.6 bytes=4555
+16:21:33 wff   ok      grid5x5-2-truck1-p4-4 wall_s=2.4 bytes=4555
+16:21:33 wff   ok      grid5x5-3-truck1-p5-4 wall_s=2.3 bytes=4555
+16:21:33 wff   ok      grid5x5-2-truck1-p5-3 wall_s=2.5 bytes=4555
+16:21:33 wff   ok      grid5x5-3-truck1-p4-5 wall_s=2.3 bytes=4555
+16:21:33 wff   ok      grid5x5-2-truck1-p4-5 wall_s=2.5 bytes=4555
+16:21:33 wff   ok      grid5x5-3-truck1-p5-5 wall_s=2.5 bytes=4555
+16:21:33 wff   ok      grid5x5-3-truck1-p5-3 wall_s=2.4 bytes=4555
+16:21:35 wff   ok      grid5x5-4-truck1-p5-3 wall_s=2.2 bytes=4555
+16:21:35 wff   ok      grid5x5-4-truck1-p3-5 wall_s=2.1 bytes=4555
+16:21:35 wff   ok      grid6x6-1-truck1-p4-6 wall_s=2.2 bytes=5367
+16:21:35 wff   ok      grid6x6-1-truck1-p5-4 wall_s=2.3 bytes=5367
+16:21:35 wff   ok      grid5x5-4-truck1-p5-4 wall_s=2.7 bytes=4555
+16:21:35 wff   ok      grid5x5-4-truck1-p4-5 wall_s=2.6 bytes=4555
+16:21:35 wff   ok      grid6x6-2-truck1-p4-5 wall_s=2.2 bytes=5367
+16:21:35 wff   ok      grid6x6-1-truck1-p6-6 wall_s=2.5 bytes=5367
+16:21:35 wff   ok      grid6x6-1-truck1-p5-5 wall_s=2.5 bytes=5367
+16:21:35 wff   ok      grid6x6-2-truck1-p3-6 wall_s=2.2 bytes=5367
+16:21:35 wff   ok      grid6x6-1-truck1-p4-5 wall_s=2.5 bytes=5367
+16:21:35 wff   ok      grid6x6-2-truck1-p5-5 wall_s=2.5 bytes=5367
+16:21:35 wff   ok      grid6x6-2-truck1-p6-6 wall_s=2.5 bytes=5367
+16:21:35 wff   ok      grid6x6-2-truck1-p5-6 wall_s=2.5 bytes=5367
+16:21:36 wff   ok      grid6x6-3-truck1-p5-6 wall_s=2.5 bytes=5367
+16:21:36 wff   ok      grid6x6-3-truck1-p5-5 wall_s=2.5 bytes=5367
+16:21:37 wff   ok      grid6x6-3-truck1-p4-5 wall_s=2.3 bytes=5367
+16:21:37 wff   ok      grid6x6-3-truck1-p4-6 wall_s=2.4 bytes=5367
+16:21:37 wff   ok      grid6x6-3-truck1-p6-5 wall_s=2.4 bytes=5367
+16:21:37 wff   ok      grid6x6-4-truck1-p5-4 wall_s=2.4 bytes=5367
+16:21:37 wff   ok      grid6x6-4-truck1-p5-6 wall_s=2.3 bytes=5367
+16:21:37 wff   ok      grid6x6-4-truck1-p6-3 wall_s=2.5 bytes=5367
+16:21:38 wff   ok      grid7x7-1-truck1-p5-5 wall_s=2.3 bytes=6337
+16:21:38 wff   ok      grid6x6-4-truck1-p5-5 wall_s=2.6 bytes=5367
+16:21:38 wff   ok      grid6x6-4-truck1-p6-6 wall_s=2.4 bytes=5367
+16:21:38 wff   ok      grid7x7-1-truck1-p7-6 wall_s=2.3 bytes=6337
+16:21:38 wff   ok      grid7x7-1-truck1-p4-7 wall_s=2.3 bytes=6337
+16:21:38 wff   ok      grid7x7-1-truck1-p6-4 wall_s=2.5 bytes=6337
+16:21:38 wff   ok      grid7x7-1-truck1-p6-5 wall_s=2.5 bytes=6337
+16:21:38 wff   ok      grid7x7-1-truck1-p7-3 wall_s=2.5 bytes=6337
+16:21:38 wff   ok      grid7x7-2-truck1-p7-5 wall_s=2.5 bytes=6337
+16:21:38 wff   ok      grid7x7-2-truck1-p5-6 wall_s=2.5 bytes=6337
+16:21:39 wff   ok      grid7x7-2-truck1-p5-7 wall_s=2.4 bytes=6337
+16:21:39 wff   ok      grid7x7-2-truck1-p6-7 wall_s=2.2 bytes=6337
+16:21:40 wff   ok      grid7x7-2-truck1-p3-7 wall_s=2.6 bytes=6337
+16:21:40 wff   ok      grid7x7-2-truck1-p5-5 wall_s=2.3 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p6-5 wall_s=2.3 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p7-6 wall_s=2.3 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p4-6 wall_s=2.4 bytes=6337
+16:21:40 wff   ok      grid7x7-4-truck1-p7-6 wall_s=2.2 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p5-6 wall_s=2.5 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p6-4 wall_s=2.5 bytes=6337
+16:21:40 wff   ok      grid7x7-3-truck1-p4-7 wall_s=2.6 bytes=6337
+16:21:40 wff   ok      grid7x7-4-truck1-p5-5 wall_s=2.5 bytes=6337
+16:21:40 wff   ok      grid7x7-4-truck1-p3-7 wall_s=2.5 bytes=6337
+16:21:41 wff   ok      grid7x7-4-truck1-p6-4 wall_s=2.6 bytes=6337
+16:21:41 wff   ok      grid7x7-4-truck1-p5-6 wall_s=2.5 bytes=6337
+16:21:41 wff   ok      grid7x7-4-truck1-p7-3 wall_s=2.7 bytes=6337
+16:21:42 wff   ok      grid8x8-1-truck1-p8-7 wall_s=2.6 bytes=7465
+16:21:42 wff   ok      grid8x8-1-truck1-p5-6 wall_s=2.2 bytes=7465
+16:21:42 wff   ok      grid8x8-1-truck1-p8-4 wall_s=2.6 bytes=7465
+16:21:42 wff   ok      grid8x8-1-truck1-p8-6 wall_s=2.2 bytes=7465
+16:21:42 wff   ok      grid8x8-1-truck1-p8-3 wall_s=2.5 bytes=7465
+16:21:42 wff   ok      grid8x8-2-truck1-p3-8 wall_s=2.4 bytes=7465
+16:21:42 wff   ok      grid8x8-2-truck1-p6-5 wall_s=2.2 bytes=7465
+16:21:42 wff   ok      grid8x8-2-truck1-p7-6 wall_s=2.5 bytes=7465
+16:21:42 wff   ok      grid8x8-1-truck1-p7-7 wall_s=2.7 bytes=7465
+16:21:43 wff   ok      grid8x8-1-truck1-p7-4 wall_s=2.6 bytes=7465
+16:21:43 wff   ok      grid8x8-2-truck1-p8-7 wall_s=2.2 bytes=7465
+16:21:43 wff   ok      grid8x8-2-truck1-p7-8 wall_s=2.6 bytes=7465
+16:21:43 wff   ok      grid8x8-2-truck1-p8-8 wall_s=2.6 bytes=7465
+16:21:43 wff   ok      grid8x8-2-truck1-p5-6 wall_s=2.8 bytes=7465
+16:21:43 wff   ok      grid8x8-3-truck1-p8-8 wall_s=2.5 bytes=7465
+16:21:43 wff   ok      grid8x8-3-truck1-p7-7 wall_s=2.5 bytes=7465
+16:21:44 wff   ok      grid8x8-3-truck1-p8-4 wall_s=2.2 bytes=7465
+16:21:44 wff   ok      grid8x8-3-truck1-p7-8 wall_s=2.3 bytes=7465
+16:21:45 wff   ok      grid8x8-3-truck1-p4-7 wall_s=2.5 bytes=7465
+16:21:45 wff   ok      grid8x8-3-truck1-p4-8 wall_s=2.5 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p5-6 wall_s=2.1 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p8-6 wall_s=2.2 bytes=7465
+16:21:45 wff   ok      grid8x8-3-truck1-p7-6 wall_s=2.4 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p8-7 wall_s=2.5 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p3-8 wall_s=2.5 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p6-5 wall_s=2.5 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p8-8 wall_s=2.4 bytes=7465
+16:21:45 wff   ok      grid8x8-4-truck1-p8-3 wall_s=2.6 bytes=7465
+16:21:46 wff   ok      grid9x9-1-truck1-p7-9 wall_s=2.4 bytes=8751
+16:21:46 wff   ok      grid9x9-1-truck1-p8-7 wall_s=2.2 bytes=8751
+16:21:46 wff   ok      grid9x9-1-truck1-p8-9 wall_s=2.3 bytes=8751
+16:21:46 wff   ok      grid9x9-1-truck1-p9-3 wall_s=2.5 bytes=8751
+16:21:46 wff   ok      grid9x9-1-truck1-p9-7 wall_s=2.2 bytes=8751
+16:21:47 wff   ok      grid9x9-1-truck1-p5-7 wall_s=2.1 bytes=8751
+16:21:47 wff   ok      grid9x9-1-truck1-p8-8 wall_s=2.5 bytes=8751
+16:21:47 wff   ok      grid9x9-1-truck1-p7-5 wall_s=2.4 bytes=8751
+16:21:47 wff   ok      grid9x9-2-truck1-p4-8 wall_s=2.5 bytes=8751
+16:21:47 wff   ok      grid9x9-2-truck1-p7-9 wall_s=2.5 bytes=8751
+16:21:47 wff   ok      grid9x9-2-truck1-p3-9 wall_s=2.6 bytes=8751
+16:21:47 wff   ok      grid9x9-2-truck1-p8-9 wall_s=2.4 bytes=8751
+16:21:48 wff   ok      grid9x9-2-truck1-p9-6 wall_s=2.4 bytes=8751
+16:21:48 wff   ok      grid9x9-2-truck1-p8-5 wall_s=2.5 bytes=8751
+16:21:48 wff   ok      grid9x9-2-truck1-p6-9 wall_s=2.7 bytes=8751
+16:21:48 wff   ok      grid9x9-2-truck1-p6-6 wall_s=2.5 bytes=8751
+16:21:48 wff   ok      grid9x9-3-truck1-p5-9 wall_s=2.4 bytes=8751
+16:21:48 wff   ok      grid9x9-3-truck1-p8-4 wall_s=2.7 bytes=8751
+16:21:48 wff   ok      grid9x9-3-truck1-p9-8 wall_s=2.5 bytes=8751
+16:21:48 wff   ok      grid9x9-3-truck1-p9-4 wall_s=2.7 bytes=8751
+16:21:49 wff   ok      grid9x9-3-truck1-p8-7 wall_s=2.6 bytes=8751
+16:21:49 wff   ok      grid9x9-3-truck1-p7-8 wall_s=2.2 bytes=8751
+16:21:49 wff   ok      grid9x9-3-truck1-p7-9 wall_s=2.5 bytes=8751
+16:21:50 wff   ok      grid9x9-3-truck1-p4-9 wall_s=2.6 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p9-3 wall_s=2.2 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p7-6 wall_s=2.6 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p7-9 wall_s=2.5 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p9-7 wall_s=2.2 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p8-4 wall_s=2.5 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p8-9 wall_s=2.5 bytes=8751
+16:21:50 wff   ok      grid9x9-4-truck1-p8-6 wall_s=2.5 bytes=8751
+16:21:50 wff   ok      grid10x10-1-truck1-p10-5 wall_s=2.3 bytes=10366
+16:21:51 wff   ok      grid9x9-4-truck1-p9-8 wall_s=2.6 bytes=8751
+16:21:51 wff   ok      grid10x10-1-truck1-p10-9 wall_s=2.5 bytes=10366
+16:21:51 wff   ok      grid10x10-1-truck1-p5-8 wall_s=2.5 bytes=10363
+16:21:51 wff   ok      grid10x10-1-truck1-p10-3 wall_s=2.7 bytes=10366
+16:21:51 wff   ok      grid10x10-1-truck1-p8-9 wall_s=2.3 bytes=10363
+16:21:52 wff   ok      grid10x10-1-truck1-p9-4 wall_s=2.5 bytes=10363
+16:21:52 wff   ok      grid10x10-1-truck1-p8-7 wall_s=2.7 bytes=10363
+16:21:52 wff   ok      grid10x10-1-truck1-p9-6 wall_s=2.3 bytes=10363
+16:21:52 wff   ok      grid10x10-2-truck1-p7-8 wall_s=2.2 bytes=10363
+16:21:52 wff   ok      grid10x10-1-truck1-p10-4 wall_s=2.4 bytes=10366
+16:21:52 wff   ok      grid10x10-2-truck1-p7-9 wall_s=2.4 bytes=10363
+16:21:52 wff   ok      grid10x10-2-truck1-p10-5 wall_s=2.5 bytes=10366
+16:21:53 wff   ok      grid10x10-2-truck1-p10-3 wall_s=2.5 bytes=10366
+16:21:53 wff   ok      grid10x10-2-truck1-p9-7 wall_s=2.6 bytes=10363
+16:21:53 wff   ok      grid10x10-2-truck1-p6-10 wall_s=2.9 bytes=10366
+16:21:53 wff   ok      grid10x10-2-truck1-p3-10 wall_s=2.6 bytes=10366
+16:21:53 wff   ok      grid10x10-2-truck1-p9-10 wall_s=2.8 bytes=10366
+16:21:53 wff   ok      grid10x10-2-truck1-p9-8 wall_s=2.6 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p5-9 wall_s=2.5 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p9-9 wall_s=2.5 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p8-8 wall_s=2.7 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p9-5 wall_s=2.3 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p9-7 wall_s=2.3 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p8-7 wall_s=2.4 bytes=10363
+16:21:54 wff   ok      grid10x10-3-truck1-p8-5 wall_s=2.3 bytes=10363
+16:21:55 wff   ok      grid10x10-3-truck1-p7-9 wall_s=2.3 bytes=10363
+16:21:55 wff   ok      grid10x10-3-truck1-p10-3 wall_s=2.7 bytes=10366
+16:21:55 wff   ok      grid10x10-4-truck1-p8-5 wall_s=2.6 bytes=10363
+16:21:55 wff   ok      grid10x10-4-truck1-p9-5 wall_s=2.5 bytes=10363
+16:21:55 wff   ok      grid10x10-4-truck1-p8-7 wall_s=2.4 bytes=10363
+16:21:56 wff   ok      grid10x10-4-truck1-p8-6 wall_s=2.4 bytes=10363
+16:21:56 wff   ok      grid10x10-4-truck1-p10-9 wall_s=2.4 bytes=10366
+16:21:56 wff   ok      grid10x10-4-truck1-p8-10 wall_s=2.5 bytes=10366
+16:21:56 wff   ok      grid10x10-4-truck1-p9-4 wall_s=2.4 bytes=10363
+16:21:56 wff   ok      grid10x10-4-truck1-p10-4 wall_s=2.6 bytes=10366
+16:21:56 wff   ok      grid10x10-4-truck1-p4-10 wall_s=2.4 bytes=10366
+16:21:58 scnf  ok      grid3x3-3 horizon=4 wall_s=3.8 bytes=64641
+16:21:58 scnf  ok      grid3x3-1 horizon=4 wall_s=4.0 bytes=64641
+16:21:58 scnf  ok      grid3x3-2 horizon=4 wall_s=4.1 bytes=64641
+16:21:58 scnf  ok      grid3x3-1-truck1-p3-2 horizon=4 wall_s=3.9 bytes=64596
+16:21:59 scnf  ok      grid3x3-4 horizon=4 wall_s=4.1 bytes=64641
+16:21:59 scnf  ok      grid3x3-4-truck1-p2-3 horizon=4 wall_s=4.2 bytes=64596
+16:21:59 scnf  ok      grid3x3-1-truck1-p3-3 horizon=5 wall_s=4.2 bytes=86120
+16:21:59 scnf  ok      grid3x3-2-truck1-p3-3 horizon=5 wall_s=4.1 bytes=86120
+16:21:59 scnf  ok      grid3x3-3-truck1-p2-3 horizon=4 wall_s=4.5 bytes=64596
+16:21:59 scnf  ok      grid3x3-2-truck1-p2-3 horizon=4 wall_s=4.7 bytes=64596
+16:22:00 scnf  ok      grid3x3-4-truck1-p3-3 horizon=5 wall_s=4.0 bytes=86120
+16:22:00 scnf  ok      grid3x3-3-truck1-p3-3 horizon=5 wall_s=4.3 bytes=86120
+16:22:00 scnf  ok      grid4x4-1 horizon=6 wall_s=4.1 bytes=221450
+16:22:01 verify ok      grid3x3-1 horizon=5 wall_s=4.8
+16:22:01 scnf  ok      grid4x4-2 horizon=6 wall_s=4.7 bytes=221450
+16:22:01 verify ok      grid3x3-2 horizon=5 wall_s=4.9
+16:22:02 scnf  ok      grid4x4-4 horizon=6 wall_s=4.1 bytes=221450
+16:22:03 scnf  ok      grid4x4-1-truck1-p3-4 horizon=6 wall_s=4.3 bytes=221350
+16:22:03 scnf  ok      grid4x4-3 horizon=6 wall_s=4.6 bytes=221450
+16:22:03 scnf  ok      grid4x4-2-truck1-p3-4 horizon=6 wall_s=4.1 bytes=221350
+16:22:03 scnf  ok      grid4x4-1-truck1-p4-3 horizon=6 wall_s=4.6 bytes=221350
+16:22:03 scnf  ok      grid4x4-4-truck1-p3-4 horizon=6 wall_s=4.0 bytes=221350
+16:22:03 scnf  ok      grid4x4-3-truck1-p3-4 horizon=6 wall_s=4.1 bytes=221350
+16:22:04 scnf  ok      grid4x4-4-truck1-p4-3 horizon=6 wall_s=4.1 bytes=221350
+16:22:04 scnf  ok      grid4x4-3-truck1-p4-3 horizon=6 wall_s=4.2 bytes=221350
+16:22:04 scnf  ok      grid4x4-2-truck1-p4-3 horizon=6 wall_s=4.5 bytes=221350
+16:22:04 scnf  ok      grid4x4-1-truck1-p4-4 horizon=7 wall_s=4.2 bytes=265433
+16:22:04 scnf  ok      grid4x4-2-truck1-p4-4 horizon=7 wall_s=4.1 bytes=265433
+16:22:05 scnf  ok      grid4x4-3-truck1-p4-4 horizon=7 wall_s=4.3 bytes=265433
+16:22:05 scnf  ok      grid4x4-4-truck1-p4-4 horizon=7 wall_s=4.6 bytes=265433
+16:22:05 scnf  ok      grid5x5-1 horizon=7 wall_s=4.5 bytes=447755
+16:22:06 scnf  ok      grid5x5-2 horizon=7 wall_s=4.6 bytes=447755
+16:22:07 scnf  ok      grid5x5-3 horizon=7 wall_s=4.5 bytes=447755
+16:22:07 scnf  ok      grid5x5-4 horizon=7 wall_s=4.2 bytes=447755
+16:22:07 scnf  ok      grid5x5-1-truck1-p3-5 horizon=7 wall_s=4.3 bytes=447607
+16:22:07 scnf  ok      grid5x5-2-truck1-p4-4 horizon=7 wall_s=4.3 bytes=447607
+16:22:07 scnf  ok      grid5x5-1-truck1-p4-4 horizon=7 wall_s=4.5 bytes=447607
+16:22:07 scnf  ok      grid5x5-2-truck1-p5-3 horizon=7 wall_s=4.1 bytes=447607
+16:22:08 scnf  ok      grid5x5-4-truck1-p5-3 horizon=7 wall_s=4.0 bytes=447607
+16:22:08 scnf  ok      grid5x5-4-truck1-p3-5 horizon=7 wall_s=4.2 bytes=447607
+16:22:08 scnf  ok      grid5x5-3-truck1-p5-3 horizon=7 wall_s=4.4 bytes=447607
+16:22:09 scnf  ok      grid5x5-1-truck1-p4-5 horizon=8 wall_s=4.8 bytes=523783
+16:22:09 scnf  ok      grid5x5-2-truck1-p5-4 horizon=8 wall_s=4.6 bytes=523783
+16:22:09 scnf  ok      grid5x5-2-truck1-p4-5 horizon=8 wall_s=4.8 bytes=523783
+16:22:09 scnf  ok      grid5x5-3-truck1-p5-4 horizon=8 wall_s=4.5 bytes=523783
+16:22:10 scnf  ok      grid5x5-4-truck1-p5-4 horizon=8 wall_s=4.5 bytes=523783
+16:22:10 scnf  ok      grid5x5-3-truck1-p4-5 horizon=8 wall_s=4.8 bytes=523783
+16:22:10 scnf  ok      grid5x5-4-truck1-p4-5 horizon=8 wall_s=4.7 bytes=523783
+16:22:11 scnf  ok      grid5x5-3-truck1-p5-5 horizon=9 wall_s=4.2 bytes=600170
+16:22:11 scnf  ok      grid6x6-3 horizon=8 wall_s=4.0 bytes=797418
+16:22:11 scnf  ok      grid5x5-1-truck1-p5-5 horizon=9 wall_s=4.5 bytes=600170
+16:22:12 scnf  ok      grid6x6-2 horizon=8 wall_s=4.3 bytes=797418
+16:22:12 scnf  ok      grid6x6-1 horizon=8 wall_s=4.5 bytes=797418
+16:22:12 scnf  ok      grid6x6-1-truck1-p5-4 horizon=8 wall_s=4.6 bytes=797214
+16:22:12 scnf  ok      grid6x6-2-truck1-p4-5 horizon=8 wall_s=4.3 bytes=797214
+16:22:12 scnf  ok      grid6x6-1-truck1-p4-5 horizon=8 wall_s=4.4 bytes=797214
+16:22:12 scnf  ok      grid6x6-4 horizon=8 wall_s=4.8 bytes=797418
+16:22:13 scnf  ok      grid6x6-3-truck1-p4-5 horizon=8 wall_s=4.2 bytes=797214
+16:22:13 scnf  ok      grid6x6-2-truck1-p3-6 horizon=8 wall_s=4.5 bytes=797214
+16:22:13 scnf  ok      grid6x6-4-truck1-p5-4 horizon=8 wall_s=4.3 bytes=797214
+16:22:13 scnf  ok      grid6x6-4-truck1-p6-3 horizon=8 wall_s=4.2 bytes=797214
+16:22:14 scnf  ok      grid6x6-1-truck1-p4-6 horizon=9 wall_s=4.3 bytes=911815
+16:22:15 scnf  ok      grid6x6-1-truck1-p5-5 horizon=9 wall_s=4.8 bytes=911815
+16:22:15 scnf  ok      grid6x6-2-truck1-p5-5 horizon=9 wall_s=4.4 bytes=911815
+16:22:16 scnf  ok      grid6x6-3-truck1-p5-5 horizon=9 wall_s=4.4 bytes=911815
+16:22:16 scnf  ok      grid6x6-4-truck1-p5-5 horizon=9 wall_s=4.5 bytes=911815
+16:22:16 scnf  ok      grid6x6-3-truck1-p4-6 horizon=9 wall_s=4.5 bytes=911815
+16:22:17 scnf  ok      grid6x6-3-truck1-p5-6 horizon=10 wall_s=4.7 bytes=1026666
+16:22:17 scnf  ok      grid6x6-2-truck1-p5-6 horizon=10 wall_s=4.8 bytes=1026666
+16:22:17 scnf  ok      grid6x6-3-truck1-p6-5 horizon=10 wall_s=4.3 bytes=1026666
+16:22:17 scnf  ok      grid6x6-4-truck1-p5-6 horizon=10 wall_s=4.3 bytes=1026666
+16:22:17 scnf  ok      grid6x6-1-truck1-p6-6 horizon=11 wall_s=4.4 bytes=1143727
+16:22:17 scnf  ok      grid6x6-2-truck1-p6-6 horizon=11 wall_s=4.4 bytes=1143727
+16:22:17 scnf  ok      grid6x6-4-truck1-p6-6 horizon=11 wall_s=4.5 bytes=1143727
+16:22:19 scnf  ok      grid7x7-3 horizon=9 wall_s=5.0 bytes=1286142
+16:22:19 scnf  ok      grid7x7-2 horizon=9 wall_s=5.1 bytes=1286142
+16:22:19 scnf  ok      grid7x7-1 horizon=9 wall_s=5.3 bytes=1286142
+16:22:19 scnf  ok      grid7x7-4 horizon=9 wall_s=4.8 bytes=1286142
+16:22:20 scnf  ok      grid7x7-1-truck1-p6-4 horizon=9 wall_s=4.8 bytes=1285889
+16:22:20 scnf  ok      grid7x7-1-truck1-p5-5 horizon=9 wall_s=5.2 bytes=1285889
+16:22:21 scnf  ok      grid7x7-2-truck1-p5-5 horizon=9 wall_s=4.7 bytes=1285889
+16:22:21 scnf  ok      grid7x7-2-truck1-p3-7 horizon=9 wall_s=4.9 bytes=1285889
+16:22:21 scnf  ok      grid7x7-1-truck1-p7-3 horizon=9 wall_s=5.3 bytes=1285889
+16:22:21 scnf  ok      grid7x7-4-truck1-p6-4 horizon=9 wall_s=4.4 bytes=1285889
+16:22:21 scnf  ok      grid7x7-3-truck1-p4-6 horizon=9 wall_s=4.5 bytes=1285889
+16:22:21 scnf  ok      grid7x7-4-truck1-p5-5 horizon=9 wall_s=4.4 bytes=1285889
+16:22:21 scnf  ok      grid7x7-3-truck1-p6-4 horizon=9 wall_s=4.5 bytes=1285889
+16:22:22 scnf  ok      grid7x7-4-truck1-p7-3 horizon=9 wall_s=4.8 bytes=1285889
+16:22:22 scnf  ok      grid7x7-4-truck1-p3-7 horizon=9 wall_s=5.0 bytes=1285889
+16:22:23 scnf  ok      grid7x7-1-truck1-p6-5 horizon=10 wall_s=5.0 bytes=1448204
+16:22:23 scnf  ok      grid7x7-1-truck1-p4-7 horizon=10 wall_s=4.4 bytes=1448204
+16:22:24 scnf  ok      grid7x7-2-truck1-p5-6 horizon=10 wall_s=4.9 bytes=1448204
+16:22:24 scnf  ok      grid7x7-3-truck1-p6-5 horizon=10 wall_s=4.9 bytes=1448204
+16:22:24 scnf  ok      grid7x7-3-truck1-p5-6 horizon=10 wall_s=5.0 bytes=1448204
+16:22:25 scnf  ok      grid7x7-3-truck1-p4-7 horizon=10 wall_s=4.9 bytes=1448204
+16:22:25 scnf  ok      grid7x7-4-truck1-p5-6 horizon=10 wall_s=4.7 bytes=1448204
+16:22:26 scnf  ok      grid7x7-2-truck1-p7-5 horizon=11 wall_s=5.1 bytes=1613583
+16:22:26 scnf  ok      grid7x7-2-truck1-p6-7 horizon=12 wall_s=5.0 bytes=1778922
+16:22:26 scnf  ok      grid8x8-1 horizon=10 wall_s=4.9 bytes=1941569
+16:22:26 scnf  ok      grid7x7-1-truck1-p7-6 horizon=12 wall_s=5.2 bytes=1778922
+16:22:26 scnf  ok      grid7x7-2-truck1-p5-7 horizon=11 wall_s=5.4 bytes=1613583
+16:22:26 scnf  ok      grid7x7-3-truck1-p7-6 horizon=12 wall_s=5.1 bytes=1778922
+16:22:27 scnf  ok      grid7x7-4-truck1-p7-6 horizon=12 wall_s=5.2 bytes=1778922
+16:22:27 scnf  ok      grid8x8-2 horizon=10 wall_s=5.2 bytes=1941569
+16:22:28 scnf  ok      grid8x8-4 horizon=10 wall_s=5.1 bytes=1941569
+16:22:28 scnf  ok      grid8x8-3 horizon=10 wall_s=5.7 bytes=1941569
+16:22:28 scnf  ok      grid8x8-1-truck1-p5-6 horizon=10 wall_s=5.3 bytes=1941257
+16:22:29 scnf  ok      grid8x8-1-truck1-p7-4 horizon=10 wall_s=5.0 bytes=1941257
+16:22:29 scnf  ok      grid8x8-1-truck1-p8-3 horizon=10 wall_s=5.4 bytes=1941257
+16:22:30 scnf  ok      grid8x8-2-truck1-p3-8 horizon=10 wall_s=5.7 bytes=1941257
+16:22:30 scnf  ok      grid8x8-2-truck1-p5-6 horizon=10 wall_s=5.2 bytes=1941257
+16:22:31 scnf  ok      grid8x8-2-truck1-p6-5 horizon=10 wall_s=5.5 bytes=1941257
+16:22:31 scnf  ok      grid8x8-3-truck1-p4-7 horizon=10 wall_s=4.8 bytes=1941257
+16:22:31 scnf  ok      grid8x8-4-truck1-p5-6 horizon=10 wall_s=5.1 bytes=1941257
+16:22:32 scnf  ok      grid8x8-4-truck1-p3-8 horizon=10 wall_s=5.0 bytes=1941257
+16:22:32 scnf  ok      grid8x8-1-truck1-p8-4 horizon=11 wall_s=5.0 bytes=2162220
+16:22:32 scnf  ok      grid8x8-4-truck1-p8-3 horizon=10 wall_s=5.2 bytes=1941257
+16:22:32 scnf  ok      grid8x8-4-truck1-p6-5 horizon=10 wall_s=5.3 bytes=1941257
+16:22:32 scnf  ok      grid8x8-3-truck1-p8-4 horizon=11 wall_s=5.5 bytes=2162220
+16:22:33 scnf  ok      grid8x8-3-truck1-p4-8 horizon=11 wall_s=5.3 bytes=2162220
+16:22:34 scnf  ok      grid8x8-3-truck1-p7-6 horizon=12 wall_s=5.5 bytes=2383183
+16:22:34 scnf  ok      grid8x8-2-truck1-p7-6 horizon=12 wall_s=5.6 bytes=2383183
+16:22:34 scnf  ok      grid8x8-1-truck1-p7-7 horizon=13 wall_s=5.5 bytes=2604146
+16:22:34 scnf  ok      grid8x8-1-truck1-p8-6 horizon=13 wall_s=5.4 bytes=2604146
+16:22:35 scnf  ok      grid8x8-3-truck1-p7-7 horizon=13 wall_s=5.4 bytes=2604146
+16:22:36 scnf  ok      grid8x8-4-truck1-p8-6 horizon=13 wall_s=5.4 bytes=2604146
+16:22:36 scnf  ok      grid9x9-2 horizon=11 wall_s=5.6 bytes=2789876
+16:22:36 scnf  ok      grid9x9-1 horizon=11 wall_s=5.9 bytes=2789876
+16:22:37 scnf  ok      grid9x9-3 horizon=11 wall_s=6.1 bytes=2789876
+16:22:37 scnf  ok      grid9x9-4 horizon=11 wall_s=5.6 bytes=2789876
+16:22:38 scnf  ok      grid9x9-1-truck1-p7-5 horizon=11 wall_s=5.6 bytes=2789514
+16:22:38 scnf  ok      grid9x9-1-truck1-p5-7 horizon=11 wall_s=5.9 bytes=2789514
+16:22:38 scnf  ok      grid9x9-1-truck1-p9-3 horizon=11 wall_s=6.1 bytes=2789514
+16:22:38 scnf  ok      grid9x9-2-truck1-p4-8 horizon=11 wall_s=5.9 bytes=2789514
+16:22:38 scnf  ok      grid9x9-2-truck1-p3-9 horizon=11 wall_s=5.9 bytes=2789514
+16:22:39 scnf  ok      grid9x9-2-truck1-p6-6 horizon=11 wall_s=6.4 bytes=2789514
+16:22:39 scnf  ok      grid9x9-4-truck1-p9-3 horizon=11 wall_s=5.6 bytes=2789514
+16:22:39 scnf  ok      grid9x9-3-truck1-p8-4 horizon=11 wall_s=5.7 bytes=2789514
+16:22:40 scnf  ok      grid9x9-4-truck1-p8-4 horizon=11 wall_s=5.8 bytes=2789514
+16:22:40 scnf  ok      grid8x8-1-truck1-p8-7 horizon=14 wall_s=5.5 bytes=2825144
+16:22:41 scnf  ok      grid8x8-2-truck1-p7-8 horizon=14 wall_s=6.1 bytes=2825144
+16:22:42 scnf  ok      grid8x8-2-truck1-p8-7 horizon=14 wall_s=5.5 bytes=2825144
+16:22:42 scnf  ok      grid8x8-4-truck1-p8-7 horizon=14 wall_s=5.3 bytes=2825144
+16:22:42 scnf  ok      grid8x8-3-truck1-p7-8 horizon=14 wall_s=5.9 bytes=2825144
+16:22:43 scnf  ok      grid8x8-3-truck1-p8-8 horizon=15 wall_s=5.3 bytes=3046174
+16:22:43 scnf  ok      grid8x8-2-truck1-p8-8 horizon=15 wall_s=5.6 bytes=3046174
+16:22:44 scnf  ok      grid8x8-4-truck1-p8-8 horizon=15 wall_s=5.8 bytes=3046174
+16:22:44 scnf  ok      grid9x9-2-truck1-p8-5 horizon=12 wall_s=5.5 bytes=3074076
+16:22:44 scnf  ok      grid9x9-3-truck1-p9-4 horizon=12 wall_s=5.7 bytes=3074076
+16:22:44 scnf  ok      grid9x9-3-truck1-p4-9 horizon=12 wall_s=5.6 bytes=3074076
+16:22:45 scnf  ok      grid9x9-4-truck1-p7-6 horizon=12 wall_s=6.2 bytes=3074076
+16:22:46 scnf  ok      grid9x9-3-truck1-p5-9 horizon=13 wall_s=5.9 bytes=3358711
+16:22:46 scnf  ok      grid9x9-4-truck1-p8-6 horizon=13 wall_s=6.2 bytes=3358711
+16:22:46 scnf  ok      grid9x9-2-truck1-p9-6 horizon=14 wall_s=5.9 bytes=3643344
+16:22:46 scnf  ok      grid9x9-1-truck1-p8-7 horizon=14 wall_s=6.8 bytes=3643344
+16:22:47 scnf  ok      grid9x9-2-truck1-p6-9 horizon=14 wall_s=6.2 bytes=3643344
+16:22:48 scnf  ok      grid9x9-3-truck1-p7-8 horizon=14 wall_s=6.0 bytes=3643344
+16:22:48 scnf  ok      grid9x9-3-truck1-p8-7 horizon=14 wall_s=6.8 bytes=3643344
+16:22:49 scnf  ok      grid10x10-1 horizon=12 wall_s=6.7 bytes=3874991
+16:22:50 scnf  ok      grid10x10-4 horizon=12 wall_s=6.5 bytes=3874991
+16:22:50 scnf  ok      grid10x10-2 horizon=12 wall_s=7.4 bytes=3874993
+16:22:50 scnf  ok      grid10x10-1-truck1-p10-3 horizon=12 wall_s=6.4 bytes=3874569
+16:22:50 scnf  ok      grid10x10-3 horizon=12 wall_s=7.3 bytes=3874985
+16:22:50 scnf  ok      grid10x10-1-truck1-p9-4 horizon=12 wall_s=6.3 bytes=3874567
+16:22:51 scnf  ok      grid10x10-2-truck1-p10-3 horizon=12 wall_s=6.9 bytes=3874569
+16:22:51 scnf  ok      grid10x10-1-truck1-p5-8 horizon=12 wall_s=7.4 bytes=3874567
+16:22:52 scnf  ok      grid10x10-2-truck1-p3-10 horizon=12 wall_s=6.6 bytes=3874569
+16:22:53 scnf  ok      grid10x10-4-truck1-p9-4 horizon=12 wall_s=6.0 bytes=3874567
+16:22:53 scnf  ok      grid10x10-4-truck1-p8-5 horizon=12 wall_s=6.2 bytes=3874567
+16:22:53 scnf  ok      grid10x10-3-truck1-p8-5 horizon=12 wall_s=7.1 bytes=3874567
+16:22:53 scnf  ok      grid10x10-3-truck1-p10-3 horizon=12 wall_s=6.9 bytes=3874569
+16:22:53 scnf  ok      grid9x9-1-truck1-p7-9 horizon=15 wall_s=6.4 bytes=3927975
+16:22:54 scnf  ok      grid9x9-1-truck1-p8-8 horizon=15 wall_s=6.0 bytes=3927975
+16:22:55 scnf  ok      grid9x9-1-truck1-p9-7 horizon=15 wall_s=6.9 bytes=3927975
+16:22:56 scnf  ok      grid9x9-2-truck1-p7-9 horizon=15 wall_s=7.1 bytes=3927975
+16:22:56 scnf  ok      grid9x9-4-truck1-p7-9 horizon=15 wall_s=5.9 bytes=3927975
+16:22:56 scnf  ok      grid9x9-3-truck1-p7-9 horizon=15 wall_s=6.4 bytes=3927975
+16:22:57 scnf  ok      grid9x9-2-truck1-p8-9 horizon=16 wall_s=6.6 bytes=4213016
+16:22:58 scnf  ok      grid9x9-4-truck1-p9-7 horizon=15 wall_s=7.0 bytes=3927975
+16:22:58 scnf  ok      grid9x9-3-truck1-p9-8 horizon=16 wall_s=6.6 bytes=4213016
+16:22:58 scnf  ok      grid9x9-1-truck1-p8-9 horizon=16 wall_s=7.2 bytes=4213016
+16:22:58 scnf  ok      grid9x9-4-truck1-p9-8 horizon=16 wall_s=6.4 bytes=4213016
+16:22:59 scnf  ok      grid9x9-4-truck1-p8-9 horizon=16 wall_s=7.1 bytes=4213016
+16:23:00 scnf  ok      grid10x10-1-truck1-p10-4 horizon=13 wall_s=7.0 bytes=4236382
+16:23:00 scnf  ok      grid10x10-3-truck1-p9-5 horizon=13 wall_s=7.0 bytes=4236380
+16:23:00 scnf  ok      grid10x10-3-truck1-p5-9 horizon=13 wall_s=6.9 bytes=4236380
+16:23:01 scnf  ok      grid10x10-4-truck1-p9-5 horizon=13 wall_s=7.4 bytes=4236380
+16:23:01 scnf  ok      grid10x10-4-truck1-p8-6 horizon=13 wall_s=7.5 bytes=4236380
+16:23:01 scnf  ok      grid10x10-4-truck1-p10-4 horizon=13 wall_s=7.0 bytes=4236382
+16:23:02 scnf  ok      grid10x10-4-truck1-p4-10 horizon=13 wall_s=6.7 bytes=4236382
+16:23:03 scnf  ok      grid10x10-1-truck1-p8-7 horizon=14 wall_s=6.9 bytes=4607937
+16:23:04 scnf  ok      grid10x10-1-truck1-p10-5 horizon=14 wall_s=7.2 bytes=4607939
+16:23:04 scnf  ok      grid10x10-1-truck1-p9-6 horizon=14 wall_s=7.0 bytes=4607937
+16:23:06 scnf  ok      grid10x10-4-truck1-p8-7 horizon=14 wall_s=7.3 bytes=4607937
+16:23:06 scnf  ok      grid10x10-3-truck1-p8-7 horizon=14 wall_s=7.3 bytes=4607937
+16:23:06 scnf  ok      grid10x10-2-truck1-p7-9 horizon=15 wall_s=7.5 bytes=4978306
+16:23:06 scnf  ok      grid10x10-2-truck1-p7-8 horizon=14 wall_s=7.9 bytes=4607937
+16:23:06 scnf  ok      grid10x10-2-truck1-p10-5 horizon=14 wall_s=7.9 bytes=4607939
+16:23:07 scnf  ok      grid10x10-2-truck1-p9-7 horizon=15 wall_s=7.9 bytes=4978306
+16:23:07 scnf  ok      grid10x10-3-truck1-p9-7 horizon=15 wall_s=6.0 bytes=4978306
+16:23:09 scnf  ok      grid10x10-3-truck1-p9-9 horizon=17 wall_s=6.1 bytes=5714915
+16:23:09 scnf  ok      grid10x10-3-truck1-p8-8 horizon=15 wall_s=7.7 bytes=4978306
+16:23:09 scnf  ok      grid10x10-2-truck1-p9-8 horizon=16 wall_s=6.9 bytes=5348101
+16:23:09 scnf  ok      grid10x10-1-truck1-p8-9 horizon=16 wall_s=7.3 bytes=5348101
+16:23:09 scnf  ok      grid10x10-2-truck1-p6-10 horizon=15 wall_s=8.3 bytes=4978310
+16:23:09 scnf  ok      grid10x10-3-truck1-p7-9 horizon=15 wall_s=8.2 bytes=4978306
+16:23:11 scnf  ok      grid10x10-4-truck1-p8-10 horizon=17 wall_s=7.2 bytes=5714917
+16:23:11 scnf  ok      grid10x10-1-truck1-p10-9 horizon=18 wall_s=7.4 bytes=6081815
+16:23:11 scnf  ok      grid10x10-2-truck1-p9-10 horizon=18 wall_s=7.6 bytes=6081815
+16:23:13 scnf  ok      grid10x10-4-truck1-p10-9 horizon=18 wall_s=6.7 bytes=6081815
+16:23:13 done: 0 failed
