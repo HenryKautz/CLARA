@@ -36,10 +36,13 @@ Nothing can be solved by accident: $CLARA_STUBS must be a directory of
 stand-ins for every solver name in FiFO's solvers.dat (each prints "SOLVER
 CALLED: <name>" to stderr and to $CLARA_STUB_TRACE, set to each run's log, and
 exits 99), and it is put FIRST on PATH; every name is checked to resolve to it
-before starting, and every log is checked for "SOLVER CALLED".
+before starting, and every log is checked for "SOLVER CALLED".  This stops
+EXTERNAL solvers only: FiFO's builtin counters (maxent, ddnnf) run inside SBCL
+and cannot be stood in for.  The --stop-after paths used here call none.
 
 Checks per instantiated horizon: the .wff is the clara-logistics translation
-(never clara-logistics-old); every action of the plan(s) at that horizon is an
+(never clara-logistics-old), and the translation the scnf run instantiated is
+identical to the kept .wff (the .wff jobs run first, then the rest); every action of the plan(s) at that horizon is an
 OCCURS atom of the .map at its slice; the .wcnf's largest variable equals the
 .map's entry count, and its hard ('h') and soft clause counts equal the .scnf's
 (OR ...) and (WEIGHT ...) forms.
@@ -69,7 +72,9 @@ SIZES = A.sizes or FAM.sizes
 STUBS = os.environ.get("CLARA_STUBS")
 FIFO_LISP = os.environ.get("FIFO_LISP") or os.path.expanduser("~/lib/fifo/lisp")
 RECORDS = os.path.join(FAM.results, "intermediates.jsonl")
-WORK = os.path.join(FAM.scratch, "intermediates")
+# absolute: every command runs with its scratch dir as cwd, and the stand-ins'
+# trace path and recognize.sh's --out must still name the same files
+WORK = os.path.abspath(os.path.join(FAM.scratch, "intermediates"))
 LOGS = os.path.join(WORK, "logs")
 LOCK = threading.Lock()
 
@@ -185,11 +190,15 @@ def run(cmd, cwd, log):
     with open(log, "a") as f:
         f.write(f"$ {' '.join(cmd)}\n")
         f.flush()
+        p = subprocess.Popen(cmd, cwd=cwd, env=env(trace=log), stdout=f, stderr=subprocess.STDOUT,
+                             start_new_session=True)
         try:
-            p = subprocess.run(cmd, cwd=cwd, env=env(trace=log), stdout=f, stderr=subprocess.STDOUT,
-                               timeout=A.limit, start_new_session=True)
-            rc = p.returncode
+            rc = p.wait(timeout=A.limit)
         except subprocess.TimeoutExpired:
+            # the whole session (sid = p.pid), not just p: planner.sh's SBCL
+            # child would otherwise keep running, holding its heap
+            subprocess.run(["pkill", "-KILL", "-s", str(p.pid)])
+            p.wait()
             rc = "timeout"
         f.write(f"[exit {rc}, {time.monotonic() - t0:.1f}s]\n")
     return rc, time.monotonic() - t0
@@ -232,6 +241,22 @@ def finish_log(rec, log):
     return text
 
 
+def kept_wff_text(path):
+    """(text, error) of the .wff planner.sh wrote at PATH as it is kept: the
+    clara-logistics translation, its include of satplan.wff rewritten.
+    planner.sh writes that include relative to the scratch directory; FiFO
+    resolves an include against the .wff's own directory, so the kept .wff
+    includes the copy of satplan.wff beside it."""
+    text = open(path).read()
+    m = re.search(r"^;; Domain (\S+) from", text[:2000], re.M)
+    if not m or m.group(1) != C.DOMAIN_NAME:
+        return None, f"wff names domain {m.group(1) if m else '?'}"
+    text, n = re.subn(r'^\(include "[^"]*satplan\.wff"\)$', '(include "satplan.wff")', text, flags=re.M)
+    if n != 1:
+        return None, f"{n} satplan.wff includes, expected 1"
+    return text, None
+
+
 def wff_job(pb):
     dest = os.path.join(pb.outdir, pb.name + ".wff")
     rec = dict(job="wff", name=pb.name, kind=pb.kind, size=pb.size, wff=os.path.relpath(dest, FAM.dir))
@@ -244,26 +269,18 @@ def wff_job(pb):
     rc, secs = run(["planner.sh", pb.name + ".pddl", "--domain", FAM.domain, "--stop-after", "wff"], d, log)
     rec.update(wall_s=round(secs, 1), status="ok")
     out = os.path.join(d, pb.name + ".wff")
+    text = None
     if rc != 0 or not os.path.exists(out):
-        rec.update(status="failed", error=f"planner.sh exit {rc}")
+        rec.update(status="failed", error=f"planner.sh exit {rc}" if rc != 0 else "planner.sh wrote no .wff")
     else:
-        head = open(out).read(2000)
-        m = re.search(r"^;; Domain (\S+) from", head, re.M)
-        if not m or m.group(1) != C.DOMAIN_NAME:
-            rec.update(status="failed", error=f"wff names domain {m.group(1) if m else '?'}")
+        text, err = kept_wff_text(out)
+        if err:
+            rec.update(status="failed", error=err)
     finish_log(rec, log)
     if rec["status"] == "ok":
-        # planner.sh writes the include of satplan.wff relative to the scratch
-        # directory; FiFO resolves an include against the .wff's own directory,
-        # so the kept .wff includes the copy of satplan.wff beside it
-        text = open(out).read()
-        text, n = re.subn(r'^\(include "[^"]*satplan\.wff"\)$', '(include "satplan.wff")', text, flags=re.M)
-        if n != 1:
-            rec.update(status="failed", error=f"{n} satplan.wff includes, expected 1")
-        else:
-            open(out, "w").write(text)
-            publish(out, dest)
-            rec["bytes"] = os.path.getsize(dest)
+        open(out, "w").write(text)
+        publish(out, dest)
+        rec["bytes"] = os.path.getsize(dest)
     shutil.rmtree(d, ignore_errors=True)
     record(rec)
     return rec
@@ -336,9 +353,22 @@ def scnf_job(pb, h, plans):
     scnf = os.path.join(d, pb.name + ".scnf")
     wcnf, mp = os.path.join(d, f"{pb.name}-H{h}.wcnf"), os.path.join(d, f"{pb.name}-H{h}.map")
     rec["status"] = "ok"
-    if rc != 0 or not os.path.exists(scnf) or f"at {h} time slices" not in log_text(log):
+    kept = os.path.join(pb.outdir, pb.name + ".wff")
+    if rc != 0:
         rec.update(status="failed", error=f"planner.sh exit {rc}")
+    elif not os.path.exists(scnf):
+        rec.update(status="failed", error="planner.sh exited 0 but wrote no .scnf (see the log)")
+    elif f"at {h} time slices" not in log_text(log):
+        rec.update(status="failed", error=f"planner.sh did not instantiate at {h} slices (see the log)")
     else:
+        # the kept .scnf must come from the kept .wff: this run's own
+        # translation, as it would be kept, must be identical to it
+        text, err = kept_wff_text(os.path.join(d, pb.name + ".wff"))
+        if err:
+            rec.update(status="failed", error=err)
+        elif not os.path.exists(kept) or open(kept).read() != text:
+            rec.update(status="failed", error=f"this run's .wff differs from the kept {kept}")
+    if rec["status"] == "ok":
         lisp = os.path.join(FIFO_LISP, "FiFO.lisp")
         rc, _ = run(["sbcl", "--non-interactive", "--eval", f'(load "{lisp}")', "--eval",
                      f'(propositionalize "{pb.name}.scnf" :cnffile "{os.path.basename(wcnf)}"'
@@ -418,8 +448,25 @@ def rec_job(p, verify):
     return rec
 
 
+def guarded(kind, label, fn, *args):
+    """FN(*ARGS), but an exception is recorded as a crashed job of KIND and
+    LABEL (its scratch directory is left for inspection) instead of escaping."""
+    try:
+        return fn(*args)
+    except Exception as e:
+        rec = dict(job=kind, name=label, status="crashed", error=repr(e))
+        record(rec)
+        return rec
+
+
+def label_of(kind, args):
+    if kind == "scnf":
+        return f"{args[0].name}-H{args[1]}"
+    return args[0].name if kind == "wff" else args[0]
+
+
 def main():
-    names = check_stubs()
+    names = check_stubs() if not A.survey else []
     probs, rec_missing, rec_present = collect()
     errors = [(pb.kind, pb.name, e) for pb in probs for e in pb.errors]
     jobs = []        # (cost estimate, kind, args)
@@ -434,8 +481,8 @@ def main():
     nplan = sum(1 for pb in probs if pb.plans)
     C.say(f"{FAM.name}: {len(probs)} planning problems ({nplan} with a plan), "
           f"{sum(1 for j in jobs if j[1] == 'scnf')} horizons to instantiate, "
-          f"{len(rec_missing)} recognition theories missing, {min(A.verify_rec, len(rec_present))} to verify; "
-          f"stand-ins for {len(names)} names in {STUBS}")
+          f"{len(rec_missing)} recognition theories missing, {min(A.verify_rec, len(rec_present))} to verify"
+          + (f"; stand-ins for {len(names)} names in {STUBS}" if names else ""))
     hs = [j[2][1] for j in jobs if j[1] == "scnf"]
     if hs:
         C.say(f"  horizons {min(hs)}..{max(hs)}; no plan: "
@@ -450,22 +497,29 @@ def main():
         return
     os.makedirs(LOGS, exist_ok=True)
     os.makedirs(FAM.results, exist_ok=True)
-    for d in {pb.outdir for pb in probs}:
-        publish(os.path.join(FIFO_LISP, "satplan.wff"), os.path.join(d, "satplan.wff"))
-    jobs.sort(key=lambda j: j[0])
+    # satplan.wff beside the kept .wff files: written once, never replaced --
+    # the kept .scnf files were instantiated with it, so a different FiFO
+    # satplan.wff must not be slipped in under them
+    src = open(os.path.join(FIFO_LISP, "satplan.wff")).read()
+    for d in sorted({pb.outdir for pb in probs}):
+        dest = os.path.join(d, "satplan.wff")
+        if not os.path.exists(dest):
+            publish(os.path.join(FIFO_LISP, "satplan.wff"), dest)
+        elif open(dest).read() != src:
+            sys.exit(f"{dest} differs from {FIFO_LISP}/satplan.wff: the kept files were made with "
+                     "another FiFO; regenerate the family's intermediates, or use that FiFO")
     fns = {"wff": wff_job, "scnf": scnf_job, "rec": rec_job}
     failed = 0
-    with ThreadPoolExecutor(A.jobs) as ex:
-        futs = [ex.submit(fns[k], *args) for _, k, args in jobs]
-        for f in as_completed(futs):
-            try:
+    # the .wff files first: each scnf job checks that its own translation is
+    # the kept .wff, so that must exist before it starts
+    for phase in (("wff",), ("scnf", "rec")):
+        todo = sorted((j for j in jobs if j[1] in phase), key=lambda j: j[0])
+        with ThreadPoolExecutor(A.jobs) as ex:
+            futs = [ex.submit(guarded, k, label_of(k, args), fns[k], *args) for _, k, args in todo]
+            for f in as_completed(futs):
                 r = f.result()
-            except Exception as e:
-                C.say("CRASH", repr(e))
-                failed += 1
-                continue
-            if r and r["status"] != "ok":
-                failed += 1
+                if r and r["status"] != "ok":
+                    failed += 1
     C.say(f"done: {failed} failed")
     sys.exit(1 if failed else 0)
 
