@@ -24,13 +24,17 @@ Nothing is solved.  Each theory is REGENERATED -- recognize.sh --stop-after scnf
 at the instance's horizon (recognize.sh's default --evidence-kind pddl folds the
 monitor axioms into the theory) -- and must be byte-identical to the one in
 scnf/, which is what makes the wff, written by the same run, its true source.
+With --replace a theory that differs (or is missing) is not an error: the
+regenerated one replaces it, and the run says "theory REPLACED".  Use it only
+when FiFO's encoding has changed on purpose, and rerun run-benchmarks.py on
+every replaced theory: its results were measured on the old one.
 
 Every file of a theory is written in the job's scratch directory first and
 copied here only once all of its checks have passed -- each SBCL step exited 0
 and said DONE, the wff instantiates to the theory's clauses, every expected file
 exists -- so a failing rerun leaves the files as they were.
 
-Usage: make-fifo-files.py [--jobs N] [--match REGEX]   (from anywhere; needs FiFO
+Usage: make-fifo-files.py [--jobs N] [--match REGEX] [--replace]   (from anywhere; needs FiFO
 installed: ~/bin/recognize.sh and ~/lib/fifo/lisp, or FIFO_LISP).  --jobs defaults
 to what the available memory allows (about 6 GB a job), at most 8.
 """
@@ -47,6 +51,7 @@ AAAI = {  # instance: (domain file, horizon)
     "BlocksWorldCosts": ("block-words-costs.pddl", 15),
 }
 GB_PER_JOB = 6   # a recognize.sh instantiation plus the checking SBCL, big theories
+REPLACE = False  # --replace
 
 
 def jobs():
@@ -118,8 +123,8 @@ def one(j):
     shutil.rmtree(work, ignore_errors=True)
     os.makedirs(work)
     log = os.path.join(work, "log.txt")
-    if not j["old"]:
-        return name, "no theory in scnf/ to compare with"
+    if not j["old"] and not REPLACE:
+        return name, "no theory in scnf/ to compare with (--replace writes it)"
     # 1. regenerate the theory
     dom, _ = AAAI[j["inst"]]
     H = j["H"]
@@ -134,7 +139,8 @@ def one(j):
     new = os.path.join(rec, "rec-problem.scnf")
     if r.returncode != 0 or not os.path.exists(new):
         return name, f"recognize.sh failed (see {log})"
-    if not filecmp.cmp(new, j["old"], shallow=False):
+    replaced = not j["old"] or not filecmp.cmp(new, j["old"], shallow=False)
+    if replaced and not REPLACE:
         return name, f"regenerated theory DIFFERS from {os.path.relpath(j['old'], HERE)}"
     # 2. the wff, staged in work/wff beside a copy of the benchmark's satplan.wff
     W = os.path.join(work, "wff")
@@ -167,11 +173,13 @@ def one(j):
     missing = [f for f in expected if not os.path.exists(os.path.join(C, f))]
     if not ok or missing:
         return name, f"wcnf failed{' (missing ' + ', '.join(missing) + ')' if missing else ''} (see {log})"
-    # 4. all checks passed: into the benchmark (scnf/NAME.scnf is byte-identical
-    # already, so it is left as it is)
+    # 4. all checks passed: into the benchmark (scnf/NAME.scnf is left as it is
+    # when it is byte-identical already)
     for d in ("wff", "scnf", "wcnf"):
         os.makedirs(os.path.join(B, d), exist_ok=True)
     shutil.copy(wff, os.path.join(B, "wff", name + ".wff"))
+    if replaced:
+        shutil.copy(new, os.path.join(B, "scnf", name + ".scnf"))
     shutil.copy(os.path.join(rec, "rec-problem-assertion.txt"),
                 os.path.join(B, "scnf", name + "-assertion.txt"))
     for f in expected:
@@ -179,14 +187,19 @@ def one(j):
     sizes = re.findall(r"^WCNF (\S+) (\d+) (\d+)$", out, re.M)
     shutil.rmtree(work, ignore_errors=True)
     order = "" if m.group(1) == "OK" else " (wff clauses in another order)"
-    return name, "ok " + " ".join(f"{n}:{v}v/{c}c" for n, v, c in sizes) + order
+    return name, "ok " + " ".join(f"{n}:{v}v/{c}c" for n, v, c in sizes) + order + \
+        (", theory REPLACED" if replaced else ", theory unchanged")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--jobs", type=int, default=None)
     ap.add_argument("--match", default="")
+    ap.add_argument("--replace", action="store_true",
+                    help="a regenerated theory that differs replaces the one in scnf/")
     a = ap.parse_args()
+    global REPLACE
+    REPLACE = a.replace
     njobs = a.jobs or default_jobs()
     todo = [j for j in jobs() if re.search(a.match, j["name"])]
     todo.sort(key=lambda j: -j["size"])   # the big ones first, to balance
