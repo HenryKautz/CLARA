@@ -230,12 +230,12 @@ plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory:
   `query-h5-circuit.lisp` reproduces that posterior from it without
   recompiling.
 
-`wff/`, `scnf/` and `wcnf/` are written by `make-fifo-files.py`, which is kept
-in git rather than in the tree
-([ac6aa16](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/make-fifo-files.py);
-`git show ac6aa16:OldVersions/make-fifo-files.py`). It regenerates each theory
-with `recognize.sh --stop-after scnf` and requires it to be byte-identical to
-the one the runs used.
+`wff/`, `scnf/` and `wcnf/` are written by `make-fifo-files.py` (with its Lisp
+half, `make-fifo-files.lisp`), here; `--match REGEX` picks theories. It
+regenerates each theory with `recognize.sh --stop-after scnf` and requires it to
+be byte-identical to the one in `scnf/`, so nothing is solved. It also copies
+FiFO's current `satplan.wff` into `wff/` and checks each `.wff` against it, so
+run it on every theory after FiFO's SatPlan axioms change.
 
 ### Theory sizes
 

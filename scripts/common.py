@@ -1,7 +1,7 @@
 """common.py -- shared by the CLARA benchmark scripts in this directory.
 
 The grid benchmarks (SimpleGrid, TwoPackage, TwoPackageOneway, ThreePackage,
-FourPackage) were regenerated on 2026-10-31/11-01 with one set of scripts: this module holds the
+FourPackage) are made and solved by one set of scripts: this module holds the
 family table, problem/goal/hypothesis parsing, paths, the environment FiFO runs
 in, and the process runner with the stop-at-first-failure rule that every stage
 shares.
@@ -20,27 +20,6 @@ import itertools, json, math, os, re, shutil, signal, subprocess, sys, threading
 
 SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 CLARA = os.path.dirname(SCRIPTS)
-# The benchmarks as they were before 2026-10-31.  OldVersions/ was deleted from
-# the tree on 2026-11-01 (7731002); OLD_COMMIT is the last commit that has it.
-# Only make-problems.py needs it (plan-goals.py merely loses its horizon hint):
-# restore it with  git checkout OLD_COMMIT -- OldVersions  or point $CLARA_OLD
-# at a checkout of it.
-OLD_COMMIT = "ac6aa168d6f2de5714fd553bf8c8151d77867c57"
-OLD = os.environ.get("CLARA_OLD") or os.path.join(CLARA, "OldVersions")
-OLD_URL = f"https://github.com/HenryKautz/CLARA/tree/{OLD_COMMIT[:7]}/OldVersions"
-
-
-def require_old(path):
-    """PATH (under OLD), or exit with how to restore OldVersions/.  Checks for
-    OLD's tracked README.md, not PATH: git-ignored leftovers (circuits, wcnf)
-    can keep the directories alive after the deletion."""
-    if not os.path.exists(os.path.join(OLD, "README.md")) or not os.path.exists(path):
-        sys.exit(f"{path} is missing: OldVersions/ was deleted in 7731002; restore it with\n"
-                 f"  git -C {CLARA} checkout {OLD_COMMIT[:7]} -- OldVersions\n"
-                 f"or set CLARA_OLD to a checkout of it ({OLD_URL})")
-    return path
-
-
 SHIMS = os.path.join(SCRIPTS, "shims")
 
 # sizes and how the goal is split into hypotheses, per family.  "literals": the
@@ -48,30 +27,31 @@ SHIMS = os.path.join(SCRIPTS, "shims")
 # (and (or ...) (or ...) ...) and each choice of one literal per disjunction is a
 # hypothesis (ThreePackage: 2^3 = 8).
 #
-# How make-problems.py makes a family from OldVersions/<source>: it replays each
-# old problem's recorded ppgen settings, dropping the flags in "drop" and
-# appending those in "add".  A family that drops and adds nothing has the SAME
-# WORLD as its source (Family.same_world): exactly the old problem's objects,
-# :init and goal literals (checked), so the old plans' horizons are valid hints
-# for plan-goals.py.  One that drops or adds flags changes only the roads here
-# (--knockout and --oneway draw from their own random state in ppgen, so the
-# seed still gives the old starts and destinations; make-problems.py checks
-# that everything except the road facts is the old problem's), but the old
-# horizons are then no guide.
+# "flags": the family's own ppgen.sh flags at grid size n.  make-problems.py
+# makes problem gridNxN-K with PPGEN_COMMON + --dimensions n n + flags(n) +
+# --seed K, K in SEEDS, and checks those settings against the settings block
+# of the problem on disk, when there is one.
+PPGEN_COMMON = ["--style", "grid", "--airports", "0", "--airplanes", "0",
+                "--handle-cost", "1", "--preferences", "none"]
+SEEDS = (1, 2, 3, 4)
 FAMILIES = {
-    "SimpleGrid":   dict(sizes=list(range(3, 11)), kind="literals", source="SimpleGrid",
-                         drop=(), add=()),
-    "TwoPackage":   dict(sizes=list(range(3, 8)),  kind="literals", source="TwoPackage",
-                         drop=(), add=()),
-    # 2026-11-01: ThreePackage and FourPackage remade without --knockout (the
-    # full grid of two-way roads); TwoPackageOneway is TwoPackage with 25% of
-    # the roads one-way
-    "TwoPackageOneway": dict(sizes=list(range(3, 8)), kind="literals", source="TwoPackage",
-                             drop=(), add=(("--oneway", ["25"]),)),
-    "ThreePackage": dict(sizes=[5, 6, 7],          kind="combos", source="ThreePackage",
-                         drop=("--knockout",), add=()),
-    "FourPackage":  dict(sizes=list(range(6, 16)), kind="literals", source="FourPackage",
-                         drop=("--knockout",), add=()),
+    "SimpleGrid":   dict(sizes=list(range(3, 11)), kind="literals",
+                         flags=lambda n: ["--trucks", "1", "--packages", "0", "--drive-cost", "1",
+                                          "--destinations", str(n - 1), "--require", "all",
+                                          "--mindist", str(3 if n == 3 else n + 1)]),
+    "TwoPackage":   dict(sizes=list(range(3, 8)),  kind="literals",
+                         flags=lambda n: ["--trucks", "1", "--packages", "2", "--drive-cost", "1",
+                                          "--destinations", "2", "--require", "some"]),
+    "TwoPackageOneway": dict(sizes=list(range(3, 8)), kind="literals",
+                             flags=lambda n: ["--trucks", "1", "--packages", "2", "--drive-cost", "1",
+                                              "--destinations", "2", "--require", "some",
+                                              "--oneway", "25"]),
+    "ThreePackage": dict(sizes=[5, 6, 7],          kind="combos",
+                         flags=lambda n: ["--trucks", "1", "--packages", "3", "--drive-cost", "2",
+                                          "--destinations", "2", "--require", "all"]),
+    "FourPackage":  dict(sizes=list(range(6, 16)), kind="literals",
+                         flags=lambda n: ["--trucks", "2", "--packages", "4", "--drive-cost", "2",
+                                          "--destinations", "3", "--require", "some"]),
 }
 DOMAIN_NAME = "clara-logistics"
 EVIDENCE_FRACTIONS = (25, 100)     # percent of the plan's actions; plus "none"
@@ -88,11 +68,8 @@ class Family:
         self.name = name
         self.sizes = FAMILIES[name]["sizes"]
         self.kind = FAMILIES[name]["kind"]
-        self.drop = FAMILIES[name]["drop"]
-        self.add = FAMILIES[name]["add"]
-        self.same_world = not self.drop and not self.add
+        self.flags = FAMILIES[name]["flags"]
         self.dir = os.path.join(CLARA, name)
-        self.old = os.path.join(OLD, FAMILIES[name]["source"])
         self.domain = os.path.join(self.dir, DOMAIN_NAME + ".pddl")
         self.results = os.path.join(self.dir, "results")
         # scratch: its path must contain no "." (FiFO derives .satout from the
@@ -103,6 +80,11 @@ class Family:
 
     def path(self, *p):
         return os.path.join(self.dir, *p)
+
+    def ppgen_flags(self, n, seed):
+        """The ppgen.sh settings of problem gridNxN-SEED (without --domain,
+        --name and -o)."""
+        return PPGEN_COMMON + ["--dimensions", str(n), str(n)] + self.flags(n) + ["--seed", str(seed)]
 
     def problems(self, sizes=None):
         out = []
@@ -198,7 +180,9 @@ def with_goal(src, new_name, header, goal_lines):
     return "\n".join(";; " + h if h else ";;" for h in header) + "\n\n" + body
 
 
-def goal_problem_text(fam, problem, hyp):
+def goal_problem_text(fam, problem, hyp, src=None):
+    """The goal variant of PROBLEM for HYP, made from SRC (default: the
+    family's PROBLEM.pddl)."""
     header = [hyp.goal,
               f"Single-goal variant of {fam.name}/{problem}.pddl: the hard goal is",
               f"{hyp.formula()} -- hypothesis {hyp.name} of the recognition problem.",
@@ -208,7 +192,7 @@ def goal_problem_text(fam, problem, hyp):
     else:
         goal = ["  (:goal (and"] + [f"        (at {o} {p})" for o, p in hyp.lits[:-1]] + \
                [f"        (at {hyp.lits[-1][0]} {hyp.lits[-1][1]})))"]
-    return with_goal(fam.path(problem + ".pddl"), hyp.goal, header, goal)
+    return with_goal(src or fam.path(problem + ".pddl"), hyp.goal, header, goal)
 
 
 def recognition_text(fam, problem, horizon, horizons, hyps):

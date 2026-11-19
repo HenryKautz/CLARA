@@ -8,22 +8,8 @@ problem's goals are planned, its recognition problem.
 Each goal is planned twice, both by planner.sh (domain F/clara-logistics.pddl):
 
   tt    tt-open-wbo-inc-Glucose4_1 (anytime): planner.sh searches horizons
-        upward with kissat for the SHORTEST feasible one, H, and minimises cost
-        there.  In a family with the same world as its source (SimpleGrid,
-        TwoPackage: common.Family.same_world) the search starts at the horizon
-        the OldVersions plan of the same goal had, minus one (the feasible
-        horizons did not change: the new domain only charges for load/unload
-        and drops transfer, which needs two vehicles at one place).  That
-        slice count must be UNSAT and the next SAT, which proves H shortest (a
-        SatPlan plan stays a plan with an extra idle slice, so feasibility is
-        monotone in the horizon).  If the first slice tried is already SAT the
-        hint was wrong and the goal is planned again with the full search.  In
-        a family whose roads changed (ThreePackage and FourPackage without
-        knockout, TwoPackageOneway) the old horizons are no guide, so there is
-        no hint and the search is the full one from the start.  OldVersions/
-        is no longer in the tree (common.OLD_COMMIT): without it there is no
-        hint either -- the same plans, only a longer search.
-        -> goals/<goal>-tt.answer
+        upward with kissat (up to --max-slices) for the SHORTEST feasible one,
+        H, and minimises cost there.  -> goals/<goal>-tt.answer
   eval  EvalMaxSAT_bin (exact) at the same H (--numslices H): ok only when it
         PROVES its optimum within the solver limit.  -> goals/<goal>-eval.answer
 
@@ -84,27 +70,11 @@ def record(rec):
           f"{rec.get('wall_s', '')}{'s' if 'wall_s' in rec else ''} {extra}")
 
 
-def old_horizon(problem, hyp):
-    """The shortest horizon of the same goal in OldVersions, if it was planned
-    and the family's world is the old one (no hint when the roads changed, or
-    when OldVersions/ is not restored)."""
-    if not FAM.same_world or not os.path.exists(os.path.join(C.OLD, "README.md")):
-        return None
-    names = [hyp.goal]
-    if FAM.name == "SimpleGrid":            # old name: <problem>-<place>
-        names.append(f"{problem}-{hyp.lits[0][1]}")
-    for n in names:
-        p = os.path.join(FAM.old, "goals", n + ".answer")
-        if os.path.exists(p):
-            return C.answer_horizon(p)
-    return None
-
-
 class Task:
-    def __init__(self, solver, problem, hyp, minslices=None, numslices=None):
+    def __init__(self, solver, problem, hyp, numslices=None):
         self.solver, self.problem, self.hyp = solver, problem, hyp
         self.size = C.size_of(problem)
-        self.minslices, self.numslices = minslices, numslices
+        self.numslices = numslices
 
     def key(self):
         return (self.size, self.problem, self.hyp.index, self.solver)
@@ -119,8 +89,6 @@ class Task:
                "--timeout", str(A.solver_limit)]
         if self.solver == "tt":
             cmd += ["--weighted-solver", C.TT, "--maxslices", str(A.max_slices)]
-            if self.minslices:
-                cmd += ["--minslices", str(self.minslices)]
         else:
             cmd += ["--weighted-solver", C.EVAL, "--numslices", str(self.numslices)]
         self.work = work
@@ -136,8 +104,6 @@ def finish(task, status):
                hypothesis=task.hyp.name, index=task.hyp.index,
                solver=C.TT if task.solver == "tt" else C.EVAL,
                solver_limit_s=A.solver_limit, **run.base_record())
-    if task.minslices:
-        rec["minslices"] = task.minslices
     stopped = "stopped after the" in out
     if status == "ok":
         status = run.classify()
@@ -151,8 +117,6 @@ def finish(task, status):
         rec["solver_stopped"] = stopped
         if task.solver == "eval" and stopped:
             status = "timeout"           # EvalMaxSAT did not prove its optimum
-        if task.solver == "tt" and task.minslices and rec["horizon"] == task.minslices:
-            status = "hint-sat"          # the hint's H-1 was feasible: search again
         if status == "ok":
             shutil.copy(answer, FAM.path("goals", f"{g}-{task.solver}.answer"))
     elif status == "ok":
@@ -204,8 +168,7 @@ def main():
     for p in problems:
         for h in hyps[p]:
             if ("tt", h.goal) not in ok:
-                oh = old_horizon(p, h)
-                pending.append(Task("tt", p, h, minslices=oh - 1 if oh and oh > 1 else None))
+                pending.append(Task("tt", p, h))
             elif h.goal not in settled_eval:
                 pending.append(Task("eval", p, h, numslices=ok[("tt", h.goal)]["horizon"]))
     running = []
@@ -305,8 +268,6 @@ def main():
                 ok[(t.solver, t.hyp.goal)] = rec
                 if t.solver == "tt":
                     pending.append(Task("eval", t.problem, t.hyp, numslices=rec["horizon"]))
-            elif rec["status"] == "hint-sat":
-                pending.append(Task("tt", t.problem, t.hyp))
             elif rec["status"] in ("timeout", "memout"):
                 stop(t.solver, t.size)
         settle()

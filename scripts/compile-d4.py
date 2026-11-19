@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """compile-d4.py --family F [--limit 7200] [--jobs 4]
 
-Compile each problem of family F to a d-DNNF circuit with d4 (OldVersions/
-ThreePackage/scripts/compile-d4.py, made family-generic and made to follow the
-planning stage).
+Compile each problem of family F to a d-DNNF circuit with d4, after the
+planning stage.
 
 For each problem gridNxN-K, smallest grid first, once plans.jsonl says its size
 is settled and its recognition problem exists:
@@ -30,7 +29,7 @@ runs low the largest compilation is killed (status memout).
 Every circuit is checked before it is kept: its model count must equal
 SharpSAT-TD's exact count of d4's own input CNF over all its variables (equal
 because the projection is exact).  d4 has returned wrong circuits before
-(OldVersions/SimpleGrid, from 8x8 on).  A circuit whose count differs is
+(on SimpleGrid theories from 8x8 on).  A circuit whose count differs is
 discarded (status wrong) and compiled again, up to --attempts in a row; one
 whose check does not finish within --verify-limit is kept as unverified
 (count_check "timeout").
@@ -52,8 +51,8 @@ ap.add_argument("--jobs", type=int, default=4, help="compilations at once")
 ap.add_argument("--attempts", type=int, default=3)
 ap.add_argument("--sbcl-heap-mb", type=int, default=32768)
 ap.add_argument("--node-limit", type=int, default=20000000,
-                help="marginals.sh --node-limit: cap on the imported circuit (OldVersions/"
-                     "ThreePackage grid5x5-3's 1.87M-node circuit overflowed FiFO's default, "
+                help="marginals.sh --node-limit: cap on the imported circuit (a ThreePackage "
+                     "grid5x5-3 circuit of 1.87M nodes overflowed FiFO's default, "
                      "2,000,000)")
 ap.add_argument("--poll", type=float, default=60)
 A = ap.parse_args()

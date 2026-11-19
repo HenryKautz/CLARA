@@ -11,9 +11,8 @@ Each problem P is planned twice by planner.sh (domain F/clara-logistics.pddl):
 
   tt    tt-open-wbo-inc-Glucose4_1 (anytime), --maxslices 200 --longer 4:
         planner.sh searches horizons upward with kissat for the shortest
-        feasible one, H0 (no --minslices hint: the originals were never planned
-        before), then minimises cost at each of H0..H0+4 and keeps the cheapest
-        plan.  A longer horizon can admit a cheaper plan: H0 is set by the
+        feasible one, H0, then minimises cost at each of H0..H0+4 and keeps the
+        cheapest plan.  A longer horizon can admit a cheaper plan: H0 is set by the
         QUICKEST hypothesis, which need not be the cheapest.
         -> <F>/<P>-tt.answer
   eval  EvalMaxSAT_bin (exact), --numslices H0 --longer 4: phase 1 only

@@ -125,7 +125,8 @@ from 126 variables and 622 clauses to 95,836 variables and 429,363 clauses
 ## The pipeline
 
 `scripts/make-problems.py` makes the problems with the `ppgen.sh` settings
-above.  Then, one Slurm job per family (`scripts/run-family.sh`):
+above (`--check` compares a remake with the committed files, byte for byte).
+Then, one Slurm job per family (`scripts/run-family.sh`):
 
 1. **`plan-goals.py`** — each hypothesis as a hard goal (`goals/<goal>.pddl`),
    planned at its **shortest horizon** twice: by `tt-open-wbo-inc-Glucose4_1`
