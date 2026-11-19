@@ -1,9 +1,7 @@
 # SimpleGrid
 
-One truck heading for one of several destinations; regenerated 2026-10-31 (the
-version before, with its results, is
-[OldVersions/SimpleGrid](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/SimpleGrid), deleted from the tree in 7731002).  How the
-problems were made and solved is in the [top-level README](../README.md) and
+One truck heading for one of several destinations.  How the problems were
+made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
 ## Problems
@@ -13,8 +11,8 @@ with two-way roads between neighbours and no airports, airplanes or packages.
 One truck starts at the corner `p1-1`; the goal is that it reaches any one of
 N−1 destinations (2 at 3×3), all at least N+1 road steps from `p1-1` (3 at
 3×3): `(or (at truck1 a) (at truck1 b) …)`.  Drives cost 1 (domain
-`clara-logistics.pddl`; with no packages, the new handling cost never applies,
-so these problems plan exactly as before).  No preferences.
+`clara-logistics.pddl`; with no packages, its handling cost never applies).
+No preferences.
 
 The **hypotheses** are the destinations, named `at-truck1-<place>` by
 `recognize.sh`; chance is 1/(N−1).
@@ -48,8 +46,8 @@ tables.md                   scripts/summarize.py's tables
 ```
 
 `<goal>` is the problem name followed by the hypothesis's object and place,
-e.g. `grid4x4-1-truck1-p3-4` (the old version named it `grid4x4-1-p3-4`).  The
-true hypothesis of `<goal>-obs*.txt` is that goal's.
+e.g. `grid4x4-1-truck1-p3-4`.  The true hypothesis of `<goal>-obs*.txt` is
+that goal's.
 
 ## Results
 
@@ -64,7 +62,7 @@ planned by tt-open-wbo-inc in seconds, and EvalMaxSAT proved every plan
 optimal; tt's plans were all already optimal, so the evidence comes from
 EvalMaxSAT's plans throughout.
 
-**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+**Original problems** (`scripts/plan-originals.py`, no evidence).
 Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
 one destination).  tt-open-wbo-inc found the shortest feasible horizon H0
 with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at
@@ -107,6 +105,4 @@ true goal than max-term's (accuracy 0.25–0.5 with full evidence).
 three timed out.  sharpSAT confirmed the circuit's model count for every
 circuit through 6×6 and three of four at 7×7; from 8×8 on every check ran out
 of its 30 minutes, so those circuits are unverified (d4 is known to
-miscompile larger theories; see
-[OldVersions/SimpleGrid/results/compile-d4.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/SimpleGrid/results/compile-d4.md)).
-No count check disagreed.
+miscompile larger theories).  No count check disagreed.

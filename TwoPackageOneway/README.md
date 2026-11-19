@@ -1,8 +1,7 @@
 # TwoPackageOneway
 
 [TwoPackage](../TwoPackage/README.md) with **25% of the roads one-way**: one
-truck, two packages, at least one of them delivered.  Added 2026-11-01.  How
-the problems were made and solved is in the [top-level README](../README.md)
+truck, two packages, at least one of them delivered.  How the problems were made and solved is in the [top-level README](../README.md)
 and [scripts/README.md](../scripts/README.md).
 
 ## Problems
@@ -73,7 +72,7 @@ plans throughout.  Mean horizon grows from 7.2 (3×3) to 15.2 (7×7), about one
 step longer than TwoPackage's at each size; the slowest size, 7×7, takes
 56 s (tt) and 30 s (EvalMaxSAT) per goal on average.
 
-**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+**Original problems** (`scripts/plan-originals.py`, no evidence).
 Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
 one package delivered).  tt-open-wbo-inc found the shortest feasible horizon
 H0 with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at

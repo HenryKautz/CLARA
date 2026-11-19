@@ -1,11 +1,7 @@
 # FourPackage
 
-Two trucks, four packages, at least one delivered; regenerated 2026-11-01
-with every road present (no `--knockout`).  The 2026-10-31 regeneration, which
-kept the old 40% knockout, is in git at commit d228f28; the version before
-that, with goal preferences, and its results, is
-[OldVersions/FourPackage](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/FourPackage), deleted from the tree in 7731002.  How the
-problems were made and solved is in the [top-level README](../README.md) and
+Two trucks, four packages, at least one delivered.  How the problems were
+made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
 ## Problems
@@ -16,19 +12,12 @@ trucks and four packages placed at random, three possible destinations per
 package (never its own start), and the goal that
 **at least one** package reaches one of its destinations (`ppgen.sh --require
 some`): a disjunction of twelve literals `(at pkgI <place>)`.  Drives cost 2,
-each load and unload 1 (domain `clara-logistics.pddl`, the same actions and
-costs as the old `clara-logistics-handling.pddl`).
-
-**No preferences.**  The old version also made each goal literal a preference
-of weight 8 (`--preferences 8 8`); now the hard disjunction is the only goal.
-The seeds are the old ones, and dropping `--knockout` leaves the starts and
-destinations as they were: each problem is the knockout problem of the same
-name with its missing roads restored.
+each load and unload 1 (domain `clara-logistics.pddl`).  No preferences: the
+hard disjunction is the only goal.
 
 The **hypotheses** are the twelve literals, named `at-pkgI-<place>` by
 `recognize.sh`; chance is 1/12.  FiFO's SatPlan axioms use the linear `mutex`
-encoding at every size (the old version kept the pairwise one up to 11×11);
-the two have the same plans.
+encoding at every size (it has the same plans as the pairwise one).
 
 ## Layout
 
@@ -81,12 +70,7 @@ were optimal in every case EvalMaxSAT proved.  The evidence comes from
 EvalMaxSAT's plan where it has one and from tt's otherwise (0, 1, 45, 46 and 3
 goals at 6×6 … 10×10).  Mean horizon grows from 9.5 (6×6) to 14.0 (9×9).
 
-Compared with the knockout version (commit d228f28), restoring the roads
-shortened the plans and let EvalMaxSAT go one size further (it stopped at 6×6
-before), but tt stopped one size earlier (at 10×10 before): with more roads
-there are more drive actions per step.
-
-**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+**Original problems** (`scripts/plan-originals.py`, no evidence).
 Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
 one package delivered).  tt-open-wbo-inc found the shortest feasible horizon
 H0 with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at

@@ -164,12 +164,11 @@ The normalization recovers what MAP could not:
 - **BlockWords** moves the true `hyp16` from a large tie to 2nd, then to tied
   first with `hyp15`, the word sharing the observed prefix.
 
-These timings come from FiFO's older `recognize.sh`, which ran `planner.sh` 2n
-times. The current one instantiates once and clamps the 2n solves, taking
-4.1 s on IntrusionDetectionCosts at H = 6. Its summary tables are identical to
-the old method's.
+These timings are for running `planner.sh` 2n times. `recognize.sh`
+instantiates once and clamps the 2n solves instead, taking 4.1 s on
+IntrusionDetectionCosts at H = 6, with identical summary tables.
 
-## Exact posteriors: SharpSAT-TD and d4 knowledge compilation (2026-10-19)
+## Exact posteriors: SharpSAT-TD and d4 knowledge compilation
 
 The tables above come from MaxSAT: max-term, i.e. R&G's `c(¬O) − c(O)`, keeps only
 each partition function's dominant (cheapest-plan) term. This section computes
@@ -182,7 +181,7 @@ That posterior was measured three ways:
 
 - **max-term**: `recognize.sh --counter max-term`, the exact MaxSAT solver rc2.
   It reproduces the R&G table above number for number, but runs in seconds
-  instead of minutes, because the current `recognize.sh` instantiates once and
+  instead of minutes, because `recognize.sh` instantiates once and
   clamps the 2n solves.
 - **sharpsat-td**: `recognize.sh --counter sharpsat-td`. The posterior is formed
   from 2(1 + n) exact weighted model counts.
@@ -231,14 +230,12 @@ plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory:
   `query-h5-circuit.lisp` reproduces that posterior from it without
   recompiling.
 
-`../OldVersions/make-fifo-files.py` (at the top level until 2026-10-31;
-OldVersions/ was deleted on 2026-11-01, so restore it with
-`git checkout ac6aa16 -- OldVersions` or see it
-[on GitHub](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/make-fifo-files.py)) writes
-`wff/`, `scnf/` and `wcnf/`. It regenerates each
-theory with `recognize.sh --stop-after scnf` and requires it to be
-byte-identical to the one the runs used. (Until 2026-10-20 the theories and
-their weighted CNFs were in `theories/`, in the 2024 dialect only.)
+`wff/`, `scnf/` and `wcnf/` are written by `make-fifo-files.py`, which is kept
+in git rather than in the tree
+([ac6aa16](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/make-fifo-files.py);
+`git show ac6aa16:OldVersions/make-fifo-files.py`). It regenerates each theory
+with `recognize.sh --stop-after scnf` and requires it to be byte-identical to
+the one the runs used.
 
 ### Theory sizes
 

@@ -1,7 +1,7 @@
 # ThreePackage intermediates
 
 The files between each planning problem's PDDL and its plan, which the pipeline
-made in scratch directories and threw away.  Made 2026-11-05 by
+makes only in scratch directories.  Made by
 `scripts/make-intermediates.py` (FiFO e0dcb59), as one Slurm job
 (`scripts/run-intermediates.sh`).  **Nothing was solved**: stand-ins for every
 solver in FiFO's `lisp/solvers.dat` were first on `PATH`, each exiting 99 with

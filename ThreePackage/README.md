@@ -1,11 +1,7 @@
 # ThreePackage
 
-One truck, three packages, every package delivered; regenerated 2026-11-01
-with every road present (no `--knockout`).  The 2026-10-31 regeneration, which
-kept the old 20% knockout, is in git at commit d228f28; the version before
-that, with its results, is
-[OldVersions/ThreePackage](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/ThreePackage), deleted from the tree in 7731002.  How the
-problems were made and solved is in the [top-level README](../README.md) and
+One truck, three packages, every package delivered.  How the problems were
+made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
 ## Problems
@@ -16,11 +12,8 @@ and three packages placed at random, two possible destinations per package
 (never its own start), and the goal that
 **every** package reaches one of its own (`ppgen.sh --require all`):
 `(and (or (at pkg1 a) (at pkg1 b)) (or (at pkg2 c) (at pkg2 d)) (or (at pkg3 e) (at pkg3 f)))`.
-Drives cost 2, each load and unload 1 (domain `clara-logistics.pddl`, the same
-actions and costs as the old `clara-logistics-handling.pddl`).  No preferences.
-The seeds are the old ones, and dropping `--knockout` leaves the starts and
-destinations as they were: each problem is the knockout problem of the same
-name with its missing roads restored.
+Drives cost 2, each load and unload 1 (domain `clara-logistics.pddl`).  No
+preferences.
 
 The **hypotheses** are the goal's 2³ = 8 combinations, one destination per
 package.  `recognition/<problem>.pddl` writes the goal as `(or (and …) … (and
@@ -77,12 +70,7 @@ one 6×6 problem has a recognition problem (horizon 24); of the 16 6×6 goals
 planned in all, EvalMaxSAT proved 5 and the other 11 use tt's plans.  7×7
 was not planned.
 
-Restoring the roads did not make these problems easier than the knockout
-version (commit d228f28): the 5×5 horizons are shorter (mean 18.2 against
-20.9), but with more roads there are more drive actions per step, the solvers
-take about twice as long at 5×5, and both planners still stop at 6×6.
-
-**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+**Original problems** (`scripts/plan-originals.py`, no evidence).
 Each `gridNxN-K.pddl` was also planned as it is, its goal `(and (or …) …)`
 (every package to one of its destinations).  tt-open-wbo-inc found the
 shortest feasible horizon H0 with kissat (`--maxslices 200`); then
@@ -119,7 +107,5 @@ reached.
 2186 s; grid5x5-3 took 6647 s and 16.5 GB for a 940 MB circuit).  sharpSAT
 confirmed the circuit's model count for three of them; on grid5x5-4 the check
 ran out of its 30 minutes, so that circuit is unverified (d4 is known to
-miscompile larger theories; see
-[OldVersions/SimpleGrid/results/compile-d4.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/SimpleGrid/results/compile-d4.md)).
-The one 6×6 theory (grid6x6-1) timed out after 2 hours at 25 GB.  No count
+miscompile larger theories).  The one 6×6 theory (grid6x6-1) timed out after 2 hours at 25 GB.  No count
 check disagreed.

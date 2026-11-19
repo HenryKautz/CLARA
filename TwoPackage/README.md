@@ -1,9 +1,7 @@
 # TwoPackage
 
-One truck, two packages, at least one of them delivered; regenerated
-2026-10-31 (the version before, with its results, is
-[OldVersions/TwoPackage](https://github.com/HenryKautz/CLARA/tree/ac6aa16/OldVersions/TwoPackage), deleted from the tree in 7731002).  How the
-problems were made and solved is in the [top-level README](../README.md) and
+One truck, two packages, at least one of them delivered.  How the problems
+were made and solved is in the [top-level README](../README.md) and
 [scripts/README.md](../scripts/README.md).
 
 ## Problems
@@ -63,7 +61,7 @@ planned by tt-open-wbo-inc, and EvalMaxSAT proved every plan optimal; tt's
 plans were all already optimal, so the evidence comes from EvalMaxSAT's
 plans throughout.  Mean horizon grows from 6.4 (3×3) to 14.2 (7×7).
 
-**Original problems** (2026-11-02, `scripts/plan-originals.py`, no evidence).
+**Original problems** (`scripts/plan-originals.py`, no evidence).
 Each `gridNxN-K.pddl` was also planned as it is, its goal the disjunction (any
 one package delivered).  tt-open-wbo-inc found the shortest feasible horizon
 H0 with kissat (`--maxslices 200`); then tt-open-wbo-inc, and EvalMaxSAT at
@@ -98,6 +96,5 @@ equals the cheapest goal plan within H0..H0+4 — all 20 problems pass.  Plans:
 takes 1730 s on average and up to 24 GB.  sharpSAT confirmed the circuit's
 model count for 11 of the 20 circuits, all 3×3–6×6; on the other nine the
 check ran out of its 30 minutes, so those circuits — including all of 7×7 —
-are unverified (d4 is known to miscompile larger theories; see
-[OldVersions/SimpleGrid/results/compile-d4.md](https://github.com/HenryKautz/CLARA/blob/ac6aa16/OldVersions/SimpleGrid/results/compile-d4.md)).
-No count check disagreed.
+are unverified (d4 is known to miscompile larger theories).  No count check
+disagreed.
