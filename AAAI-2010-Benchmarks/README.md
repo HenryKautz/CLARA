@@ -116,9 +116,9 @@ order and satisfies some hypothesis. It is found by weighted MaxSAT at H.
 | IntrusionDetection | 1 | 6  | 1 056 | 2 240   | 3.3 s | 14 | hyp3  | hyp0  |
 | IntrusionDetection | 3 | 6  | 1 068 | 2 282   | 3.9 s | 16 | hyp3  | hyp0  |
 | IntrusionDetection | 5 | 6  | 1 080 | 2 324   | 2.2 s | 18 | hyp2  | hyp0  |
-| BlockWords         | 1 | 15 | 3 681 | 240 552 | 8.4 s | 4  | hyp5  | hyp16 |
-| BlockWords         | 3 | 15 | 3 711 | 240 666 | 9.1 s | 7  | hyp5  | hyp16 |
-| BlockWords         | 5 | 15 | 3 741 | 240 780 | 9.7 s | 10 | **hyp16** | hyp16 |
+| BlockWords         | 1 | 15 | 10 821 | 45 588 | 7.4 s | 4  | hyp5  | hyp16 |
+| BlockWords         | 3 | 15 | 10 851 | 45 702 | 8.0 s | 7  | hyp5  | hyp16 |
+| BlockWords         | 5 | 15 | 10 881 | 45 816 | 7.2 s | 10 | **hyp16** | hyp16 |
 
 MAP is wrong in five of the six rows. This is MAP's cost bias, not an encoding
 defect: it recognizes the cheapest-to-reach hypothesis.
@@ -205,7 +205,11 @@ each run in `results/runs.jsonl`. The tables are printed by `summarize.py`.
 ### What is saved here
 
 For each instance and evidence prefix, NAME = `<instance>-obsK` (K = 1, 3, 5),
-plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory:
+plus `IntrusionDetectionCosts-obs3-H5`, the H = 5 cross-check theory, the files
+below. The theories are made by FiFO a80e6cd, whose SatPlan axioms write action
+interference with `mutex` (a chain of defined `TSEITIN` atoms wherever that is
+smaller than the pairwise clauses: in every BlocksWorldCosts theory, in no
+IntrusionDetectionCosts one).
 
 - `wff/NAME.wff`: the FiFO source. It is pddl2fifo's translation of the
   problem, as `recognize.sh` normalized it, with the observation monitor's
@@ -244,9 +248,9 @@ run it on every theory after FiFO's SatPlan axioms change.
 | IntrusionDetectionCosts-obs1 | 6 | 1,056 | 2,239 |
 | IntrusionDetectionCosts-obs3 | 6 | 1,068 | 2,281 |
 | IntrusionDetectionCosts-obs5 | 6 | 1,080 | 2,323 |
-| BlocksWorldCosts-obs1 | 15 | 3,681 | 240,551 |
-| BlocksWorldCosts-obs3 | 15 | 3,711 | 240,665 |
-| BlocksWorldCosts-obs5 | 15 | 3,741 | 240,779 |
+| BlocksWorldCosts-obs1 | 15 | 10,821 | 45,587 |
+| BlocksWorldCosts-obs3 | 15 | 10,851 | 45,701 |
+| BlocksWorldCosts-obs5 | 15 | 10,881 | 45,815 |
 
 ### Results
 
@@ -268,22 +272,22 @@ run it on every theory after FiFO's SatPlan axioms change.
 | IntrusionDetectionCosts | 5 | d4 | timeout (1.00 h limit) | 1.00 h | – | – |
 | IntrusionDetectionCosts | 5 | d4-project | timeout (1.00 h limit) | 1.00 h | – | – |
 | IntrusionDetectionCosts | 5 | mc-sat | did not mix | 3.7 min | – | – |
-| BlocksWorldCosts | 1 | max-term | ok | 48.7 s | 19-way tie incl. hyp0, hyp1, hyp2… (0.051) | 0.051, 1 (tied ×19) |
-| BlocksWorldCosts | 1 | sharpsat-td | timeout (1.00 h limit) | 1.03 h | – | – |
+| BlocksWorldCosts | 1 | max-term | ok | 41.5 s | 19-way tie incl. hyp0, hyp1, hyp2… (0.051) | 0.051, 1 (tied ×19) |
+| BlocksWorldCosts | 1 | sharpsat-td | timeout (1.00 h limit) | 1.00 h | – | – |
 | BlocksWorldCosts | 1 | d4 | timeout (1.00 h limit) | 1.00 h | – | – |
-| BlocksWorldCosts | 1 | d4-project | timeout (1.00 h limit) | 1.02 h | – | – |
-| BlocksWorldCosts | 3 | max-term | ok | 1.0 min | hyp10 (0.212) | 0.120, 2 (tied ×2) |
+| BlocksWorldCosts | 1 | d4-project | timeout (1.00 h limit) | 1.01 h | – | – |
+| BlocksWorldCosts | 3 | max-term | ok | 1.1 min | hyp10 (0.212) | 0.120, 2 (tied ×2) |
 | BlocksWorldCosts | 3 | sharpsat-td | timeout (1.00 h limit) | 1.03 h | – | – |
 | BlocksWorldCosts | 3 | d4 | timeout (1.00 h limit) | 1.00 h | – | – |
 | BlocksWorldCosts | 3 | d4-project | timeout (1.00 h limit) | 1.01 h | – | – |
-| BlocksWorldCosts | 5 | max-term | ok | 1.0 min | 2-way tie incl. hyp15, hyp16 (0.314) | 0.314, 1 (tied ×2) |
-| BlocksWorldCosts | 5 | sharpsat-td | ok | 56.6 min | hyp16 (0.644) | 0.644, 1 |
-| BlocksWorldCosts | 5 | d4 | timeout (1.00 h limit) | 1.01 h | – | – |
-| BlocksWorldCosts | 5 | d4-project | timeout (1.00 h limit) | 1.02 h | – | – |
+| BlocksWorldCosts | 5 | max-term | ok | 56.5 s | 2-way tie incl. hyp15, hyp16 (0.314) | 0.314, 1 (tied ×2) |
+| BlocksWorldCosts | 5 | sharpsat-td | timeout (1.00 h limit) | 1.03 h | – | – |
+| BlocksWorldCosts | 5 | d4 | timeout (1.00 h limit) | 1.00 h | – | – |
+| BlocksWorldCosts | 5 | d4-project | timeout (1.00 h limit) | 1.01 h | – | – |
 
 The *Time* column is the run's wall clock: for sharpsat-td and max-term the whole `recognize.sh` run, for d4 the compile (plus the queries had it finished). *Recognized* is the argmax, ties kept. `mc-sat` and `ddnnf` were run as cross-checks on IntrusionDetectionCosts only (see Checks below). A 5-way tie at 0.100 for sharpsat-td with 1 observation is a near-uniform posterior (0.0997–0.1003), not a decisive one.
 
-**d4 compilation.** All twelve compiles, full and projected, hit the 60-minute limit. The projection was proved exact in each case and kept 461 of about 1,060 atoms on IntrusionDetectionCosts and 2,038 of about 3,700 on BlocksWorldCosts, but that was not enough. So there are no load or query times to report at the benchmark horizons. On the H = 5 cross-check theory, compiling took 55 s. Loading the saved binary circuit took 0.35 s, and the two queries took 0.8 s (no evidence) and 0.6 s (evidence clamped).
+**d4 compilation.** All twelve compiles, full and projected, hit the 60-minute limit. The projection was proved exact in each case and kept 461 of about 1,060 atoms on IntrusionDetectionCosts and 2,038 of about 10,850 on BlocksWorldCosts (none of the `TSEITIN` atoms), but that was not enough. So there are no load or query times to report at the benchmark horizons. On the H = 5 cross-check theory, compiling took 55 s. Loading the saved binary circuit took 0.35 s, and the two queries took 0.8 s (no evidence) and 0.6 s (evidence clamped).
 
 ### Reading the results
 
@@ -291,8 +295,10 @@ The *Time* column is the run's wall clock: for sharpsat-td and max-term the whol
 SharpSAT-TD counts IntrusionDetection at H = 6 in under two minutes per
 evidence set. FiFO's `benchmarks.md` had recorded every weighted model count
 timing out there (ADDMC, 240 s cap). On BlockWords at H = 15 SharpSAT-TD
-finished only with 5 observations (57 min), presumably because the longest
-prefix constrains the plans the most.
+finishes none of the three evidence sets within the hour. Given a 6-hour limit,
+outside the sweep, the 5-observation run finished in 3.6 h (13,021 s;
+`results/sharpsat-td-blocks-obs5-6h.tsv`, not in `runs.jsonl`), presumably
+because the longest prefix constrains the plans the most.
 d4 compiled nothing at the benchmark horizons in an hour, full or projected,
 and neither did FiFO's own d-DNNF compiler (IntrusionDetectionCosts obs3, given
 a 48 GB heap and a 100 M-node limit). Knowledge compilation pays when one
@@ -318,7 +324,8 @@ built at all.
   exact answer depends on the slack the horizon allows, which is the Z_G effect
   discussed in FiFO's `discussion.md`.
 - **BlockWords, H = 15, 5 observations: exact counting is sharper than max-term.**
-  It puts 0.644 on the true `hyp16` (CORE) and 0.268 on `hyp15`. max-term ties
+  The 6-hour SharpSAT-TD run puts 0.644 on the true `hyp16` (CORE) and 0.268
+  on `hyp15`. max-term ties
   the two at 0.314. BlockWords is sequential, with one hand, so padding is
   constrained. Summing over all plans then separates the two words that share
   the observed prefix, where the single cheapest plan cannot.
